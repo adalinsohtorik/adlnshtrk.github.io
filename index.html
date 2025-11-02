@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benim Web Sayfam</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f9f9f9;
-            color: #333;
-            margin-top: 100px;
-        }
-        h1 {
-            color: #007acc;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adalin Şöhtörik | Kişisel Gelişim Mentoru</title>
+  <style>
+    body { font-family: "Poppins", sans-serif; background-color: #f5f0eb; color: #3b1c1c; margin: 0; padding: 0; text-align: center; }
+    header { background-color: #7c3c3c; color: #fff; padding: 40px 20px; }
+    img { width: 150px; height: 150px; border-radius: 50%; margin-top: 20px; }
+    section { padding: 40px 20px; max-width: 800px; margin: auto; }
+    a { color: #7c3c3c; text-decoration: none; font-weight: bold; }
+    a:hover { text-decoration: underline; }
+    .contact-form input, .contact-form textarea { width: 90%; max-width: 500px; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+    .contact-form button { background-color: #7c3c3c; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+    footer { background-color: #7c3c3c; color: white; padding: 20px; margin-top: 40px; }
+  </style>
 </head>
 <body>
-    <h1>Merhaba! 👋</h1>
-    <p>Bu benim GitHub Pages sitem.</p>
-    <p>Burayı istediğim gibi düzenleyebilirim!</p>
+
+<header>
+  <h1>Adalin Şöhtörik</h1>
+  <p>Kişisel Gelişim Mentoru | Danışman | Yazar</p>
+  <img src="https://via.placeholder.com/150" alt="Profil Fotoğrafım">
+</header>
+
+<section id="about">
+  <h2>Ben Kimim?</h2>
+  <p>Merhaba! Ben Adalin, kişisel gelişim alanında bireylere yol gösteren bir mentorum. Amacım, insanların potansiyellerini keşfetmelerine ve kendi iç dengelerini bulmalarına yardımcı olmak.</p>
+</section>
+
+<section id="blog">
+  <h2>Blog Yazılarım</h2>
+  <p>💡 <a href="#">Kendini Tanımanın Gücü</a></p>
+  <p>🌿 <a href="#">Zihinsel Dayanıklılık Nasıl Geliştirilir?</a></p>
+  <p>💬 <a href="#">Olumsuz Düşüncelerle Başa Çıkmak</a></p>
+</section>
+
+<section id="services">
+  <h2>Danışmanlık</h2>
+  <p>Online danışmanlık hizmetlerimi görmek için: <a href="https://advicemy.com/" target="_blank">Advicemy Profilime Git →</a></p>
+</section>
+
+<section id="contact">
+  <h2>İletişim</h2>
+  <p>Danışmanlık almak veya sorularınız için bana ulaşabilirsiniz 👇</p>
+  <form class="contact-form" action="mailto:adlnshtrk@yahoo.com" method="post" enctype="text/plain">
+    <input type="text" name="name" placeholder="Adınız" required><br>
+    <input type="email" name="email" placeholder="E-posta adresiniz" required><br>
+    <textarea name="message" placeholder="Mesajınız" rows="5" required></textarea><br>
+    <button type="submit">Gönder</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2025 Adalin Şöhtörik | Tüm Hakları Saklıdır</p>
+</footer>
+
 </body>
 </html>
