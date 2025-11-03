@@ -1,94 +1,63 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adalin Sohtori | Kişisel Gelişim Mentoru</title>
-  <style>
-    body {
-    background-color: #F2EDE7; /* light cream */
-    color: #3E0201; /* wine red */
-    font-family: "Times New Roman", serif;
-    margin: 0;
-    padding: 20px;
-}
-
-
-    header {
-      text-align: center;
-      padding: 50px 20px;
-    }
-    .profile-pic {     
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #F2EDE7;
-      display: block;
-      margin: 20px auto;
-    }
-    h1 {
-      font-size: 48px;
-      margin: 10px 0;
-    }
-    h2 {
-      font-size: 24px;
-      font-weight: normal;
-      margin: 10px 0 30px;
-    }
-    p {
-      max-width: 700px;
-      margin: 20px auto;
-      line-height: 1.6;
-    }
-    .btn {
-      display: inline-block;
-      background-color: #F2EDE7;
-      color: #3E0201;
-      padding: 10px 20px;
-      margin: 10px 5px;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .btn:hover {
-      background-color: #e6dfd9;
-    }
-    section {
-      padding: 50px 20px;
-      text-align: center;
-    }
-  </style>
+  <title>Adalin Sohtorik | Personal Development Mentor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Times+New+Roman&display=swap" rel="stylesheet"> <!-- Fonts -->
+  <link rel="stylesheet" href="style.css"> <!-- Link to CSS -->
 </head>
 <body>
 
-<header style=" ; 
-                 
-                color: #F2EDE7;
-                padding: 150px 20px;
-                text-align: center;">
-    <h1>Adalin Sohtorik</h1>
-    <h2>Kişisel Gelişim Mentoru</h2>
-</header>
+  <!-- Main Page Content -->
+  <header class="hero-section">
+    <div class="content">
+      <h1 class="hero-title">Adalin Sohtorik</h1> <!-- Cinzel font -->
+      <h2>Personal Development Mentor</h2>
+      <a href="https://www.advicemy.com/danisman/adalin-sohtorik" class="btn">Book a Session</a>
+      <a href="#blog" class="btn">Blog</a>
+    </div>
+  </header>
 
+  <!-- About Section -->
+  <section class="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm Adalin Sohtorik, a personal development mentor here to help you transform your life. I support you in achieving your goals and improving your life.</p>
+  </section>
 
-<section>
-  <h2>Hizmetlerim & Blog</h2>
-  <a href="blog.html" class="btn">Blog Yazılarım</a>
-  <a href="#contact" class="btn">İletişim</a>
-  <a href=" https://www.advicemy.com/danisman/adalin-sohtorik " target="_blank" class="btn">Danışmanlık</a>
-</section>
+  <!-- Services and Blog -->
+  <section class="services">
+    <h2>My Services & Blog</h2>
+    <div class="service-boxes">
+      <a href="https://www.advicemy.com/danisman/adalin-sohtorik" class="service-box">Book a Session</a>
+      <a href="#blog" class="service-box">Blog</a>
+    </div>
+  </section>
 
-<section id="blog">
-  <h2>Son Blog Yazıları</h2>
-  <p>Örnek yazı: <a href="#" style="color:#F2EDE7;">Kişisel Gelişim İçin 5 Günlük Plan</a></p>
-</section>
+  <!-- Blog Section -->
+  <section id="blog" class="blog">
+    <h2>Recent Blog Posts</h2>
+    <ul>
+      <li><a href="#">5-Day Plan for Personal Development</a></li>
+      <li><a href="#">Psychological Health and Mental Strength</a></li>
+    </ul>
+  </section>
 
-<section id="contact">
-  <h2>İletişim</h2>
-  <p>Danışmanlık veya sorularınız için bana mail atabilirsiniz:</p>
-  <a href="mailto:adlnshtrk@yahoo.com" class="btn">Mail Gönder</a>
-</section>
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>You can email me for consultancy or any questions:</p>
+    <a href="mailto:adlnshtrk@yahoo.com" class="btn">Send an Email</a>
+  </section>
+
+  <!-- Profile Picture Section -->
+  <section class="profile-section">
+    <img src="images/profile.jpg" alt="Adalin Sohtorik" class="profile-pic"> <!-- Profile Image -->
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Adalin Sohtorik. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
