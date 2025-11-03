@@ -1,0 +1,124 @@
+/* General Settings */
+body {
+    font-family: "Times New Roman", serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F2EDE7; /* Light cream background */
+    color: #3E0201; /* Wine color text */
+}
+
+/* Header and Hero Section */
+.hero-section {
+    background-color: #F2EDE7;
+    color: #3E0201;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: 64px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 28px;
+    margin: 10px 0;
+}
+
+.hero-section p {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Services and Blog */
+.services {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 32px;
+    color: #3E0201;
+}
+
+.service-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-box {
+    display: inline-block;
+    background-color: #3E0201;
+    color: #F2EDE7;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.service-box:hover {
+    background-color: #D70000;
+}
+
+/* Blog Section */
+.blog {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.blog h2 {
+    font-size: 32px;
+    color: #3E0201;
+}
+
+.blog a {
+    color: #3E0201;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.blog a:hover {
+    text-decoration: underline;
+}
+
+/* Profile Picture */
+.profile-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Contact Button */
+.btn {
+    display: inline-block;
+    background-color: #3E0201;
+    color: #F2EDE7;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #D70000;
+}
+
+/* Footer */
+footer {
+    background-color: #3E0201;
+    color: #F2EDE7;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
