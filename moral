@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>yazi11</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      background: #ffffff;
+      padding: 40px;
+      margin: 40px 0;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .title {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #4a1f2d;
+      font-weight: bold;
+    }
+
+    .image-box {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      border-radius: 8px;
+    }
+
+    p {
+      font-size: 19px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .button-box {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-seans {
+      background-color: #5c1f32;
+      color: #fff;
+      padding: 14px 32px;
+      text-decoration: none;
+      font-size: 20px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .btn-seans:hover {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Moralinizi Kim Bozdu?</div>
+
+    <div class="image-box">
+      <img src="moral.jpg" alt="moral" />
+    </div>
+
+    <p>Moraliniz bozuk bir halde sokağa çıktığınızda yoldan geçenlerle karşılaşırsınız, tanısanız da tanımasanız da, onlar durumunuzu size yansıtırlar. İnsanlar, bir gün ayağınıza basarak veya bir su birikintisinden üzerinize su sıçratarak ruh halinizi mahvedeceğiniz fikriyle uyanmazlar. Başka bir zaman, güzel bir ruh halinde şehirle randevuya çıktığınızda, bu sefer insanlar nazik, tatlı olur ve size gülümserler.</p>
+
+    <p>Sonuçlarınız faaliyet gösterdiğiniz hislere bağlıdır.</p>
+
+    <p>Kaygı ve korku içinde olduğunuzda, hayatın düşmanca olduğuna inandığınızda, çevrenizde olumsuz olayların meydana gelme olasılığı daha yüksektir. Çaresizlik duyguları artar ve yaşamınız üzerindeki kontrol duygunuzu kaybedersiniz.</p>
+
+    <p>Bu durumdan sorunları yetkin bir şekilde çözmek ve gerekli çözümleri bulmak zordur. Bu durumlarda insanın beyni aptallaşır, bu yüzden bu durumda soruna odaklanmak ve beynimizi zorlamak anlamsızdır. Sürekli sorunları düşündüğünüzde aynı sorun durumlarını yaratır. Bir çarkın içindeki o hamster haline gelirsiniz ve bir daire içinde koşarsınız. Bu sebepten ötürü önce sakinleşmeye ve rahatlamaya odaklanmalıyız. Gerek spor ile gerek meditasyon veya nefes çalışması ile fark etmiyor, önemli olan görevimiz bir şekilde ruh halimizi eksiden artıya dönüştürmektir.</p>
+
+    <p>Herhangi bir başarı veya tatminlik, içinde bulunduğunuz beden ve zihin durumunun bir sonucudur.</p>
+
+    <p>Bu kazanan olma durumudur. Yüksek kaliteli bir içsel durum, sizi daha iyi sonuçlara götürecek eylemlerde bulunmaya motive eder. Kendinizden ve hayatınızdan tatmin olmanızı sağlar.</p>
+
+    <p>İşte bu yüzden kendinizle çalışmak çok önemlidir; çünkü önce iç dünyada, sonra dış dünyada başarılı olursunuz.</p>
+
+    <div class="button-box">
+      <a class="btn-seans" href="https://www.advicemy.com/danisman/adalin-sohtorik">Şarap Rengi Seans Oluştur</a>
+    </div>
+  </div>
+</body>
+</html>
