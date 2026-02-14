@@ -1,181 +1,262 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adalin Sohtorik</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adalin Sohtorik</title>
 
-  <style>
+<style>
 
-    body {
-      background-color: #fdf6f0;
-      color: #7b2b3b;
-      font-family: "Georgia", serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      animation: fadeIn 1.2s ease;
-    }
+body {
+  margin:0;
+  font-family: "Georgia", serif;
+  background: #fdf6f0;
+  color:#0d1b2a;
+  text-align:center;
+  overflow-x:hidden;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* AURA ARKA PLAN */
 
-    header {
-      padding: 80px 20px 40px;
-    }
+body::before{
+  content:"";
+  position:fixed;
+  width:600px;
+  height:600px;
+  background: radial-gradient(circle, rgba(13,27,42,0.18), transparent 70%);
+  top:-200px;
+  left:-200px;
+  animation:auraMove 12s infinite alternate ease-in-out;
+  z-index:-1;
+}
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-    }
+body::after{
+  content:"";
+  position:fixed;
+  width:500px;
+  height:500px;
+  background: radial-gradient(circle, rgba(27,38,59,0.15), transparent 70%);
+  bottom:-150px;
+  right:-150px;
+  animation:auraMove2 14s infinite alternate ease-in-out;
+  z-index:-1;
+}
 
-    p {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
+@keyframes auraMove{
+  from{transform:translate(0,0);}
+  to{transform:translate(120px,80px);}
+}
 
-    /* BUTONLAR */
+@keyframes auraMove2{
+  from{transform:translate(0,0);}
+  to{transform:translate(-100px,-60px);}
+}
 
-    .button {
-      position: relative;
-      overflow: hidden;
-      background-color: #7b2b3b;
-      color: #fdf6f0;
-      padding: 12px 26px;
-      border-radius: 25px;
-      font-size: 16px;
-      text-decoration: none;
-      margin: 6px;
-      display: inline-block;
-      transition: 0.3s;
-      min-width: 180px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
 
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-    }
+/* SAYI PARTİKÜL */
 
-    /* Ripple Effect */
+#particles{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:-1;
+}
 
-    .button span {
-      position: relative;
-      z-index: 2;
-    }
 
-    .button::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 0;
-      background: rgba(255,255,255,0.3);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: width .4s, height .4s, opacity .4s;
-    }
+/* HEADER */
 
-    .button:active::after {
-      width: 200px;
-      height: 200px;
-      opacity: 1;
-      transition: 0s;
-    }
+header{
+  padding:80px 20px 40px;
+  animation:fadeIn 1.5s ease;
+}
 
-    footer {
-      margin-top: 60px;
-      padding: 40px 0;
-    }
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
 
-    .social-buttons {
-      margin-top: 20px;
-    }
+h1{
+  font-size:42px;
+  margin-bottom:10px;
+  letter-spacing:1px;
+}
 
-    /* PROFIL FOTO */
+p{
+  font-size:18px;
+  margin-bottom:30px;
+}
 
-    .profile-image {
-      margin-top: 40px;
-    }
 
-    .profile-image img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #7b2b3b;
-      transition: 0.4s;
-    }
+/* BUTONLAR */
 
-    .profile-image img:hover {
-      transform: scale(1.08);
-    }
+.button{
+  background:#0d1b2a;
+  color:#fdf6f0;
+  padding:12px 26px;
+  border-radius:25px;
+  font-size:16px;
+  text-decoration:none;
+  margin:6px;
+  display:inline-block;
+  transition:0.35s;
+  min-width:180px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
 
-  </style>
+.button:hover{
+  background:#1b263b;
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 12px 30px rgba(0,0,0,0.25);
+}
+
+
+/* PROFIL FOTO */
+
+.profile-image{
+  margin-top:40px;
+}
+
+.profile-image img{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #0d1b2a;
+  transition:0.4s;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.profile-image img:hover{
+  transform:scale(1.08);
+}
+
+
+/* FOOTER */
+
+footer{
+  margin-top:60px;
+  padding:40px 0;
+}
+
+.social-buttons{
+  margin-top:20px;
+}
+
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Adalin Sohtorik</h1>
+<canvas id="particles"></canvas>
 
-    <p>
-      Kişisel Gelişim Mentoru & Sayıların Psikolojisi Uzmanı  
-      & Psikolojik Farkındalık Koçu
-    </p>
+<header>
 
-    <a href="https://www.advicemy.com/danisman/adalin-sohtorik"
-       class="button"
-       target="_blank">
-       <span>Seans Oluşturun</span>
-    </a>
+<h1>Adalin Sohtorik</h1>
 
-    <a href="blog.html" class="button">
-       <span>Blog</span>
-    </a>
+<p>
+Kişisel Gelişim Mentoru & Sayıların Psikolojisi Uzmanı  
+& Psikolojik Farkındalık Koçu
+</p>
 
-  </header>
+<a href="https://www.advicemy.com/danisman/adalin-sohtorik"
+class="button" target="_blank">
+Seans Oluşturun
+</a>
 
+<a href="blog.html" class="button">
+Blog
+</a>
 
-  <footer>
-
-    <div class="social-buttons">
-
-      <a href="mailto:adlnshtrk@yahoo.com" class="button">
-         <span>İletişim</span>
-      </a>
-
-      <a href="https://www.tiktok.com/@adalin.live"
-         class="button"
-         target="_blank">
-         <span>TikTok</span>
-      </a>
-
-      <a href="https://t.me/numerolojik"
-         class="button"
-         target="_blank">
-         <span>Telegram</span>
-      </a>
-
-      <a href="https://www.instagram.com/adalinlive/"
-         class="button"
-         target="_blank">
-         <span>Instagram</span>
-      </a>
-
-    </div>
+</header>
 
 
-    <div class="profile-image">
-      <img src="123.jpg" alt="Adalin Sohtorik">
-    </div>
+<footer>
 
-  </footer>
+<div class="social-buttons">
+
+<a href="mailto:adlnshtrk@yahoo.com" class="button">
+İletişim
+</a>
+
+<a href="https://www.tiktok.com/@adalin.live"
+class="button" target="_blank">
+TikTok
+</a>
+
+<a href="https://t.me/numerolojik"
+class="button" target="_blank">
+Telegram
+</a>
+
+<a href="https://www.instagram.com/adalinlive/"
+class="button" target="_blank">
+Instagram
+</a>
+
+</div>
+
+
+<div class="profile-image">
+<img src="123.jpg" alt="Adalin Sohtorik">
+</div>
+
+</footer>
+
+
+
+<script>
+
+/* SAYI PARTİKÜLLERİ */
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let numbers = [];
+
+for(let i=0;i<40;i++){
+  numbers.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    size: Math.random()*20+14,
+    speed: Math.random()*0.5+0.2,
+    value: Math.floor(Math.random()*9)+1,
+    opacity: Math.random()*0.4+0.1
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  numbers.forEach(n=>{
+    ctx.fillStyle = "rgba(13,27,42,"+n.opacity+")";
+    ctx.font = n.size+"px Georgia";
+    ctx.fillText(n.value, n.x, n.y);
+
+    n.y -= n.speed;
+
+    if(n.y < -20){
+      n.y = canvas.height+20;
+      n.x = Math.random()*canvas.width;
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+</script>
 
 </body>
 </html>
