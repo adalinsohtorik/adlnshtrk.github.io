@@ -6,6 +6,7 @@
   <title>Adalin Sohtorik</title>
 
   <style>
+
     body {
       background-color: #fdf6f0;
       color: #7b2b3b;
@@ -13,6 +14,12 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     header {
@@ -30,11 +37,14 @@
       margin-bottom: 30px;
     }
 
+    /* BUTONLAR */
+
     .button {
+      position: relative;
+      overflow: hidden;
       background-color: #7b2b3b;
       color: #fdf6f0;
       padding: 12px 26px;
-      border: none;
       border-radius: 25px;
       font-size: 16px;
       text-decoration: none;
@@ -42,11 +52,40 @@
       display: inline-block;
       transition: 0.3s;
       min-width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
     .button:hover {
-      opacity: 0.85;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+
+    /* Ripple Effect */
+
+    .button span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .button::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: width .4s, height .4s, opacity .4s;
+    }
+
+    .button:active::after {
+      width: 200px;
+      height: 200px;
+      opacity: 1;
+      transition: 0s;
     }
 
     footer {
@@ -54,20 +93,11 @@
       padding: 40px 0;
     }
 
-    .social-links {
+    .social-buttons {
       margin-top: 20px;
     }
 
-    .social-links a {
-      margin: 0 10px;
-      color: #7b2b3b;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .social-links a:hover {
-      text-decoration: underline;
-    }
+    /* PROFIL FOTO */
 
     .profile-image {
       margin-top: 40px;
@@ -79,6 +109,11 @@
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid #7b2b3b;
+      transition: 0.4s;
+    }
+
+    .profile-image img:hover {
+      transform: scale(1.08);
     }
 
   </style>
@@ -97,11 +132,11 @@
     <a href="https://www.advicemy.com/danisman/adalin-sohtorik"
        class="button"
        target="_blank">
-       Seans Oluşturun
+       <span>Seans Oluşturun</span>
     </a>
 
     <a href="blog.html" class="button">
-       Blog
+       <span>Blog</span>
     </a>
 
   </header>
@@ -109,18 +144,30 @@
 
   <footer>
 
-    <!-- Telegram Ana Buton -->
-    <a href="https://t.me/numerolojik"
-       class="button"
-       target="_blank">
-       Telegram Numeroloji Topluluğu
-    </a>
+    <div class="social-buttons">
 
+      <a href="mailto:adlnshtrk@yahoo.com" class="button">
+         <span>İletişim</span>
+      </a>
 
-    <div class="social-links">
-      <a href="mailto:adlnshtrk@yahoo.com">İletişim</a> |
-      <a href="https://www.tiktok.com/@adalin.live" target="_blank">TikTok</a> |
-      <a href="https://www.instagram.com/adalinlive/" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@adalin.live"
+         class="button"
+         target="_blank">
+         <span>TikTok</span>
+      </a>
+
+      <a href="https://t.me/numerolojik"
+         class="button"
+         target="_blank">
+         <span>Telegram</span>
+      </a>
+
+      <a href="https://www.instagram.com/adalinlive/"
+         class="button"
+         target="_blank">
+         <span>Instagram</span>
+      </a>
+
     </div>
 
 
