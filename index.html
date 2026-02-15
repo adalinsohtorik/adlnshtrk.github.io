@@ -3,155 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Blog | Adalin Sohtorik</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<title>Adalin Sohtorik</title>
 
 <style>
 
 body{
-    margin:0;
-    font-family: Georgia, serif;
-    background:#0b1d2a;
-    color:#f4efe6;
+  margin:0;
+  font-family: "Georgia", serif;
+  background:#0b132b;
+  color:#f4efe6;
+  text-align:center;
+  overflow-x:hidden;
 }
+
+/* DARK ACADEMIA AURA */
+
+body::before{
+  content:"";
+  position:fixed;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(244,239,230,0.08), transparent 70%);
+  top:-250px;
+  left:-250px;
+  animation:aura1 18s infinite alternate ease-in-out;
+  z-index:-1;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle, rgba(244,239,230,0.06), transparent 70%);
+  bottom:-200px;
+  right:-200px;
+  animation:aura2 20s infinite alternate ease-in-out;
+  z-index:-1;
+}
+
+@keyframes aura1{
+  from{transform:translate(0,0);}
+  to{transform:translate(150px,80px);}
+}
+
+@keyframes aura2{
+  from{transform:translate(0,0);}
+  to{transform:translate(-120px,-70px);}
+}
+
+
+/* SAYI PARTİKÜLLER */
+
+#particles{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:-1;
+}
+
 
 /* HEADER */
 
 header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 40px;
-    background:#0b1d2a;
-    border-bottom:1px solid rgba(255,255,255,0.1);
+  padding:90px 20px 40px;
+  animation:fade 1.6s ease;
 }
 
-.logo{
-    font-family:'Cinzel', serif;
-    font-size:20px;
-    letter-spacing:2px;
+@keyframes fade{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
-nav a{
-    margin-left:20px;
-    text-decoration:none;
-    color:#f4efe6;
-    font-size:14px;
+h1{
+  font-size:46px;
+  letter-spacing:2px;
+  margin-bottom:15px;
 }
 
-nav a:hover{
-    opacity:0.7;
+p{
+  font-size:18px;
+  color:#d8d2c6;
+  margin-bottom:40px;
+  line-height:1.6;
 }
 
-/* HERO */
 
-.hero{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:80px 40px;
-    gap:60px;
+/* BUTONLAR ALT ALTA */
+
+.button{
+  display:block;
+  width:260px;
+  margin:14px auto;
+  padding:14px 28px;
+  border-radius:30px;
+  background:#1c2541;
+  color:#f4efe6;
+  text-decoration:none;
+  font-size:16px;
+  letter-spacing:0.5px;
+  transition:0.35s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  position:relative;
+  overflow:hidden;
 }
 
-.hero img{
-    width:320px;
-    border-radius:6px;
+.button:hover{
+  background:#24305a;
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 18px 40px rgba(0,0,0,0.55);
 }
 
-.hero-text{
-    max-width:500px;
+
+/* PROFIL FOTO */
+
+.profile-image{
+  margin-top:50px;
 }
 
-.hero-text h1{
-    font-family:'Cinzel', serif;
-    font-size:42px;
-    margin-bottom:20px;
+.profile-image img{
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #f4efe6;
+  box-shadow:0 15px 40px rgba(0,0,0,0.6);
+  transition:0.4s;
 }
 
-.hero-text p{
-    line-height:1.6;
-    opacity:0.9;
+.profile-image img:hover{
+  transform:scale(1.08);
 }
 
-/* BLOG CARDS */
 
-.blog-section{
-    padding:60px 40px;
-    background:#f4efe6;
-    color:#1c1c1c;
-}
-
-.blog-title{
-    font-family:'Cinzel', serif;
-    font-size:28px;
-    margin-bottom:40px;
-    text-align:center;
-}
-
-.blog-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
-    gap:30px;
-}
-
-.blog-card{
-    background:white;
-    border-radius:6px;
-    overflow:hidden;
-    box-shadow:0 5px 20px rgba(0,0,0,0.1);
-    transition:0.3s;
-}
-
-.blog-card:hover{
-    transform:translateY(-5px);
-}
-
-.blog-card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-}
-
-.blog-card-content{
-    padding:20px;
-}
-
-.blog-card-content h3{
-    margin-top:0;
-    font-family:'Cinzel', serif;
-}
-
-/* SOCIAL */
-
-.social{
-    text-align:center;
-    padding:50px 20px;
-    background:#0b1d2a;
-}
-
-.social a{
-    display:inline-block;
-    margin:10px;
-    padding:12px 22px;
-    border:1px solid #f4efe6;
-    color:#f4efe6;
-    text-decoration:none;
-    border-radius:4px;
-    transition:0.3s;
-}
-
-.social a:hover{
-    background:#f4efe6;
-    color:#0b1d2a;
-}
+/* FOOTER */
 
 footer{
-    text-align:center;
-    padding:30px;
-    font-size:12px;
-    opacity:0.6;
+  margin-top:60px;
+  padding:40px 0 80px;
 }
 
 </style>
@@ -159,85 +151,108 @@ footer{
 
 <body>
 
+<canvas id="particles"></canvas>
+
 <header>
 
-<div class="logo">ADALIN SOHTORIK</div>
+<h1>Adalin Sohtorik</h1>
 
-<nav>
-<a href="index.html">Ana Sayfa</a>
-<a href="blog.html">Blog</a>
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik">Seans Oluştur</a>
-</nav>
+<p>
+Kişisel Gelişim Mentoru & Sayıların Psikolojisi Uzmanı  
+& Psikolojik Farkındalık Koçu
+</p>
+
+<a href="https://www.advicemy.com/danisman/adalin-sohtorik"
+class="button" target="_blank">
+Seans Oluşturun
+</a>
+
+<a href="blog.html" class="button">
+Blog
+</a>
+
+<a href="mailto:adlnshtrk@yahoo.com" class="button">
+İletişim
+</a>
+
+<a href="https://www.tiktok.com/@adalin.live"
+class="button" target="_blank">
+TikTok
+</a>
+
+<a href="https://t.me/numerolojik"
+class="button" target="_blank">
+Telegram
+</a>
+
+<a href="https://www.instagram.com/adalinlive/"
+class="button" target="_blank">
+Instagram
+</a>
 
 </header>
 
 
-<section class="hero">
-
-<img src="images/123.jpg" alt="Adalin">
-
-<div class="hero-text">
-<h1>Yazılarım</h1>
-
-<p>
-Zihin, enerji ve insan psikolojisi üzerine derin analizler.
-Gerçek dönüşüm, farkındalıkla başlar.
-</p>
-
-</div>
-
-</section>
-
-
-<section class="blog-section">
-
-<div class="blog-title">Blog Yazıları</div>
-
-<div class="blog-grid">
-
-<div class="blog-card">
-<img src="images/moral.jpg">
-<div class="blog-card-content">
-<h3>Moralinizi Kim Bozdu</h3>
-
-</div>
-</div>
-
-<div class="blog-card">
-<img src="beauty.jpg">
-<div class="blog-card-content">
-<h3>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</h3>
-
-</div>
-</div>
-
-<div class="blog-card">
-<img src="images/beyin.jpg">
-<div class="blog-card-content">
-<h3>Beyin & Meditasyon </h3>
-
-</div>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="social">
-
-<a href="https://instagram.com/">Instagram</a>
-<a href="https://tiktok.com/">TikTok</a>
-<a href="https://t.me/">Telegram</a>
-
-</section>
-
-
 <footer>
-© 2026 Adalin Sohtorik
+
+<div class="profile-image">
+<img src="123.jpg" alt="Adalin Sohtorik">
+</div>
+
 </footer>
 
 
+
+<script>
+
+/* SAYI PARTİKÜL */
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let numbers = [];
+
+for(let i=0;i<35;i++){
+  numbers.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    size: Math.random()*22+14,
+    speed: Math.random()*0.4+0.15,
+    value: Math.floor(Math.random()*9)+1,
+    opacity: Math.random()*0.25+0.08
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  numbers.forEach(n=>{
+    ctx.fillStyle = "rgba(244,239,230,"+n.opacity+")";
+    ctx.font = n.size+"px Georgia";
+    ctx.fillText(n.value, n.x, n.y);
+
+    n.y -= n.speed;
+
+    if(n.y < -20){
+      n.y = canvas.height+20;
+      n.x = Math.random()*canvas.width;
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+</script>
+
 </body>
 </html>
-
