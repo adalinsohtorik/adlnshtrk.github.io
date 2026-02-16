@@ -3,149 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Adalin Sohtorik</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
-body {
+body{
   margin:0;
-  font-family: "Georgia", serif;
-  background: #f6f1e8;
-  color:#3b0d14;
-  text-align:center;
-  overflow-x:hidden;
+  background:#f5efe6;
+  color:#3b0d19;
+  font-family:'Cormorant Garamond', serif;
 }
 
+/* CONTAINER */
 
-/* DARK ACADEMIA AURA */
-
-body::before{
-  content:"";
-  position:fixed;
-  width:700px;
-  height:700px;
-  background: radial-gradient(circle, rgba(91,15,25,0.18), transparent 70%);
-  top:-250px;
-  left:-200px;
-  animation:auraMove 14s infinite alternate ease-in-out;
-  z-index:-1;
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
 }
 
-body::after{
-  content:"";
-  position:fixed;
-  width:600px;
-  height:600px;
-  background: radial-gradient(circle, rgba(91,15,25,0.15), transparent 70%);
-  bottom:-200px;
-  right:-200px;
-  animation:auraMove2 16s infinite alternate ease-in-out;
-  z-index:-1;
+/* HERO */
+
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
 }
 
-@keyframes auraMove{
-  from{transform:translate(0,0);}
-  to{transform:translate(120px,90px);}
-}
-
-@keyframes auraMove2{
-  from{transform:translate(0,0);}
-  to{transform:translate(-110px,-70px);}
-}
-
-
-/* SAYI PARTİKÜL */
-
-#particles{
-  position:fixed;
+.hero img{
   width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  pointer-events:none;
-  z-index:-1;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
-
-/* HEADER */
-
-header{
-  padding:90px 20px 40px;
-  animation:fadeIn 1.4s ease;
+.hero h1{
+  font-family:'Playfair Display', serif;
+  font-size:48px;
+  line-height:1.2;
+  margin-bottom:20px;
 }
 
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
+.hero p{
+  font-size:20px;
+  margin-bottom:30px;
 }
 
-h1{
-  font-size:44px;
-  margin-bottom:12px;
-  letter-spacing:1px;
-}
-
-p{
-  font-size:18px;
-  margin-bottom:40px;
-  line-height:1.6;
-}
-
-
-/* BUTONLAR ALT ALTA */
+/* BUTTON */
 
 .button{
-  background:#5b0f19;
-  color:#f6f1e8;
-  padding:14px 28px;
+  display:inline-block;
+  padding:14px 26px;
   border-radius:30px;
-  font-size:16px;
+  background:#5a0f1c;
+  color:white;
   text-decoration:none;
-  margin:8px auto;
-  display:block;
-  width:220px;
-  transition:0.35s;
-  box-shadow:0 8px 24px rgba(0,0,0,0.18);
-  position:relative;
-  overflow:hidden;
+  margin:6px 0;
+  font-size:16px;
+  transition:0.3s;
 }
 
 .button:hover{
-  transform:translateY(-4px) scale(1.04);
-  box-shadow:0 16px 40px rgba(0,0,0,0.25);
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
+/* SECTION TITLE */
 
-/* PROFIL FOTO */
-
-.profile-image{
-  margin-top:50px;
+.section-title{
+  font-family:'Playfair Display', serif;
+  font-size:36px;
+  text-align:center;
+  margin-bottom:40px;
 }
 
-.profile-image img{
-  width:170px;
-  height:170px;
-  border-radius:50%;
+/* TRANSFORMATION */
+
+.transform{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  align-items:center;
+}
+
+.transform img{
+  width:100%;
+  border-radius:20px;
+}
+
+/* BLOG */
+
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.blog-card{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.blog-card:hover{
+  transform:translateY(-6px);
+}
+
+.blog-card img{
+  width:100%;
+  height:200px;
   object-fit:cover;
-  border:4px solid #5b0f19;
-  transition:0.4s;
-  box-shadow:0 12px 35px rgba(0,0,0,0.18);
 }
 
-.profile-image img:hover{
-  transform:scale(1.08);
+.blog-card h3{
+  padding:15px;
+  font-size:20px;
 }
 
+.blog-card a{
+  margin:15px;
+  display:inline-block;
+}
+
+/* ABOUT */
+
+.about{
+  text-align:center;
+  max-width:700px;
+  margin:auto;
+  font-size:20px;
+}
+
+/* SOCIAL */
+
+.social{
+  text-align:center;
+}
+
+.social a{
+  display:block;
+  max-width:280px;
+  margin:10px auto;
+}
 
 /* FOOTER */
 
 footer{
-  margin-top:60px;
-  padding-bottom:60px;
+  text-align:center;
+  padding:40px 20px;
+  font-size:14px;
+  color:#5a0f1c;
 }
 
-.social-buttons{
-  margin-top:20px;
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero{
+  grid-template-columns:1fr;
+}
+
+.transform{
+  grid-template-columns:1fr;
+}
+
+.hero h1{
+  font-size:36px;
+}
+
 }
 
 </style>
@@ -153,108 +183,133 @@ footer{
 
 <body>
 
-<canvas id="particles"></canvas>
+<!-- HERO -->
 
-<header>
+<section class="container hero">
 
-<h1>Adalin Sohtorik</h1>
+<div>
+<h1>Dış dünya, iç dünyanızın bir yansımasıdır.</h1>
 
 <p>
-Kişisel Gelişim Mentoru & Sayıların Psikolojisi Uzmanı  
-& Psikolojik Farkındalık Koçu
+Kişisel gelişim mentoru ve sayıların psikolojisi uzmanı olarak  
+insanların içsel farkındalık kazanmasına ve hayat yönünü netleştirmesine yardımcı oluyorum.
 </p>
 
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik"
-class="button" target="_blank">
-Seans Oluşturun
+<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="button">
+Seans Oluştur
 </a>
+
+<br>
 
 <a href="blog.html" class="button">
-Blog
+Blog Yazılarım
 </a>
 
-<a href="mailto:adlnshtrk@yahoo.com" class="button">
-İletişim
-</a>
+</div>
 
-<a href="https://www.tiktok.com/@adalin.live"
-class="button" target="_blank">
+<div>
+<img src="hero.jpg" alt="Adalin Sohtorik">
+</div>
+
+</section>
+
+
+<!-- TRANSFORMATION -->
+
+<section class="container">
+
+<h2 class="section-title">Dönüşüm Hikayesi</h2>
+
+<div class="transform">
+
+<img src="once.jpg" alt="Önce">
+
+<img src="sonra.jpg" alt="Sonra">
+
+</div>
+
+</section>
+
+
+<!-- BLOG -->
+
+<section class="container">
+
+<h2 class="section-title">Öne Çıkan Yazılar</h2>
+
+<div class="blog-grid">
+
+<div class="blog-card">
+<img src="moral.jpg">
+<h3>Moralinizi Kim Bozdu?</h3>
+<a href="yazi11.html" class="button">Oku</a>
+</div>
+
+<div class="blog-card">
+<img src="uyku.jpg">
+<h3>Uykusuzluğun Psikosomatiği</h3>
+<a href="yazi8.html" class="button">Oku</a>
+</div>
+
+<div class="blog-card">
+<img src="akne.jpg">
+<h3>Akne Psikosomatiği</h3>
+<a href="yazi7.html" class="button">Oku</a>
+</div>
+
+</div>
+
+<br><br>
+
+<a href="blog.html" class="button">Tüm Yazıları Gör</a>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="container about">
+
+<h2 class="section-title">Hakkımda</h2>
+
+<p>
+İnsan zihninin derin yapısını, davranış kalıplarını ve sayıların psikolojik etkilerini
+birleştirerek danışanlarıma yeni bir bakış açısı kazandırıyorum.
+Amacım yalnızca bilgi vermek değil, farkındalık oluşturarak gerçek değişimi başlatmaktır.
+</p>
+
+</section>
+
+
+<!-- SOCIAL -->
+
+<section class="container social">
+
+<h2 class="section-title">Bağlantılar</h2>
+
+<a href="mailto:adlnshtrk@yahoo.com" class="button">İletişim</a>
+
+<a href="https://www.tiktok.com/@adalin.live" target="_blank" class="button">
 TikTok
 </a>
 
-<a href="https://t.me/numerolojik"
-class="button" target="_blank">
-Telegram
+<a href="https://t.me/numerolojik" target="_blank" class="button">
+Telegram Kanalı
 </a>
 
-<a href="https://www.instagram.com/adalinlive/"
-class="button" target="_blank">
+<a href="https://www.instagram.com/adalinlive/" target="_blank" class="button">
 Instagram
 </a>
 
-</header>
+</section>
 
 
 <footer>
 
-<div class="profile-image">
-<img src="123.jpg" alt="Adalin Sohtorik">
-</div>
+© 2025 Adalin Sohtorik — Tüm hakları saklıdır.
 
 </footer>
 
-
-
-<script>
-
-/* SAYI PARTİKÜLLERİ */
-
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let numbers = [];
-
-for(let i=0;i<45;i++){
-  numbers.push({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height,
-    size: Math.random()*22+14,
-    speed: Math.random()*0.6+0.2,
-    value: Math.floor(Math.random()*9)+1,
-    opacity: Math.random()*0.35+0.15
-  });
-}
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  numbers.forEach(n=>{
-    ctx.fillStyle = "rgba(91,15,25,"+n.opacity+")";
-    ctx.font = n.size+"px Georgia";
-    ctx.fillText(n.value, n.x, n.y);
-
-    n.y -= n.speed;
-
-    if(n.y < -20){
-      n.y = canvas.height+20;
-      n.x = Math.random()*canvas.width;
-    }
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener("resize",()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-
-</script>
 
 </body>
 </html>
