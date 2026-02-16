@@ -22,10 +22,35 @@ body{
 .container{
   max-width:1100px;
   margin:auto;
-  padding:60px 20px;
+  padding:70px 20px;
 }
 
- 
+/* HERO */
+
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.hero img{
+  width:100%;
+  border-radius:22px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+.hero h1{
+  font-family:'Playfair Display', serif;
+  font-size:52px;
+  line-height:1.2;
+  margin-bottom:20px;
+}
+
+.hero p{
+  font-size:20px;
+  margin-bottom:30px;
+}
 
 /* BUTTON */
 
@@ -36,37 +61,24 @@ body{
   background:#5a0f1c;
   color:white;
   text-decoration:none;
-  margin:6px 0;
+  margin:8px 8px 0 0;
   font-size:16px;
-  transition:0.3s;
+  transition:0.35s;
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
 }
 
 .button:hover{
   transform:translateY(-3px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);
 }
 
 /* SECTION TITLE */
 
 .section-title{
   font-family:'Playfair Display', serif;
-  font-size:36px;
+  font-size:38px;
   text-align:center;
   margin-bottom:40px;
-}
-
-/* TRANSFORMATION */
-
-.transform{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-  align-items:center;
-}
-
-.transform img{
-  width:100%;
-  border-radius:20px;
 }
 
 /* BLOG */
@@ -91,7 +103,7 @@ body{
 
 .blog-card img{
   width:100%;
-  height:200px;
+  height:210px;
   object-fit:cover;
 }
 
@@ -109,9 +121,10 @@ body{
 
 .about{
   text-align:center;
-  max-width:700px;
+  max-width:750px;
   margin:auto;
   font-size:20px;
+  line-height:1.6;
 }
 
 /* SOCIAL */
@@ -123,7 +136,7 @@ body{
 .social a{
   display:block;
   max-width:280px;
-  margin:10px auto;
+  margin:12px auto;
 }
 
 /* FOOTER */
@@ -143,12 +156,8 @@ footer{
   grid-template-columns:1fr;
 }
 
-.transform{
-  grid-template-columns:1fr;
-}
-
 .hero h1{
-  font-size:36px;
+  font-size:38px;
 }
 
 }
@@ -163,21 +172,22 @@ footer{
 <section class="container hero">
 
 <div>
+
 <h1>Dış dünya, iç dünyanızın bir yansımasıdır.</h1>
 
 <p>
-Kişisel gelişim mentoru ve sayıların psikolojisi uzmanı olarak  
-insanların içsel farkındalık kazanmasına ve hayat yönünü netleştirmesine yardımcı oluyorum.
+Kişisel gelişim mentoru ve sayıların psikolojisi uzmanı olarak
+insanların içsel farkındalık kazanmasına, ilişkilerini anlamasına
+ve hayat yönünü netleştirmesine yardımcı oluyorum.
 </p>
 
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="button">
+<a href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank" class="button">
 Seans Oluştur
 </a>
 
-<br>
-
 <a href="blog.html" class="button">
-Blog Yazılarım
+Blog Yazıları
 </a>
 
 </div>
@@ -189,39 +199,37 @@ Blog Yazılarım
 </section>
 
 
-
-
 <!-- BLOG -->
 
 <section class="container">
 
-<h2 class="section-title">Öne Çıkan Yazılar</h2>
+<h2 class="section-title">Blog Yazıları</h2>
 
 <div class="blog-grid">
 
 <div class="blog-card">
 <img src="moral.jpg">
 <h3>Moralinizi Kim Bozdu?</h3>
-<a href="yazi11.html" class="button">Oku</a>
+<a href="yazi11.html" class="button">Yazıyı Oku</a>
 </div>
 
 <div class="blog-card">
 <img src="uyku.jpg">
 <h3>Uykusuzluğun Psikosomatiği</h3>
-<a href="yazi8.html" class="button">Oku</a>
+<a href="yazi8.html" class="button">Yazıyı Oku</a>
 </div>
 
 <div class="blog-card">
 <img src="akne.jpg">
 <h3>Akne Psikosomatiği</h3>
-<a href="yazi7.html" class="button">Oku</a>
+<a href="yazi7.html" class="button">Yazıyı Oku</a>
 </div>
 
 </div>
 
 <br><br>
 
-<a href="blog.html" class="button">Tüm Yazıları Gör</a>
+<a href="blog.html" class="button">Tüm Blog Yazılarını Gör</a>
 
 </section>
 
@@ -233,10 +241,10 @@ Blog Yazılarım
 <h2 class="section-title">Hakkımda</h2>
 
 <p>
-İnsan zihninin derin yapısını, davranış kalıplarını ve sayıların psikolojik etkilerini
-birleştirerek danışanlarıma yeni bir bakış açısı kazandırıyorum.
-Amacım yalnızca bilgi vermek değil, farkındalık oluşturarak gerçek değişimi başlatmaktır.
-</p>
+Dış dünya, iç dünyamızın bir yansımasıdır. Dünyayı gözlerimizle değil, sinir sistemimizle görürüz. Sinir sistemimzi sürekli "savaş ya da kaç" modundaysa, 
+  en huzurlu ortamda bile bir çatışma veya eksiklik bulmakta ustalaşırız. 
+  Pek çok insan her güzel geçen anından sonra bir aksilik veya "kötü bir şey olacak" beklentisi bu yüzdendir. 
+  İç dünyamızdaki bu gerginlik, kararlarımıza, düşüncelerimize, enerjimize ve dolayısıyla hayatımıza çektiğimiz olaylara yansır.
 
 </section>
 
@@ -249,15 +257,18 @@ Amacım yalnızca bilgi vermek değil, farkındalık oluşturarak gerçek deği�
 
 <a href="mailto:adlnshtrk@yahoo.com" class="button">İletişim</a>
 
-<a href="https://www.tiktok.com/@adalin.live" target="_blank" class="button">
+<a href="https://www.tiktok.com/@adalin.live"
+target="_blank" class="button">
 TikTok
 </a>
 
-<a href="https://t.me/numerolojik" target="_blank" class="button">
+<a href="https://t.me/numerolojik"
+target="_blank" class="button">
 Telegram Kanalı
 </a>
 
-<a href="https://www.instagram.com/adalinlive/" target="_blank" class="button">
+<a href="https://www.instagram.com/adalinlive/"
+target="_blank" class="button">
 Instagram
 </a>
 
@@ -269,7 +280,6 @@ Instagram
 © 2025 Adalin Sohtorik — Tüm hakları saklıdır.
 
 </footer>
-
 
 </body>
 </html>
