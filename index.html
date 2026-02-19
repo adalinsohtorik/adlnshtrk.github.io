@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adalin Sohtorik | Blog</title>
+<title>Adalin Sohtorik</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -17,117 +17,126 @@ body{
   font-family:'Cormorant Garamond', serif;
 }
 
-/* HEADER */
+/* CONTAINER */
 
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:25px 40px;
-  border-bottom:1px solid #d6cfc5;
-}
-
-.logo{
-  font-family:'Playfair Display', serif;
-  font-size:26px;
-  letter-spacing:1px;
-}
-
-.home-button{
-  background:#5a0f1c;
-  color:white;
-  text-decoration:none;
-  padding:10px 22px;
-  border-radius:30px;
-  transition:0.3s;
-}
-
-.home-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 16px rgba(0,0,0,0.15);
-}
-
-/* TITLE */
-
-.page-title{
-  text-align:center;
-  padding:60px 20px 20px;
-}
-
-.page-title h1{
-  font-family:'Playfair Display', serif;
-  font-size:48px;
-  margin:0;
-}
-
-.page-title p{
-  font-size:20px;
-  margin-top:10px;
-}
-
-/* BLOG GRID */
-
-.blog-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
+.container{
   max-width:1100px;
   margin:auto;
-  padding:40px 20px 80px;
+  padding:70px 20px;
 }
 
-/* CARD */
+/* HERO */
 
-.blog-post{
-  background:white;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 12px 30px rgba(0,0,0,0.08);
-  transition:0.35s;
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
 }
 
-.blog-post:hover{
-  transform:translateY(-8px);
-  box-shadow:0 18px 45px rgba(0,0,0,0.15);
-}
-
-.blog-post img{
+.hero img{
   width:100%;
-  height:220px;
-  object-fit:cover;
+  border-radius:22px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
-.blog-content{
-  padding:20px;
-  text-align:center;
+.hero h1{
+  font-family:'Playfair Display', serif;
+  font-size:52px;
+  line-height:1.2;
+  margin-bottom:20px;
 }
 
-.blog-content h2{
-  font-size:22px;
-  margin-bottom:10px;
-}
-
-.blog-content p{
-  font-size:16px;
-  color:#6a4b52;
+.hero p{
+  font-size:20px;
+  margin-bottom:30px;
 }
 
 /* BUTTON */
 
 .button{
   display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
+  padding:14px 26px;
+  border-radius:30px;
   background:#5a0f1c;
   color:white;
-  border-radius:25px;
   text-decoration:none;
-  transition:0.3s;
+  margin:8px 8px 0 0;
+  font-size:16px;
+  transition:0.35s;
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
 }
 
 .button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(0,0,0,0.15);
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* SECTION TITLE */
+
+.section-title{
+  font-family:'Playfair Display', serif;
+  font-size:38px;
+  text-align:center;
+  margin-bottom:40px;
+}
+
+/* BLOG */
+
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.blog-card{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.blog-card:hover{
+  transform:translateY(-6px);
+}
+
+.blog-card img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+}
+
+.blog-card h3{
+  padding:15px;
+  font-size:20px;
+}
+
+.blog-card a{
+  margin:15px;
+  display:inline-block;
+}
+
+/* ABOUT */
+
+.about{
+  text-align:center;
+  max-width:750px;
+  margin:auto;
+  font-size:20px;
+  line-height:1.6;
+}
+
+/* SOCIAL */
+
+.social{
+  text-align:center;
+}
+
+.social a{
+  display:block;
+  max-width:280px;
+  margin:12px auto;
 }
 
 /* FOOTER */
@@ -137,7 +146,20 @@ footer{
   padding:40px 20px;
   font-size:14px;
   color:#5a0f1c;
-  border-top:1px solid #d6cfc5;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero{
+  grid-template-columns:1fr;
+}
+
+.hero h1{
+  font-size:38px;
+}
+
 }
 
 </style>
@@ -145,150 +167,110 @@ footer{
 
 <body>
 
-<header>
+<!-- HERO -->
 
-<div class="logo">Adalin Sohtorik</div>
+<section class="container hero">
 
-<a href="index.html" class="home-button">
-Ana Sayfa
+<div>
+
+<h1>Dış dünya, iç dünyanızın bir yansımasıdır.</h1>
+
+<p>
+Dış dünya iç dünyamızın bir yansımasıdır. Dünyayı gözlerimizle değil, sinir sistemimizle görürüz. Sinir sistemimiz sürekli "savaş ya da kaç" modundaysa, en huzurlu ortamda bile bir çatışma veya eksiklik bulmakta ustalaşırız. Pek çok insan, her güzelin ardından bir kötü olayın geleceğine dair inancı buradan gelir. İç dünyamızdaki bu gerginlik, kararlarımıza, düşüncelerimize, enerjimize ve dolayısıyla hayatımıza çektiğimiz olaylara yansır.
+</p>
+
+<a href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank" class="button">
+Seans Oluştur
 </a>
 
-</header>
+<a href="blog.html" class="button">
+Blog Yazıları
+</a>
 
+</div>
 
-<section class="page-title">
-
-<h1>Blog Yazıları</h1>
-
-<p>Zihin, davranış ve içsel dönüşüm üzerine yazılar</p>
+<div>
+<img src="hero.jpg" alt="Adalin Sohtorik">
+</div>
 
 </section>
 
 
+<!-- BLOG -->
 
-<div class="blog-container">
+<section class="container">
 
-<!-- BLOG 1 -->
-<div class="blog-post">
+<h2 class="section-title">Blog Yazıları</h2>
+
+<div class="blog-grid">
+
+<div class="blog-card">
 <img src="moral.jpg">
-<div class="blog-content">
-<h2>Moralinizi Kim Bozdu?</h2>
-<p>Ruh hâliniz gerçekliğinizi nasıl şekillendiriyor?</p>
+<h3>Moralinizi Kim Bozdu?</h3>
 <a href="yazi11.html" class="button">Yazıyı Oku</a>
 </div>
-</div>
 
-
-<!-- BLOG 2 -->
-<div class="blog-post">
+<div class="blog-card">
 <img src="uyku.jpg">
-<div class="blog-content">
-<h2>Uykusuzluğun Psikosomatiği</h2>
-<p>Uykusuzluğun ardındaki zihinsel çatışmalar.</p>
+<h3>Uykusuzluğun Psikosomatiği</h3>
 <a href="yazi8.html" class="button">Yazıyı Oku</a>
 </div>
-</div>
 
-
-<!-- BLOG 3 -->
-<div class="blog-post">
+<div class="blog-card">
 <img src="akne.jpg">
-<div class="blog-content">
-<h2>Akne Psikosomatiği</h2>
-<p>Cilt problemlerinin duygusal kökeni.</p>
+<h3>Akne Psikosomatiği</h3>
 <a href="yazi7.html" class="button">Yazıyı Oku</a>
 </div>
-</div>
-
-
-<!-- BLOG 4 -->
-<div class="blog-post">
-<img src="beauty.jpg">
-<div class="blog-content">
-<h2>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</h2>
-<p>Gerçek güzelliğin psikolojisi.</p>
-<a href="yazi6.html" class="button">Yazıyı Oku</a>
-</div>
-</div>
-
-
-<!-- BLOG 5 -->
-<div class="blog-post">
-<img src="kendin.jpg">
-<div class="blog-content">
-<h2>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h2>
-<p>Kişiyi sınırlayan psikolojik kalıplar.</p>
-<a href="yazi9.html" class="button">Yazıyı Oku</a>
-</div>
-</div>
-
-
-<!-- BLOG 6 -->
-<div class="blog-post">
-<img src="psy.jpg">
-<div class="blog-content">
-<h2>Psikolojide Uyum (Congruence)</h2>
-<p>Benlik bütünlüğünün yapısı.</p>
-<a href="yazi10.html" class="button">Yazıyı Oku</a>
-</div>
-</div>
-
-
-<!-- BLOG 7 -->
-<div class="blog-post">
-<img src="yohun.jpg">
-<div class="blog-content">
-<h2>Yoğunlaşmış Sıkıntılar</h2>
-<p>Kabullenmenin psikolojisi.</p>
-<a href="yazi2.html" class="button">Yazıyı Oku</a>
-</div>
-</div>
-
-
-<!-- BLOG 8 -->
-<div class="blog-post">
-<img src="estetik.jpg">
-<div class="blog-content">
-<h2>Menstrüel Döngünün Büyüsü</h2>
-<p>Döngünün psikolojik etkileri.</p>
-<a href="yazi4.html" class="button">Yazıyı Oku</a>
-</div>
-</div>
-
-
-<!-- BLOG 9 -->
-<div class="blog-post">
-<img src="beyin.jpg">
-<div class="blog-content">
-<h2>Beyin ve Meditasyon</h2>
-<p>Bilinçaltının merkezi.</p>
-<a href="yazi5.html" class="button">Yazıyı Oku</a>
-</div>
-</div>
-
-
-<!-- BLOG 10 -->
-<div class="blog-post">
-<img src="dunya.jpg">
-<div class="blog-content">
-<h2>Dünya Sizi Seviyor</h2>
-<p>Acıların kökü üzerine.</p>
-<a href="yazi1.html" class="button">Yazıyı Oku</a>
-</div>
-</div>
-
-
-<!-- BLOG 11 -->
-<div class="blog-post">
-<img src="thin.jpg">
-<div class="blog-content">
-<h2>Düşünce Sakızı</h2>
-<p>Takıntılı düşüncelerle baş etmek.</p>
-<a href="yazi3.html" class="button">Yazıyı Oku</a>
-</div>
-</div>
 
 </div>
+
+<br><br>
+
+<a href="blog.html" class="button">Tüm Blog Yazılarını Gör</a>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="container about">
+
+<h2 class="section-title">Hakkımda</h2>
+
+<p>
+İnsan zihninin derin yapısını, davranış kalıplarını ve sayıların psikolojik etkilerini
+birleştirerek danışanlarıma yeni bir bakış açısı kazandırıyorum.
+Amacım yalnızca bilgi vermek değil, farkındalık oluşturarak gerçek değişimi başlatmaktır.
+</p>
+
+</section>
+
+
+<!-- SOCIAL -->
+
+<section class="container social">
+
+<h2 class="section-title">Bağlantılar</h2>
+
+<a href="mailto:adlnshtrk@yahoo.com" class="button">İletişim</a>
+
+<a href="https://www.tiktok.com/@adalin.live"
+target="_blank" class="button">
+TikTok
+</a>
+
+<a href="https://t.me/numerolojik"
+target="_blank" class="button">
+Telegram Kanalı
+</a>
+
+<a href="https://www.instagram.com/adalinlive/"
+target="_blank" class="button">
+Instagram
+</a>
+
+</section>
 
 
 <footer>
