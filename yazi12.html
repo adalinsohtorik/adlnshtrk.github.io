@@ -17,6 +17,18 @@ body{
     font-family:'Cormorant Garamond', serif;
 }
 
+/* PROGRESS BAR */
+
+.progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#5a0f1c;
+    width:0%;
+    z-index:999;
+}
+
 /* BACK BUTTON */
 
 .back-button{
@@ -46,7 +58,7 @@ body{
     max-width:850px;
     margin:40px auto;
     background:white;
-    padding:40px;
+    padding:50px;
     border-radius:20px;
     box-shadow:0 15px 40px rgba(0,0,0,0.12);
 
@@ -65,7 +77,16 @@ body{
 h1{
     font-family:'Playfair Display', serif;
     text-align:center;
-    font-size:40px;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+/* META */
+
+.meta{
+    text-align:center;
+    font-size:16px;
+    opacity:0.7;
     margin-bottom:30px;
 }
 
@@ -73,20 +94,31 @@ h1{
 
 p{
     font-size:20px;
-    line-height:1.8;
+    line-height:1.9;
     margin-bottom:22px;
+}
+
+/* QUOTE BOX */
+
+.quote{
+    border-left:4px solid #5a0f1c;
+    padding:20px 25px;
+    margin:30px 0;
+    background:#faf7f3;
+    font-style:italic;
+    font-size:20px;
 }
 
 /* BUTTON */
 
 .seans-container{
     text-align:center;
-    margin:50px 0;
+    margin:60px 0;
 }
 
 .seans-button{
     display:inline-block;
-    padding:14px 30px;
+    padding:14px 32px;
     background:#5a0f1c;
     color:white;
     text-decoration:none;
@@ -98,13 +130,15 @@ p{
 
 .seans-button:hover{
     transform:translateY(-3px);
-    box-shadow:0 0 25px rgba(90,15,28,0.6);
+    box-shadow:0 0 30px rgba(90,15,28,0.6);
 }
 
 </style>
 </head>
 
 <body>
+
+<div class="progress-bar" id="progressBar"></div>
 
 <a href="blog.html" class="back-button">←</a>
 
@@ -114,23 +148,21 @@ p{
 
 <h1>Kıtlık Düşüncesinden Bolluk Zihniyetine Yolculuk</h1>
 
+<div class="meta">⏱ Okuma süresi: 4 dakika</div>
+
 <p>
 Bolluk zihniyeti ile kıtlık zihniyeti arasındaki fark nedir? Ve bir duruma karşı tutumumuz hayatımızı nasıl değiştirebilir?
 Ailenize veya çevrenize hayatı nasıl gördüklerini sorduğunuzda tamamen farklı gerçeklikler duyarsınız.
-Aynı koşullarda yaşayan insanlar bile dünyayı bambaşka şekillerde algılar.
 </p>
 
 <p>
 Bazıları için dünya adaletsiz, sert ve eksiklerle dolu bir yerken, bazıları için fırsatlarla dolu bir alan olabilir.
 Fark yaratan şey koşullar değil, algıdır.
-Her insan hayatı kendi zihinsel filtresinden geçirerek deneyimler.
 </p>
 
-<p>
-Kıtlık zihniyetine sahip insanlar dünyada sınırlı kaynak olduğuna inanır.
-Birisi kazanıyorsa, diğerinin kaybetmesi gerektiğini düşünür.
-Bu düşünce kazan-kaybet bakış açısını yaratır.
-</p>
+<div class="quote">
+“Kıtlık zihniyetine sahip insanlar dünyada tek bir pasta olduğuna inanır.”
+</div>
 
 <p>
 Pandemi döneminde market raflarının boşalması bunun güzel bir örneğidir.
@@ -141,16 +173,16 @@ Korku, gerçeklikten daha güçlü hale geldi.
 <p>
 Benzer şekilde başkalarının başarısı kıskançlık yaratır.
 Çünkü bilinçaltında şu düşünce vardır:
-“Onun kazandığı şey benim hakkımdan eksildi.”
+Onun kazandığı şey benim hakkımdan eksildi.
 </p>
 
 <p><strong>Kıtlık zihniyetinin bazı belirtileri:</strong></p>
 
 <p>
 • Dünya şanslılar ve şanssızlar diye ikiye ayrılmıştır  
-• Herkes rakiptir, kimseye güvenilmez  
-• Fırsatları kaçırma korkusu sürekli vardır  
-• Para harcamaktan aşırı korku oluşur  
+• Herkes rakiptir  
+• Fırsatları kaçırma korkusu vardır  
+• Para harcamaktan korku oluşur  
 • Gelecek kötü olacak beklentisi hakimdir  
 </p>
 
@@ -164,13 +196,13 @@ Risk almaktan korkan kişi çoğu zaman büyüyemez.
 
 <p>
 Öncelikle düşünce kalıplarını fark etmek gerekir.
-Zihninizdeki “yetersizlik” cümlelerini yazın ve yeniden çerçeveleyin.
+Zihninizdeki yetersizlik cümlelerini yazın ve yeniden çerçeveleyin.
 </p>
 
 <p>
 Paylaşmak bolluk zihniyetinin en güçlü araçlarından biridir.
 Zamanınızı, bilginizi, sevginizi paylaşmak bilinçaltına şu mesajı verir:
-“Bende yeterince var.”
+Bende yeterince var.
 </p>
 
 <p>
@@ -209,6 +241,19 @@ function showContent(){
 
 window.addEventListener("scroll", showContent);
 showContent();
+
+
+/* PROGRESS BAR */
+
+window.addEventListener("scroll", () => {
+
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+
+});
 
 </script>
 
