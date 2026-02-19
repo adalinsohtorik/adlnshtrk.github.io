@@ -109,7 +109,7 @@ p{
     font-size:20px;
 }
 
-/* BUTTON */
+/* MAIN BUTTON */
 
 .seans-container{
     text-align:center;
@@ -117,6 +117,7 @@ p{
 }
 
 .seans-button{
+    position: relative;
     display:inline-block;
     padding:14px 32px;
     background:#5a0f1c;
@@ -125,30 +126,58 @@ p{
     border-radius:30px;
     font-size:18px;
     transition:0.35s;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    overflow:hidden;
+}
+
+/* GLOW EFFECT */
+
+.seans-button::before{
+    content:'';
+    position:absolute;
+    inset:-3px;
+    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
+    border-radius:30px;
+    z-index:-1;
+    opacity:0;
+    filter:blur(12px);
+    transition:0.4s;
+}
+
+.seans-button:hover::before{
+    opacity:1;
+    filter:blur(18px);
 }
 
 .seans-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 0 30px rgba(90,15,28,0.6);
+    transform:translateY(-3px) scale(1.04);
 }
 
-/* MOBILE */
+/* STICKY BUTTON */
 
-@media(max-width:600px){
+.sticky-session{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:999;
+}
 
-    h1{
-        font-size:30px;
-    }
+.sticky-session a{
+    display:inline-block;
+    padding:14px 26px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:0.35s;
+}
 
-    .content{
-        padding:30px;
-    }
-
-    p{
-        font-size:18px;
-    }
-
+.sticky-session a:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(90,15,28,0.6),
+        0 0 45px rgba(90,15,28,0.4);
 }
 
 </style>
@@ -169,37 +198,98 @@ p{
 <div class="meta">⏱ Okuma süresi: 3 dakika</div>
 
 <p>
-Moraliniz bozuk bir halde sokağa çıktığınızda yoldan geçenlerle karşılaşırsınız; tanısanız da tanımasanız da, onlar durumunuzu size yansıtırlar.
-İnsanlar bir gün ayağınıza basarak veya bir su birikintisinden üzerinize su sıçratarak ruh halinizi mahvetme fikriyle uyanmazlar.
+Moraliniz bozuk bir halde sokağa çıktığınızda yoldan geçenlerle karşılaşırsınız.
+Tanısanız da tanımasanız da insanlar durumunuzu size yansıtır.
 </p>
 
 <p>
-Başka bir zaman, güzel bir ruh halinde şehirle randevuya çıktığınızda, bu sefer insanlar nazik, tatlı olur ve size gülümserler.
+Başka bir zaman güzel bir ruh halinde şehirle randevuya çıktığınızda ise
+insanlar nazik, tatlı olur ve size gülümser.
+</p>
+
+<p>
 Sonuçlarınız faaliyet gösterdiğiniz hislere bağlıdır.
 </p>
 
-<div class="quote">
-Ruh hâliniz, deneyimlediğiniz gerçekliğin filtresidir.
-</div>
-
 <p>
-Kaygı ve korku içinde olduğunuzda, hayatın düşmanca olduğuna inandığınızda, çevrenizde olumsuz olayların meydana gelme olasılığı daha yüksektir.
-Çaresizlik duyguları artar ve yaşamınız üzerindeki kontrol duygunuzu kaybedersiniz.
-</p>
-
-<p>
-Bu durumdan sorunları yetkin bir şekilde çözmek ve gerekli çözümleri bulmak zordur.
-Bu durumlarda insanın beyni adeta donuklaşır.
-Bu yüzden sürekli soruna odaklanmak çoğu zaman anlamsızdır.
+Kaygı ve korku içinde olduğunuzda hayatın düşmanca olduğuna inanırsınız.
+Bu durumda beyniniz çözüm üretmek yerine tehdit algılamaya odaklanır.
 </p>
 
 <p>
 Sürekli sorunları düşündüğünüzde aynı durumları yeniden üretirsiniz.
-Bir çarkın içindeki hamster gibi aynı yerde dönersiniz.
-Bu sebeple önce sakinleşmeye ve rahatlamaya odaklanmak gerekir.
+Bir hamster çarkında koşmak gibi.
 </p>
 
 <p>
-Spor, meditasyon, nefes çalışması…
-Yöntem fark etmez.
-Görevimiz ruh halimizi eksiden artıya çev
+Bu yüzden önce sakinleşmek gerekir.
+Spor, nefes, meditasyon — araç fark etmez.
+Amaç içsel durumu değiştirmektir.
+</p>
+
+<p>
+Her başarı, içinde bulunduğunuz zihin ve beden durumunun sonucudur.
+</p>
+
+<p>
+Yüksek kaliteli bir içsel durum sizi daha iyi eylemlere götürür.
+Tatmin duygusu oluşturur.
+</p>
+
+<p>
+İşte bu yüzden önce iç dünyada, sonra dış dünyada kazanırsınız.
+</p>
+
+</div>
+
+<div class="seans-container">
+<a class="seans-button"
+href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank">
+Seans Oluştur
+</a>
+</div>
+
+
+<!-- STICKY BUTTON -->
+
+<div class="sticky-session">
+  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
+    Seans Oluştur
+  </a>
+</div>
+
+
+<script>
+
+/* SCROLL ANIMATION */
+
+const content = document.querySelector(".content");
+
+function showContent(){
+    const rect = content.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+        content.classList.add("show");
+    }
+}
+
+window.addEventListener("scroll", showContent);
+showContent();
+
+
+/* PROGRESS BAR */
+
+window.addEventListener("scroll", () => {
+
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+
+});
+
+</script>
+
+</body>
+</html>
