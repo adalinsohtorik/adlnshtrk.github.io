@@ -86,4 +86,245 @@ header h1{
 }
 
 
-/* BLOG*
+/* BLOG CARD */
+
+.blog-post{
+  position:relative;
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:20px;
+  cursor:pointer;
+
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .7s ease;
+}
+
+.blog-post.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+/* IMAGE ZOOM */
+
+.blog-post img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+
+.blog-post:hover img{
+  transform:scale(1.08);
+}
+
+
+/* GLOW FOLLOW */
+
+.blog-post::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at var(--x) var(--y),
+  rgba(128,0,32,.35), transparent 40%);
+  opacity:0;
+  transition:.4s;
+}
+
+.blog-post:hover::before{
+  opacity:1;
+}
+
+
+/* SHADOW HOVER */
+
+.blog-post:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.25),
+    0 0 30px rgba(128,0,32,.35);
+}
+
+
+/* READ TIME */
+
+.read-time{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#5a0016;
+  color:white;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:13px;
+}
+
+
+/* TEXT */
+
+.blog-post h2{
+  font-size:22px;
+  padding:10px;
+  margin:10px 0 5px;
+}
+
+.blog-post p{
+  padding:0 15px;
+  color:#555;
+  font-size:16px;
+}
+
+
+/* BUTTON */
+
+.button{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 18px;
+  background:#800020;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.button:hover{
+  background:#a00030;
+}
+
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  color:#7a0020;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<header>
+<h1>Adalin Sohtorik</h1>
+<a href="index.html" class="home-button">Ana Sayfa</a>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+<h2>Zihin • Enerji • Gerçeklik</h2>
+<p>İç dünyanızı dönüştürmek için psikoloji, farkındalık ve bilinç üzerine yazılar.</p>
+</section>
+
+
+
+<div class="blog-container">
+
+
+<div class="blog-post">
+<div class="read-time">⏱ 3 dk</div>
+<img src="moral.jpg">
+<h2>Moralinizi Kim Bozdu?</h2>
+<p>Ruh hâliniz şehirle ilişki kurma biçiminizi nasıl belirliyor?</p>
+<a href="yazi11.html" class="button">Yazıyı Oku</a>
+</div>
+
+
+<div class="blog-post">
+<div class="read-time">⏱ 4 dk</div>
+<img src="uyku.jpg">
+<h2>Uykusuzluğun Psikosomatiği</h2>
+<p>Uykusuzluğun ardındaki zihinsel çatışmalar.</p>
+<a href="yazi8.html" class="button">Yazıyı Oku</a>
+</div>
+
+
+<div class="blog-post">
+<div class="read-time">⏱ 4 dk</div>
+<img src="akne.jpg">
+<h2>Akne Psikosomatiği</h2>
+<p>Ciltteki döküntülerin duygusal kaynağı.</p>
+<a href="yazi7.html" class="button">Yazıyı Oku</a>
+</div>
+
+
+<div class="blog-post">
+<div class="read-time">⏱ 5 dk</div>
+<img src="beauty.jpg">
+<h2>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışın</h2>
+<p>Gerçek güzelliğin içsel nezaketle ilişkisi.</p>
+<a href="yazi6.html" class="button">Yazıyı Oku</a>
+</div>
+
+
+<div class="blog-post">
+<div class="read-time">⏱ 4 dk</div>
+<img src="kitlik.jpg">
+<h2>Kıtlık Düşüncesinden Bolluk Zihniyetine</h2>
+<p>Zihinsel algı gerçekliğinizi nasıl şekillendirir?</p>
+<a href="yazi12.html" class="button">Yazıyı Oku</a>
+</div>
+
+
+<div class="blog-post">
+<div class="read-time">⏱ 5 dk</div>
+<img src="kendin.jpg">
+<h2>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h2>
+<p>Kişiyi kendisi olmaktan alıkoyan psikolojik engeller.</p>
+<a href="yazi9.html" class="button">Yazıyı Oku</a>
+</div>
+
+
+</div>
+
+
+<footer>
+© 2025 Adalin Sohtorik
+</footer>
+
+
+
+<script>
+
+
+/* SCROLL REVEAL STAGGER */
+
+const posts = document.querySelectorAll(".blog-post");
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:0.15});
+
+posts.forEach(post=>observer.observe(post));
+
+
+
+/* MOUSE GLOW FOLLOW */
+
+document.querySelectorAll(".blog-post").forEach(card=>{
+  card.addEventListener("mousemove",e=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--x", x+"px");
+    card.style.setProperty("--y", y+"px");
+  });
+});
+
+
+</script>
+
+</body>
+</html>
