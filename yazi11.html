@@ -1,99 +1,205 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moralimi Kim Bozdu?</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0 20px;
-            background: #ffffff;
-            color: #222;
-            line-height: 1.7;
-        }
+<title>Moralimi Kim Bozdu?</title>
 
-        .back-button {
-            font-size: 32px;
-            text-decoration: none;
-            color: #000;
-            display: block;
-            margin-top: 15px;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
-        .header-image {
-            width: 100%;
-            max-width: 350px;
-            height: 350px;
-            object-fit: cover;
-            display: block;
-            margin: 25px auto;
-            border-radius: 10px;
-        }
+<style>
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+body{
+    margin:0;
+    background:#f5efe6;
+    color:#3b0d19;
+    font-family:'Cormorant Garamond', serif;
+}
 
-        .content {
-            max-width: 800px;
-            margin: auto;
-            font-size: 18px;
-        }
+/* PROGRESS BAR */
 
-        .seans-container {
-            text-align: center;
-            margin: 40px 0;
-        }
+.progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#5a0f1c;
+    width:0%;
+    z-index:999;
+}
 
-        .seans-button {
-            display: inline-block;
-            padding: 12px 28px;
-            background: #000;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 20px;
-            font-weight: bold;
-        }
+/* BACK BUTTON */
 
-    </style>
+.back-button{
+    font-size:32px;
+    text-decoration:none;
+    color:#5a0f1c;
+    display:block;
+    margin:20px;
+}
+
+/* HEADER IMAGE */
+
+.header-image{
+    width:100%;
+    max-width:420px;
+    height:420px;
+    object-fit:cover;
+    display:block;
+    margin:30px auto;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+/* CONTENT CARD */
+
+.content{
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.content.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* TITLE */
+
+h1{
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+/* META */
+
+.meta{
+    text-align:center;
+    font-size:16px;
+    opacity:0.7;
+    margin-bottom:30px;
+}
+
+/* PARAGRAPH */
+
+p{
+    font-size:20px;
+    line-height:1.9;
+    margin-bottom:22px;
+}
+
+/* QUOTE BOX */
+
+.quote{
+    border-left:4px solid #5a0f1c;
+    padding:20px 25px;
+    margin:30px 0;
+    background:#faf7f3;
+    font-style:italic;
+    font-size:20px;
+}
+
+/* BUTTON */
+
+.seans-container{
+    text-align:center;
+    margin:60px 0;
+}
+
+.seans-button{
+    display:inline-block;
+    padding:14px 32px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+    transition:0.35s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.seans-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 30px rgba(90,15,28,0.6);
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    h1{
+        font-size:30px;
+    }
+
+    .content{
+        padding:30px;
+    }
+
+    p{
+        font-size:18px;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- Ana sayfa oku -->
-    <a href="blog.html" class="back-button">←</a>
+<div class="progress-bar" id="progressBar"></div>
 
-    <!-- Fotoğraf -->
-    <img src="moral.jpg" alt="Moral" class="header-image">
+<a href="blog.html" class="back-button">←</a>
 
-    <h1>Moralimi Kim Bozdu?</h1>
+<img src="moral.jpg" alt="Moral" class="header-image">
 
-    <div class="content">
-        <p>Moraliniz bozuk bir halde sokağa çıktığınızda yoldan geçenlerle karşılaşırsınız, tanısanız da tanımasanız da, onlar durumunuzu size yansıtırlar. İnsanlar, bir gün ayağınıza basarak veya bir su birikintisinden üzerinize su sıçratarak ruh halinizi mahvedeceğiniz fikriyle uyanmazlar. Başka bir zaman, güzel bir ruh halinde şehirle randevuya çıktığınızda, bu sefer insanlar nazik, tatlı olur ve size gülümserler.</p>
+<div class="content">
 
-        <p>Sonuçlarınız faaliyet gösterdiğiniz hislere bağlıdır.</p>
+<h1>Moralimi Kim Bozdu?</h1>
 
-        <p>Kaygı ve korku içinde olduğunuzda, hayatın düşmanca olduğuna inandığınızda, çevrenizde olumsuz olayların meydana gelme olasılığı daha yüksektir. Çaresizlik duyguları artar ve yaşamınız üzerindeki kontrol duygunuzu kaybedersiniz.</p>
+<div class="meta">⏱ Okuma süresi: 3 dakika</div>
 
-        <p>Bu durumdan sorunları yetkin bir şekilde çözmek ve gerekli çözümleri bulmak zordur. Bu durumlarda insanın beyni aptallaşır, bu yüzden bu durumda soruna odaklanmak ve beynimizi zorlamak anlamsızdır. Sürekli sorunları düşündüğünüzde aynı sorun durumlarını yaratır. Bir çarkın içindeki o hamster haline gelirsiniz ve bir daire içinde koşarsınız. Bu sebepten ötürü önce sakinleşmeye ve rahatlamaya odaklanmalıyız. Gerek spor ile gerek meditasyon veya nefes çalışması ile fark etmiyor, önemli olan görevimiz bir şekilde ruh halimizi eksiden artıya dönüştürmektir.</p>
+<p>
+Moraliniz bozuk bir halde sokağa çıktığınızda yoldan geçenlerle karşılaşırsınız; tanısanız da tanımasanız da, onlar durumunuzu size yansıtırlar.
+İnsanlar bir gün ayağınıza basarak veya bir su birikintisinden üzerinize su sıçratarak ruh halinizi mahvetme fikriyle uyanmazlar.
+</p>
 
-        <p>Herhangi bir başarı veya tatminlik, içinde bulunduğunuz beden ve zihin durumunun bir sonucudur.</p>
+<p>
+Başka bir zaman, güzel bir ruh halinde şehirle randevuya çıktığınızda, bu sefer insanlar nazik, tatlı olur ve size gülümserler.
+Sonuçlarınız faaliyet gösterdiğiniz hislere bağlıdır.
+</p>
 
-        <p>Bu kazanan olma durumudur. Yüksek kaliteli bir içsel durum, sizi daha iyi sonuçlara götürecek eylemlerde bulunmaya motive eder. Kendinizden ve hayatınızdan tatmin olmanızı sağlar.</p>
+<div class="quote">
+Ruh hâliniz, deneyimlediğiniz gerçekliğin filtresidir.
+</div>
 
-        <p>İşte bu yüzden kendinizle çalışmak çok önemlidir; çünkü önce iç dünyada, sonra dış dünyada başarılı olursunuz.</p>
-    </div>
+<p>
+Kaygı ve korku içinde olduğunuzda, hayatın düşmanca olduğuna inandığınızda, çevrenizde olumsuz olayların meydana gelme olasılığı daha yüksektir.
+Çaresizlik duyguları artar ve yaşamınız üzerindeki kontrol duygunuzu kaybedersiniz.
+</p>
 
-    <!-- Seans oluştur butonu -->
-    <div class="seans-container">
-        <a class="seans-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-            Seans Oluştur
-        </a>
-    </div>
+<p>
+Bu durumdan sorunları yetkin bir şekilde çözmek ve gerekli çözümleri bulmak zordur.
+Bu durumlarda insanın beyni adeta donuklaşır.
+Bu yüzden sürekli soruna odaklanmak çoğu zaman anlamsızdır.
+</p>
 
-</body>
-</html>
+<p>
+Sürekli sorunları düşündüğünüzde aynı durumları yeniden üretirsiniz.
+Bir çarkın içindeki hamster gibi aynı yerde dönersiniz.
+Bu sebeple önce sakinleşmeye ve rahatlamaya odaklanmak gerekir.
+</p>
+
+<p>
+Spor, meditasyon, nefes çalışması…
+Yöntem fark etmez.
+Görevimiz ruh halimizi eksiden artıya çev
