@@ -5,142 +5,204 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Adalin Sohtorik | Blog</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
-body {
-  font-family: 'Georgia', serif;
-  background-color: #f8f4ef;
-  color: #5a0016;
-  margin: 0;
-  padding: 0;
+body{
+  margin:0;
+  background:#f8f4ef;
+  color:#5a0016;
+  font-family:'Cormorant Garamond', serif;
 }
+
 
 /* HEADER */
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f8f4ef;
-  padding: 20px 40px;
-  border-bottom: 1px solid #5a0016;
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  border-bottom:1px solid #5a0016;
+  background:#f8f4ef;
 }
 
-header h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 28px;
-  color: #5a0016;
-  margin: 0;
+header h1{
+  font-family:'Cinzel', serif;
+  font-size:28px;
+  margin:0;
 }
 
-.home-button {
-  background-color: #5a0016;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 14px;
-  transition: 0.3s;
+.home-button{
+  background:#5a0016;
+  color:white;
+  padding:10px 20px;
+  border-radius:20px;
+  text-decoration:none;
+  transition:.3s;
 }
 
-.home-button:hover {
-  background-color: #7a0020;
+.home-button:hover{
+  background:#7a0020;
+}
+
+
+/* HERO */
+
+.hero{
+  height:280px;
+  background:linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+  url('beauty.jpg') center/cover;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  text-align:center;
+}
+
+.hero h2{
+  font-family:'Cinzel', serif;
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  font-size:18px;
+  max-width:600px;
 }
 
 
 /* BLOG GRID */
 
-.blog-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 20px;
+.blog-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
 }
 
 
 /* BLOG CARD */
 
-.blog-post {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  padding-bottom: 20px;
+.blog-post{
+  position:relative;
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:20px;
+  cursor:pointer;
 
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .7s ease;
 }
 
-.blog-post.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-.blog-post img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
+.blog-post.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 
-/* HOVER GLOW */
+/* IMAGE ZOOM */
 
-.blog-post:hover {
-  transform: translateY(-8px) scale(1.02);
+.blog-post img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+
+.blog-post:hover img{
+  transform:scale(1.08);
+}
+
+
+/* GLOW FOLLOW */
+
+.blog-post::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at var(--x) var(--y),
+  rgba(128,0,32,.35), transparent 40%);
+  opacity:0;
+  transition:.4s;
+}
+
+.blog-post:hover::before{
+  opacity:1;
+}
+
+
+/* SHADOW HOVER */
+
+.blog-post:hover{
+  transform:translateY(-10px) scale(1.02);
   box-shadow:
-    0 10px 25px rgba(0,0,0,0.25),
-    0 0 25px rgba(128,0,32,0.45),
-    0 0 40px rgba(128,0,32,0.25);
+    0 15px 35px rgba(0,0,0,.25),
+    0 0 30px rgba(128,0,32,.35);
 }
 
 
-.blog-post h2 {
-  font-size: 20px;
-  margin: 15px 0 10px;
-  padding: 0 12px;
+/* READ TIME */
+
+.read-time{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#5a0016;
+  color:white;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:13px;
 }
 
-.blog-post p {
-  font-size: 15px;
-  padding: 0 15px;
-  color: #555;
+
+/* TEXT */
+
+.blog-post h2{
+  font-size:22px;
+  padding:10px;
+  margin:10px 0 5px;
+}
+
+.blog-post p{
+  padding:0 15px;
+  color:#555;
+  font-size:16px;
 }
 
 
 /* BUTTON */
 
-.button {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 18px;
-  background-color: #800020;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 16px;
-  transition: 0.3s;
+.button{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 18px;
+  background:#800020;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+  transition:.3s;
 }
 
-.button:hover {
-  background-color: #a00030;
-  transform: translateY(-2px);
+.button:hover{
+  background:#a00030;
 }
 
 
 /* FOOTER */
 
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  color: #7a0020;
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  color:#7a0020;
 }
 
 </style>
@@ -148,121 +210,114 @@ footer {
 
 <body>
 
+
 <header>
-<h1>Adalin Sohtorik Blog</h1>
+<h1>Adalin Sohtorik</h1>
 <a href="index.html" class="home-button">Ana Sayfa</a>
 </header>
 
 
+<section class="hero">
+<h2>Zihin • Enerji • Gerçeklik</h2>
+<p>İç dünyanızı dönüştürmek için psikoloji, farkındalık ve bilinç üzerine yazılar.</p>
+</section>
+
+
+
 <div class="blog-container">
 
+
 <div class="blog-post">
+<div class="read-time">⏱ 3 dk</div>
 <img src="moral.jpg">
 <h2>Moralinizi Kim Bozdu?</h2>
 <p>Ruh hâliniz şehirle ilişki kurma biçiminizi nasıl belirliyor?</p>
 <a href="yazi11.html" class="button">Yazıyı Oku</a>
 </div>
 
+
 <div class="blog-post">
+<div class="read-time">⏱ 4 dk</div>
 <img src="uyku.jpg">
 <h2>Uykusuzluğun Psikosomatiği</h2>
-<p>Uykusuzluğun ardındaki zihinsel çatışmalar ve duygusal yükler.</p>
+<p>Uykusuzluğun ardındaki zihinsel çatışmalar.</p>
 <a href="yazi8.html" class="button">Yazıyı Oku</a>
 </div>
 
+
 <div class="blog-post">
+<div class="read-time">⏱ 4 dk</div>
 <img src="akne.jpg">
 <h2>Akne Psikosomatiği</h2>
 <p>Ciltteki döküntülerin duygusal kaynağı.</p>
 <a href="yazi7.html" class="button">Yazıyı Oku</a>
 </div>
 
+
 <div class="blog-post">
+<div class="read-time">⏱ 5 dk</div>
 <img src="beauty.jpg">
-<h2>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</h2>
-<p>Gerçek güzelliğin içsel nezaketle nasıl şekillendiğini keşfedin.</p>
+<h2>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışın</h2>
+<p>Gerçek güzelliğin içsel nezaketle ilişkisi.</p>
 <a href="yazi6.html" class="button">Yazıyı Oku</a>
 </div>
 
+
 <div class="blog-post">
+<div class="read-time">⏱ 4 dk</div>
 <img src="kitlik.jpg">
-<h3>Kıtlık Düşüncesinden Bolluk Zihniyetine</h3>
+<h2>Kıtlık Düşüncesinden Bolluk Zihniyetine</h2>
+<p>Zihinsel algı gerçekliğinizi nasıl şekillendirir?</p>
 <a href="yazi12.html" class="button">Yazıyı Oku</a>
 </div>
 
+
 <div class="blog-post">
+<div class="read-time">⏱ 5 dk</div>
 <img src="kendin.jpg">
 <h2>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h2>
-<p>Kişiyi kendisi olmaktan alıkoyan görünmez psikolojik engeller.</p>
+<p>Kişiyi kendisi olmaktan alıkoyan psikolojik engeller.</p>
 <a href="yazi9.html" class="button">Yazıyı Oku</a>
 </div>
 
-<div class="blog-post">
-<img src="psy.jpg">
-<h2>Psikolojide Uyum (Congruence)</h2>
-<p>Benlik bütünlüğünün psikolojik yapısı.</p>
-<a href="yazi10.html" class="button">Yazıyı Oku</a>
-</div>
-
-<div class="blog-post">
-<img src="yohun.jpg">
-<h2>Yoğunlaşmış Sıkıntılar Hakkında</h2>
-<p>Hayatımızın temeli kabullenmektir.</p>
-<a href="yazi2.html" class="button">Yazıyı Oku</a>
-</div>
-
-<div class="blog-post">
-<img src="estetik.jpg">
-<h2>Menstrüel Döngünün Büyüsü</h2>
-<p>Döngünüzün dört aşamasının hayatınıza etkisi.</p>
-<a href="yazi4.html" class="button">Yazıyı Oku</a>
-</div>
-
-<div class="blog-post">
-<img src="beyin.jpg">
-<h2>Beyin ve Meditasyon</h2>
-<p>Bilinçaltının merkezi olan beyinciğin gücü.</p>
-<a href="yazi5.html" class="button">Yazıyı Oku</a>
-</div>
-
-<div class="blog-post">
-<img src="dunya.jpg">
-<h2>Dünya Sizi Seviyor</h2>
-<p>Acıların kökü üzerine.</p>
-<a href="yazi1.html" class="button">Yazıyı Oku</a>
-</div>
-
-<div class="blog-post">
-<img src="thin.jpg">
-<h2>Düşünce Sakızı</h2>
-<p>Takıntılı düşüncelerden kurtulma yolları.</p>
-<a href="yazi3.html" class="button">Yazıyı Oku</a>
-</div>
 
 </div>
 
 
 <footer>
-© 2025 Adalin Sohtorik. Tüm hakları saklıdır.
+© 2025 Adalin Sohtorik
 </footer>
+
 
 
 <script>
 
-/* SCROLL ANIMATION */
+/* SCROLL REVEAL */
 
 const posts = document.querySelectorAll(".blog-post");
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
     if(entry.isIntersecting){
       entry.target.classList.add("show");
     }
   });
-}, { threshold: 0.15 });
+},{threshold:0.15});
 
-posts.forEach(post => {
-  observer.observe(post);
+posts.forEach(post=>observer.observe(post));
+
+
+
+/* MOUSE GLOW */
+
+document.querySelectorAll(".blog-post").forEach(card=>{
+  card.addEventListener("mousemove",e=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--x", x+"px");
+    card.style.setProperty("--y", y+"px");
+  });
 });
 
 </script>
