@@ -1,136 +1,280 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dünya Sizi Seviyor - Adalin Sohtorik</title>
-  <style>
-    body {
-      font-family: "Georgia", serif;
-      background-color: #faf9f8;
-      color: #2e1f1f;
-      margin: 0;
-      padding: 0;
-      line-height: 1.7;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    header {
-      text-align: center;
-      padding: 30px 20px 10px;
-    }
+<title>Dünya Sizi Seviyor</title>
 
-    header h1 {
-      font-family: "The Seasons", serif;
-      font-size: 30px;
-      color: #4a1c24;
-      margin-bottom: 10px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
-    .back-button {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 18px;
-      background-color: #4a1c24;
-      color: white;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 14px;
-      transition: background-color 0.3s;
-    }
+<style>
 
-    .back-button:hover {
-      background-color: #6d2c37;
-    }
+body{
+    margin:0;
+    background:#f5efe6;
+    color:#3b0d19;
+    font-family:'Cormorant Garamond', serif;
+}
 
-    hr {
-      border: none;
-      border-top: 1px solid #4a1c24;
-      width: 60%;
-      margin: 20px auto;
-    }
+/* PROGRESS BAR */
 
-    .cover-image {
-      display: block;
-      margin: 40px auto 20px;
-      width: 320px;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-    }
+.progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#5a0f1c;
+    width:0%;
+    z-index:999;
+}
 
-    .content {
-      max-width: 750px;
-      margin: 0 auto;
-      padding: 20px;
-      font-size: 18px;
-      text-align: justify;
-    }
+/* BACK BUTTON */
 
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
+.back-button{
+    font-size:32px;
+    text-decoration:none;
+    color:#5a0f1c;
+    display:block;
+    margin:20px;
+}
 
-    .session-button {
-      background-color: #4a1c24;
-      color: #fff;
-      font-size: 16px;
-      padding: 12px 26px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+/* HEADER IMAGE */
 
-    .session-button:hover {
-      background-color: #6d2c37;
-      transform: scale(1.05);
-    }
+.header-image{
+    width:100%;
+    max-width:420px;
+    height:420px;
+    object-fit:cover;
+    display:block;
+    margin:30px auto;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #4a1c24;
-      font-size: 14px;
-    }
-  </style>
+/* CONTENT CARD */
+
+.content{
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.content.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* TITLE */
+
+h1{
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    font-size:42px;
+    margin-bottom:30px;
+}
+
+/* PARAGRAPH */
+
+p{
+    font-size:20px;
+    line-height:1.9;
+    margin-bottom:22px;
+}
+
+/* QUOTE BOX */
+
+.quote{
+    border-left:4px solid #5a0f1c;
+    padding:20px 25px;
+    margin:30px 0;
+    background:#faf7f3;
+    font-style:italic;
+    font-size:20px;
+}
+
+/* MAIN BUTTON */
+
+.seans-container{
+    text-align:center;
+    margin:60px 0;
+}
+
+.seans-button{
+    position: relative;
+    display:inline-block;
+    padding:14px 32px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+    transition:0.35s;
+    overflow:hidden;
+}
+
+/* GLOW EFFECT */
+
+.seans-button::before{
+    content:'';
+    position:absolute;
+    inset:-3px;
+    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
+    border-radius:30px;
+    z-index:-1;
+    opacity:0;
+    filter:blur(12px);
+    transition:0.4s;
+}
+
+.seans-button:hover::before{
+    opacity:1;
+    filter:blur(18px);
+}
+
+.seans-button:hover{
+    transform:translateY(-3px) scale(1.04);
+}
+
+/* STICKY BUTTON */
+
+.sticky-session{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:999;
+}
+
+.sticky-session a{
+    display:inline-block;
+    padding:14px 26px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:0.35s;
+}
+
+.sticky-session a:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(90,15,28,0.6),
+        0 0 45px rgba(90,15,28,0.4);
+}
+
+</style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Dünya Sizi Seviyor</h1>
-    <a href="blog.html" class="back-button">← Ana Sayfa</a>
-    <hr>
-  </header>
+<div class="progress-bar" id="progressBar"></div>
 
-  <img src="dunya.jpg" alt="Dünya Sizi Seviyor" class="cover-image">
+<a href="blog.html" class="back-button">←</a>
 
-  <div class="content">
-    <p>Acı sadece bize gelmiyor. Bu, eylemlerimizin, kararlarımızın veya eylemsizliğimizin bir sonucudur. Acı, doğru yoldan saptığımızda yanan bir nevi kırmızı ışıktır. Acı, bize her zaman neyin dikkat edilmesi ve düzeltilmesi gerektiğini gösteren sadık yoldaşımızdır.</p>
+<img src="dunya.jpg" alt="Dünya" class="header-image">
 
-    <p>Ne yazık ki çoğu durumda acının sesine kulak vermek istemiyoruz. Onu, hayatımızı mahvetmeye gelen bir düşman olarak algılıyoruz. Oluşmasının nedenlerini aramak yerine, onu basitçe bastırırız, hoş izlenimlerle boğmaya çalışırız. Ancak acı düşman değildir. Bu, hayatta kalmamıza ve ruhsal olarak büyümemize yardım etmeye gelen bilge bir öğretmendir.</p>
+<div class="content">
 
-    <p>Acı bize kendimize ve ihtiyaçlarımıza dikkat etmeyi öğretir. Bizi kendi davranışlarımızı analiz etmeye ve kararlarımızı yeniden gözden geçirmeye zorlar. Acı sayesinde kendimize ve başkalarına karşı daha sorumlu olmayı ve şefkatli olmayı öğrenebiliriz.</p>
+<h1>Dünya Sizi Seviyor</h1>
 
-    <p>Acı bize şefkati öğretir. Acı yaşadığımızda başkalarının acısını daha iyi anlar ve daha empatik oluruz. Acı, insanlık duygumuzu ve ihtiyacı olanlara yardım etme arzumuzu geliştirmemize yardımcı olur.</p>
+<p>
+Acı sadece bize gelmiyor. Bu, eylemlerimizin, kararlarımızın veya eylemsizliğimizin bir sonucudur.
+Acı, doğru yoldan saptığımızda yanan bir nevi kırmızı ışıktır.
+</p>
 
-    <p>Pelevin'in sevdiğim bir sözü vardır: “Hayat çok tuhaf. Kuyudan çıkmak için içine düşmeniz gerekir.”</p>
+<p>
+Ne yazık ki çoğu durumda acının sesine kulak vermek istemiyoruz.
+Onu hayatımızı mahvetmeye gelen bir düşman olarak algılıyoruz.
+</p>
 
-    <p>Acı bize hayatın değerini bilmeyi öğretir. Acı yaşadığımızda, acının olmadığı anların kıymetini bilmeye başlarız. Acı bizi bizim için gerçekten neyin önemli olduğunu düşünmeye ve önemsiz şeylerle zaman kaybetmemeye zorlar.</p>
+<p>
+Ancak acı düşman değildir.
+Bu, hayatta kalmamıza ve ruhsal olarak büyümemize yardım etmeye gelen bilge bir öğretmendir.
+</p>
 
-    <p>Acıdan korkulmaması veya göz ardı edilmemesi gerekir. Acı, daha iyi olmamıza yardım etmeye gelen bir öğretmenimizdir. Kimse mükemmel değildir ve hepimiz öyle ya da böyle hata yaparız.</p>
+<p>
+Acı bize kendimize ve ihtiyaçlarımıza dikkat etmeyi öğretir.
+Davranışlarımızı analiz etmeye ve kararlarımızı yeniden gözden geçirmeye zorlar.
+</p>
 
-    <p>“Dünya seni seviyor. Ve bir gün seni sarsmak için sana sert bir şekilde vuracak çünkü aklını başına toplamanın tek yolu bu.”</p>
+<p>
+Acı sayesinde kendimize ve başkalarına karşı daha sorumlu olmayı ve şefkatli olmayı öğrenebiliriz.
+</p>
 
-    <div class="button-container">
-      <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="session-button">Seans Oluştur</a>
-    </div>
-  </div>
+<div class="quote">
+“Hayat çok tuhaf. Kuyudan çıkmak için içine düşmeniz gerekir.”
+</div>
 
-  <footer>
-    © 2025 Adalin Sohtorik. Tüm hakları saklıdır.
-  </footer>
+<p>
+Acı bize hayatın değerini bilmeyi öğretir.
+Acının olmadığı anların kıymetini anlamaya başlarız.
+</p>
+
+<p>
+Acıdan korkulmaması gerekir.
+O, daha iyi olmamıza yardım eden bir öğretmendir.
+</p>
+
+<div class="quote">
+“Dünya seni seviyor. Ve bir gün seni sarsacak.
+Çünkü aklını başına toplamanın tek yolu bu.”
+</div>
+
+</div>
+
+<div class="seans-container">
+<a class="seans-button"
+href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank">
+Seans Oluştur
+</a>
+</div>
+
+<div class="sticky-session">
+  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
+    Seans Oluştur
+  </a>
+</div>
+
+<script>
+
+/* SCROLL ANIMATION */
+
+const content = document.querySelector(".content");
+
+function showContent(){
+    const rect = content.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+        content.classList.add("show");
+    }
+}
+
+window.addEventListener("scroll", showContent);
+showContent();
+
+
+/* PROGRESS BAR */
+
+window.addEventListener("scroll", () => {
+
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+
+});
+
+</script>
 
 </body>
 </html>
