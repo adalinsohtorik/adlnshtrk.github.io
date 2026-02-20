@@ -3,108 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kendisi Olamamanın 10 Nedeni</title>
+<title>Bir İnsanın Kendisi Olamamasının 10 Nedeni — Adalin Sohtorik</title>
 
 <style>
-    body {
-        font-family: "Times New Roman", serif;
-        background-color: #f8f4ef;
-        color: #4a0010;
-        margin: 0;
-        padding: 20px;
-        line-height: 1.6;
-    }
 
-    /* Geri Butonu */
-    .back-btn {
-        text-decoration: none;
-        color: #800020;
-        font-size: 28px;
-        font-weight: bold;
-        position: fixed;
-        top: 15px;
-        left: 20px;
-    }
+body {
+    font-family: "Georgia", serif;
+    background-color: #faf9f8;
+    color: #2e1f1f;
+    margin: 0;
+    line-height: 1.7;
+}
 
-    /* Görsel */
-    .top-image {
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        display: block;
-        margin: 60px auto 30px auto;
-        border-radius: 12px;
-    }
+/* Üst scroll çizgisi */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: #6d2c37;
+    width: 0%;
+    z-index: 999;
+}
 
-    h1 {
-        text-align: center;
-        color: #5a0016;
-        font-size: 26px;
-        margin-bottom: 30px;
-    }
+/* Geri ok */
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 26px;
+    text-decoration: none;
+    color: #4a1c24;
+    font-weight: bold;
+}
 
-    .section-title {
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 22px;
-        color: #5a0016;
-    }
+/* Header */
+header {
+    text-align: center;
+    padding: 50px 20px 10px;
+}
 
-    .session-btn {
-        display: block;
-        text-align: center;
-        margin: 40px auto;
-        width: 220px;
-        padding: 14px;
-        background-color: #800020;
-        color: white;
-        text-decoration: none;
-        border-radius: 10px;
-        font-size: 18px;
-    }
+header h1 {
+    font-family: "The Seasons", serif;
+    font-size: 32px;
+    color: #4a1c24;
+    margin-bottom: 10px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #4a1c24;
+    width: 60%;
+    margin: 20px auto;
+}
+
+/* Kapak görsel */
+.top-image {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+    margin: 40px auto 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* İçerik */
+.content {
+    max-width: 750px;
+    margin: auto;
+    padding: 20px;
+    font-size: 18px;
+    text-align: justify;
+}
+
+.section-title {
+    font-weight: bold;
+    color: #4a1c24;
+    margin-top: 24px;
+}
+
+/* Buton */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.session-btn {
+    background-color: #4a1c24;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 26px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.session-btn:hover {
+    background-color: #6d2c37;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #4a1c24;
+    font-size: 14px;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="progress-bar" id="progressBar"></div>
+
 <a href="blog.html" class="back-btn">←</a>
+
+<header>
+<h1>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h1>
+<hr>
+</header>
 
 <img src="kendin.jpg" class="top-image" alt="Kendin">
 
-<h1>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h1>
-
 <div class="content">
 
-    <p class="section-title">1. Düşük benlik saygısı</p>
-    <p>Kişi kendinde ilginç ya da değerli hiçbir şey olmadığına inanır.</p>
+<p class="section-title">1. Düşük benlik saygısı</p>
+<p>Kişi kendinde ilginç ya da değerli hiçbir şey olmadığına inanır.</p>
 
-    <p class="section-title">2. Erteleme</p>
-    <p>Sevdiği bir şeyi yapmak ister fakat adım atmak için bahaneler üretir.</p>
+<p class="section-title">2. Erteleme</p>
+<p>Sevdiği bir şeyi yapmak ister fakat adım atmak için bahaneler üretir.</p>
 
-    <p class="section-title">3. Kamuoyu baskısı</p>
-    <p>Kişi yükselmeye çalıştığında çevresindekiler onu aşağı çeker.</p>
+<p class="section-title">3. Kamuoyu baskısı</p>
+<p>Kişi yükselmeye çalıştığında çevresindekiler onu aşağı çeker.</p>
 
-    <p class="section-title">4. Yanlış anlaşılma / alay edilme korkusu</p>
-    <p>Gerçekte ortada bir tehdit yoktur ama kişi yine de kendinden şüphe eder.</p>
+<p class="section-title">4. Yanlış anlaşılma / alay edilme korkusu</p>
+<p>Gerçekte ortada bir tehdit yoktur ama kişi yine de kendinden şüphe eder.</p>
 
-    <p class="section-title">5. Bilinmeyenden korkmak</p>
-    <p>Şu an kötü olsa bile “alıştıkça idare ediliyor”, değişim ise belirsiz gelir.</p>
+<p class="section-title">5. Bilinmeyenden korkmak</p>
+<p>Şu an kötü olsa bile “alıştıkça idare ediliyor”, değişim ise belirsiz gelir.</p>
 
-    <p class="section-title">6. İç kaynak eksikliği</p>
-    <p>Kişi yorgun, tükenmiş veya hastadır; değişim için enerjisi yoktur.</p>
+<p class="section-title">6. İç kaynak eksikliği</p>
+<p>Kişi yorgun, tükenmiş veya hastadır; değişim için enerjisi yoktur.</p>
 
-    <p class="section-title">7. Çocukluktan gelen programlama</p>
-    <p>“Herkes gibi olmalısın” inancı kişiyi kalıplara hapseder.</p>
+<p class="section-title">7. Çocukluktan gelen programlama</p>
+<p>“Herkes gibi olmalısın” inancı kişiyi kalıplara hapseder.</p>
 
-    <p class="section-title">8. Kendini ve arzularını yanlış anlamak</p>
-    <p>Kişi başkalarını memnun etmeye o kadar alışır ki, kendi ne istediğini bilemez.</p>
+<p class="section-title">8. Kendini ve arzularını yanlış anlamak</p>
+<p>Kişi başkalarını memnun etmeye o kadar alışır ki, kendi ne istediğini bilemez.</p>
 
-    <p class="section-title">9. Bilinçdışı ikincil faydalar</p>
-    <p>Kişi bazı problemlerden gizli bir fayda sağlıyordur; bu yüzden değişmez.</p>
+<p class="section-title">9. Bilinçdışı ikincil faydalar</p>
+<p>Kişi bazı problemlerden gizli bir fayda sağlıyordur; bu yüzden değişmez.</p>
+
+<p class="section-title">10. Konfor alanı bağımlılığı</p>
+<p>Tanıdık olan mutsuzluk bile, bilinmeyen mutluluktan daha güvenli gelir.</p>
+
+<div class="button-container">
+<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="session-btn">
+Seans Oluştur
+</a>
+</div>
 
 </div>
 
-<a class="session-btn" href="https://www.advicemy.com/danisman/adalin-sohtorik">Seans Oluştur</a>
+<footer>
+© 2025 Adalin Sohtorik. Tüm hakları saklıdır.
+</footer>
+
+<script>
+window.onscroll = function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    document.getElementById("progressBar").style.width = scrolled + "%";
+};
+</script>
 
 </body>
-</html>
+</html>,
