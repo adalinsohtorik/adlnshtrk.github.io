@@ -3,90 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog | Adalin</title>
+
+<title>Blog — Adalin Sohtorik</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#0f0f14;
-    color:white;
+    background:#f5efe6;
+    color:#3b0d19;
+    font-family:'Cormorant Garamond', serif;
 }
 
 /* HEADER */
 
 header{
-    position:sticky;
-    top:0;
-    background:rgba(15,15,20,0.8);
-    backdrop-filter:blur(10px);
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:999;
+    text-align:center;
+    padding:40px 20px 20px;
 }
 
-header a{
-    color:white;
+header h1{
+    font-family:'Playfair Display', serif;
+    font-size:42px;
+    margin:0;
+}
+
+header p{
+    opacity:0.7;
+    margin-top:5px;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+    font-size:30px;
     text-decoration:none;
-    margin-left:20px;
-}
-
-/* CONTAINER */
-
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:60px 20px;
+    color:#5a0f1c;
 }
 
 /* GRID */
 
-.blog-grid{
+.blog-container{
+    max-width:1100px;
+    margin:40px auto;
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:30px;
+    padding:20px;
 }
 
-/* BLOG CARD */
+/* CARD */
 
 .blog-post{
-    background:rgba(255,255,255,0.05);
+    background:white;
     border-radius:18px;
     overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
     transition:0.4s;
-    border:1px solid rgba(255,255,255,0.08);
-    backdrop-filter:blur(10px);
 }
 
 .blog-post:hover{
     transform:translateY(-8px);
-    box-shadow:0 20px 40px rgba(0,0,0,0.35);
-    border-color:rgba(255,255,255,0.2);
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
 .blog-post img{
     width:100%;
-    height:200px;
+    height:220px;
     object-fit:cover;
 }
 
-/* TEXT */
+/* CONTENT */
 
 .blog-content{
     padding:20px;
 }
 
 .blog-content h2{
-    margin-top:0;
-    font-size:20px;
+    font-family:'Playfair Display', serif;
+    margin:0 0 10px;
+    font-size:22px;
 }
 
 .blog-content p{
-    opacity:0.8;
-    font-size:14px;
+    font-size:17px;
+    opacity:0.85;
 }
 
 /* BUTTON */
@@ -94,27 +100,28 @@ header a{
 .button{
     display:inline-block;
     margin-top:15px;
-    padding:10px 18px;
-    background:#7b1e3a;
+    padding:10px 20px;
+    background:#5a0f1c;
     color:white;
-    border-radius:8px;
     text-decoration:none;
+    border-radius:25px;
     transition:0.3s;
 }
 
 .button:hover{
-    background:#a8325a;
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(90,15,28,0.4);
 }
 
-/* SCROLL ANIMATION */
+/* ANIMATION */
 
-.hidden{
+.blog-post{
     opacity:0;
     transform:translateY(40px);
-    transition:all 0.8s ease;
+    transition:0.8s ease;
 }
 
-.show{
+.blog-post.show{
     opacity:1;
     transform:translateY(0);
 }
@@ -124,21 +131,16 @@ header a{
 
 <body>
 
+<a href="index.html" class="back-btn">←</a>
+
 <header>
-<div>Adalin</div>
-<nav>
-<a href="index.html">Ana Sayfa</a>
-<a href="#">Blog</a>
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">Seans Oluştur</a>
-</nav>
+<h1>Adalin Sohtorik</h1>
+<p>Psikoloji • Bilinç • Zihin • Numeroloji</p>
 </header>
 
-<div class="container">
+<div class="blog-container">
 
-<div class="blog-grid">
-
-<!-- 1 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="moral.jpg">
 <div class="blog-content">
 <h2>Moralinizi Kim Bozdu?</h2>
@@ -147,18 +149,16 @@ header a{
 </div>
 </div>
 
-<!-- 2 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="uyku.jpg">
 <div class="blog-content">
 <h2>Uykusuzluğun Psikosomatiği</h2>
-<p>Uykusuzluğun ardındaki zihinsel çatışmalar ve duygusal yükler.</p>
+<p>Uykusuzluğun ardındaki zihinsel çatışmalar.</p>
 <a href="yazi8.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 3 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="akne.jpg">
 <div class="blog-content">
 <h2>Akne Psikosomatiği</h2>
@@ -167,111 +167,99 @@ header a{
 </div>
 </div>
 
-<!-- 4 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="beauty.jpg">
 <div class="blog-content">
 <h2>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</h2>
-<p>Gerçek güzelliğin içsel nezaketle nasıl şekillendiğini keşfedin.</p>
 <a href="yazi6.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 5 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="kitlik.jpg">
 <div class="blog-content">
 <h2>Kıtlık Düşüncesinden Bolluk Zihniyetine</h2>
-<p>Zihinsel kalıplarınız hayatınızı nasıl belirliyor?</p>
 <a href="yazi12.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 6 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="kendin.jpg">
 <div class="blog-content">
 <h2>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h2>
-<p>Kişiyi kendisi olmaktan alıkoyan görünmez psikolojik engeller.</p>
 <a href="yazi9.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 7 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="psy.jpg">
 <div class="blog-content">
-<h2>Psikolojide Uyum (Congruence)</h2>
-<p>Benlik bütünlüğünün psikolojik yapısı.</p>
+<h2>Psikolojide Uyum</h2>
 <a href="yazi10.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 8 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="yohun.jpg">
 <div class="blog-content">
-<h2>Yoğunlaşmış Sıkıntılar Hakkında</h2>
-<p>Hayatımızın temeli kabullenmektir.</p>
+<h2>Yoğunlaşmış Sıkıntılar</h2>
 <a href="yazi2.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 9 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="estetik.jpg">
 <div class="blog-content">
 <h2>Menstrüel Döngünün Büyüsü</h2>
-<p>Döngünüzün dört aşamasının hayatınıza etkisi.</p>
 <a href="yazi4.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 10 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="beyin.jpg">
 <div class="blog-content">
 <h2>Beyin ve Meditasyon</h2>
-<p>Bilinçaltının merkezi olan beyinciğin gücü.</p>
 <a href="yazi5.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 11 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="dunya.jpg">
 <div class="blog-content">
 <h2>Dünya Sizi Seviyor</h2>
-<p>Acıların kökü üzerine.</p>
 <a href="yazi1.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
-<!-- 12 -->
-<div class="blog-post hidden">
+<div class="blog-post">
 <img src="thin.jpg">
 <div class="blog-content">
 <h2>Düşünce Sakızı</h2>
-<p>Takıntılı düşüncelerden kurtulma yolları.</p>
 <a href="yazi3.html" class="button">Yazıyı Oku</a>
 </div>
 </div>
 
 </div>
-</div>
+
 
 <script>
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("show");
-}
-});
-});
 
-document.querySelectorAll('.hidden').forEach(el=>{
-observer.observe(el);
-});
+/* SCROLL ANIMATION */
+
+const posts = document.querySelectorAll(".blog-post");
+
+function showPosts(){
+    posts.forEach(post=>{
+        const rect = post.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 80){
+            post.classList.add("show");
+        }
+    });
+}
+
+window.addEventListener("scroll", showPosts);
+showPosts();
+
 </script>
 
 </body>
