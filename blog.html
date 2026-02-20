@@ -48,17 +48,11 @@ header h1{
 }
 
 
-/* HERO */
+/* HERO — DÜZ RENK */
 
 .hero{
-  height:280px;
-  background:linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-  url('beauty.jpg') center/cover;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  color:white;
+  background:#f8f4ef;
+  padding:80px 20px 40px 20px;
   text-align:center;
 }
 
@@ -71,6 +65,7 @@ header h1{
 .hero p{
   font-size:18px;
   max-width:600px;
+  margin:auto;
 }
 
 
@@ -82,14 +77,13 @@ header h1{
   gap:30px;
   max-width:1100px;
   margin:auto;
-  padding:60px 20px;
+  padding:40px 20px 60px;
 }
 
 
 /* BLOG CARD */
 
 .blog-post{
-  position:relative;
   background:white;
   border-radius:14px;
   overflow:hidden;
@@ -108,44 +102,21 @@ header h1{
 }
 
 
-/* IMAGE ZOOM */
-
 .blog-post img{
   width:100%;
   height:220px;
   object-fit:cover;
-  transition:transform .6s ease;
+  transition:transform .5s ease;
 }
 
 .blog-post:hover img{
-  transform:scale(1.08);
+  transform:scale(1.05);
 }
 
-
-/* GLOW FOLLOW */
-
-.blog-post::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at var(--x) var(--y),
-  rgba(128,0,32,.35), transparent 40%);
-  opacity:0;
-  transition:.4s;
-}
-
-.blog-post:hover::before{
-  opacity:1;
-}
-
-
-/* SHADOW HOVER */
 
 .blog-post:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.25),
-    0 0 30px rgba(128,0,32,.35);
+  transform:translateY(-8px);
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
 
@@ -228,7 +199,6 @@ footer{
 
 
 <div class="blog-post">
-<div class="read-time">⏱ 3 dk</div>
 <img src="moral.jpg">
 <h2>Moralinizi Kim Bozdu?</h2>
 <p>Ruh hâliniz şehirle ilişki kurma biçiminizi nasıl belirliyor?</p>
@@ -237,7 +207,6 @@ footer{
 
 
 <div class="blog-post">
-<div class="read-time">⏱ 4 dk</div>
 <img src="uyku.jpg">
 <h2>Uykusuzluğun Psikosomatiği</h2>
 <p>Uykusuzluğun ardındaki zihinsel çatışmalar.</p>
@@ -246,7 +215,6 @@ footer{
 
 
 <div class="blog-post">
-<div class="read-time">⏱ 4 dk</div>
 <img src="akne.jpg">
 <h2>Akne Psikosomatiği</h2>
 <p>Ciltteki döküntülerin duygusal kaynağı.</p>
@@ -255,7 +223,6 @@ footer{
 
 
 <div class="blog-post">
-<div class="read-time">⏱ 5 dk</div>
 <img src="beauty.jpg">
 <h2>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışın</h2>
 <p>Gerçek güzelliğin içsel nezaketle ilişkisi.</p>
@@ -264,7 +231,6 @@ footer{
 
 
 <div class="blog-post">
-<div class="read-time">⏱ 4 dk</div>
 <img src="kitlik.jpg">
 <h2>Kıtlık Düşüncesinden Bolluk Zihniyetine</h2>
 <p>Zihinsel algı gerçekliğinizi nasıl şekillendirir?</p>
@@ -273,7 +239,6 @@ footer{
 
 
 <div class="blog-post">
-<div class="read-time">⏱ 5 dk</div>
 <img src="kendin.jpg">
 <h2>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h2>
 <p>Kişiyi kendisi olmaktan alıkoyan psikolojik engeller.</p>
@@ -305,20 +270,6 @@ const observer = new IntersectionObserver(entries=>{
 },{threshold:0.15});
 
 posts.forEach(post=>observer.observe(post));
-
-
-
-/* MOUSE GLOW */
-
-document.querySelectorAll(".blog-post").forEach(card=>{
-  card.addEventListener("mousemove",e=>{
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty("--x", x+"px");
-    card.style.setProperty("--y", y+"px");
-  });
-});
 
 </script>
 
