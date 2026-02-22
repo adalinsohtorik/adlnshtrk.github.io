@@ -1,164 +1,314 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menstrüel Döngünün Büyüsü - Adalin Sohtorik</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: "Georgia", serif;
-      background-color: #faf9f8;
-      color: #2e1f1f;
-      margin: 0;
-      padding: 0;
-      line-height: 1.7;
-    }
+<title>Menstrüel Döngünün Büyüsü</title>
 
-    header {
-      text-align: center;
-      padding: 30px 20px 10px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
-    header h1 {
-      font-family: "The Seasons", serif;
-      font-size: 30px;
-      color: #4a1c24;
-      margin-bottom: 10px;
-    }
+<style>
 
-    .back-button {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 18px;
-      background-color: #4a1c24;
-      color: white;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 14px;
-      transition: 0.3s;
-    }
+body{
+    margin:0;
+    background:#f5efe6;
+    color:#3b0d19;
+    font-family:'Cormorant Garamond', serif;
+}
 
-    .back-button:hover {
-      background-color: #6d2c37;
-    }
+/* PROGRESS BAR */
 
-    hr {
-      border: none;
-      border-top: 1px solid #4a1c24;
-      width: 60%;
-      margin: 20px auto;
-    }
+.progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#5a0f1c;
+    width:0%;
+    z-index:999;
+}
 
-    .cover-image {
-      display: block;
-      margin: 40px auto 20px;
-      width: 320px;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-    }
+/* BACK BUTTON */
 
-    .content {
-      max-width: 750px;
-      margin: 0 auto;
-      padding: 20px;
-      font-size: 18px;
-      text-align: justify;
-    }
+.back-button{
+    font-size:32px;
+    text-decoration:none;
+    color:#5a0f1c;
+    display:block;
+    margin:20px;
+}
 
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
+/* HEADER IMAGE */
 
-    .session-button {
-      background-color: #4a1c24;
-      color: #fff;
-      font-size: 16px;
-      padding: 12px 26px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+.header-image{
+    width:100%;
+    max-width:420px;
+    height:420px;
+    object-fit:cover;
+    display:block;
+    margin:30px auto;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
 
-    .session-button:hover {
-      background-color: #6d2c37;
-      transform: scale(1.05);
-    }
+/* CONTENT CARD */
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #4a1c24;
-      font-size: 14px;
-    }
-  </style>
+.content{
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.content.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* TITLE */
+
+h1{
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+/* META */
+
+.meta{
+    text-align:center;
+    font-size:16px;
+    opacity:0.7;
+    margin-bottom:30px;
+}
+
+/* PARAGRAPH */
+
+p{
+    font-size:20px;
+    line-height:1.9;
+    margin-bottom:22px;
+}
+
+/* LIST */
+
+ul{
+    margin-left:25px;
+    font-size:20px;
+    line-height:1.9;
+}
+
+/* QUOTE */
+
+.quote{
+    border-left:4px solid #5a0f1c;
+    padding:20px 25px;
+    margin:30px 0;
+    background:#faf7f3;
+    font-style:italic;
+    font-size:20px;
+}
+
+/* MAIN BUTTON */
+
+.seans-container{
+    text-align:center;
+    margin:60px 0;
+}
+
+.seans-button{
+    position: relative;
+    display:inline-block;
+    padding:14px 32px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+    transition:0.35s;
+    overflow:hidden;
+}
+
+.seans-button::before{
+    content:'';
+    position:absolute;
+    inset:-3px;
+    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
+    border-radius:30px;
+    z-index:-1;
+    opacity:0;
+    filter:blur(12px);
+    transition:0.4s;
+}
+
+.seans-button:hover::before{
+    opacity:1;
+    filter:blur(18px);
+}
+
+.seans-button:hover{
+    transform:translateY(-3px) scale(1.04);
+}
+
+/* STICKY BUTTON */
+
+.sticky-session{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:999;
+}
+
+.sticky-session a{
+    display:inline-block;
+    padding:14px 26px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:0.35s;
+}
+
+.sticky-session a:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(90,15,28,0.6),
+        0 0 45px rgba(90,15,28,0.4);
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Menstrüel Döngünün Büyüsü</h1>
-  <a href="blog.html" class="back-button">← Ana Sayfa</a>
-  <hr>
-</header>
+<div class="progress-bar" id="progressBar"></div>
 
-<img src="estetik.jpg" alt="Menstrüel Döngü" class="cover-image">
+<a href="blog.html" class="back-button">←</a>
+
+<img src="estetik.jpg" alt="Menstrüel Döngü" class="header-image">
 
 <div class="content">
 
-<p>
-Kızlara ayda birkaç gün adet göreceğini söylemek, hijyen ürünleriyle ilgili birkaç talimat vermek ve onu göndermek bana kalırsa yeterli değildir...
-</p>
+<h1>Menstrüel Döngünün Büyüsü</h1>
+
+<div class="meta">⏱ Okuma süresi: 4 dakika</div>
 
 <p>
-Erkeklerin aksine kadınlar çok daha karmaşık bir hormonal döngüye sahiptir...
+Kızlara ayda birkaç gün adet göreceğini söylemek, hijyen ürünleriyle ilgili birkaç talimat vermek ve onu göndermek yeterli değildir. Çünkü kadın bedeni doğrusal değil, döngüseldir.
+</p>
+
+<div class="quote">
+Kadın üretkenliği sabit değildir. Dalgalıdır.
+</div>
+
+<p>
+Erkeklerin aksine kadınlar çok daha karmaşık bir hormonal ritme sahiptir. Bu ritmi anlamamak, kendinle savaşmak anlamına gelir. Anlamak ise hayatla uyumlanmaktır.
 </p>
 
 <p>
-Adet döngünüzü anlamak hayatınızı ve üretkenliğinizi büyük ölçüde etkileyebilir...
+Adet döngünüzü anlamak üretkenliğinizi, enerjinizi ve psikolojinizi büyük ölçüde etkiler. Döngü aslında dört mevsim gibidir:
+</p>
+
+<ul>
+<li>İlkbahar — Foliküler Faz</li>
+<li>Yaz — Ovulasyon</li>
+<li>Sonbahar — Luteal Faz</li>
+<li>Kış — Adet Dönemi</li>
+</ul>
+
+<h2>İlkbahar — Foliküler</h2>
+
+<p>
+Enerji yükselmeye başlar. Zihin daha nettir. Yeni başlangıçlar için en uygun dönemdir.
+</p>
+
+<h2>Yaz — Ovulasyon</h2>
+
+<p>
+Östrojen zirveye yaklaşır. Sosyallik artar. İletişim, görünürlük ve ifade gücü en yüksek seviyededir.
+</p>
+
+<div class="quote">
+Bu dönem kadınların doğal karizma dönemidir.
+</div>
+
+<h2>Sonbahar — Luteal</h2>
+
+<p>
+İç gözlem artar. Detaylara odaklanma güçlenir. Eleştirel düşünme yükselir.
+</p>
+
+<h2>Kış — Adet</h2>
+
+<p>
+Progesteron düşer. Enerji azalır. Beden dinlenmek ister. Bu dönem aslında yenilenme dönemidir.
 </p>
 
 <p>
-Adet döngüsü mevsimler gibidir, döngü dört aşamadan oluşur;
-<br>* İlkbahar - Foliküler
-<br>* Yaz - Yumurtlama
-<br>* Sonbahar - Luteal
-<br>* Kış - Adet dönemi
+Döngünüzle savaşmak yerine onunla iş birliği yaparsanız, hayatınızda ciddi bir dönüşüm yaşarsınız.
 </p>
 
-<p><strong>İlkbahar - Foliküler</strong><br>
-Döngümüz mevsimler gibidir...
-</p>
+<div class="quote">
+Beden düşman değildir. Rehberdir.
+</div>
 
-<p><strong>Yaz - Ovulasyon</strong><br>
-Bu dönemde östrojen seviyeleri yükselmeye devam ediyor...
-</p>
+</div>
 
-<p><strong>Sonbahar - Luteal</strong><br>
-Luteal faz, iç sonbahar gibidir...
-</p>
+<div class="seans-container">
+<a class="seans-button"
+href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank">
+Seans Oluştur
+</a>
+</div>
 
-<p><strong>Kış - Adet</strong><br>
-Progesteron üretimi durur...
-</p>
-
-<div class="button-container">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" 
-     target="_blank" 
-     class="session-button">
-     Seans Oluştur
+<div class="sticky-session">
+  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
+    Seans Oluştur
   </a>
 </div>
 
-</div>
 
-<footer>
-© 2025 Adalin Sohtorik. Tüm hakları saklıdır.
-</footer>
+<script>
+
+/* SCROLL ANIMATION */
+
+const content = document.querySelector(".content");
+
+function showContent(){
+    const rect = content.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+        content.classList.add("show");
+    }
+}
+
+window.addEventListener("scroll", showContent);
+showContent();
+
+
+/* PROGRESS BAR */
+
+window.addEventListener("scroll", () => {
+
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+
+});
+
+</script>
 
 </body>
 </html>
