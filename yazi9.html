@@ -3,91 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Bir İnsanın Kendisi Olamamasının 10 Nedeni — Adalin Sohtorik</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body {
-    font-family: "Georgia", serif;
-    background-color: #faf9f8;
-    color: #2e1f1f;
     margin: 0;
-    line-height: 1.7;
+    background-color: #f5efe6;
+    font-family: 'Cormorant Garamond', serif;
+    color: #2b2b2b;
+    line-height: 1.8;
 }
 
-/* Scroll Progress */
+/* Progress Bar */
+
 .progress-bar {
     position: fixed;
     top: 0;
     left: 0;
     height: 4px;
-    background: #6d2c37;
+    background: #5a0f1c;
     width: 0%;
     z-index: 999;
 }
 
 /* Back Button */
+
 .back-btn {
     position: fixed;
     top: 20px;
     left: 20px;
-    font-size: 26px;
+    font-size: 28px;
     text-decoration: none;
-    color: #4a1c24;
+    color: #5a0f1c;
     font-weight: bold;
 }
 
 /* Header */
-header {
+
+.header {
     text-align: center;
-    padding: 60px 20px 10px;
+    padding: 80px 20px 40px;
 }
 
-header h1 {
-    font-family: "The Seasons", serif;
-    font-size: 34px;
-    color: #4a1c24;
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: #5a0f1c;
     margin-bottom: 10px;
 }
 
-hr {
-    border: none;
-    border-top: 1px solid #4a1c24;
-    width: 60%;
+.header-line {
+    width: 80px;
+    height: 2px;
+    background: #5a0f1c;
     margin: 20px auto;
 }
 
-/* Image */
-.top-image {
-    width: 320px;
-    height: 320px;
+/* Hero Image */
+
+.hero {
+    width: 100%;
+    max-width: 900px;
+    height: 420px;
     object-fit: cover;
     display: block;
-    margin: 40px auto 30px;
+    margin: 30px auto;
     border-radius: 14px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
 
 /* Content Card */
+
 .content {
-    max-width: 760px;
-    margin: auto;
-    padding: 30px 26px;
-    font-size: 18px;
     background: white;
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
     border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    font-size: 20px;
+    text-align: justify;
 }
 
-/* Section Title */
+/* Section */
+
 .section-title {
-    font-weight: bold;
-    color: #4a1c24;
-    margin-top: 26px;
-    font-size: 19px;
+    font-weight: 600;
+    color: #5a0f1c;
+    margin-top: 28px;
+    font-size: 22px;
+}
+
+/* Quote */
+
+.quote {
+    border-left: 3px solid #5a0f1c;
+    padding-left: 18px;
+    margin: 30px 0;
+    font-style: italic;
+    color: #5a0f1c;
 }
 
 /* Button */
+
 .button-container {
     display: flex;
     justify-content: center;
@@ -95,26 +116,27 @@ hr {
 }
 
 .session-btn {
-    background-color: #4a1c24;
-    color: #fff;
+    background-color: #5a0f1c;
+    color: white;
+    padding: 14px 28px;
     font-size: 16px;
-    padding: 12px 26px;
     border-radius: 10px;
     text-decoration: none;
     transition: 0.3s;
 }
 
 .session-btn:hover {
-    background-color: #6d2c37;
+    background-color: #7a1a2c;
     transform: scale(1.05);
 }
 
 /* Footer */
+
 footer {
     text-align: center;
-    padding: 30px;
-    color: #4a1c24;
+    padding: 40px;
     font-size: 14px;
+    color: #5a0f1c;
 }
 
 </style>
@@ -126,44 +148,58 @@ footer {
 
 <a href="blog.html" class="back-btn">←</a>
 
-<header>
-<h1>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h1>
-<hr>
-</header>
+<div class="header">
+    <h1>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h1>
+    <div class="header-line"></div>
+</div>
 
-<img src="kendin.jpg" class="top-image" alt="Kendin">
+<img src="kendin.jpg" alt="Kendin Olmak" class="hero">
 
 <div class="content">
 
-<p class="section-title">1. Düşük benlik saygısı</p>
-<p>Kişi kendinde ilginç ya da değerli hiçbir şey olmadığına inanır.</p>
+<p>
+Birçok insan hayatı boyunca “kendisi gibi” yaşadığını düşünür.  
+Oysa çoğu zaman davranışlarımızın önemli bir kısmı korkular, alışkanlıklar ve geçmiş programlamalar tarafından yönetilir.
+</p>
+
+<div class="quote">
+“İnsan bazen kendisi olamaz çünkü yıllarca başka biri olması gerektiğine inanmıştır.”
+</div>
+
+<p class="section-title">1. Düşük Benlik Saygısı</p>
+<p>Kişi kendinde ilginç ya da değerli hiçbir şey olmadığına inanır ve bu yüzden kendini göstermeye cesaret edemez.</p>
 
 <p class="section-title">2. Erteleme</p>
-<p>Sevdiği bir şeyi yapmak ister fakat adım atmak için bahaneler üretir.</p>
+<p>Sevdiği şeyleri yapmak ister fakat harekete geçmek yerine sürekli uygun zamanı bekler.</p>
 
-<p class="section-title">3. Kamuoyu baskısı</p>
-<p>Kişi yükselmeye çalıştığında çevresindekiler onu aşağı çeker.</p>
+<p class="section-title">3. Toplumsal Baskı</p>
+<p>Kişi farklı olmaktan korkar çünkü çevresinin yargılayacağını düşünür.</p>
 
-<p class="section-title">4. Yanlış anlaşılma / alay edilme korkusu</p>
-<p>Gerçekte ortada bir tehdit yoktur ama kişi yine de kendinden şüphe eder.</p>
+<p class="section-title">4. Yanlış Anlaşılma Korkusu</p>
+<p>Gerçekte büyük bir risk yoktur fakat zihin olumsuz senaryolar üretir.</p>
 
-<p class="section-title">5. Bilinmeyenden korkmak</p>
-<p>Şu an kötü olsa bile “alıştıkça idare ediliyor”, değişim ise belirsiz gelir.</p>
+<p class="section-title">5. Bilinmeyenden Korkmak</p>
+<p>Mevcut durum mutsuz bile olsa tanıdıktır; değişim ise belirsiz görünür.</p>
 
-<p class="section-title">6. İç kaynak eksikliği</p>
-<p>Kişi yorgun, tükenmiş veya hastadır; değişim için enerjisi yoktur.</p>
+<p class="section-title">6. İç Kaynak Eksikliği</p>
+<p>Yorgunluk, stres veya tükenmişlik değişim enerjisini azaltır.</p>
 
-<p class="section-title">7. Çocukluktan gelen programlama</p>
-<p>“Herkes gibi olmalısın” inancı kişiyi kalıplara hapseder.</p>
+<p class="section-title">7. Çocukluk Programları</p>
+<p>“Herkes gibi olmalısın” mesajları kişinin özgünlüğünü bastırır.</p>
 
-<p class="section-title">8. Kendini ve arzularını yanlış anlamak</p>
-<p>Kişi başkalarını memnun etmeye o kadar alışır ki, kendi ne istediğini bilemez.</p>
+<p class="section-title">8. Kendi İsteklerini Bilmeme</p>
+<p>Başkalarını memnun etmeye alışan kişi zamanla kendi arzularını kaybeder.</p>
 
-<p class="section-title">9. Bilinçdışı ikincil faydalar</p>
-<p>Kişi bazı problemlerden gizli bir fayda sağlıyordur; bu yüzden değişmez.</p>
+<p class="section-title">9. Bilinçdışı İkincil Kazançlar</p>
+<p>Bazı problemler gizli faydalar sağlar. İlgi görmek veya sorumluluktan kaçmak gibi.</p>
 
-<p class="section-title">10. Konfor alanı bağımlılığı</p>
-<p>Tanıdık olan mutsuzluk bile, bilinmeyen mutluluktan daha güvenli gelir.</p>
+<p class="section-title">10. Konfor Alanı Bağımlılığı</p>
+<p>Tanıdık mutsuzluk bile, bilinmeyen mutluluktan daha güvenli hissedebilir.</p>
+
+<p>
+Gerçek değişim, kişinin kendine dürüst olmasıyla başlar.  
+Çünkü insan ancak gerçeği gördüğünde dönüşebilir.
+</p>
 
 <div class="button-container">
 <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="session-btn">
