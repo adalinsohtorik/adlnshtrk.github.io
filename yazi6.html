@@ -1,106 +1,287 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: "Helvetica Neue", sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
-      line-height: 1.7;
-      margin: 0;
-      padding: 40px 15%;
-    }
+<title>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</title>
 
-    h1 {
-      font-size: 2.2em;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 25px;
-      color: #111;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
-    img {
-      display: block;
-      width: 330px;
-      height: 330px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin: 0 auto 30px auto;
-    }
+<style>
 
-    p {
-      font-size: 1.12em;
-      margin-bottom: 18px;
-    }
+body{
+    margin:0;
+    background:#f5efe6;
+    color:#3b0d19;
+    font-family:'Cormorant Garamond', serif;
+}
 
-    .button {
-      display: block;
-      width: fit-content;
-      margin: 45px auto 20px auto;
-      padding: 14px 34px;
-      background-color: #6a1f2c;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      transition: 0.3s;
-      font-size: 1.07em;
-    }
+/* PROGRESS BAR */
 
-    .button:hover {
-      background-color: #541823;
-    }
-  </style>
+.progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#5a0f1c;
+    width:0%;
+    z-index:999;
+}
+
+/* BACK BUTTON */
+
+.back-button{
+    font-size:32px;
+    text-decoration:none;
+    color:#5a0f1c;
+    display:block;
+    margin:20px;
+}
+
+/* HEADER IMAGE */
+
+.header-image{
+    width:100%;
+    max-width:420px;
+    height:420px;
+    object-fit:cover;
+    display:block;
+    margin:30px auto;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+/* CONTENT CARD */
+
+.content{
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.content.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* TITLE */
+
+h1{
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+/* META */
+
+.meta{
+    text-align:center;
+    font-size:16px;
+    opacity:0.7;
+    margin-bottom:30px;
+}
+
+/* PARAGRAPH */
+
+p{
+    font-size:20px;
+    line-height:1.9;
+    margin-bottom:22px;
+}
+
+/* QUOTE */
+
+.quote{
+    border-left:4px solid #5a0f1c;
+    padding:20px 25px;
+    margin:30px 0;
+    background:#faf7f3;
+    font-style:italic;
+    font-size:20px;
+}
+
+/* MAIN BUTTON */
+
+.seans-container{
+    text-align:center;
+    margin:60px 0;
+}
+
+.seans-button{
+    position: relative;
+    display:inline-block;
+    padding:14px 32px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+    transition:0.35s;
+    overflow:hidden;
+}
+
+.seans-button::before{
+    content:'';
+    position:absolute;
+    inset:-3px;
+    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
+    border-radius:30px;
+    z-index:-1;
+    opacity:0;
+    filter:blur(12px);
+    transition:0.4s;
+}
+
+.seans-button:hover::before{
+    opacity:1;
+    filter:blur(18px);
+}
+
+.seans-button:hover{
+    transform:translateY(-3px) scale(1.04);
+}
+
+/* STICKY BUTTON */
+
+.sticky-session{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:999;
+}
+
+.sticky-session a{
+    display:inline-block;
+    padding:14px 26px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:0.35s;
+}
+
+.sticky-session a:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(90,15,28,0.6),
+        0 0 45px rgba(90,15,28,0.4);
+}
+
+</style>
 </head>
 
 <body>
 
-  <h1>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</h1>
+<div class="progress-bar" id="progressBar"></div>
 
-  <img src="beauty.jpg" alt="Kapak Görseli">
+<a href="blog.html" class="back-button">←</a>
 
-  <p>
+<img src="beauty.jpg" alt="Güzellik" class="header-image">
 
-Güzellik hiçbir zaman yalnızca dışarıdan gelen bir mesele olmadı. Aslında, güzellik bedenin şeklinden, kusursuz ten görünümünden ya da pahalı bakımlardan doğmaz. Gerçek güzellik, kalpteki nezaketten doğar.  
+<div class="content">
 
-Nezaket ışık gibidir; insandan taşıp çevresini aydınlatır. Gözlerde görünür, duruşta hissedilir, hatta ses tonuna bile yansır. Bu yüzden aslında çirkin insanlar yoktur—sadece kaba insanlar vardır. Çünkü kabalık yüzü karartır; nezaketse kadını güzelleştirir ve yumuşatır.  
+<h1>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</h1>
 
-Acımak, herkese uyum sağlamak veya sabır göstermek nezaket değildir. Gerçek nezaket, içsel saflığın verdiği bir hafiflik ve aydınlıktır. Kadın dedikodudan, kıskançlıktan, yargılamaktan uzaklaştıkça hem enerjisi berraklaşır hem de dış görünüşü canlı ve çekici hale gelir.
+<div class="meta">⏱ Okuma süresi: 5 dakika</div>
 
+<p>
+Güzellik hiçbir zaman yalnızca dış görünüşle ilgili olmadı. Kusursuz cilt, ideal beden ya da pahalı bakım ürünleri gerçek çekiciliğin kaynağı değildir. Gerçek güzellik, karakterden doğar.
+</p>
 
+<p>
+Nezaket bir ışıktır. İnsanın gözlerinde görünür, duruşunda hissedilir, ses tonuna bile yansır. Bu yüzden aslında çirkin insanlar yoktur; sadece kaba insanlar vardır. Kabalık yüzü sertleştirir, nezaket ise yumuşatır.
+</p>
 
-Monica Bellucci’ye bir röportajda “Güzellik nedir?” diye sorulduğunda verdiği cevap, aslında güzelliğin özünü kusursuz şekilde anlatıyordu. Çocukluğunda babası onu güzel bulmazdı; hatta okulda zorbalık yaşardı. Ama tüm bunlar onda bir şey geliştirdi:  
-Kendini dönüştürme kapasitesi.
+<div class="quote">
+Gerçek çekicilik karakterin dışarı yansımasıdır.
+</div>
 
-O çirkin ördek yavrusu, kişiliğini işleyerek dünyanın en güzel kadınlarından biri hâline geldi. Ve o meşhur cümleyi söyledi:  
+<p>
+Dedikodu, kıskançlık ve yargılama zihni kirletir. Kadın bu yüklerden uzaklaştıkça enerjisi berraklaşır ve görünüşü doğal olarak değişir.
+</p>
 
-“Güzel olmak için kişiliğiniz üzerinde çalışmalısınız.”
+<p>
+Bir röportajda güzelliğin ne olduğu sorulduğunda verilen cevap aslında çok basitti: insan kendini dönüştürebilir. Çocuklukta yaşanan zor deneyimler bile kişiliği işleyerek güce dönüşebilir.
+</p>
 
-Bu cümle, dünyadaki her güzellik salonunun duvarına asılmalı.  
-Çünkü dışarıdan kapatılan kusurlar geçicidir; içeriden düzeltilemeyenler ise geri döner. Ruhun da tembelliği vardır, ama yine de sorumluluk kişidedir: Kendini sevmek, öz bakım göstermek, tavırlarını iyileştirmek, değerlerini parlatmak…
+<div class="quote">
+Güzel olmak için kişiliğiniz üzerinde çalışmalısınız.
+</div>
 
-Elbette güzellik hem içte hem dışta korunmalıdır, ama dışı ilk sıraya koyduğunuzda sonuç hep aynıdır: çöküş. O yüzden Nicole Kidman’ın şu sözü de boşuna değildir:  
-“Aşık olun – gerçekten işe yarıyor.”
+<p>
+Dış görünüşte yapılan düzeltmeler geçicidir. İç dünyada yapılan dönüşüm ise kalıcıdır. Kendini sevmek, öz bakım yapmak, davranışları iyileştirmek ve değerleri geliştirmek gerçek çekiciliği oluşturur.
+</p>
 
-Kadının enerjisi, kalbi ve yaşama bakışı güzelliği yaratır. Kendinizde hem içsel hem dışsal olarak tüm bu unsurları fark ettiğinizde, sizi eşsiz güzel bir kadın olmaktan hiçbir şey alıkoyamaz.  
+<p>
+Elbette dış görünüş önemlidir. Fakat onu merkeze koyduğunuzda denge bozulur. Kadının enerjisi, kalbi ve yaşama bakışı güzelliği yaratır.
+</p>
 
-Monica Bellucci’nin şu cümlesi her şeyi özetler:  
-“Güzellik bir kadın için yalnızca iki durumda sorun yaratır: olmadığında ve güzellikten başka bir şey olmadığında.”
+<div class="quote">
+Beden, iç ışığın yansımasıdır.
+</div>
 
-Beden, iç ışığımızın bir yansımasıdır.  
-Gerçek güzellikse, bakınca “bu kadında bir şey var” dedirten o görünmez ışıktır: değerler, nezaket, duruş, karakter.  
+<p>
+Gerçek güzellik bakıldığında tarif edilemeyen ama hissedilen bir etkidir: duruş, karakter, değerler ve içsel ışık. Ve güzellik tam olarak buradan doğar.
+</p>
 
-Ve güzellik tam olarak bunlardan doğar.
+</div>
 
-  </p>
+<div class="seans-container">
+<a class="seans-button"
+href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank">
+Seans Oluştur
+</a>
+</div>
 
-  <a class="button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
+<div class="sticky-session">
+  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
     Seans Oluştur
   </a>
+</div>
+
+
+<script>
+
+/* SCROLL ANIMATION */
+
+const content = document.querySelector(".content");
+
+function showContent(){
+    const rect = content.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+        content.classList.add("show");
+    }
+}
+
+window.addEventListener("scroll", showContent);
+showContent();
+
+
+/* PROGRESS BAR */
+
+window.addEventListener("scroll", () => {
+
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+
+});
+
+</script>
 
 </body>
 </html>
