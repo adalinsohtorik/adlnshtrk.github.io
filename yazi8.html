@@ -1,153 +1,228 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uykusuzluğun Psikosomatiği - Adalin Sohtorik</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: "Georgia", serif;
-      background-color: #faf9f8;
-      color: #2e1f1f;
-      margin: 0;
-      padding: 0;
-      line-height: 1.7;
-    }
+<title>Uykusuzluğun Psikosomatiği — Adalin Sohtorik</title>
 
-    /* GERİ BUTONU */
-    .back-to-blog {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background-color: #800020;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 14px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
-    .back-to-blog:hover {
-      background-color: #a8324a;
-    }
+<style>
 
-    header {
-      text-align: center;
-      padding: 60px 20px 20px;
-    }
+body {
+    margin: 0;
+    background-color: #f5efe6;
+    font-family: 'Cormorant Garamond', serif;
+    color: #2b2b2b;
+    line-height: 1.8;
+}
 
-    header h1 {
-      font-family: "The Seasons", serif;
-      font-size: 28px;
-      color: #4a1c24;
-      margin-bottom: 10px;
-    }
+/* Progress Bar */
 
-    hr {
-      border: none;
-      border-top: 1px solid #4a1c24;
-      width: 60%;
-      margin: 15px auto 30px;
-    }
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: #5a0f1c;
+    width: 0%;
+    z-index: 999;
+}
 
-    /* KAPAK FOTOĞRAFI */
-    .cover-image {
-      display: block;
-      margin: 0 auto;
-      width: 280px;
-      height: 280px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-    }
+/* Back Button */
 
-    .content {
-      max-width: 750px;
-      margin: 30px auto;
-      padding: 20px;
-      font-size: 18px;
-      text-align: justify;
-    }
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 28px;
+    text-decoration: none;
+    color: #5a0f1c;
+    font-weight: bold;
+}
 
-    /* SEANS BUTONU */
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
+/* Header */
 
-    .session-button {
-      background-color: #4a1c24;
-      color: #fff;
-      font-size: 16px;
-      padding: 12px 26px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+.header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
 
-    .session-button:hover {
-      background-color: #6d2c37;
-      transform: scale(1.05);
-    }
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: #5a0f1c;
+    margin-bottom: 10px;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #4a1c24;
-      font-size: 14px;
-    }
-  </style>
+.header-line {
+    width: 80px;
+    height: 2px;
+    background: #5a0f1c;
+    margin: 20px auto;
+}
 
+/* Hero Image */
+
+.hero {
+    width: 100%;
+    max-width: 900px;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+    margin: 30px auto;
+    border-radius: 14px;
+}
+
+/* Content Card */
+
+.content {
+    background: white;
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    font-size: 20px;
+    text-align: justify;
+}
+
+/* Quote */
+
+.quote {
+    border-left: 3px solid #5a0f1c;
+    padding-left: 18px;
+    margin: 30px 0;
+    font-style: italic;
+    color: #5a0f1c;
+}
+
+/* List */
+
+ul {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+/* Button */
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.session-btn {
+    background-color: #5a0f1c;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.session-btn:hover {
+    background-color: #7a1a2c;
+    transform: scale(1.05);
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 14px;
+    color: #5a0f1c;
+}
+
+</style>
 </head>
+
 <body>
 
-  <!-- GERİ BUTONU -->
-  <a href="blog.html" class="back-to-blog">← Geri</a>
+<div class="progress-bar" id="progressBar"></div>
 
-  <header>
+<a href="blog.html" class="back-btn">←</a>
+
+<div class="header">
     <h1>Uykusuzluğun Psikosomatiği</h1>
-    <hr>
-  </header>
+    <div class="header-line"></div>
+</div>
 
-  <!-- FOTOĞRAF -->
-  <img src="uyku.jpg" alt="Uykusuzluk" class="cover-image">
+<img src="uyku.jpg" alt="Uykusuzluk" class="hero">
 
-  <!-- METİN -->
-  <div class="content">
-    <p>Uykusuzluk sadece uykuya dalamamak değil, aynı zamanda kişinin geceleri korku, kaygı, depresyon, zihinsel stres, aşırı sorumluluk, çıkmaz durum vb. gibi çeşitli nedenlerle uyanması sonucu oluşan sığ uykudur. Uykuya dalma süreci beyin tarafından kontrol edilir. Ancak endişelenmekle meşgulse sinir sistemi arızalanır. Psikosomatiğe göre uykusuzluğa, geçmişe (veya geleceğe) ilişkin güçlü duygular ve kaygılar neden olur. Aynı derecede önemli bir neden de iç diyalogdur. Her zamanki gibi bir çatışmanın ardından ortaya çıkar.</p>
+<div class="content">
 
-    <p>Çoğu zaman uykusuzluk, bir çatışmayla ilgili farklı düşünceler arasında gezinmek nedeniyle, bir çatışmanın içinde sıkışıp kaldığınızda ve ondan çıkamadığınızda ortaya çıkar, yani çatışma sadece hayatınızı değil, uykunuzu da kontrol etmeye başlar.</p>
+<p>
+Uykusuzluk yalnızca uykuya dalamamak değildir.  
+Çoğu zaman zihnin duramaması, duyguların çözülmemesi ve içsel çatışmaların gece boyunca aktif kalmasıdır.
+</p>
 
-    <p>Bu tür davranışların psikosomatiği, tetikte olma, kontrolü kaybetmeme ihtiyacını gösterir veya kişinin kendisiyle veya belirli koşullarla mücadelesini sembolize edebilir. Bunun temel nedeni uyuyamamanız ancak savaşmanız gereken bir durumdur. Üstelik bu mücadele, örneğin sevdiklerinizle ve akrabalarınızla, çalışanlarla veya iş yerindeki yönetimle, belirli arzu veya ihtiyaçlarla, yani kendisiyle yüzleşmek gibi farklı şekillerde ifade edilebilir.</p>
+<div class="quote">
+“Beden uyumak ister ama zihin savaş halindeyse, uyku gelmez.”
+</div>
 
-    <p>Buna ek olarak, uykusuzluk, beyinde belirli kimyasal reaksiyonlar başladığında, uyku eksikliğini veya yüzeysel ve çok endişeli uykuyu tetiklediğinde veya tam tersi, bir kişi hayattaki hiçbir şeyle ilgilenmediğinde, depresyonun başlangıcının bir işareti olabilir.</p>
+<p>
+Psikosomatik açıdan bakıldığında uykusuzluk genellikle geçmişe veya geleceğe dair yoğun duygular, kaygılar ve iç diyaloglarla ilişkilidir.  
+Kişi zihninde çözülmemiş bir durumla mücadele ederken sinir sistemi tetikte kalır ve beyin uyku moduna geçemez.
+</p>
 
-    <p>* Güne (durumlar, anlar) ilişkin düşüncelerin sistematik analizi...  
-    * Aile sorunları...  
-    * Korkular...  
-    * Kaygı...  
-    * Yalnızlık hissi...</p>
+<p>
+Çoğu zaman uykusuzluk, bir çatışmanın içinde sıkışıp kalındığında ortaya çıkar.  
+Bu çatışma yalnızca gündüz hayatını değil, geceyi de kontrol etmeye başlar.
+</p>
 
-    <p>Beynin çeşitli düşüncelerle aşırı yüklenmesi, gerçek hayatta ütopyaya yol açar. Beyin yanılsamayı gerçeklikten ayıramaz, bu nedenle durumun filtrelenmesi ve dünyanın bir bütün olarak algılanması söz konusu değildir. Bir kişinin beyni olumsuz durumlara odaklanmaya başlar başlamaz uyku kanalları “tıkanır”. Beyin, bu tür tehlikeli koşullarda uykuya dalmayı reddeder ve mevcut durumdan bir çıkış yolu arayarak aktif olarak çalışmaya başlar.</p>
+<p>
+Psikosomatik olarak uykusuzluk:
+</p>
 
-    <p><b>Uyumak için öneriler:</b>  
-    • Kendinize günün bittiğini söyleyin.  
-    • Dünyaya ve geceye güven duyun.  
-    • Rahatlayın ve bedeninize teşekkür edin.  
-    • Uyumakta zorlandığınız günlerde, yatmadan yarım saat kadar önce "Vita Bear Sleepy Bear Uyku Düzenleyici 60 Gummy" jelibonundan bir adet yiyebilirsiniz.Fakat yedikten sonra tamamen karanlıkta olmanız mühimdir aksi takdirde jelibon etkisini göstermez zira içeriğindeki melatonin etki etmesi için karanlık bir ortamda olmalısnız. </p>
+<ul>
+<li>Kontrolü kaybetmeme ihtiyacını</li>
+<li>İçsel mücadeleyi</li>
+<li>Tetikte olma halini</li>
+<li>Çözülmemiş duygusal gerilimi</li>
+</ul>
 
-    <!-- SEANS BUTONU -->
-    <div class="button-container">
-      <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="session-button">Seans Oluştur</a>
-    </div>
-  </div>
+<p>
+Beyin olumsuz düşüncelere odaklandığında uyku kanalları adeta “kapanır”.  
+Çünkü sinir sistemi tehlike algıladığı bir ortamda uyumayı reddeder.
+</p>
 
-  <footer>
-    © 2025 Adalin Sohtorik. Tüm hakları saklıdır.
-  </footer>
+<p><strong>Uykuya geçişi kolaylaştırmak için:</strong></p>
+
+<ul>
+<li>Kendinize günün bittiğini söyleyin</li>
+<li>Dünyaya ve geceye güven duygusu geliştirin</li>
+<li>Bedeninizi gevşetin ve teşekkür edin</li>
+<li>Uyku öncesi zihni sakinleştiren rutinler oluşturun</li>
+</ul>
+
+<p>
+Uyku problemi devam ediyorsa profesyonel destek almak en sağlıklı yaklaşımdır.
+</p>
+
+<div class="button-container">
+<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="session-btn">
+Seans Oluştur
+</a>
+</div>
+
+</div>
+
+<footer>
+© 2025 Adalin Sohtorik. Tüm hakları saklıdır.
+</footer>
+
+<script>
+window.onscroll = function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    document.getElementById("progressBar").style.width = scrolled + "%";
+};
+</script>
 
 </body>
 </html>
