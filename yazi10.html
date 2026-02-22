@@ -3,93 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Psikolojide Uyum (Congruence) — Adalin Sohtorik</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body {
-    font-family: "Georgia", serif;
-    background-color: #faf9f8;
-    color: #2e1f1f;
     margin: 0;
-    line-height: 1.7;
+    background-color: #f5efe6;
+    font-family: 'Cormorant Garamond', serif;
+    color: #2b2b2b;
+    line-height: 1.8;
 }
 
-/* Üst scroll çizgisi */
+/* Progress Bar */
+
 .progress-bar {
     position: fixed;
     top: 0;
     left: 0;
     height: 4px;
-    background: #6d2c37;
+    background: #5a0f1c;
     width: 0%;
     z-index: 999;
 }
 
-/* Geri ok */
+/* Back Button */
+
 .back-btn {
     position: fixed;
     top: 20px;
     left: 20px;
-    font-size: 26px;
+    font-size: 28px;
     text-decoration: none;
-    color: #4a1c24;
+    color: #5a0f1c;
     font-weight: bold;
 }
 
 /* Header */
-header {
+
+.header {
     text-align: center;
-    padding: 50px 20px 10px;
+    padding: 80px 20px 40px;
 }
 
-header h1 {
-    font-family: "The Seasons", serif;
-    font-size: 32px;
-    color: #4a1c24;
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: #5a0f1c;
     margin-bottom: 10px;
 }
 
-hr {
-    border: none;
-    border-top: 1px solid #4a1c24;
-    width: 60%;
+.header-line {
+    width: 80px;
+    height: 2px;
+    background: #5a0f1c;
     margin: 20px auto;
 }
 
-/* Görsel */
-.top-image {
-    width: 320px;
-    height: 320px;
+/* Hero Image */
+
+.hero {
+    width: 100%;
+    max-width: 900px;
+    height: 420px;
     object-fit: cover;
     display: block;
-    margin: 40px auto 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    margin: 30px auto;
+    border-radius: 14px;
 }
 
-/* İçerik */
+/* Content Card */
+
 .content {
-    max-width: 750px;
+    background: white;
+    max-width: 800px;
     margin: auto;
-    padding: 20px;
-    font-size: 18px;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    font-size: 20px;
     text-align: justify;
 }
 
+/* Section Title */
+
 .section-title {
-    font-weight: bold;
-    color: #4a1c24;
-    margin-top: 24px;
+    font-weight: 600;
+    color: #5a0f1c;
+    margin-top: 28px;
 }
 
-/* Liste */
+/* Quote Box */
+
+.quote {
+    border-left: 3px solid #5a0f1c;
+    padding-left: 18px;
+    margin: 30px 0;
+    font-style: italic;
+    color: #5a0f1c;
+}
+
+/* List */
+
 ul {
-    margin-top: 10px;
     padding-left: 20px;
 }
 
-/* Buton */
+/* Button */
+
 .button-container {
     display: flex;
     justify-content: center;
@@ -97,26 +121,27 @@ ul {
 }
 
 .session-btn {
-    background-color: #4a1c24;
-    color: #fff;
+    background-color: #5a0f1c;
+    color: white;
+    padding: 14px 28px;
     font-size: 16px;
-    padding: 12px 26px;
     border-radius: 10px;
     text-decoration: none;
     transition: 0.3s;
 }
 
 .session-btn:hover {
-    background-color: #6d2c37;
+    background-color: #7a1a2c;
     transform: scale(1.05);
 }
 
 /* Footer */
+
 footer {
     text-align: center;
-    padding: 30px;
-    color: #4a1c24;
+    padding: 40px;
     font-size: 14px;
+    color: #5a0f1c;
 }
 
 </style>
@@ -128,31 +153,57 @@ footer {
 
 <a href="blog.html" class="back-btn">←</a>
 
-<header>
-<h1>Psikolojide Uyum (Congruence)</h1>
-<hr>
-</header>
+<div class="header">
+    <h1>Psikolojide Uyum (Congruence)</h1>
+    <div class="header-line"></div>
+</div>
 
-<img src="psy.jpg" class="top-image" alt="Uyum">
+<img src="psy.jpg" alt="Uyum" class="hero">
 
 <div class="content">
 
-<p>Uyumluluk, bir kişinin düşünceleri, hisleri, davranışları ve söyledikleri arasında tam bir tutarlılık olmasıdır. Böyle insanları manipüle etmek genelde mümkün değildir.</p>
+<p>
+Psikolojide uyum, kişinin düşünceleri, duyguları, davranışları ve söyledikleri arasında tutarlılık olmasıdır. 
+Yani insanın iç dünyası ile dış dünyaya gösterdiği kimlik arasında mesafe yoktur.
+</p>
 
-<p>Uyum bozulduğunda kişi kendini bitkin, huzursuz, tükenmiş hisseder. Çünkü bilinç aynı anda dört ayrı senaryoyu yönetmeye çalışır ve bu büyük bir enerji kaybıdır.</p>
+<p>
+Uyumlu insanlar genellikle güçlü bir enerjiye sahiptir. Çünkü zihinleri aynı anda birden fazla rolü yönetmek zorunda kalmaz. 
+Maske taşımak enerji tüketir. Doğal olmak ise enerji üretir.
+</p>
 
-<p class="section-title">Uyum nasıl sağlanır?</p>
+<p>
+Uyum bozulduğunda kişi sebepsiz yorgunluk, huzursuzluk ve tükenmişlik hissedebilir. Bunun nedeni çoğu zaman hayatın kendisi değil, 
+kişinin kendi gerçeğinden uzaklaşmış olmasıdır.
+</p>
+
+<div class="quote">
+“İnsan en çok kendisi olmadığı zaman yorulur.”
+</div>
+
+<p class="section-title">Uyum Nasıl Sağlanır?</p>
 
 <ul>
-<li>Kendinize yalan söylemeyin, çevrenize karşı dürüst olun.</li>
-<li>İletişimi sade, doğal ve açık tutun.</li>
-<li>Başkalarının davranışlarını kopyalamaya çalışmayın.</li>
-<li>Duygularınızı göstermekten korkmayın.</li>
+<li>Kendinize karşı dürüst olun.</li>
+<li>Başkalarını memnun etmek için rol yapmayı bırakın.</li>
+<li>Duygularınızı bastırmak yerine fark edin.</li>
+<li>İletişimde sade ve doğal olun.</li>
+<li>Kendinizi başkalarıyla kıyaslamayın.</li>
 </ul>
 
-<p>“Ayıp olmasın” düşüncesi uyumun en büyük düşmanıdır. Kendinizi duymayı ve kendiniz olmayı seçmelisiniz.</p>
+<p>
+Toplumda en sık görülen uyum bozucu düşünce “ayıp olur” kalıbıdır. 
+Bu düşünce, kişinin kendi ihtiyaçlarını ikinci plana atmasına neden olur.
+</p>
 
-<p>Uyumu geliştirmek için psikologların önerdiği egzersizde kişi insanların arasına girer, doğal davranır ve kendini göstermeye çalışır. Asıl amaç başkalarının istediği kişi olmak değil, kendi doğallığını ortaya koymaktır.</p>
+<p>
+Psikologların önerdiği basit bir egzersiz vardır: İnsanların arasına girin ve olduğunuz gibi davranın. 
+Daha sempatik görünmeye çalışmayın. Daha güçlü görünmeye çalışmayın. Sadece doğal olun.
+</p>
+
+<p>
+Çünkü gerçek özgüven, başkalarının sizi nasıl gördüğünden bağımsız hale geldiğinizde başlar.
+</p>
 
 <div class="button-container">
 <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="session-btn">
