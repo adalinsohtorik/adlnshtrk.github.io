@@ -3,86 +3,267 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Hayatınız Neden Aynı Döngüde?</title>
-<link rel="stylesheet" href="style.css">
+ 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    background:#f5efe6;
+    color:#3b0d19;
+    font-family:'Cormorant Garamond', serif;
+}
+
+.progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#5a0f1c;
+    width:0%;
+    z-index:999;
+}
+
+.back-button{
+    font-size:32px;
+    text-decoration:none;
+    color:#5a0f1c;
+    display:block;
+    margin:20px;
+}
+
+.header-image{
+    width:100%;
+    max-width:420px;
+    height:420px;
+    object-fit:cover;
+    display:block;
+    margin:30px auto;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.content{
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.content.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h1{
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.meta{
+    text-align:center;
+    font-size:16px;
+    opacity:0.7;
+    margin-bottom:30px;
+}
+
+p{
+    font-size:20px;
+    line-height:1.9;
+    margin-bottom:22px;
+}
+
+h2{
+    font-family:'Playfair Display', serif;
+    margin-top:40px;
+}
+
+.quote{
+    border-left:4px solid #5a0f1c;
+    padding:20px 25px;
+    margin:30px 0;
+    background:#faf7f3;
+    font-style:italic;
+    font-size:20px;
+}
+
+.seans-container{
+    text-align:center;
+    margin:60px 0;
+}
+
+.seans-button{
+    position: relative;
+    display:inline-block;
+    padding:14px 32px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+    transition:0.35s;
+    overflow:hidden;
+}
+
+.seans-button::before{
+    content:'';
+    position:absolute;
+    inset:-3px;
+    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
+    border-radius:30px;
+    z-index:-1;
+    opacity:0;
+    filter:blur(12px);
+    transition:0.4s;
+}
+
+.seans-button:hover::before{
+    opacity:1;
+    filter:blur(18px);
+}
+
+.seans-button:hover{
+    transform:translateY(-3px) scale(1.04);
+}
+
+.sticky-session{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:999;
+}
+
+.sticky-session a{
+    display:inline-block;
+    padding:14px 26px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:0.35s;
+}
+
+.sticky-session a:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(90,15,28,0.6),
+        0 0 45px rgba(90,15,28,0.4);
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="blog-detail">
+<div class="progress-bar" id="progressBar"></div>
 
-    <img src="degisim.jpg" alt="Değişim" class="detail-image">
+<a href="blog.html" class="back-button">←</a>
 
-    <h1>Hayatınız Neden Aynı Döngüde?</h1>
+<img src="degisim.jpg" alt="Hayatınız Neden Aynı Döngüde?" class="header-image">
 
-    <p>
-    Hiç düşündünüz mü? Neden aynı insanları çekiyorsunuz? Neden benzer olaylar tekrar tekrar başınıza geliyor?
-    Neden ilişkilerinizde kişiler değişiyor fakat senaryolar tekrarlanıyor?
-    Neden her seferinde “bu sefer farklı olacak” diye başlayıp yine aynı hayal kırıklığında bitiyor?
-    </p>
+<div class="content">
 
-    <p>
-    Aslında bu sorunun iki temel cevabı var: <strong>Zihin tanıdık olanı güvenli sanır.</strong>
-    Ve ikinci sebep: <strong>Siz değişmiyorsunuz.</strong>
-    Bu iki gerçeği anlamadan dönüşüm başlamaz.
-    </p>
+<h1>Hayatınız Neden Aynı Döngüde?</h1>
+<div class="meta">⏱ Okuma süresi: 4 dakika</div>
 
-    <p>
-    Çoğumuz değişmek fikrini severiz. Yeni hedefler, yeni ilişkiler, yeni iş, yeni şehir…
-    Fakat gerçek değişim Instagram biyografinizi güncellemek ya da saç modelinizi değiştirmek değildir.
-    </p>
+<p>
+Hiç düşündünüz mü? Neden aynı insanları çekiyorsunuz? Neden benzer olaylar tekrar tekrar başınıza geliyor? Oyuncular değişiyor ama senaryo neden aynı kalıyor?
+</p>
 
-    <p>
-    “Neden hep aynı tip insanlar bana denk geliyor?” diye soruyorsunuz.
-    Çünkü kendinizle ilgili rahatsız edici, karanlık alanları görmezden geliyorsunuz.
-    Siz aynı kaldığınız sürece hayatınızdaki senaryo değişmez.
-    Oyuncular değişir ama film aynı kalır.
-    </p>
+<div class="quote">
+Zihin tanıdık olanı güvenli sanır. Ve siz değişmezseniz, hayatınız da değişmez.
+</div>
 
-    <p>
-    Bilinçaltınız en sadık köleniz ve en acımasız efendinizdir.
-    Ne istediğinize değil, neye inandığınıza bakar.
-    Eğer “ben değersizim” inancı varsa, değersiz hissettiren insanlar gelir.
-    “Aşk acıdır” diyorsanız acı gelir.
-    “Para zordur” diyorsanız para kaçar.
-    “Ya aşk ya para” diyorsanız hep ikilem yaşarsınız.
-    </p>
+<p>
+Birçoğunuz “değişmek” fikrini seviyorsunuz. Yeni hedefler, yeni şehirler, yeni ilişkiler… Ama esas değişim profil fotoğrafı değiştirmek değildir.
+</p>
 
-    <p><strong>Neye inanırsanız onu yaşarsınız.</strong></p>
+<p>
+“Neden hep aynı tip insanlar bana denk geliyor?” diye soruyorsunuz. Çünkü görmezden geldiğiniz karanlık alanlar var. Siz aynı kaldığınız sürece film değişmez.
+</p>
 
-    <h2>Peki Ne Yapabilirsiniz?</h2>
+<p>
+Bilinçaltınız ne istediğinize değil, neye inandığınıza bakar.  
+“Ben değersizim” inancı varsa değersiz hissettiren insanlar gelir.  
+“Aşk acıdır” diyorsanız acı gelir.  
+“Para zordur” diyorsanız para kaçar.
+</p>
 
-    <p><strong>1. Kabul.</strong><br>
-    Kendinizi, karanlığınızı, hatalarınızı ve korkularınızı kabul etmeden hiçbir şey değişmez.
-    </p>
+<h2>Peki Ne Yapabilirsiniz?</h2>
 
-    <p><strong>2. Minnettarlık.</strong><br>
-    Minnettarlık beyninizde dopamin sistemini aktive eder.
-    Dopamin; ödül, zevk ve motivasyon hormonudur.
-    Motivasyon arttıkça değişim başlar.
-    </p>
+<p><strong>1. Kabul.</strong><br>
+Karanlığınızı kabul etmeden değişim başlamaz.
+</p>
 
-    <p><strong>3. Gerçek Kimliğinizi Keşfetmek.</strong><br>
-    Başkalarının size yüklediği rolleri fark edin.
-    İnsan anlamını kendi oluşturur.
-    Güçlü olabilirsiniz, bilge olabilirsiniz, kırılgan da olabilirsiniz.
-    Hepsi insani.
-    </p>
+<p><strong>2. Minnettarlık.</strong><br>
+Minnettarlık dopamin sistemini aktive eder. Motivasyon gelir. Enerji değişir.
+</p>
 
-    <p>
-    Eğer hayatınızda aynı olaylar dönüp duruyorsa bu kader değildir.
-    Bu bir programdır.
-    Senaryoyu değiştirmediğiniz sürece sahne değişmez.
-    Oyuncular değişir ama acı kalır.
-    </p>
+<p><strong>3. Kim Olduğunuzu Keşfetmek.</strong><br>
+Size yüklenen rolleri fark edin. İnsan anlamını kendi oluşturur.
+</p>
 
-    <p>
-    Siz kendinizi dönüştürdükçe dış dünyanız da değişir.
-    İnsanları ikna ederek değiştiremezsiniz.
-    Onları etkilemenin tek yolu kendi frekansınızı değiştirmektir.
-    </p>
+<div class="quote">
+Senaryoyu değiştirmediğiniz sürece sahne değişmez.
+</div>
+
+<p>
+İnsanları ikna ederek değiştiremezsiniz. Kendinizi dönüştürdüğünüzde frekansınız değişir ve dünya buna cevap verir.
+</p>
 
 </div>
+
+<div class="seans-container">
+<a class="seans-button"
+href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank">
+Seans Oluştur
+</a>
+</div>
+
+<div class="sticky-session">
+  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
+    Seans Oluştur
+  </a>
+</div>
+
+<script>
+
+const content = document.querySelector(".content");
+
+function showContent(){
+    const rect = content.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+        content.classList.add("show");
+    }
+}
+
+window.addEventListener("scroll", showContent);
+showContent();
+
+window.addEventListener("scroll", () => {
+
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+
+});
+
+</script>
 
 </body>
 </html>
