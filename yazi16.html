@@ -3,87 +3,267 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>İnsanlara Bize Nasıl Davranacaklarını Kendimiz Öğretiyoruz</title>
-<link rel="stylesheet" href="style.css">
+ 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    background:#f5efe6;
+    color:#3b0d19;
+    font-family:'Cormorant Garamond', serif;
+}
+
+.progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#5a0f1c;
+    width:0%;
+    z-index:999;
+}
+
+.back-button{
+    font-size:32px;
+    text-decoration:none;
+    color:#5a0f1c;
+    display:block;
+    margin:20px;
+}
+
+.header-image{
+    width:100%;
+    max-width:420px;
+    height:420px;
+    object-fit:cover;
+    display:block;
+    margin:30px auto;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.content{
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.content.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h1{
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.meta{
+    text-align:center;
+    font-size:16px;
+    opacity:0.7;
+    margin-bottom:30px;
+}
+
+p{
+    font-size:20px;
+    line-height:1.9;
+    margin-bottom:22px;
+}
+
+h2{
+    font-family:'Playfair Display', serif;
+    margin-top:40px;
+}
+
+.quote{
+    border-left:4px solid #5a0f1c;
+    padding:20px 25px;
+    margin:30px 0;
+    background:#faf7f3;
+    font-style:italic;
+    font-size:20px;
+}
+
+.seans-container{
+    text-align:center;
+    margin:60px 0;
+}
+
+.seans-button{
+    position: relative;
+    display:inline-block;
+    padding:14px 32px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+    transition:0.35s;
+    overflow:hidden;
+}
+
+.seans-button::before{
+    content:'';
+    position:absolute;
+    inset:-3px;
+    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
+    border-radius:30px;
+    z-index:-1;
+    opacity:0;
+    filter:blur(12px);
+    transition:0.4s;
+}
+
+.seans-button:hover::before{
+    opacity:1;
+    filter:blur(18px);
+}
+
+.seans-button:hover{
+    transform:translateY(-3px) scale(1.04);
+}
+
+.sticky-session{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:999;
+}
+
+.sticky-session a{
+    display:inline-block;
+    padding:14px 26px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:0.35s;
+}
+
+.sticky-session a:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(90,15,28,0.6),
+        0 0 45px rgba(90,15,28,0.4);
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="blog-detail">
+<div class="progress-bar" id="progressBar"></div>
 
-    <img src="insanlara.jpg" alt="Öz Değer ve Sınırlar" class="detail-image">
+<a href="blog.html" class="back-button">←</a>
 
-    <h1>İnsanlara Bize Nasıl Davranacaklarını Kendimiz Öğretiyoruz</h1>
+<img src="insanlara.jpg" alt="İnsanlara Nasıl Davranacaklarını Öğretmek" class="header-image">
 
-    <p>
-    İnsanlara size nasıl davranacaklarını siz öğretirsiniz.
-    Kendinize nasıl davranırsanız, onlar da size öyle davranır.
-    Kendinizi sevmiyorsanız, değer vermiyorsanız, saygı duymuyorsanız;
-    bu, alnınıza “Bana saygı duymak zorunda değilsiniz” yazılı görünmez bir kağıt yapıştırmak gibidir.
-    Mecazi olarak elbette.
-    </p>
+<div class="content">
 
-    <p>
-    Yıllar önce sanat terapisi üzerine bir konferansta bir öğretim görevlisi şöyle demişti:
-    “İnsanlara bize nasıl davranacaklarını kendimiz öğretiriz.”
-    O an fark ettiğim şey şuydu:
-    Başkalarının bize bakışı çoğu zaman bizim kendimize bakışımızın yansımasıdır.
-    </p>
+<h1>İnsanlara Bize Nasıl Davranacaklarını Kendimiz Öğretiyoruz</h1>
+<div class="meta">⏱ Okuma süresi: 4 dakika</div>
 
-    <p>
-    Sizin hakkınızda en sert yargıları taşıyan çoğu zaman başkaları değildir.
-    Kendiniz hakkında içinizde taşıdığınız inançtır.
-    Siz kendinizi değersiz görüyorsanız, başkalarının da sizi öyle görmesine sessizce izin verirsiniz.
-    </p>
+<p>
+İnsanlara size nasıl davranacaklarını siz öğretirsiniz. Kendinize nasıl davranırsanız, onlar da size öyle davranır.
+</p>
 
-    <p>
-    Elbette insanlar yanılabilir.
-    Ama mesele şu:
-    Bu yanlış algıyı kabul etmek zorunda değilsiniz.
-    Sizi küçülten, değersizleştiren, sınırlarınızı ihlal eden ilişkileri sürdürmek zorunda değilsiniz.
-    Eğer sürdürüyorsanız, bilinçaltınızda buna layık olduğunuzu düşünüyor olabilirsiniz.
-    </p>
+<div class="quote">
+Kendinizi değersiz görüyorsanız, başkalarının da sizi değersiz görmesine sessizce izin verirsiniz.
+</div>
 
-    <p>
-    Gerçek şu ki insanlar sizin hakkınızda aslında hiçbir şey bilmiyor.
-    Onlar yalnızca sizin kendiniz hakkında yazdığınız metni okuyor.
-    Eğer biri sizi sürekli değersiz hissettiriyor ve siz hâlâ oradaysanız,
-    buna izin veriyorsunuz demektir.
-    </p>
+<p>
+Kendinizi sevmiyorsanız, değer vermiyorsanız, saygı duymuyorsanız; bu, alnınıza görünmez bir mesaj yapıştırmak gibidir: “Bana saygı duymak zorunda değilsiniz.”
+</p>
 
-    <p>
-    Sadece şikayet etmek hiçbir şeyi değiştirmez.
-    Çünkü odak neredeyse enerji oraya akar.
-    Neye odaklanırsanız o büyür.
-    Şikayet büyür.
-    Mutsuzluk büyür.
-    Ama sorumluluk aldığınız anda güç de büyür.
-    </p>
+<p>
+İnsanlar hakkınızda çoğu zaman sizin inandığınız şeyi yansıtır. En sert yargı çoğu zaman dışarıdan değil, içinizden gelir.
+</p>
 
-    <h2>Kendinize Şu Soruları Sorun:</h2>
+<p>
+Sizi küçülten, sınırlarınızı ihlal eden ilişkileri sürdürmek zorunda değilsiniz. Eğer sürdürüyorsanız, bilinçaltınızda buna layık olduğunuzu düşünüyor olabilirsiniz.
+</p>
 
-    <p>
-    Ben gerçekten kimim?<br>
-    Kendim hakkında ne düşünüyorum?<br>
-    Neden böyle düşünüyorum?<br>
-    Böyle olmak istiyor muyum?<br>
-    Başkalarının bana davrandığı gibi davranmama izin verir miydim?<br>
-    Bana böyle davranılmasını gerçekten hak ediyor muyum?<br>
-    Eğer bu sevdiğim birine yapılsaydı ne hissederdim?
-    </p>
+<h2>Sorumluluk Nerede Başlar?</h2>
 
-    <p>
-    Sınırlarınız, öz değerinizi ilan eder.
-    Sessiz kalışınız da.
-    </p>
+<p>
+Sürekli şikayet etmek hiçbir şeyi değiştirmez. Çünkü odak neredeyse enerji oraya akar. Şikayet büyür. Mutsuzluk büyür.
+</p>
 
-    <p>
-    İnsanlara nasıl davranılacağını öğretmek için bağırmanız gerekmez.
-    Kendinize olan tavrınızı değiştirmeniz yeterlidir.
-    Çünkü dünya, sizin kendinizle yaptığınız anlaşmayı yansıtır.
-    </p>
+<div class="quote">
+Sınırlarınız öz değerinizi ilan eder.
+</div>
+
+<p>
+Kendinize şu soruları sorun:
+</p>
+
+<p>
+Ben gerçekten kimim?<br>
+Kendim hakkında ne düşünüyorum?<br>
+Bana böyle davranılmasını gerçekten hak ediyor muyum?<br>
+Bu sevdiğim birine yapılsaydı ne hissederdim?
+</p>
+
+<p>
+İnsanlara nasıl davranılacağını öğretmek için bağırmanız gerekmez. Kendinize olan tavrınızı değiştirmeniz yeterlidir.
+</p>
 
 </div>
+
+<div class="seans-container">
+<a class="seans-button"
+href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank">
+Seans Oluştur
+</a>
+</div>
+
+<div class="sticky-session">
+  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
+    Seans Oluştur
+  </a>
+</div>
+
+<script>
+
+const content = document.querySelector(".content");
+
+function showContent(){
+    const rect = content.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+        content.classList.add("show");
+    }
+}
+
+window.addEventListener("scroll", showContent);
+showContent();
+
+window.addEventListener("scroll", () => {
+
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+
+});
+
+</script>
 
 </body>
 </html>
