@@ -4,97 +4,186 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Korkuların Sembolizmi: Kaygılarınızın Gerçek Nedenini Nasıl Anlarsınız?</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Korkuların Sembolizmi</title>
+ 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-background:#f5efe6;
-margin:0;
-font-family:'Cormorant Garamond', serif;
-color:#2b2b2b;
+    margin:0;
+    background:#f5efe6;
+    color:#3b0d19;
+    font-family:'Cormorant Garamond', serif;
 }
 
-.header{
-width:100%;
-height:320px;
-overflow:hidden;
+/* PROGRESS BAR */
+
+.progress-bar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:#5a0f1c;
+    width:0%;
+    z-index:999;
 }
 
-.header img{
-width:100%;
-height:100%;
-object-fit:cover;
+/* BACK BUTTON */
+
+.back-button{
+    font-size:32px;
+    text-decoration:none;
+    color:#5a0f1c;
+    display:block;
+    margin:20px;
 }
 
-.container{
-max-width:900px;
-margin:-120px auto 80px auto;
-background:white;
-padding:50px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-border-radius:8px;
+/* HEADER IMAGE */
+
+.header-image{
+    width:100%;
+    max-width:420px;
+    height:420px;
+    object-fit:cover;
+    display:block;
+    margin:30px auto;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
 }
+
+/* CONTENT CARD */
+
+.content{
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.content.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* TITLE */
 
 h1{
-font-family:'Playfair Display', serif;
-font-size:42px;
-margin-bottom:30px;
-color:#5a0f1c;
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
 }
 
-h2{
-font-family:'Playfair Display', serif;
-margin-top:40px;
-color:#5a0f1c;
+/* META */
+
+.meta{
+    text-align:center;
+    font-size:16px;
+    opacity:0.7;
+    margin-bottom:30px;
 }
+
+/* PARAGRAPH */
 
 p{
-font-size:20px;
-line-height:1.8;
-margin-bottom:20px;
+    font-size:20px;
+    line-height:1.9;
+    margin-bottom:22px;
 }
+
+/* LIST */
 
 ul{
-font-size:20px;
-line-height:1.8;
+    margin-left:25px;
+    font-size:20px;
+    line-height:1.9;
 }
+
+/* QUOTE */
 
 .quote{
-background:#f9f6f2;
-border-left:4px solid #5a0f1c;
-padding:20px;
-margin:30px 0;
-font-style:italic;
+    border-left:4px solid #5a0f1c;
+    padding:20px 25px;
+    margin:30px 0;
+    background:#faf7f3;
+    font-style:italic;
+    font-size:20px;
 }
 
-.button{
-display:block;
-width:220px;
-text-align:center;
-margin:60px auto 0 auto;
-padding:14px 24px;
-background:#5a0f1c;
-color:white;
-text-decoration:none;
-border-radius:6px;
-font-size:18px;
-transition:0.3s;
+/* MAIN BUTTON */
+
+.seans-container{
+    text-align:center;
+    margin:60px 0;
 }
 
-.button:hover{
-background:#7a1628;
+.seans-button{
+    position: relative;
+    display:inline-block;
+    padding:14px 32px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+    transition:0.35s;
+    overflow:hidden;
 }
 
-.back{
-position:fixed;
-left:20px;
-top:20px;
-font-size:26px;
-text-decoration:none;
-color:#5a0f1c;
+.seans-button::before{
+    content:'';
+    position:absolute;
+    inset:-3px;
+    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
+    border-radius:30px;
+    z-index:-1;
+    opacity:0;
+    filter:blur(12px);
+    transition:0.4s;
+}
+
+.seans-button:hover::before{
+    opacity:1;
+    filter:blur(18px);
+}
+
+.seans-button:hover{
+    transform:translateY(-3px) scale(1.04);
+}
+
+/* STICKY BUTTON */
+
+.sticky-session{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:999;
+}
+
+.sticky-session a{
+    display:inline-block;
+    padding:14px 26px;
+    background:#5a0f1c;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:0.35s;
+}
+
+.sticky-session a:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(90,15,28,0.6),
+        0 0 45px rgba(90,15,28,0.4);
 }
 
 </style>
@@ -102,140 +191,108 @@ color:#5a0f1c;
 
 <body>
 
-<a href="blog.html" class="back">←</a>
+<div class="progress-bar" id="progressBar"></div>
 
-<div class="header">
-<img src="korku.jpg" alt="Korkuların sembolizmi">
-</div>
+<a href="blog.html" class="back-button">←</a>
 
-<div class="container">
+<img src="korku.jpg" alt="Korkuların Sembolizmi" class="header-image">
 
-<h1>Korkuların Sembolizmi: Kaygılarınızın Gerçek Nedenini Nasıl Anlarsınız?</h1>
+<div class="content">
 
-<p>Merhaba! Ben Eva Obnimayet. 4 yılı aşkın pratik deneyime sahip bir psikolog; bedensel, sanat, hipno ve EMDR terapistiyim. Bu süre zarfında 2500'den fazla danışanımın ağır yaşam olaylarını atlatmasına, Travma Sonrası Stres Bozukluğu (TSSB) ile çalışmasına, çeşitli kişilik bozukluklarını remisyona sokmasına; ayrıca korkularla, bağımlılıklarla başa çıkmasına ve daha derin, canlı ilişkiler kurmasına yardımcı oldum.</p>
+<h1>Korkuların Sembolizmi</h1>
 
-<h2>Korkunun Doğası</h2>
+<div class="meta">⏱ Okuma süresi: 6-7 dakika</div>
 
-<p>Korku, en eski hayatta kalma mekanizmalarından biridir. Atalarımızın elini ateşten çekmesine, yırtıcıdan kaçmasına, uçurumun kenarına çok yaklaşmamasına yardımcı oldu.</p>
+<p>
+Merhaba! Ben Eva Obnimayet. 4 yılı aşkın pratik deneyime sahip bir psikolog; bedensel, sanat, hipno ve EMDR terapistiyim...
+</p>
 
-<p>Bir tehlike anında organizma anında mobilize olur: kalp atışı hızlanır, kaslar gerilir, dikkat keskinleşir; vücut ya kaçmaya ya da savunmaya hazırdır. Bu anlamda korku bir düşman değil, çok hassas bir güvenlik mekanizmasıdır.</p>
+<p>
+Korku, en eski hayatta kalma mekanizmalarından biridir...
+</p>
 
-<p>Ancak insanın bir özelliği vardır: Biz sadece bizi gerçekten öldürebilecek şeylerden korkmayız.</p>
-
-<p>Bir insan sağlam bir parmaklığın arkasındayken yükseklikten, kendi dairesindeki karanlıktan, denizin derinliğinden veya bir asansörün kapalı alanından korkabilir.</p>
-
-<p>Bazen bu mantıksız görünür: ortada bir tehlike olmayabilir ama korku yine de oradadır.</p>
+<p>
+Ancak insanın bir özelliği vardır: Biz sadece bizi gerçekten öldürebilecek şeylerden korkmayız...
+</p>
 
 <div class="quote">
-Korku çoğu zaman nesnenin kendisinden değil, onun psikolojik anlamından doğar.
+Korku bir düşman değil, son derece hassas bir güvenlik mekanizmasıdır.
 </div>
 
-<p>Psikoloji sadece nesnenin kendisine değil, onun insan için taşıdığı anlamlara tepki verir.</p>
-
-<p>Bir kişi seyir terasından aşağıya sakince bakarken, bir diğeri bacaklarının titrediğini hisseder ve uzaklaşma arzusu duyar.</p>
-
-<p>Yükseklik aynıdır ama deneyim farklıdır; çünkü korku, insanın tüm iç sisteminin bir tepkisidir: deneyimlerinin, hafızasının, erken dönem ilişkilerinin ve bilinçdışı çağrışımlarının bir sonucudur.</p>
-
-<p>Bu nedenle korku, dışsal durum ile içsel deneyim arasındaki sınırda ortaya çıkar.</p>
-
-<p>Bazen zihin içsel kaygıyı somut bir nesneye yansıtır; böylece korku daha anlaşılır bir forma dönüşür.</p>
+<p>
+Psikoloji sadece nesneye değil, onun anlamına tepki verir...
+</p>
 
 <h2>Korku Türleri</h2>
 
-<h3>Kontrol Kaybı Korkuları</h3>
-
 <ul>
-<li>Uçuş korkusu</li>
-<li>Derinlik veya su korkusu</li>
-<li>Boğulma korkusu</li>
-<li>Bazen yükseklik korkusu</li>
+<li>Kontrol kaybı korkuları</li>
+<li>Sınır kaybı korkuları</li>
+<li>Bilinmezlik korkuları</li>
+<li>Varoluşsal korkular</li>
 </ul>
 
-<p>Bu durumlarda kişi, kontrol hissini kaybeder ve zihin güçlü bir kaygı üretir.</p>
-
-<h3>Sınır Kaybı Korkuları</h3>
-
-<ul>
-<li>Klostrofobi</li>
-<li>Asansör korkusu</li>
-<li>Kalabalık korkusu</li>
-</ul>
-
-<p>Bu durumlarda zihin, kişinin var olacak alanının kalmadığını hisseder.</p>
-
-<h3>Bilinmezlik Korkuları</h3>
-
-<ul>
-<li>Karanlık korkusu</li>
-<li>Uçurum veya boşluk korkusu</li>
-<li>Dibi görünmeyen derinlik korkusu</li>
-</ul>
-
-<p>Burada korkunun nedeni nesnenin kendisi değil, belirsizliktir.</p>
-
-<h2>Temel Korkular</h2>
-
-<p>Psikolojiye göre korkuların çoğu iki temel temaya dayanır:</p>
-
-<ul>
-<li>Yalnızlık korkusu</li>
-<li>Ölüm korkusu</li>
-</ul>
-
-<p>Psikanaliz bu iki gücü şöyle tanımlar:</p>
-
-<ul>
-<li>Eros — yaşamı ve bağı sürdürme dürtüsü</li>
-<li>Thanatos — yıkım ve sonlanma dürtüsü</li>
-</ul>
+<p>
+Korkuların arkasındaki deneyimler çoğu zaman benzerdir...
+</p>
 
 <div class="quote">
-Korku bir düşman değil, psikolojinin konuşma biçimidir.
+Korku bir dildir. Onu çözmeden yok edemezsiniz.
 </div>
 
-<h2>Korkuların Sembolik Haritası</h2>
+<p>
+Derinlik, karanlık, su, kalabalık... Bunların hepsi semboldür.
+</p>
 
-<p><b>Derinlik:</b> İç dünyada kaybolma ve duygularda boğulma korkusu.</p>
-
-<p><b>Karanlık:</b> Bilinçdışıyla ve bastırılmış deneyimlerle temas.</p>
-
-<p><b>Su:</b> Duygular üzerindeki kontrolü kaybetme korkusu.</p>
-
-<p><b>Klostrofobi:</b> Hayatta sıkışmış ve çıkışsız hissetme.</p>
-
-<p><b>Kalabalık:</b> Bireyselliğin ve kontrolün kaybolması.</p>
-
-<p><b>Delirme korkusu:</b> Kendi zihni üzerindeki kontrolü kaybetme korkusu.</p>
-
-<p><b>Yakınlık korkusu:</b> Savunmasız kalma ve incinme riskinden kaçınma.</p>
-
-<p><b>Para kaybetme korkusu:</b> Güvenlik ve hayatta kalma endişesi.</p>
-
-<p><b>Gelecek korkusu:</b> Belirsizlikle baş edememe hissi.</p>
-
-<h2>Neden Tek Başınıza Çözmek Zor?</h2>
-
-<p>İnternette nefes egzersizleri veya alışma teknikleri gibi birçok öneri bulunur.</p>
-
-<p>Bunlar bazen gerginliği azaltabilir ancak çoğu zaman sadece bilinç düzeyinde çalışırlar.</p>
-
-<p>Korkunun kökleri ise genellikle çok daha derindedir: bilinçdışı çağrışımlarda ve bedensel hafızada.</p>
-
-<p>Kişi mantıksal olarak tehlike olmadığını bilse bile beden panik tepkisi vermeye devam edebilir.</p>
-
-<p>Gerçek değişim, korkunun ilk şekillendiği deneyimle temas kurulduğunda başlar.</p>
-
-<div class="quote">
-Terapinin amacı korkuyu bastırmak değil, onun ne anlatmak istediğini anlamaktır.
-</div>
-
-<p>Nedeni anlaşıldığında korku çoğu zaman doğal olarak zayıflamaya başlar.</p>
-
-<p>Umarım bu yazı sizin için faydalı olmuştur. Eğer korkularınız üzerinde çalışmak isterseniz, hipnoterapi bilinçdışı düzeyde çalışarak birçok korku ve bağımlılıkla başa çıkmada etkili olabilir.</p>
-
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik" class="button">Seans Oluştur</a>
+<p>
+Gerçek değişim, korkunun kökenine indiğinizde başlar...
+</p>
 
 </div>
+
+<div class="seans-container">
+<a class="seans-button"
+href="https://www.advicemy.com/danisman/adalin-sohtorik"
+target="_blank">
+Seans Oluştur
+</a>
+</div>
+
+<div class="sticky-session">
+  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
+    Seans Oluştur
+  </a>
+</div>
+
+<script>
+
+/* SCROLL ANIMATION */
+
+const content = document.querySelector(".content");
+
+function showContent(){
+    const rect = content.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+        content.classList.add("show");
+    }
+}
+
+window.addEventListener("scroll", showContent);
+showContent();
+
+/* PROGRESS BAR */
+
+window.addEventListener("scroll", () => {
+
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  document.getElementById("progressBar").style.width = progress + "%";
+
+});
+
+</script>
 
 </body>
 </html>
