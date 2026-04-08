@@ -60,12 +60,32 @@ body{
   font-family:'Playfair Display', serif;
   font-size:52px;
   line-height:1.2;
+  margin-bottom:10px;
+}
+
+.subtext{
+  font-family:'Playfair Display', serif;
+  font-size:28px;
+  font-weight:400;
   margin-bottom:20px;
 }
 
 .hero p{
   font-size:20px;
   margin-bottom:30px;
+}
+
+/* TYPE EFFECT */
+
+.cursor{
+  display:inline-block;
+  margin-left:5px;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink{
+  0%, 50%, 100% {opacity:1;}
+  25%, 75% {opacity:0;}
 }
 
 /* BUTTON */
@@ -150,7 +170,7 @@ body{
   text-align:center;
 }
 
-/* CTA FINAL */
+/* CTA */
 
 .cta{
   text-align:center;
@@ -183,6 +203,10 @@ footer{
   font-size:38px;
 }
 
+.subtext{
+  font-size:22px;
+}
+
 }
 
 </style>
@@ -196,7 +220,9 @@ footer{
 
 <div>
 
-<h1>Dış dünya, iç dünyanızın bir yansımasıdır.</h1>
+<h1><span id="name"></span><span class="cursor">|</span></h1>
+
+<h2 class="subtext">Dış dünya, iç dünyanızın bir yansımasıdır.</h2>
 
 <p>
 Dış dünya iç dünyamızın bir yansımasıdır. Dünyayı gözlerimizle değil, sinir sistemimizle görürüz. 
@@ -218,7 +244,6 @@ BLOG
 </div>
 
 </section>
-
 
 <!-- BLOG -->
 
@@ -254,7 +279,6 @@ BLOG
 
 </section>
 
-
 <!-- ABOUT -->
 
 <section class="container about">
@@ -262,20 +286,12 @@ BLOG
 <h2 class="section-title">Hakkımda</h2>
 
 <p>
-İnsan zihni, davranış modelleri ve potansiyel yönetimi üzerine odaklanmış bir kişisel gelişim mentoruyum. 
-  Yaklaşımımı; psikoloji, felsefe, sayıların psikolojisi ve nöro-fizyolojik sistemlerin disiplinlerarası bir sentezi üzerine kuruyorum.
-Analitik numerolojiden psikosomatiğe, hormonal sistemlerden derin psikoloji ekollerine uzanan geniş bir yelpazede aldığım eğitimleri, 
-  danışanlarımın somut değişimler yaşaması için bütüncül bir metodolojiye dönüştürdüm. Çalışma prensibim, her bireyin kendine has dinamiklerine göre şekillenen, 
-  değişken süreli ancak sonuç odaklı bir yol haritası sunmaktır.
-Temel hedefim; danışanlarımın dış bir desteğe ihtiyaç duymadan kendi mekanizmalarını yönetebilecek bilince ve donanıma erişmeleridir.
-  Kendi uzun soluklu araştırma ve deneyim sürecimi, sizler için rafine edilmiş, etkili ve kısa bir gelişim rotası olarak sunuyorum.
-  Süreç uyumumuzu ve hedeflerinizi değerlendirmek adına ücretsiz ön görüşme randevusu oluşturabilirsiniz.
+İnsan zihni, davranış modelleri ve potansiyel yönetimi üzerine odaklanmış bir kişisel gelişim mentoruyum...
 </p>
 
 </section>
 
-
-<!-- CTA (EN KRİTİK YER) -->
+<!-- CTA -->
 
 <section class="container cta">
 
@@ -292,7 +308,6 @@ Seans Başlat
 
 </section>
 
-
 <!-- SOCIAL -->
 
 <section class="container social">
@@ -306,13 +321,13 @@ Seans Başlat
 
 </section>
 
-
 <footer>
 © 2025 Adalin Sohtorik — Tüm hakları saklıdır.
 </footer>
 
-
 <script>
+
+/* SCROLL */
 
 const sections = document.querySelectorAll(".container");
 
@@ -327,6 +342,21 @@ function showOnScroll(){
 
 window.addEventListener("scroll", showOnScroll);
 showOnScroll();
+
+/* TYPEWRITER */
+
+const text = "Adalin Sohtorik";
+let i = 0;
+
+function typeWriter(){
+  if(i < text.length){
+    document.getElementById("name").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 90);
+  }
+}
+
+typeWriter();
 
 </script>
 
