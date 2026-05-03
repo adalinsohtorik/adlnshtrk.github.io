@@ -34,179 +34,48 @@ body{
   transform:translateY(0);
 }
 
-/* HERO */
+/* BUTTONS */
 
-.hero{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:50px;
-  align-items:center;
+.top-buttons{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:30px;
 }
 
-.hero img{
-  width:100%;
-  border-radius:22px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
-  transition:0.4s;
-}
-
-.hero img:hover{
-  transform:scale(1.03);
-}
-
-/* TEXT */
-
-.hero h1{
-  font-family:'Playfair Display', serif;
-  font-size:52px;
-  line-height:1.2;
-  margin-bottom:10px;
-}
-
-.subtext{
-  font-family:'Playfair Display', serif;
-  font-size:28px;
-  font-weight:400;
-  margin-bottom:20px;
-}
-
-.hero p{
-  font-size:20px;
-  margin-bottom:30px;
-}
-
-/* TYPE EFFECT */
-
-.cursor{
-  display:inline-block;
-  margin-left:5px;
-  animation: blink 0.7s infinite;
-}
-
-@keyframes blink{
-  0%, 50%, 100% {opacity:1;}
-  25%, 75% {opacity:0;}
-}
-
-/* BUTTON */
-
-.button{
-  display:inline-block;
-  padding:14px 26px;
-  border-radius:30px;
-  background:#5a0f1c;
-  color:white;
+.btn{
+  padding:12px 22px;
   text-decoration:none;
-  margin:8px 8px 0 0;
-  font-size:16px;
-  transition:0.35s;
-  box-shadow:0 8px 18px rgba(0,0,0,0.15);
-}
-
-.button:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 25px rgba(90,15,28,0.6);
-}
-
-/* SECTION TITLE */
-
-.section-title{
-  font-family:'Playfair Display', serif;
-  font-size:38px;
-  text-align:center;
-  margin-bottom:40px;
-}
-
-/* BLOG */
-
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-}
-
-.blog-card{
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
-  transition:0.35s;
-}
-
-.blog-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 0 30px rgba(90,15,28,0.35);
-}
-
-.blog-card img{
-  width:100%;
-  height:210px;
-  object-fit:cover;
-}
-
-.blog-card h3{
-  padding:15px;
-  font-size:20px;
-}
-
-.blog-card a{
-  margin:15px;
-  display:inline-block;
-}
-
-/* ABOUT */
-
-.about{
-  text-align:center;
-  max-width:750px;
-  margin:auto;
-  font-size:20px;
-  line-height:1.6;
-}
-
-/* SOCIAL */
-
-.social{
-  text-align:center;
-}
-
-/* CTA */
-
-.cta{
-  text-align:center;
-}
-
-.cta p{
-  font-size:20px;
-  margin-bottom:25px;
-  opacity:0.9;
-}
-
-/* FOOTER */
-
-footer{
-  text-align:center;
-  padding:40px 20px;
-  font-size:14px;
+  border-radius:30px;
+  font-size:15px;
+  transition:0.3s;
+  border:1px solid #5a0f1c;
   color:#5a0f1c;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-.hero{
-  grid-template-columns:1fr;
+.btn:hover{
+  background:#5a0f1c;
+  color:#fff;
 }
 
-.hero h1{
-  font-size:38px;
+/* Seans butonu */
+
+.btn.primary{
+  background:#5a0f1c;
+  color:#fff;
 }
 
-.subtext{
-  font-size:22px;
+/* Telegram butonu */
+
+.btn.telegram{
+  border:1px solid #0088cc;
+  color:#0088cc;
 }
 
+.btn.telegram:hover{
+  background:#0088cc;
+  color:#fff;
 }
 
 </style>
@@ -214,167 +83,30 @@ footer{
 
 <body>
 
-<!-- HERO -->
+<div class="container show">
 
-<section class="container hero">
+  <h1 style="text-align:center; font-family:'Playfair Display', serif;">
+    Adalin Sohtorik
+  </h1>
 
-<div>
+  <!-- BUTONLAR -->
+  <div class="top-buttons">
 
-<h1><span id="name"></span><span class="cursor">|</span></h1>
+    <a href="https://t.me/numerolojik" target="_blank" class="btn telegram">
+      Özel İçerik
+    </a>
 
-<h2 class="subtext">Dış dünya, iç dünyanızın bir yansımasıdır.</h2>
+    <a href="blog.html" class="btn">
+      Blog
+    </a>
 
-<p>
-Dış dünya iç dünyamızın bir yansımasıdır. Dünyayı gözlerimizle değil, sinir sistemimizle görürüz. 
-Sinir sistemimiz sürekli "savaş ya da kaç" modundaysa, en huzurlu ortamda bile bir çatışma veya eksiklik bulmakta ustalaşırız.
-</p>
+    <a href="https://www.advicemy.com/danisman/adalin-sohtorik" class="btn primary">
+      Seans Oluştur
+    </a>
 
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="button">
-SEANS OLUŞTUR
-</a>
-
-<a href="blog.html" class="button">
-BLOG
-</a>
-
-</div>
-
-<div>
-<img src="123.jpg" alt="Adalin Sohtorik">
-</div>
-
-</section>
-
-<!-- BLOG -->
-
-<section class="container">
-
-<h2 class="section-title">BLOG</h2>
-
-<div class="blog-grid">
-
-<div class="blog-card">
-<img src="moral.jpg">
-<h3>Moralinizi Kim Bozdu?</h3>
-<a href="yazi11.html" class="button">Yazıyı Oku</a>
-</div>
-
-<div class="blog-card">
-<img src="uyku.jpg">
-<h3>Uykusuzluğun Psikosomatiği</h3>
-<a href="yazi8.html" class="button">Yazıyı Oku</a>
-</div>
-
-<div class="blog-card">
-<img src="akne.jpg">
-<h3>Akne Psikosomatiği</h3>
-<a href="yazi7.html" class="button">Yazıyı Oku</a>
-</div>
+  </div>
 
 </div>
-
-<br><br>
-
-<a href="blog.html" class="button">Tüm Blog Yazılarını Gör</a>
-
-</section>
-
-<!-- ABOUT -->
-
-<section class="container about">
-
-<h2 class="section-title">Hakkımda</h2>
-
-<p>
-İnsan zihni ve potansiyeli üzerine derin bir tutkusu olan kişisel gelişim mentoruyum. Bilgiye olan açlığım ve psikolojiye duyduğum 
-  merak beni insanı bütün olarak anlamaya yönlendirdi.
-
-Felsefe, psikoloji, bilinçaltı, sayılar psikolojisi, numeroloji, psikosomatik, hormonal sistemler, nörotransmiterler, ilişkiler,
-  beden-zihin bağlantısı ve daha birçok alanda uluslararası uzmanlardan eğitimler aldım. Geniş bilgi yelpazem, danışanlarımın kendi potansiyellerini 
-  keşfetmeleri ve yaşamlarını yeniden şekillendirmeleri için güçlü bir temel sunuyor.
-
-Her danışan benim için özeldir bu sebepten ötürü, süreçler kişiye özel şekillenir.
-Kimiyle sadece konuşarak, kimiyle egzersizlerle çalışırız. Kimi danışanımda 2 seans ile tüm taşlar yerine oturur, kimiyle daha uzun bir yolculuk gerekebilir.
-
-Her durumda, niyetim ve hedefim danışanlarımın bana ihtiyaç duymadan kendi güçlerini ve başarılarını yaratmalarıdır.
-
-Benimle çalışan kişiler, sadece sorunlarını çözmekle kalmaz; kendi bilinçlerini, potansiyellerini ve güçlerini keşfeder, eski korku ve suçluluklarından 
-  arınarak yepyeni bir seviyeye geçerler. 
-
-Benim uzun ve dolambaçlı gelişim yolculuğumda edindiğim tüm deneyimleri, sizlere daha kısa ve etkili bir yol olarak sunuyorum. 
-
-Sizinle enerjimizin uyuşup uyuşmadığını görmek için ücretsiz ön görüşmeye davetlisiniz; bu kısa görüşme, birlikte neler başarabileceğimizi hissetmemiz için mükemmel bir başlangıçtır.</p>
-
-</section>
-
-<!-- CTA -->
-
-<section class="container cta">
-
-<h2 class="section-title">Hazır mısın?</h2>
-
-<p>
-Eğer gerçekten değişmek istiyorsan, sadece okumak yetmez.  
-Uygulamak gerekir.
-</p>
-
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="button">
-Seans Başlat
-</a>
-
-</section>
-
-<!-- SOCIAL -->
-
-<section class="container social">
-
-<h2 class="section-title">Bağlantılar</h2>
-
-<a href="mailto:adlnshtrk@yahoo.com" class="button">İletişim</a>
-<a href="https://www.tiktok.com/@adalin.live" target="_blank" class="button">TikTok</a>
-<a href="https://t.me/psikolojiknotlar" target="_blank" class="button">Telegram</a>
-<a href="https://www.instagram.com/adalinlive/" target="_blank" class="button">Instagram</a>
-
-</section>
-
-<footer>
-© 2025 Adalin Sohtorik — Tüm hakları saklıdır.
-</footer>
-
-<script>
-
-/* SCROLL */
-
-const sections = document.querySelectorAll(".container");
-
-function showOnScroll(){
-  sections.forEach(sec=>{
-    const rect = sec.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-      sec.classList.add("show");
-    }
-  });
-}
-
-window.addEventListener("scroll", showOnScroll);
-showOnScroll();
-
-/* TYPEWRITER */
-
-const text = "Adalin Sohtorik";
-let i = 0;
-
-function typeWriter(){
-  if(i < text.length){
-    document.getElementById("name").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, 90);
-  }
-}
-
-typeWriter();
-
-</script>
 
 </body>
 </html>
