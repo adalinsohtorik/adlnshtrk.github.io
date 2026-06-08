@@ -1,4 +1,4 @@
-" <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -15,6 +15,42 @@ body{
   background:#f5efe6;
   color:#3b0d19;
   font-family:'Cormorant Garamond', serif;
+}
+
+/* TOP NAV */
+
+.topnav{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:rgba(245,239,230,0.92);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(90,15,28,0.15);
+  padding:12px 20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.topnav a{
+  display:inline-block;
+  padding:9px 20px;
+  border-radius:30px;
+  background:#5a0f1c;
+  color:white;
+  text-decoration:none;
+  font-family:'Cormorant Garamond', serif;
+  font-size:15px;
+  transition:0.35s;
+  box-shadow:0 4px 12px rgba(0,0,0,0.12);
+}
+
+.topnav a:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(90,15,28,0.5);
 }
 
 /* CONTAINER */
@@ -207,12 +243,30 @@ footer{
   font-size:22px;
 }
 
+.topnav{
+  gap:8px;
+}
+
+.topnav a{
+  font-size:13px;
+  padding:7px 15px;
+}
+
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- TOP NAV -->
+
+<nav class="topnav">
+  <a href="mailto:adlnshtrk@yahoo.com">İletişim</a>
+  <a href="https://www.tiktok.com/@adalin.live" target="_blank">TikTok</a>
+  <a href="https://t.me/psikolojiknotlar" target="_blank">Telegram</a>
+  <a href="https://www.instagram.com/adalinlive/" target="_blank">Instagram</a>
+</nav>
 
 <!-- HERO -->
 
@@ -369,4 +423,4 @@ typeWriter();
 </script>
 
 </body>
-</html> "
+</html>
