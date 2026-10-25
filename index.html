@@ -1,608 +1,390 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adalin Sohtorik</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: #f5efe6;
-  color: #3b0d19;
-  font-family: 'Cormorant Garamond', serif;
-  min-height: 100vh;
-}
-
-/* TOP NAV */
-.topnav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(245,239,230,0.90);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(90,15,28,0.14);
-  padding: 11px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.topnav-brand {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px;
-  font-weight: 600;
-  color: #5a0f1c;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-.topnav-links {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.topnav-links a {
-  display: inline-block;
-  padding: 7px 18px;
-  border-radius: 30px;
-  background: #5a0f1c;
-  color: white;
-  text-decoration: none;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 15px;
-  font-weight: 500;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.topnav-links a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(90,15,28,0.45);
-}
-/* WP BUTTONS */
-.topnav-wp {
-  background: #1da851 !important;
-}
-.topnav-wp:hover {
-  box-shadow: 0 0 20px rgba(29,168,81,0.5) !important;
-}
-.topnav-wp2 {
-  background: #128c3e !important;
-}
-.topnav-wp2:hover {
-  box-shadow: 0 0 20px rgba(18,140,62,0.5) !important;
-}
-.social-btn-wp  { border-color: rgba(29,168,81,0.4); color: #1a7a3a; }
-.social-btn-wp:hover { background: #e8f8ee; }
-.social-btn-wp2 { border-color: rgba(18,140,62,0.4); color: #0f6630; }
-.social-btn-wp2:hover { background: #e0f5e8; }
-
-
-/* PAGE */
-.page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 36px 20px 80px;
-}
-
-/* REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
-}
-.reveal.show { opacity: 1; transform: translateY(0); }
-
-/* CARD BASE */
-.card {
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(90,15,28,0.09);
-  overflow: hidden;
-  transition: box-shadow 0.3s;
-}
-.card:hover {
-  box-shadow: 0 12px 40px rgba(90,15,28,0.16);
-}
-
-/* HERO CARD */
-.hero-card { margin-bottom: 22px; }
-
-.hero-banner {
-  width: 100%;
-  height: 220px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 22px 28px;
-  overflow: hidden;
-}
-.hero-banner-bg {
-  position: absolute;
-  inset: 0;
-  background: url('kapak.jpg') center 30%/cover no-repeat;
-  filter: brightness(0.38);
-  z-index: 0;
-}
-.hero-banner-quote {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-style: italic;
-  color: #f5efe6;
-  line-height: 1.5;
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  max-width: 540px;
-  letter-spacing: 0.01em;
-  text-shadow: 0 2px 18px rgba(0,0,0,0.7);
-}
-
-.hero-body {
-  padding: 20px 28px 26px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.avatar-circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 4px solid white;
-  background: #5a0f1c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: -54px;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 4px 16px rgba(90,15,28,0.25);
-  flex-shrink: 0;
-  overflow: hidden;
-}
-.avatar-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.hero-info {}
-.hero-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  font-weight: 700;
-  color: #3b0d19;
-  margin-bottom: 4px;
-}
-.hero-sub {
-  font-size: 16px;
-  color: #7a4a55;
-  margin-bottom: 16px;
-  font-weight: 400;
-}
-
-.hero-stats {
-  display: flex;
-  gap: 28px;
-  margin-bottom: 18px;
-}
-.stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #5a0f1c;
-  display: block;
-}
-.stat-label {
-  font-size: 12px;
-  color: #7a4a55;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-
-/* BUTTONS */
-.button {
-  display: inline-block;
-  padding: 10px 24px;
-  border-radius: 30px;
-  background: #5a0f1c;
-  color: white;
-  text-decoration: none;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 500;
-  transition: transform 0.25s, box-shadow 0.25s;
-  box-shadow: 0 6px 16px rgba(90,15,28,0.18);
-}
-.button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 24px rgba(90,15,28,0.5);
-}
-.button-outline {
-  display: inline-block;
-  padding: 9px 24px;
-  border-radius: 30px;
-  background: transparent;
-  color: #5a0f1c;
-  text-decoration: none;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 500;
-  border: 1.5px solid #5a0f1c;
-  transition: background 0.25s, transform 0.25s;
-}
-.button-outline:hover {
-  background: #f5efe6;
-  transform: translateY(-2px);
-}
-
-/* TWO COL */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-  margin-bottom: 22px;
-}
-
-/* CARD INNER */
-.card-inner { padding: 26px; }
-
-.card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: #3b0d19;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.card-title::before {
-  content: '';
-  display: inline-block;
-  width: 4px;
-  height: 20px;
-  background: #5a0f1c;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-/* ABOUT */
-.about-text {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #4a1e28;
-}
-
-/* BLOG LIST */
-.blog-list { display: flex; flex-direction: column; gap: 10px; }
-
-.blog-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px;
-  border-radius: 12px;
-  background: #f5efe6;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.2s, transform 0.2s;
-}
-.blog-item:hover {
-  background: #ede4d7;
-  transform: translateX(4px);
-}
-
-.blog-thumb {
-  width: 58px;
-  height: 58px;
-  border-radius: 10px;
-  object-fit: cover;
-  flex-shrink: 0;
-  background: #e4d8c8;
-  display: block;
-}
-
-.blog-item-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #3b0d19;
-  line-height: 1.3;
-}
-.blog-item-hint {
-  font-size: 12px;
-  color: #7a4a55;
-  margin-top: 2px;
-}
-
-.blog-more {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 14px;
-  color: #5a0f1c;
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: 1px solid rgba(90,15,28,0.3);
-  padding-bottom: 1px;
-  transition: border-color 0.2s;
-}
-.blog-more:hover { border-color: #5a0f1c; }
-
-/* CTA */
-.cta-card {
-  background: #5a0f1c;
-  border-radius: 20px;
-  padding: 38px 32px;
-  text-align: center;
-  margin-bottom: 22px;
-  box-shadow: 0 10px 36px rgba(90,15,28,0.28);
-}
-.cta-card h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  color: #f5efe6;
-  margin-bottom: 10px;
-}
-.cta-card p {
-  font-size: 18px;
-  color: rgba(245,239,230,0.80);
-  line-height: 1.65;
-  margin-bottom: 24px;
-  max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.btn-cta {
-  display: inline-block;
-  padding: 13px 34px;
-  border-radius: 30px;
-  background: #f5efe6;
-  color: #5a0f1c;
-  text-decoration: none;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  transition: transform 0.2s, box-shadow 0.25s;
-}
-.btn-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.22);
-}
-
-/* SOCIAL */
-.social-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 4px;
-}
-.social-btn {
-  display: inline-block;
-  padding: 10px 22px;
-  border-radius: 30px;
-  background: #f5efe6;
-  border: 1.5px solid rgba(90,15,28,0.22);
-  color: #5a0f1c;
-  text-decoration: none;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 15px;
-  font-weight: 500;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-.social-btn:hover {
-  background: #ede4d7;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(90,15,28,0.14);
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 32px 20px;
-  font-size: 14px;
-  color: #5a0f1c;
-  border-top: 1px solid rgba(90,15,28,0.08);
-}
-
-/* MOBILE */
-@media (max-width: 620px) {
-  .two-col { grid-template-columns: 1fr; }
-  .hero-banner { height: 150px; }
-  .hero-body { grid-template-columns: 1fr; gap: 12px; }
-  .avatar-circle { margin-top: -44px; }
-  .topnav-brand { display: none; }
-  .topnav-links a { font-size: 13px; padding: 6px 13px; }
-}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7eee3">
+  <meta name="description" content="Adalin Sohtorik — kişisel gelişim mentoru. İç dünyanı anlamak, seçimlerini fark etmek ve değişimi eyleme dönüştürmek için.">
+  <title>Adalin Sohtorik — İç dünyana başka bir açıdan bak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f7eee3;
+      --paper-2: #fff8ef;
+      --ink: #38251f;
+      --muted: #79665b;
+      --purple: #85452f;
+      --deep: #43242a;
+      --lilac: #e8b78f;
+      --line: rgba(94, 54, 38, .15);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", sans-serif;
+      --display: "Manrope", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #c77c52; outline-offset: 4px; }
+    .ambient {
+      position: fixed; inset: -20%; z-index: -2; pointer-events: none; overflow: hidden;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(245,151,91,.56), transparent 31%),
+        radial-gradient(ellipse at 84% 15%, rgba(238,180,126,.40), transparent 29%),
+        radial-gradient(ellipse at 75% 75%, rgba(207,117,98,.30), transparent 33%),
+        radial-gradient(ellipse at 30% 82%, rgba(255,211,145,.48), transparent 29%);
+      filter: saturate(1.12) sepia(.08);
+      animation: ambient-drift 24s ease-in-out infinite alternate;
+    }
+    .ambient::before, .ambient::after {
+      content: ""; position: absolute; width: 60vw; height: 60vw; min-width: 480px; min-height: 480px;
+      border-radius: 50%; filter: blur(65px); opacity: .34; mix-blend-mode: screen;
+    }
+    .ambient::before {
+      left: 20%; top: 10%;
+      background: conic-gradient(from 20deg, #f5a05b, #e9b6a0, #c9878a, #f4d29a, #c78a5e, #f5a05b);
+      animation: orb-one 29s ease-in-out infinite alternate;
+    }
+    .ambient::after {
+      right: 6%; bottom: 0;
+      background: conic-gradient(from 160deg, #d89a7b, #f3c98d, #c98579, #e9b4a6, #b97869, #d89a7b);
+      animation: orb-two 35s ease-in-out infinite alternate;
+    }
+    @keyframes ambient-drift { from { transform: translate3d(-1%, -1%, 0) scale(1); } to { transform: translate3d(1%, 2%, 0) scale(1.04); } }
+    @keyframes orb-one { from { transform: translate(-7%, 1%) rotate(0deg) scale(.92); } to { transform: translate(10%, 12%) rotate(35deg) scale(1.08); } }
+    @keyframes orb-two { from { transform: translate(5%, -4%) rotate(0deg) scale(1.05); } to { transform: translate(-12%, 7%) rotate(-30deg) scale(.9); } }
+    .grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .13; background-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E"); }
+    .shell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+    .nav-wrap { position: sticky; top: 0; z-index: 20; padding: 14px 0; backdrop-filter: blur(22px); background: rgba(247,238,227,.78); border-bottom: 1px solid rgba(94,54,38,.10); }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; flex-shrink: 0; }
+    .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: #fff; background: linear-gradient(145deg, #c77a4b, #542b30); font: 600 17px var(--serif); box-shadow: 0 5px 18px #49305a2b; }
+    .brand-name { font: 700 13px var(--display); letter-spacing: .09em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: clamp(12px, 2.2vw, 28px); }
+    .nav-links a { font-size: 13px; color: #6d4e42; text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--purple); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; background: #fff8; }
+    .lang button { border: 0; background: transparent; border-radius: 999px; padding: 7px 9px; color: var(--muted); cursor: pointer; font: 700 10px var(--sans); }
+    .lang button.active { background: var(--deep); color: white; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 19px; border-radius: 999px; text-decoration: none; border: 1px solid transparent; font: 600 13px var(--sans); transition: transform .22s, box-shadow .22s, background .22s; cursor: pointer; }
+    .button:hover { transform: translateY(-2px); }
+    .button-dark { color: white; background: var(--deep); box-shadow: 0 8px 22px #28143726; }
+    .button-dark:hover { box-shadow: 0 12px 30px #2814373b; }
+    .button-light { color: var(--deep); border-color: var(--line); background: #ffffff85; }
+    .button-light:hover { background: #fff; }
+    .hero { min-height: 660px; display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: clamp(36px, 7vw, 100px); padding-top: 70px; padding-bottom: 82px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #985536; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 1px; background: #c17c55; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 680px; margin: 22px 0; font: 500 clamp(46px, 6.2vw, 82px)/1.04 var(--serif); letter-spacing: -.045em; }
+    h1 em { color: #a95e3b; font-weight: 500; }
+    .hero-copy { max-width: 510px; color: #79665b; font-size: 16px; line-height: 1.85; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+    .hero-note { margin-top: 28px; display: flex; align-items: center; gap: 12px; color: #8c7466; font-size: 12px; }
+    .note-dot { width: 7px; height: 7px; border-radius: 50%; background: #c77c52; box-shadow: 0 0 0 5px #c77c521c; }
+    .visual { position: relative; min-height: 480px; display: grid; place-items: center; }
+    .halo { position: absolute; width: min(100%, 490px); aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 45deg, #f4a46a, #f8d5a0, #d98d82, #b87977, #edc1a0, #f4a46a); filter: blur(1px); opacity: .78; animation: halo-turn 32s linear infinite; }
+    .halo::before { content: ""; position: absolute; inset: 2px; border-radius: inherit; background: radial-gradient(circle at 50% 45%, #fff8ef 0 25%, #fff8efa8 48%, #f7eee300 71%); }
+    .halo::after { content: ""; position: absolute; inset: 22px; border: 1px solid #fff9; border-radius: inherit; box-shadow: inset 0 0 50px #fff7, 0 0 50px #d99a6c44; }
+    @keyframes halo-turn { to { transform: rotate(360deg); } }
+    .portrait-frame { position: relative; width: min(69%, 300px); aspect-ratio: .78; border-radius: 46% 46% 34px 34px; overflow: hidden; background: linear-gradient(155deg, #d7a88a, #f0cdb4 52%, #b97869); border: 7px solid #fff9; box-shadow: 0 28px 80px #7a422824; transform: rotate(2deg); }
+    .portrait-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .portrait-placeholder { height: 100%; display: grid; place-items: center; text-align: center; padding: 24px; color: #6c3d32; font: italic 18px/1.5 var(--serif); }
+    .float-card { position: absolute; padding: 15px 17px; background: #fffaf0d9; backdrop-filter: blur(16px); border: 1px solid #fff; box-shadow: 0 14px 40px #3b23481a; border-radius: 15px; max-width: 200px; }
+    .float-card small { display: block; color: #897b90; font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; margin-bottom: 6px; }
+    .float-card strong { font: 500 15px/1.35 var(--serif); }
+    .float-one { top: 12%; left: -1%; transform: rotate(-4deg); }
+    .float-two { bottom: 10%; right: -2%; transform: rotate(3deg); }
+    .spark { position: absolute; color: #bd7952; font-size: 24px; animation: twinkle 4s ease-in-out infinite; }
+    .spark-a { top: 15%; right: 11%; } .spark-b { bottom: 20%; left: 7%; animation-delay: 1.5s; font-size: 16px; }
+    @keyframes twinkle { 0%,100% { opacity: .4; transform: scale(.85) rotate(0); } 50% { opacity: 1; transform: scale(1.15) rotate(25deg); } }
+    .ticker { border-block: 1px solid var(--line); padding: 17px 0; overflow: hidden; background: #fff6; }
+    .ticker-inner { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 30px; color: #8a6c5c; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .ticker span::after { content: "✳"; color: #c78a62; margin-left: 30px; }
+    section { padding: 105px 0; }
+    .section-head { max-width: 670px; margin-bottom: 42px; }
+    .section-head h2 { margin: 15px 0; font: 500 clamp(34px, 4vw, 52px)/1.12 var(--serif); letter-spacing: -.035em; }
+    .section-head p { color: var(--muted); line-height: 1.8; font-size: 15px; max-width: 580px; }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 8vw, 110px); align-items: start; }
+    .quote-panel { padding: 32px; border-radius: 24px; background: linear-gradient(145deg, #43242a, #7a4036); color: #fff8ef; min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 22px 60px #3d24531e; position: relative; overflow: hidden; }
+    .quote-panel::after { content: ""; position: absolute; width: 260px; height: 260px; border-radius: 50%; right: -110px; bottom: -120px; background: conic-gradient(#f0c38f, #d68b72, #b76b65, #e8b2a1, #f0c38f); opacity: .22; filter: blur(15px); }
+    .quote-mark { font: 60px/.7 var(--serif); color: #f0c59e; }
+    .quote-panel blockquote { margin: 22px 0 26px; font: italic 25px/1.35 var(--serif); position: relative; z-index: 1; }
+    .quote-panel small { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #e9c9b5; }
+    .about-copy { color: #79665b; font-size: 15px; line-height: 1.95; }
+    .about-copy strong { color: var(--ink); font-weight: 600; }
+    .principles { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 32px; }
+    .principle { padding: 21px; border: 1px solid var(--line); background: #fff7; border-radius: 16px; }
+    .principle-num { color: #bb8057; font: 500 12px var(--display); }
+    .principle h3 { margin: 14px 0 8px; font: 600 18px var(--serif); }
+    .principle p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .test-section { background: linear-gradient(135deg, #3b2227, #63352f 65%, #814b38); color: #fff8ef; position: relative; overflow: hidden; }
+    .test-section::before { content: ""; position: absolute; width: 600px; height: 600px; right: -180px; top: -270px; border-radius: 50%; background: conic-gradient(#e8b47e, #d88973, #b96f67, #f0ce9b, #e8b47e); opacity: .14; filter: blur(35px); animation: orb-two 32s ease-in-out infinite alternate; }
+    .test-section .eyebrow { color: #f0c8a8; }
+    .test-section .eyebrow::before { background: #d99a73; }
+    .test-section .section-head p { color: #e8cfc1; }
+    .test-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+    .test-layout h2 { font: 500 clamp(35px, 4vw, 54px)/1.1 var(--serif); margin: 16px 0; }
+    .test-layout .section-head { margin: 0; }
+    .test-box { padding: 28px; border: 1px solid #ffffff24; background: #ffffff0c; border-radius: 24px; backdrop-filter: blur(12px); }
+    .test-step { color: #e6bfa4; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .test-box h3 { font: 500 24px/1.35 var(--serif); margin: 13px 0 22px; }
+    .choices { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .choice { border: 1px solid #ffffff2a; border-radius: 15px; padding: 16px 10px; color: #fff8ef; background: #ffffff09; cursor: pointer; font: 500 12px var(--sans); transition: .2s; }
+    .choice .emoji { display: block; font-size: 31px; margin-bottom: 10px; }
+    .choice:hover, .choice.selected { background: #ffffff20; border-color: #e9b991; transform: translateY(-2px); }
+    .test-result { display: none; margin-top: 18px; padding: 18px; background: #fffaf0; color: var(--ink); border-radius: 15px; font-size: 13px; line-height: 1.7; }
+    .test-result.show { display: block; animation: result-in .35s ease both; }
+    @keyframes result-in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+    .test-disclaimer { color: #d9b8a6; font-size: 10px; line-height: 1.6; margin: 15px 0 0; }
+    .offer-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .offer { padding: 27px; border: 1px solid var(--line); border-radius: 20px; background: #fff8; display: flex; flex-direction: column; min-height: 300px; }
+    .offer.featured { background: linear-gradient(150deg, #fff8ef, #f3dfd0); border-color: #e1c2a8; box-shadow: 0 18px 48px #5c3a7114; }
+    .offer-tag { color: #a45e3e; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .offer h3 { margin: 17px 0 10px; font: 500 25px var(--serif); }
+    .offer p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .offer .price { font: 700 24px var(--display); margin: auto 0 18px; padding-top: 14px; }
+    .offer .price small { font: 400 11px var(--sans); color: var(--muted); }
+    .offer .button { align-self: flex-start; }
+    .review-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; }
+    .review { padding: 25px; border: 1px solid var(--line); border-radius: 18px; background: #fff9; }
+    .stars { color: #c17b52; letter-spacing: .15em; font-size: 12px; margin-bottom: 16px; }
+    .review blockquote { margin: 0 0 18px; font: italic 17px/1.65 var(--serif); }
+    .review small { color: #8c7467; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .review-note { margin-top: 18px; color: #83788b; font-size: 11px; line-height: 1.6; }
+    .writing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; }
+    .writing-card { text-decoration: none; padding: 25px; border-radius: 18px; border: 1px solid var(--line); background: #fff8; min-height: 235px; display: flex; flex-direction: column; transition: transform .22s, background .22s; }
+    .writing-card:hover { transform: translateY(-4px); background: #fff; }
+    .writing-card .category { color: #a76748; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .writing-card h3 { margin: 16px 0 10px; font: 500 23px/1.25 var(--serif); }
+    .writing-card p { color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .writing-card .read { margin-top: auto; color: var(--purple); font-size: 12px; font-weight: 700; }
+    .closing { padding: 0 0 100px; }
+    .closing-panel { padding: clamp(35px, 7vw, 75px); border-radius: 28px; background: linear-gradient(120deg, #f1d6c1, #fff3e4 52%, #e9c5a9); border: 1px solid #fff; text-align: center; position: relative; overflow: hidden; }
+    .closing-panel h2 { max-width: 690px; margin: 17px auto; font: 500 clamp(35px, 4.5vw, 58px)/1.1 var(--serif); }
+    .closing-panel p { max-width: 530px; margin: 0 auto 25px; color: #7b6152; font-size: 14px; line-height: 1.8; }
+    footer { border-top: 1px solid var(--line); padding: 27px 0; color: #8c7466; font-size: 11px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 17px; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--purple); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 55px; gap: 10px; }
+      .hero-copy { max-width: 620px; }
+      .visual { min-height: 420px; }
+      .about-grid, .test-layout { grid-template-columns: 1fr; gap: 30px; }
+      .quote-panel { min-height: 230px; }
+      .offer-grid, .review-grid, .writing-grid { grid-template-columns: repeat(2,1fr); }
+      .offer:last-child, .review:last-child, .writing-card:last-child { grid-column: auto; }
+    }
+    @media (max-width: 600px) {
+      .shell { width: min(100% - 30px, 1180px); }
+      .nav-wrap { padding: 10px 0; }
+      .brand-mark { width: 34px; height: 34px; }
+      .brand-name { font-size: 11px; }
+      .nav-actions .button { padding: 10px 12px; font-size: 11px; }
+      .hero { min-height: 0; padding: 55px 0 55px; }
+      h1 { font-size: clamp(44px, 13vw, 65px); }
+      .hero-copy { font-size: 14px; }
+      .visual { min-height: 350px; margin: 0 -6px; }
+      .halo { width: 90%; }
+      .portrait-frame { width: 62%; }
+      .float-card { padding: 11px 12px; max-width: 150px; }
+      .float-card strong { font-size: 12px; }
+      .float-one { left: 0; top: 8%; } .float-two { right: 0; bottom: 7%; }
+      .ticker-inner { justify-content: flex-start; gap: 12px 18px; font-size: 9px; }
+      .ticker span::after { margin-left: 18px; }
+      section { padding: 72px 0; }
+      .principles, .offer-grid, .review-grid, .writing-grid { grid-template-columns: 1fr; }
+      .principle { padding: 19px; }
+      .test-box { padding: 20px; }
+      .choices { gap: 7px; }
+      .choice { padding: 13px 5px; font-size: 10px; }
+      .choice .emoji { font-size: 26px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .closing { padding-bottom: 70px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
-
-<!-- TOP NAV -->
-<nav class="topnav">
-  <span class="topnav-brand">Adalin Sohtorik</span>
-  <div class="topnav-links">
-    <a href="mailto:adlnshtrk@yahoo.com">İletişim</a>
-    <a href="https://www.tiktok.com/@adalin.live" target="_blank">TikTok</a>
-    <a href="https://whatsapp.com/channel/0029Vb5sB9kCsU9QuTWfvD3W" target="_blank" class="topnav-wp"> WP Kanal</a>
-    <a href="https://chat.whatsapp.com/GtMEfZyxR5uGT71S5nNA7y?mode=gi_t" target="_blank" class="topnav-wp topnav-wp2"> WP Topluluk</a>
-    <a href="https://www.instagram.com/adalinlive/" target="_blank">Instagram</a>
-  </div>
-</nav>
-
-<div class="page">
-
-  <!-- HERO CARD -->
-  <div class="card hero-card reveal" id="c0">
-    <div class="hero-banner">
-      <div class="hero-banner-bg"></div>
-      <p class="hero-banner-quote">"Dış dünya, iç dünyanızın bir yansımasıdır."</p>
-    </div>
-    <div class="hero-body">
-      <div class="avatar-circle">
-        <img src="buben.jpg" alt="Adalin Sohtorik">
+  <div class="ambient" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <div class="nav-wrap">
+    <nav class="shell" aria-label="Ana navigasyon">
+      <a class="brand" href="#top" aria-label="Adalin Sohtorik ana sayfa"><span class="brand-mark">a.</span><span class="brand-name">Adalin Sohtorik</span></a>
+      <div class="nav-links">
+        <a href="#about" data-i18n="navAbout">Yaklaşımım</a><a href="#explore" data-i18n="navExplore">Kendini keşfet</a><a href="#sessions" data-i18n="navSessions">Çalışmalar</a><a href="#notes" data-i18n="navNotes">Notlar</a>
       </div>
-      <div class="hero-info">
-        <h1 class="hero-name"><span id="name-text"></span><span id="cursor">|</span></h1>
-        <p class="hero-sub">Kişisel Gelişim Mentoru · Yaşam Koçu</p>
-        <div class="hero-stats">
-          <div>
-            <span class="stat-num">150+</span>
-            <span class="stat-label">Danışan</span>
+      <div class="nav-actions">
+        <div class="lang" aria-label="Dil seçimi"><button class="active" type="button" data-lang="tr">TR</button><button type="button" data-lang="ru">RU</button></div>
+        <a class="button button-dark" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener" data-i18n="navCta">Ön görüşme ↗</a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="top">
+    <header class="hero shell">
+      <div class="hero-content">
+        <span class="eyebrow" data-i18n="eyebrow">Kişisel gelişim · Farkındalık · Eylem</span>
+        <h1 data-i18n-html="heroTitle">Dış dünyan,<br><em>iç dünyanla</em><br>başlar.</h1>
+        <p class="hero-copy" data-i18n="heroCopy">Kendini anlamak, aynı döngüleri neden tekrarladığını görmek ve farkındalığı gerçek hayatta değişime dönüştürmek için. Klişelerden değil, kendine dürüstçe bakmaktan başlayalım.</p>
+        <div class="hero-actions"><a class="button button-dark" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener" data-i18n="heroCta">Birlikte çalışmayı keşfet ↗</a><a class="button button-light" href="#explore" data-i18n="heroSecondary">Kendini keşfet ↓</a></div>
+        <div class="hero-note"><span class="note-dot"></span><span data-i18n="heroNote">Türkçe ve Rusça · Online görüşmeler</span></div>
+      </div>
+      <div class="visual" aria-label="Hafif hareket eden holografik renk halkası">
+        <div class="halo"></div>
+        <div class="portrait-frame">
+          <img src="buben.jpg" alt="Adalin Sohtorik" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="portrait-placeholder" style="display:none">Buraya<br>kendi portreni<br><strong>buben.jpg</strong><br>adıyla ekle</div>
+        </div>
+        <div class="float-card float-one"><small data-i18n="floatOneLabel">Bir hatırlatma</small><strong data-i18n="floatOne">Anlamak, başlangıçtır.<br>Değişim eylemde başlar.</strong></div>
+        <div class="float-card float-two"><small data-i18n="floatTwoLabel">Yaklaşım</small><strong data-i18n="floatTwo">Daha az klişe.<br>Daha çok öz farkındalık.</strong></div>
+        <span class="spark spark-a" aria-hidden="true">✳</span><span class="spark spark-b" aria-hidden="true">✦</span>
+      </div>
+    </header>
+
+    <div class="ticker"><div class="shell ticker-inner"><span data-i18n="ticker1">Psikoloji</span><span data-i18n="ticker2">Felsefe</span><span data-i18n="ticker3">Nörobilim</span><span data-i18n="ticker4">İlişkiler</span><span data-i18n="ticker5">Davranış</span><span data-i18n="ticker6">Günlük pratik</span></div></div>
+
+    <section id="about">
+      <div class="shell about-grid">
+        <div class="quote-panel reveal"><div class="quote-mark">“</div><blockquote data-i18n="quote">Dış dünya, iç dünyanızın bir yansımasıdır.</blockquote><small data-i18n="quoteBy">Adalin Sohtorik · kişisel yaklaşım</small></div>
+        <div class="about-content reveal">
+          <div class="section-head"><span class="eyebrow" data-i18n="aboutEyebrow">Benim yaklaşımım</span><h2 data-i18n-html="aboutTitle">Kendini tanımak,<br><em>kendine etiket yapıştırmak</em> değildir.</h2></div>
+          <div class="about-copy" data-i18n-html="aboutCopy">
+            <p>İnsan zihnini tek bir kalıpla açıklayamayız. Bazen aynı düşünceyi tekrar eder, aynı ilişkisel döngüye döner veya ne yapmamız gerektiğini bildiğimiz hâlde harekete geçemeyiz.</p>
+            <p>Çalışmalarımda <strong>felsefe, psikoloji, nörobilim, ilişkiler ve beden-zihin bağlantısı</strong> üzerine öğrendiklerimi; öz farkındalık ve uygulanabilir küçük adımlarla bir araya getiriyorum.</p>
+            <p>Amacım size hazır cevaplar vermek değil. Kendi örüntülerinizi fark etmenize, seçimlerinizi daha bilinçli yapmanıza ve zamanla <strong>kendi kendinizin mentoru</strong> olmanıza eşlik etmek.</p>
           </div>
-          <div>
-            <span class="stat-num">2+</span>
-            <span class="stat-label">Yıl</span>
-          </div>
-          <div>
-            <span class="stat-num">13+</span>
-            <span class="stat-label">Alan</span>
+          <div class="principles">
+            <article class="principle"><span class="principle-num">01 / FARK ET</span><h3 data-i18n="p1Title">Örüntüyü gör</h3><p data-i18n="p1Copy">Otomatik tepkilerinin ve tekrar eden seçimlerinin ardına bak.</p></article>
+            <article class="principle"><span class="principle-num">02 / ANLA</span><h3 data-i18n="p2Title">Kendine dürüst ol</h3><p data-i18n="p2Copy">Yargılamadan, işine yaramayan alışkanlıkların işlevini keşfet.</p></article>
+            <article class="principle"><span class="principle-num">03 / UYGULA</span><h3 data-i18n="p3Title">Eyleme geç</h3><p data-i18n="p3Copy">Büyük vaatler yerine sürdürülebilir küçük adımlar oluştur.</p></article>
           </div>
         </div>
-        <div class="hero-btns">
-          <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="button">Seans Oluştur</a>
-          <a href="blog.html" class="button-outline">Blog</a>
+      </div>
+    </section>
+
+    <section id="explore" class="test-section">
+      <div class="shell test-layout">
+        <div class="section-head reveal"><span class="eyebrow" data-i18n="testEyebrow">Mini keşif alanı</span><h2 data-i18n-html="testTitle">İlk gördüğün şey<br><em>sana ne düşündürüyor?</em></h2><p data-i18n="testIntro">TikTok'ta sevdiğin ilk çağrışım formatından ilham alan küçük bir başlangıç. Bir cevabı fazla düşünmeden seç ve sende uyandırdığı anlamı keşfet.</p><p class="test-disclaimer" data-i18n="testDisclaimer">Bu mini egzersiz bilimsel bir kişilik testi veya psikolojik değerlendirme değildir; yalnızca kendine soru sormak için bir davettir.</p></div>
+        <div class="test-box reveal">
+          <div class="test-step" data-i18n="testStep">01 — İlk çağrışım</div>
+          <h3 data-i18n="testQuestion">Şu an bir manzaraya bakıyorsun. Gözün ilk hangisine gidiyor?</h3>
+          <div class="choices">
+            <button class="choice" type="button" data-choice="moon"><span class="emoji">🌙</span><span data-i18n="choice1">Ay</span></button>
+            <button class="choice" type="button" data-choice="sea"><span class="emoji">🌊</span><span data-i18n="choice2">Deniz</span></button>
+            <button class="choice" type="button" data-choice="mountain"><span class="emoji">⛰️</span><span data-i18n="choice3">Dağ</span></button>
+          </div>
+          <div class="test-result" id="testResult" role="status" aria-live="polite"></div>
+          <p class="test-disclaimer" data-i18n="testFooter">Seçimin bir teşhis ya da kesin kişilik analizi değildir. Önemli olan, sende uyandırdığı kişisel çağrışım.</p>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- TWO COL: ABOUT + BLOG -->
-  <div class="two-col">
-
-    <div class="card reveal" id="c1">
-      <div class="card-inner">
-        <h2 class="card-title">Hakkımda</h2>
-        <p class="about-text">
-          İnsan zihni ve potansiyeli üzerine derin bir tutkusu olan kişisel gelişim mentoruyum. Felsefe, psikoloji, bilinçaltı, numeroloji, psikosomatik, hormonal sistemler ve beden-zihin bağlantısı alanlarında uluslararası uzmanlardan eğitimler aldım.
-          <br><br>
-          Her danışan için süreç özeldir; kimiyle sadece konuşarak, kimiyle egzersizlerle çalışırız. Niyetim, danışanlarımın bana ihtiyaç duymadan kendi güçlerini yaratmalarıdır.
-          <br><br>
-          Sizinle enerjimizin uyuşup uyuşmadığını görmek için <strong>ücretsiz ön görüşmeye</strong> davetlisiniz.
-        </p>
-      </div>
-    </div>
-
-    <div class="card reveal" id="c2">
-      <div class="card-inner">
-        <h2 class="card-title">Blog</h2>
-        <div class="blog-list">
-          <a href="yazi15.html" class="blog-item">
-            <img src="degisim.jpg" class="blog-thumb" alt="Hayatınız Neden Aynı Döngüde?">
-            <div>
-              <div class="blog-item-title">Hayatınız Neden Aynı Döngüde?</div>
-              <div class="blog-item-hint">Psikoloji · 5 dk okuma</div>
-            </div>
-          </a>
-          <a href="yazi14.html" class="blog-item">
-            <img src="kisi.jpg" class="blog-thumb" alt="Sözde Kişisel Gelişim">
-            <div>
-              <div class="blog-item-title">Sözde Kişisel Gelişim</div>
-              <div class="blog-item-hint">Kişisel Gelişim · 6 dk okuma</div>
-            </div>
-          </a>
-          <a href="yazi11.html" class="blog-item">
-            <img src="moral.jpg" class="blog-thumb" alt="Moralinizi Kim Bozdu?">
-            <div>
-              <div class="blog-item-title">Moralinizi Kim Bozdu?</div>
-              <div class="blog-item-hint">Psikoloji · 4 dk okuma</div>
-            </div>
-          </a>
-          <a href="yazi8.html" class="blog-item">
-            <img src="uyku.jpg" class="blog-thumb" alt="Uykusuzluğun Psikosomatiği">
-            <div>
-              <div class="blog-item-title">Uykusuzluğun Psikosomatiği</div>
-              <div class="blog-item-hint">Psikosomatik · 6 dk okuma</div>
-            </div>
-          </a>
-          <a href="yazi7.html" class="blog-item">
-            <img src="akne.jpg" class="blog-thumb" alt="Akne Psikosomatiği">
-            <div>
-              <div class="blog-item-title">Akne Psikosomatiği</div>
-              <div class="blog-item-hint">Psikosomatik · 4 dk okuma</div>
-            </div>
-          </a>
+    <section id="sessions">
+      <div class="shell">
+        <div class="section-head reveal"><span class="eyebrow" data-i18n="sessionEyebrow">Birlikte çalışma</span><h2 data-i18n-html="sessionTitle">Farkındalıktan<br><em>günlük hayata.</em></h2><p data-i18n="sessionIntro">İhtiyacına ve hedeflerine göre sana uygun çalışma biçimini birlikte netleştirebiliriz. Güncel içerik ve ücretleri danışmanlık sayfamdan kontrol edebilirsin.</p></div>
+        <div class="offer-grid">
+          <article class="offer reveal"><span class="offer-tag" data-i18n="offer1Tag">İlk adım</span><h3 data-i18n="offer1Title">Ücretsiz ön görüşme</h3><p data-i18n="offer1Copy">Tanışmak, beklentilerini konuşmak ve birlikte çalışmanın sana uygun olup olmadığını değerlendirmek için kısa bir görüşme.</p><div class="price" data-i18n="freePrice">Ücretsiz <small>· 10 dk</small></div><a class="button button-light" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener" data-i18n="offerCta">Detayları gör ↗</a></article>
+          <article class="offer featured reveal"><span class="offer-tag" data-i18n="offer2Tag">Bireysel çalışma</span><h3 data-i18n="offer2Title">Temel danışmanlık</h3><p data-i18n="offer2Copy">Tekrarlayan örüntülerini, hedeflerini ve değiştirmek istediğin davranışları daha yakından ele almak için bireysel seans.</p><div class="price" data-i18n="priceCheck">Güncel ücret <small>· danışmanlık sayfasında</small></div><a class="button button-dark" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener" data-i18n="offerCta">Detayları gör ↗</a></article>
+          <article class="offer reveal"><span class="offer-tag" data-i18n="offer3Tag">Süreç</span><h3 data-i18n="offer3Title">Devam paketi</h3><p data-i18n="offer3Copy">Farkındalığı günlük yaşama taşımak, yeni alışkanlıkları denemek ve süreci pekiştirmek için çok adımlı çalışma.</p><div class="price" data-i18n="priceCheck">Güncel ücret <small>· danışmanlık sayfasında</small></div><a class="button button-light" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener" data-i18n="offerCta">Detayları gör ↗</a></article>
         </div>
-        <a href="blog.html" class="blog-more">Tüm yazıları gör →</a>
       </div>
-    </div>
+    </section>
 
-  </div>
-
-  <!-- CTA -->
-  <div class="cta-card reveal" id="c3">
-    <h2>Hazır mısın?</h2>
-    <p>Eğer gerçekten değişmek istiyorsan, sadece okumak yetmez. Uygulamak gerekir.</p>
-    <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="btn-cta">Seans Başlat</a>
-  </div>
-
-  <!-- SOCIAL -->
-  <div class="card reveal" id="c4">
-    <div class="card-inner">
-      <h2 class="card-title">Bağlantılar</h2>
-      <div class="social-row">
-        <a href="mailto:adlnshtrk@yahoo.com" class="social-btn">✉️ İletişim</a>
-        <a href="https://www.tiktok.com/@adalin.live" target="_blank" class="social-btn">🎵 TikTok</a>
-        <a href="https://whatsapp.com/channel/0029Vb5sB9kCsU9QuTWfvD3W" target="_blank" class="social-btn social-btn-wp">💬 WP Kanal</a>
-        <a href="https://chat.whatsapp.com/GtMEfZyxR5uGT71S5nNA7y?mode=gi_t" target="_blank" class="social-btn social-btn-wp2">👥 WP Topluluk</a>
-        <a href="https://www.instagram.com/adalin.live/" target="_blank" class="social-btn">📷 Instagram</a>
+    <section id="voices">
+      <div class="shell">
+        <div class="section-head reveal"><span class="eyebrow" data-i18n="reviewEyebrow">Danışan deneyimleri</span><h2 data-i18n-html="reviewTitle">Bazen bir soru,<br><em>yeni bir pencere açar.</em></h2><p data-i18n="reviewIntro">Danışanlardan gelen geri bildirimlerden kısa alıntılar.</p></div>
+        <div class="review-grid">
+          <article class="review reveal"><div class="stars">✳ ✳ ✳ ✳ ✳</div><blockquote>“Kendimi bir uzmanın odasında değil de, beni çok iyi anlayan eski bir dostumla kahve içip dertleşiyor gibi hissettim. Klişe dışında şeyler duymak bana çok iyi geldi.”</blockquote><small data-i18n="reviewAnon">Danışan geri bildirimi · anonim</small></article>
+          <article class="review reveal"><div class="stars">✳ ✳ ✳ ✳ ✳</div><blockquote>“Konuşurken kendimi daha net görmeye başladım, farkında olmadığım şeyleri fark ettim. Egzersiz kitapçığı için ayrıca teşekkür ederim, gerçekten işe yaradı.”</blockquote><small data-i18n="reviewAnon">Danışan geri bildirimi · anonim</small></article>
+          <article class="review reveal"><div class="stars">✳ ✳ ✳ ✳ ✳</div><blockquote>“Sorduğunuz sorularla olayları farklı düşünmeye yönlendiren, nokta atışı tespitler yapan ve bunu samimiyetiyle hissettiren bir mentör.”</blockquote><small data-i18n="reviewAnon">Danışan geri bildirimi · anonim</small></article>
+        </div>
+        <p class="review-note" data-i18n="reviewNote">Not: Alıntıları yayına almadan önce danışan izinlerini ve paylaşım koşullarını kontrol et. İstersen bu bölümü izinli ekran görüntüleriyle de yenileyebiliriz.</p>
       </div>
+    </section>
+
+    <section id="notes">
+      <div class="shell">
+        <div class="section-head reveal"><span class="eyebrow" data-i18n="notesEyebrow">Düşünce notları</span><h2 data-i18n-html="notesTitle">Okumak için değil,<br><em>kendine sormak için.</em></h2><p data-i18n="notesIntro">Blog yazılarını daha sonra buraya taşıyabiliriz. Şimdilik senin yaklaşımını yansıtan üç başlangıç konusu.</p></div>
+        <div class="writing-grid">
+          <a class="writing-card reveal" href="blog.html"><span class="category" data-i18n="noteCat1">Davranış örüntüleri</span><h3 data-i18n="note1Title">Her şeyi anlıyorsun ama neden değişmiyor?</h3><p data-i18n="note1Copy">Bilgi ile deneyim arasındaki mesafe, küçük eylemlerle nasıl kapanır?</p><span class="read" data-i18n="readMore">Yazılara göz at ↗</span></a>
+          <a class="writing-card reveal" href="blog.html"><span class="category" data-i18n="noteCat2">İlişkiler</span><h3 data-i18n="note2Title">“Karşımdaki kim?” değil, “Ben neden buradayım?”</h3><p data-i18n="note2Copy">Etiketlerden uzaklaşıp kendi seçimlerini ve ihtiyaçlarını anlamak üzerine.</p><span class="read" data-i18n="readMore">Yazılara göz at ↗</span></a>
+          <a class="writing-card reveal" href="blog.html"><span class="category" data-i18n="noteCat3">Eylem ve disiplin</span><h3 data-i18n="note3Title">Mükemmel zamanı beklemek</h3><p data-i18n="note3Copy">Bazen değişim, büyük bir karar değil bugün atılan küçük bir adımdır.</p><span class="read" data-i18n="readMore">Yazılara göz at ↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="closing shell">
+      <div class="closing-panel reveal"><span class="eyebrow" data-i18n="closingEyebrow">İlk adımın kusursuz olması gerekmiyor</span><h2 data-i18n-html="closingTitle">Kendine başka bir açıdan bakmaya <em>hazır mısın?</em></h2><p data-i18n="closingCopy">Birlikte çalışmanın sana uygun olup olmadığını anlamak için ücretsiz ön görüşmeyle başlayabilirsin.</p><a class="button button-dark" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener" data-i18n="closingCta">Ücretsiz ön görüşme ↗</a></div>
     </div>
-  </div>
+  </main>
 
-</div>
+  <footer><div class="shell footer-inner"><span>© <span id="year"></span> Adalin Sohtorik</span><div class="footer-links"><a href="https://www.tiktok.com/@adalin.live" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/adalinlive/" target="_blank" rel="noopener">Instagram</a><a href="https://whatsapp.com/channel/0029Vb5sB9kCsU9QuTWfvD3W" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:adlnshtrk@yahoo.com">E-posta</a></div></div></footer>
 
-<footer>© 2025 Adalin Sohtorik — Tüm hakları saklıdır.</footer>
-
-<script>
-/* TYPEWRITER */
-const text = "Adalin Sohtorik";
-let i = 0;
-const nameEl = document.getElementById('name-text');
-const cursorEl = document.getElementById('cursor');
-const st = document.createElement('style');
-st.textContent = '@keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}} #cursor{animation:blink 0.7s infinite;display:inline-block;margin-left:2px;}';
-document.head.appendChild(st);
-
-function type() {
-  if (i < text.length) {
-    nameEl.textContent += text[i++];
-    setTimeout(type, 90);
-  } else {
-    setTimeout(() => { cursorEl.style.animation = 'none'; cursorEl.style.opacity = '0'; }, 1400);
-  }
-}
-setTimeout(type, 500);
-
-/* SCROLL REVEAL */
-const cards = ['c0','c1','c2','c3','c4'];
-const delays = [0, 100, 180, 80, 100];
-
-function reveal() {
-  cards.forEach((id, n) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-      setTimeout(() => el.classList.add('show'), delays[n]);
-    }
-  });
-}
-window.addEventListener('scroll', reveal);
-reveal();
-</script>
-
+  <script>
+    const translations = {
+      tr: {
+        navAbout:"Yaklaşımım",navExplore:"Kendini keşfet",navSessions:"Çalışmalar",navNotes:"Notlar",navCta:"Ön görüşme ↗",
+        eyebrow:"Kişisel gelişim · Farkındalık · Eylem",heroTitle:'Dış dünyan,<br><em>iç dünyanla</em><br>başlar.',heroCopy:"Kendini anlamak, aynı döngüleri neden tekrarladığını görmek ve farkındalığı gerçek hayatta değişime dönüştürmek için. Klişelerden değil, kendine dürüstçe bakmaktan başlayalım.",heroCta:"Birlikte çalışmayı keşfet ↗",heroSecondary:"Kendini keşfet ↓",heroNote:"Türkçe ve Rusça · Online görüşmeler",
+        floatOneLabel:"Bir hatırlatma",floatOne:"Anlamak, başlangıçtır.<br>Değişim eylemde başlar.",floatTwoLabel:"Yaklaşım",floatTwo:"Daha az klişe.<br>Daha çok öz farkındalık.",
+        ticker1:"Psikoloji",ticker2:"Felsefe",ticker3:"Nörobilim",ticker4:"İlişkiler",ticker5:"Davranış",ticker6:"Günlük pratik",
+        quote:"Dış dünya, iç dünyanızın bir yansımasıdır.",quoteBy:"Adalin Sohtorik · kişisel yaklaşım",aboutEyebrow:"Benim yaklaşımım",aboutTitle:'Kendini tanımak,<br><em>kendine etiket yapıştırmak</em> değildir.',aboutCopy:'<p>İnsan zihnini tek bir kalıpla açıklayamayız. Bazen aynı düşünceyi tekrar eder, aynı ilişkisel döngüye döner veya ne yapmamız gerektiğini bildiğimiz hâlde harekete geçemeyiz.</p><p>Çalışmalarımda <strong>felsefe, psikoloji, nörobilim, ilişkiler ve beden-zihin bağlantısı</strong> üzerine öğrendiklerimi; öz farkındalık ve uygulanabilir küçük adımlarla bir araya getiriyorum.</p><p>Amacım size hazır cevaplar vermek değil. Kendi örüntülerinizi fark etmenize, seçimlerinizi daha bilinçli yapmanıza ve zamanla <strong>kendi kendinizin mentoru</strong> olmanıza eşlik etmek.</p>',
+        p1Title:"Örüntüyü gör",p1Copy:"Otomatik tepkilerinin ve tekrar eden seçimlerinin ardına bak.",p2Title:"Kendine dürüst ol",p2Copy:"Yargılamadan, işine yaramayan alışkanlıkların işlevini keşfet.",p3Title:"Eyleme geç",p3Copy:"Büyük vaatler yerine sürdürülebilir küçük adımlar oluştur.",
+        testEyebrow:"Mini keşif alanı",testTitle:'İlk gördüğün şey<br><em>sana ne düşündürüyor?</em>',testIntro:"TikTok'ta sevdiğin ilk çağrışım formatından ilham alan küçük bir başlangıç. Bir cevabı fazla düşünmeden seç ve sende uyandırdığı anlamı keşfet.",testDisclaimer:"Bu mini egzersiz bilimsel bir kişilik testi veya psikolojik değerlendirme değildir; yalnızca kendine soru sormak için bir davettir.",testStep:"01 — İlk çağrışım",testQuestion:"Şu an bir manzaraya bakıyorsun. Gözün ilk hangisine gidiyor?",choice1:"Ay",choice2:"Deniz",choice3:"Dağ",testFooter:"Seçimin bir teşhis ya da kesin kişilik analizi değildir. Önemli olan, sende uyandırdığı kişisel çağrışım.",
+        sessionEyebrow:"Birlikte çalışma",sessionTitle:'Farkındalıktan<br><em>günlük hayata.</em>',sessionIntro:"İhtiyacına ve hedeflerine göre sana uygun çalışma biçimini birlikte netleştirebiliriz. Güncel içerik ve ücretleri danışmanlık sayfamdan kontrol edebilirsin.",offer1Tag:"İlk adım",offer1Title:"Ücretsiz ön görüşme",offer1Copy:"Tanışmak, beklentilerini konuşmak ve birlikte çalışmanın sana uygun olup olmadığını değerlendirmek için kısa bir görüşme.",freePrice:'Ücretsiz <small>· 10 dk</small>',offer2Tag:"Bireysel çalışma",offer2Title:"Temel danışmanlık",offer2Copy:"Tekrarlayan örüntülerini, hedeflerini ve değiştirmek istediğin davranışları daha yakından ele almak için bireysel seans.",offer3Tag:"Süreç",offer3Title:"Devam paketi",offer3Copy:"Farkındalığı günlük yaşama taşımak, yeni alışkanlıkları denemek ve süreci pekiştirmek için çok adımlı çalışma.",priceCheck:'Güncel ücret <small>· danışmanlık sayfasında</small>',offerCta:"Detayları gör ↗",
+        reviewEyebrow:"Danışan deneyimleri",reviewTitle:'Bazen bir soru,<br><em>yeni bir pencere açar.</em>',reviewIntro:"Danışanlardan gelen geri bildirimlerden kısa alıntılar.",reviewAnon:"Danışan geri bildirimi · anonim",reviewNote:"Not: Alıntıları yayına almadan önce danışan izinlerini ve paylaşım koşullarını kontrol et. İstersen bu bölümü izinli ekran görüntüleriyle de yenileyebiliriz.",
+        notesEyebrow:"Düşünce notları",notesTitle:'Okumak için değil,<br><em>kendine sormak için.</em>',notesIntro:"Blog yazılarını daha sonra buraya taşıyabiliriz. Şimdilik senin yaklaşımını yansıtan üç başlangıç konusu.",noteCat1:"Davranış örüntüleri",note1Title:"Her şeyi anlıyorsun ama neden değişmiyor?",note1Copy:"Bilgi ile deneyim arasındaki mesafe, küçük eylemlerle nasıl kapanır?",noteCat2:"İlişkiler",note2Title:"“Karşımdaki kim?” değil, “Ben neden buradayım?”",note2Copy:"Etiketlerden uzaklaşıp kendi seçimlerini ve ihtiyaçlarını anlamak üzerine.",noteCat3:"Eylem ve disiplin",note3Title:"Mükemmel zamanı beklemek",note3Copy:"Bazen değişim, büyük bir karar değil bugün atılan küçük bir adımdır.",readMore:"Yazılara göz at ↗",
+        closingEyebrow:"İlk adımın kusursuz olması gerekmiyor",closingTitle:'Kendine başka bir açıdan bakmaya <em>hazır mısın?</em>',closingCopy:"Birlikte çalışmanın sana uygun olup olmadığını anlamak için ücretsiz ön görüşmeyle başlayabilirsin.",closingCta:"Ücretsiz ön görüşme ↗",
+        results:{moon:"Ay sana gizem, sessizlik veya içe dönüklüğü çağrıştırıyor olabilir. Kendine sor: Şu sıralar içimde hangi duyguya biraz daha dikkat vermek istiyorum?",sea:"Deniz sana hareket, derinlik veya ferahlığı çağrıştırıyor olabilir. Kendine sor: Şu an hayatımda neyin akmasına, neyin yavaşlamasına ihtiyacım var?",mountain:"Dağ sana sağlamlık, hedef veya mesafeden bakmayı çağrıştırıyor olabilir. Kendine sor: Şu an hangi konuda daha net bir adım atabilirim?"}
+      },
+      ru: {
+        navAbout:"Мой подход",navExplore:"Узнать себя",navSessions:"Форматы работы",navNotes:"Заметки",navCta:"Знакомство ↗",
+        eyebrow:"Личностный рост · Осознанность · Действие",heroTitle:'Внешний мир<br>начинается <em>снутри.</em>',heroCopy:"Лучше понять себя, заметить повторяющиеся сценарии и превратить осознанность в реальные изменения. Начнём не с шаблонных советов, а с честного взгляда на себя.",heroCta:"Узнать о работе вместе ↗",heroSecondary:"Исследовать себя ↓",heroNote:"Турецкий и русский · Онлайн-встречи",
+        floatOneLabel:"Напоминание",floatOne:"Понимание — начало.<br>Изменения начинаются в действии.",floatTwoLabel:"Подход",floatTwo:"Меньше клише.<br>Больше самопонимания.",
+        ticker1:"Психология",ticker2:"Философия",ticker3:"Нейронаука",ticker4:"Отношения",ticker5:"Поведение",ticker6:"Практика",
+        quote:"Внешний мир — отражение вашего внутреннего мира.",quoteBy:"Adalin Sohtorik · личный подход",aboutEyebrow:"Мой подход",aboutTitle:'Узнать себя — не значит<br><em>навесить на себя ярлык.</em>',aboutCopy:'<p>Человеческую психику нельзя объяснить одной схемой. Мы можем снова возвращаться к одним мыслям и отношениям или не действовать, даже когда понимаем, что нужно сделать.</p><p>В своей работе я соединяю знания о <strong>философии, психологии, нейронауке, отношениях и связи тела и разума</strong> с самоосознанием и небольшими практическими шагами.</p><p>Моя цель — не выдавать готовые ответы, а помогать замечать свои сценарии, осознаннее выбирать и со временем стать <strong>наставником самому себе.</strong></p>',
+        p1Title:"Замечать сценарии",p1Copy:"Исследовать автоматические реакции и повторяющиеся выборы.",p2Title:"Быть честнее с собой",p2Copy:"Без осуждения изучать привычки, которые больше не помогают.",p3Title:"Действовать",p3Copy:"Выбирать небольшие устойчивые шаги вместо громких обещаний.",
+        testEyebrow:"Мини-исследование",testTitle:'Что первым привлекает<br><em>твоё внимание?</em>',testIntro:"Небольшая практика, вдохновлённая форматом первых ассоциаций. Выбери не раздумывая и исследуй, что этот образ значит лично для тебя.",testDisclaimer:"Это упражнение не является научным личностным тестом или психологической оценкой. Это лишь приглашение задать себе вопрос.",testStep:"01 — Первая ассоциация",testQuestion:"Ты смотришь на пейзаж. Что первым привлекает взгляд?",choice1:"Луна",choice2:"Море",choice3:"Горы",testFooter:"Выбор не является диагнозом или точным анализом личности. Важна личная ассоциация, которую он вызывает.",
+        sessionEyebrow:"Совместная работа",sessionTitle:'От осознания<br><em>к повседневной жизни.</em>',sessionIntro:"Мы можем вместе определить подходящий формат в зависимости от твоих потребностей и целей. Актуальные условия и стоимость смотри на странице консультаций.",offer1Tag:"Первый шаг",offer1Title:"Бесплатная встреча",offer1Copy:"Короткое знакомство, чтобы обсудить ожидания и понять, подходит ли нам совместная работа.",freePrice:'Бесплатно <small>· 10 минут</small>',offer2Tag:"Индивидуально",offer2Title:"Основная консультация",offer2Copy:"Индивидуальная встреча, чтобы внимательнее рассмотреть повторяющиеся сценарии, цели и желаемые изменения.",offer3Tag:"Продолжение",offer3Title:"Пакет встреч",offer3Copy:"Несколько шагов, чтобы перенести осознанность в повседневную жизнь и закрепить новые привычки.",priceCheck:'Актуальная цена <small>· на странице консультаций</small>',offerCta:"Подробнее ↗",
+        reviewEyebrow:"Отзывы клиентов",reviewTitle:'Иногда один вопрос<br><em>открывает новое окно.</em>',reviewIntro:"Короткие цитаты из отзывов клиентов.",reviewAnon:"Отзыв клиента · анонимно",reviewNote:"Перед публикацией проверь разрешение клиентов на использование отзывов. При желании этот раздел можно заменить скриншотами с разрешения авторов.",
+        notesEyebrow:"Заметки и размышления",notesTitle:'Не просто читать,<br><em>а спрашивать себя.</em>',notesIntro:"Позже мы перенесём сюда статьи блога. Пока — три темы, отражающие твой подход.",noteCat1:"Поведенческие сценарии",note1Title:"Ты всё понимаешь — почему ничего не меняется?",note1Copy:"Как сократить расстояние между знанием и опытом с помощью небольших действий?",noteCat2:"Отношения",note2Title:"Не «кто он?», а «почему я здесь остаюсь?»",note2Copy:"О том, как отойти от ярлыков и понять собственные выборы и потребности.",noteCat3:"Действие и дисциплина",note3Title:"Ожидание идеального момента",note3Copy:"Иногда изменение — это не большое решение, а небольшой шаг сегодня.",readMore:"Перейти к статьям ↗",
+        closingEyebrow:"Первый шаг не должен быть идеальным",closingTitle:'Готова посмотреть на себя <em>под другим углом?</em>',closingCopy:"Можно начать с бесплатной предварительной встречи и понять, подходит ли тебе наш формат работы.",closingCta:"Бесплатная встреча ↗",
+        results:{moon:"Луна может ассоциироваться с тайной, тишиной или внутренним миром. Спроси себя: какому чувству внутри меня сейчас нужно чуть больше внимания?",sea:"Море может ассоциироваться с движением, глубиной или свободой. Спроси себя: чему в моей жизни сейчас нужно дать течь, а что замедлить?",mountain:"Горы могут ассоциироваться с устойчивостью, целью или взглядом со стороны. Спроси себя: в какой сфере мне сейчас нужен более ясный шаг?"}
+      }
+    };
+    let currentLang = "tr";
+    document.querySelectorAll("[data-lang]").forEach(btn => btn.addEventListener("click", () => {
+      currentLang = btn.dataset.lang;
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll("[data-lang]").forEach(b => b.classList.toggle("active", b === btn));
+      const dict = translations[currentLang];
+      document.querySelectorAll("[data-i18n]").forEach(el => { if (dict[el.dataset.i18n] !== undefined) el.textContent = dict[el.dataset.i18n]; });
+      document.querySelectorAll("[data-i18n-html]").forEach(el => { if (dict[el.dataset.i18nHtml] !== undefined) el.innerHTML = dict[el.dataset.i18nHtml]; });
+      document.getElementById("testResult").classList.remove("show");
+      document.querySelectorAll(".choice").forEach(c => c.classList.remove("selected"));
+    }));
+    document.querySelectorAll(".choice").forEach(btn => btn.addEventListener("click", () => {
+      document.querySelectorAll(".choice").forEach(c => c.classList.toggle("selected", c === btn));
+      const result = document.getElementById("testResult");
+      result.textContent = translations[currentLang].results[btn.dataset.choice];
+      result.classList.add("show");
+    }));
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+    }), { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
