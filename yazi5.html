@@ -1,282 +1,716 @@
+
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="İlişkilerde bağlanma stilleri, kendimize yapıştırdığımız etiketler ve kimlik algısı üzerine Adalin Sohtorik'in yazısı.">
+  <meta name="theme-color" content="#1c0716">
 
-<title>Beyin ve Meditasyon</title>
+  <title>İlişkilerde Bağlanma Stilleri: Kendinize Yapıştırdığınız Etiketlerin Görünmez Hapishanesi | Adalin Sohtorik</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,20,1;9..144,500,20,1;9..144,600,20,1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
+  <style>
+    :root {
+      --bg: #f8ecdf;
+      --ink: #3e1a1e;
+      --ink-soft: #7d4b45;
+      --plum: #7a2f3a;
+      --accent: #c4472f;
+      --glass: rgba(255,246,236,.55);
+      --glass-edge: rgba(255,255,255,.72);
+      --shadow: 0 24px 60px -24px rgba(160,64,40,.38);
+      --blob-one: #ff9a6b;
+      --blob-two: #ff8fab;
+      --blob-three: #ffc978;
+      --blob-four: #f4a68c;
+      --blob-five: #e9a3a9;
+    }
 
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
-}
+    [data-theme="noirberry"] {
+      --bg: #1c0716;
+      --ink: #f3dfe4;
+      --ink-soft: #cfa6b6;
+      --plum: #f0c6d3;
+      --accent: #ff8fb0;
+      --glass: rgba(58,14,42,.5);
+      --glass-edge: rgba(255,160,190,.22);
+      --shadow: 0 24px 70px -25px rgba(0,0,0,.65);
+      --blob-one: #8d2458;
+      --blob-two: #54226f;
+      --blob-three: #a52f61;
+      --blob-four: #40205e;
+      --blob-five: #702448;
+    }
 
-/* PROGRESS BAR */
+    * {
+      box-sizing: border-box;
+    }
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
-/* BACK BUTTON */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      transition: background .4s ease, color .4s ease;
+    }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
-}
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .09;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+    }
 
-/* HEADER IMAGE */
+    .progress-track {
+      position: fixed;
+      inset: 0 0 auto;
+      height: 3px;
+      z-index: 100;
+    }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #d8a0d2, var(--plum));
+      box-shadow: 0 0 14px var(--accent);
+    }
 
-/* CONTENT CARD */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    .blob {
+      position: absolute;
+      width: min(48vw, 620px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .26;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
 
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
+    .blob:nth-child(1) {
+      top: -15%;
+      left: -12%;
+      background: var(--blob-one);
+    }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
-}
+    .blob:nth-child(2) {
+      top: 25%;
+      right: -18%;
+      background: var(--blob-two);
+      animation-delay: -7s;
+    }
 
-/* TITLE */
+    .blob:nth-child(3) {
+      bottom: -25%;
+      left: 25%;
+      background: var(--blob-three);
+      animation-delay: -12s;
+    }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
-}
+    @keyframes drift {
+      from { transform: translate3d(-2%,-2%,0) scale(1); }
+      to { transform: translate3d(5%,6%,0) scale(1.15); }
+    }
 
-/* META */
+    .site-shell {
+      position: relative;
+      z-index: 2;
+      width: min(100% - 36px, 1120px);
+      margin: 0 auto;
+    }
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
-}
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 28px 0;
+    }
 
-/* PARAGRAPH */
+    .wordmark {
+      color: var(--ink);
+      text-decoration: none;
+      font-family: "Fraunces", serif;
+      font-size: 25px;
+      letter-spacing: -.8px;
+    }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
-}
+    .wordmark span {
+      color: var(--accent);
+      font-style: italic;
+    }
 
-/* QUOTE */
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
-}
+    .back-link,
+    .theme-toggle {
+      min-height: 42px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 15px;
+      border: 1px solid var(--glass-edge);
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      text-decoration: none;
+      font: 500 12px "Manrope", sans-serif;
+      cursor: pointer;
+      transition: transform .25s ease, border-color .25s ease;
+    }
 
-/* MAIN BUTTON */
+    .back-link:hover,
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
-}
+    .article-wrap {
+      width: min(100%, 790px);
+      margin: 46px auto 100px;
+    }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
-}
+    .article-card {
+      padding: clamp(25px, 6vw, 66px);
+      border: 1px solid var(--glass-edge);
+      border-radius: 30px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
 
-.seans-button::before{
-    content:'';
-    position:absolute;
-    inset:-3px;
-    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
-    border-radius:30px;
-    z-index:-1;
-    opacity:0;
-    filter:blur(12px);
-    transition:0.4s;
-}
+    .article-kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      line-height: 1.8;
+      text-transform: uppercase;
+    }
 
-.seans-button:hover::before{
-    opacity:1;
-    filter:blur(18px);
-}
+    .article-kicker::before {
+      content: "";
+      display: inline-block;
+      width: 25px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
-}
+    h1 {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Fraunces", serif;
+      font-size: clamp(36px, 6.5vw, 59px);
+      font-weight: 400;
+      letter-spacing: -1.7px;
+      line-height: 1.14;
+      text-wrap: balance;
+    }
 
-/* STICKY BUTTON */
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0 35px;
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
-}
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
-}
+    .article-divider {
+      height: 1px;
+      margin-bottom: 34px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: .65;
+    }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
-}
+    .article-body {
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.95;
+      overflow-wrap: anywhere;
+    }
 
-</style>
+    .article-body p {
+      margin: 0 0 18px;
+    }
+
+    .article-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .article-body strong {
+      color: var(--plum);
+      font-weight: 700;
+    }
+
+    .article-body .final-thought {
+      margin-top: 4px;
+    }
+
+    .cta-card {
+      margin-top: 26px;
+      padding: clamp(28px, 5vw, 42px);
+      border: 1px solid var(--glass-edge);
+      border-radius: 26px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      text-align: center;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .cta-eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .cta-card h2 {
+      margin: 0 0 13px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(29px, 5vw, 42px);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .cta-card p {
+      max-width: 470px;
+      margin: 0 auto 23px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 14px 25px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #1c0716;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-decoration: none;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255,143,176,.2);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 0 0 32px;
+      color: var(--ink-soft);
+      font-size: 11px;
+    }
+
+    footer a {
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .site-shell {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .topbar {
+        padding: 20px 0;
+      }
+
+      .wordmark {
+        font-size: 22px;
+      }
+
+      .top-actions {
+        gap: 7px;
+      }
+
+      .back-link,
+      .theme-toggle {
+        min-height: 39px;
+        padding: 9px 11px;
+        font-size: 11px;
+      }
+
+      .article-wrap {
+        margin: 24px auto 65px;
+      }
+
+      .article-card {
+        padding: 25px 21px;
+        border-radius: 23px;
+      }
+
+      .article-kicker {
+        margin-bottom: 18px;
+        font-size: 9px;
+        letter-spacing: 1.5px;
+      }
+
+      h1 {
+        font-size: clamp(34px, 9vw, 46px);
+        letter-spacing: -1px;
+      }
+
+      .article-meta {
+        margin: 19px 0 27px;
+      }
+
+      .article-divider {
+        margin-bottom: 26px;
+      }
+
+      .article-body {
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .article-body p {
+        margin-bottom: 16px;
+      }
+
+      .cta-card {
+        border-radius: 22px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
 
-<div class="progress-bar" id="progressBar"></div>
+  <div class="aurora" aria-hidden="true">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
 
-<a href="blog.html" class="back-button">←</a>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="wordmark" href="index.html" aria-label="Adalin Sohtorik ana sayfa">
+        Adalin <span>Sohtorik</span>
+      </a>
 
-<img src="beyin.jpg" alt="Beyin ve Meditasyon" class="header-image">
+      <div class="top-actions">
+        <a class="back-link" href="index.html">← Ana sayfa</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Temayı değiştir">
+          <span id="themeIcon">☼</span>
+          <span id="themeLabel">Aydınlık</span>
+        </button>
+      </div>
+    </header>
 
-<div class="content">
+    <main>
+      <article class="article-wrap">
+        <div class="article-card">
+          <div class="article-kicker">İlişkiler · Bağlanma · Kimlik</div>
 
-<h1>Beyin ve Meditasyon</h1>
+          <h1>İlişkilerde Bağlanma Stilleri: Kendinize Yapıştırdığınız Etiketlerin Görünmez Hapishanesi</h1>
 
-<div class="meta">⏱ Okuma süresi: 2 dakika</div>
+          <div class="article-meta">
+            <span>İlişkiler ve farkındalık</span>
+            <span class="meta-dot"></span>
+            <span>7 dakika okuma</span>
+          </div>
 
-<p>
-Hayatınızı değiştirmek için önce bilgi edinmeniz, ardından yeni duygular yaratacak deneyimlere girmeniz gerekir. Bu dönüşümün anahtarlarından biri beynin otomatik çalışan merkezlerinde saklıdır.
-</p>
+          <div class="article-divider"></div>
 
-<p>
-Beynin önemli bölgelerinden biri olan beyincik, bilinçaltı alışkanlıkların merkezidir. Hareket koordinasyonu, denge ve uzaysal farkındalık gibi fiziksel görevlerin yanında, öğrenilmiş davranış kalıplarını da depolar.
-</p>
+          <div class="article-body">
+            <p>Son yıllarda insanları birkaç kelimeyle tanımlamaya fazlasıyla alıştık.</p>
 
-<div class="quote">
-Alışkanlıklar sadece davranış değildir. Nörolojik kayıttır.
-</div>
+            <p>“Ben kaygılı bağlanıyorum.”</p>
 
-<p>
-Beyincik bilgiyi kelimelerden çok imgelerle işler. İçsel tablo ile gerçeklik arasındaki uyum bozulduğunda algı zorlaşır, iletişim zorlaşır ve karar verme bulanıklaşır.
-</p>
+            <p>“Ben kaçınganım.”</p>
 
-<p>
-Meditasyon bu noktada devreye girer. Düzenli uygulama sırasında sinir sistemi yeniden organize olur. Beyin yeni bağlantılar kurar. Duygusal tepkiler daha dengeli hale gelir.
-</p>
+            <p>“O kesin narsist.”</p>
 
-<p>
-Meditasyon yalnızca rahatlama değildir. Nöroplastisiteyi aktive eden bir süreçtir. Kişi sadece mutluluğun ne olduğunu düşünmez, onu deneyimlemeye başlar.
-</p>
+            <p>“Bu tam bir manipülatör.”</p>
 
-<div class="quote">
-Ne kadar meditasyon yaparsanız, o kadar kendiniz olursunuz.
-</div>
+            <p>Bir davranış görüyor, birkaç belirtiyi bir araya getiriyor ve insanın kim olduğuna karar veriyoruz. Üstelik bazen bunu yalnızca başkalarına değil, kendimize de yapıyoruz.</p>
 
-<p>
-Öfke, depresyon ve keder hikâyeye derinlik katabilir fakat onları kontrol etmezseniz sizi kontrol ederler. Farkındalık dar olduğunda dünya da dar görünür.
-</p>
+            <p>İlk bakışta bu etiketler kendimizi anlamamıza yardımcı oluyor gibi görünüyor. Davranışlarımıza bir isim veriyor, yaşadıklarımızı açıklıyor ve karmaşık ilişkilerimize bir düzen getiriyor.</p>
 
-<p>
-Farkındalık genişledikçe algı genişler. Algı genişledikçe seçenekler artar. Ve seçenekler arttığında hayat değişir. Öfke, depresyon ve keder hikayeye iyi gelir ama yönetmenleri ve oyuncuları zehirler. Onlar bir mengene gibidirler. Yataktan kalkamıyorsunuz, ilham almıyorsunuz, yeni fikirler aklınıza gelmiyor. Bunu yapmak için görüş netliğine ihtiyacınız var. Onları görmeniz ve yakalamanız gerekiyor. Öz, derinliklerden yükselir. Farkındalığınız bir golf topu büyüklüğündeyse, kitap okuduğunuzda tam olarak aynı miktarı anlayacaksınız. Dünyayı pencerede küçük bir top olarak göreceksin, sabahları sadece kendi topunun sınırlarıyla uyanacaksınız ve mutluluğunuz aynı top olacak.</p>
+            <p>Fakat burada gözden kaçırdığımız önemli bir şey var:</p>
 
-</div>
+            <p><strong>Bir davranışı tanımlamakla kendimizi o davranıştan ibaret görmek aynı şey değildir.</strong></p>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+            <p>“Bu ilişkide terk edilmekten korkuyorum” demek, yaşadığınız bir duyguyu fark etmektir.</p>
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-    Seans Oluştur
-  </a>
-</div>
+            <p>“Ben kaygılı biriyim” demek, o duyguyu kendiniz hakkında bir tanıma dönüştürmektir.</p>
 
+            <p>“Yakınlık arttığında geri çekiliyorum” demek, belirli bir durumda ortaya çıkan davranışınızı gözlemlemektir.</p>
 
-<script>
+            <p>“Ben kaçınganım, karakterim böyle” demek ise davranışınızı kimliğinizin bir parçası olarak kabul etmektir.</p>
 
-/* SCROLL ANIMATION */
+            <p>Aradaki fark küçük görünebilir. Oysa insanın kendisiyle kurduğu ilişkiyi bütünüyle değiştirebilecek kadar önemlidir.</p>
 
-const content = document.querySelector(".content");
+            <p>Çünkü insan, yalnızca dünyayı anlamlandırmaya çalışmaz. Aynı zamanda kendisi hakkında oluşturduğu düşünceyi de korumaya çalışır.</p>
 
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
+            <p>Bir şeyi kendiniz hakkında doğru kabul ettiğinizde, zamanla o tanıma uygun davranışlarınızı daha kolay fark etmeye, ona uymayan deneyimlerinizi ise gözden kaçırmaya başlayabilirsiniz.</p>
+
+            <p>Zihniniz, kendiniz hakkında oluşturduğunuz hikâyeyi tutarlı kılmak ister.</p>
+
+            <p><strong>İnsan bazen kendisini sınırlayan bir kimliği bile korur; çünkü bildiği bir benlik, henüz keşfetmediği bir benlikten daha tanıdık gelir.</strong></p>
+
+            <p>İşte etiketlerin görünmez hapishanesi tam burada başlar.</p>
+
+            <p>Bir gün kendinize “Ben kaygılı bağlanıyorum” dersiniz. Sonra mesajınıza geç cevap veren birini gördüğünüzde kaygılanırsınız. Bu duyguyu, belirli bir durumun sizde yarattığı tepki olarak incelemek yerine, kendiniz hakkındaki tanımınızın kanıtı olarak yorumlarsınız.</p>
+
+            <p>“İşte, ben böyleyim.”</p>
+
+            <p>Bir süre sonra yalnızca kaygınızı fark etmezsiniz; kaygılı biri olduğunuzu da tekrar tekrar doğrulamaya başlarsınız.</p>
+
+            <p>Üstelik artık başka türlü davranma ihtimalinizi düşünmek bile zorlaşabilir. Çünkü kendinizden farklı bir davranış beklemek, zihninizde kendinizle çelişmek gibi hissettirebilir.</p>
+
+            <p>Oysa neden?</p>
+
+            <p>Bir zamanlar terk edilmekten korkmuş olmanız, her ilişkide terk edilmekten korkacağınız anlamına mı gelir?</p>
+
+            <p>Bir ilişkide yakınlık kurmakta zorlanmanız, yakınlık kuramayan bir insan olduğunuzu mu gösterir?</p>
+
+            <p>Geçmişte aynı ilişki örüntüsünü tekrar etmiş olmanız, gelecekte de onu tekrarlamak zorunda olduğunuz anlamına mı gelir?</p>
+
+            <p>Hayır.</p>
+
+            <p>Ancak kendinizi “Ben buyum” diye tanımladığınızda, bu soruların cevaplarını aramayı bırakabilirsiniz. Çünkü kimliğinizi açıklamış olduğunuzu düşünürsünüz.</p>
+
+            <p><strong>“Ben böyleyim” cümlesi, bazen kendini anlamanın başlangıcıdır; bazen de kendini anlamayı bıraktığın yerdir.</strong></p>
+
+            <p>Peki, neden kendimiz hakkında oluşturduğumuz tanımlara bu kadar sıkı tutunuruz?</p>
+
+            <p>Çünkü kimlik yalnızca kendimiz hakkında sahip olduğumuz bir düşünce değildir. Aynı zamanda dünyada kim olduğumuzu, nasıl davrandığımızı ve kendimizden ne beklediğimizi belirleyen bir çerçevedir.</p>
+
+            <p>Kendinizi kaçıngan biri olarak görüyorsanız, geri çekilmeniz size doğal gelebilir. Kendinizi kaygılı biri olarak görüyorsanız, sürekli güvence aramanızı değişmez bir özelliğiniz gibi yorumlayabilirsiniz.</p>
+
+            <p>Bir süre sonra davranışınız ile kimliğiniz birbirini beslemeye başlar:</p>
+
+            <p>Kendiniz hakkında bir tanım oluşturursunuz. Bu tanıma uygun davranışlar sergilersiniz. Davranışlarınız, tanımınızı doğrulayan kanıtlara dönüşür. Ardından bu kanıtları, kimliğinizin değişemeyeceğinin gerekçesi olarak kullanırsınız.</p>
+
+            <p>Böylece bir zamanlar yalnızca belirli koşullarda ortaya çıkan davranış, kendiniz hakkında değişmez bir gerçeğe dönüşebilir.</p>
+
+            <p>Ve belki de en çarpıcı nokta şudur:</p>
+
+            <p><strong>Artık yalnızca kendiniz gibi davranmaya çalışmazsınız; kendiniz olduğuna inandığınız kişiye ihanet etmemeye çalışırsınız.</strong></p>
+
+            <p>Diyelim ki kendinizi yıllardır “ilişkilerde hep terk edilen kişi” olarak tanımlıyorsunuz.</p>
+
+            <p>Karşınıza bu kez güvenilir, tutarlı ve duygusal açıdan ulaşılabilir biri çıkıyor. Belki ilk defa bir ilişkinin içinde sürekli mücadele etmek zorunda değilsiniz. Belki birinin sevgisini kazanmak için kendinizi kanıtlamanız gerekmiyor.</p>
+
+            <p>Fakat alışık olduğunuz ilişki dinamiği değiştiğinde, kendinizle ilgili bildiğiniz şeyler de sorgulanmaya başlıyor.</p>
+
+            <p>Bu kez ne yapacaksınız?</p>
+
+            <p>Kendinizi sürekli terk edilen kişi olarak görmeye devam mı edeceksiniz, yoksa daha önce mümkün olduğunu düşünmediğiniz bir ilişki deneyimine yer açabilecek misiniz?</p>
+
+            <p>Bazen değişim, yalnızca yeni davranışlar geliştirmekle ilgili değildir. Kendimiz hakkında yıllardır taşıdığımız tanımı da yeniden değerlendirmemizi gerektirir.</p>
+
+            <p>Çünkü tanıdık olan her şey bize iyi gelmez. Bazen yalnızca tanıdık olduğu için onu kendimize ait sanırız.</p>
+
+            <p>Burada bir noktayı birbirine karıştırmamak gerekiyor.</p>
+
+            <p>Bağlanma stilleri, psikolojide insanların yakın ilişkilerdeki duygu ve davranış örüntülerini anlamaya yardımcı olan kavramlardır. Kendinizi kaygılı, kaçıngan ya da güvenli bağlanma eğilimleri üzerinden incelemeniz, yaşadığınız deneyimleri anlamlandırmanıza yardımcı olabilir.</p>
+
+            <p>Sorun bu kavramların varlığı değildir.</p>
+
+            <p>Sorun, bir kavramı kendiniz hakkında verilmiş nihai bir karara dönüştürmenizdir.</p>
+
+            <p>Çünkü bağlanma örüntüleriniz, sizin bütün kişiliğiniz değildir. Üstelik ilişkilerdeki tepkileriniz; karşınızdaki kişinin davranışlarından, ilişkinin güven düzeyinden, yaşadığınız deneyimlerden ve içinde bulunduğunuz koşullardan da etkilenebilir.</p>
+
+            <p>Aynı insan, kendisini sürekli belirsizlik içinde bırakan bir ilişkide yoğun kaygı yaşarken, tutarlı ve güvenilir bir ilişkide çok daha sakin hissedebilir.</p>
+
+            <p>Bu nedenle her şeyi kendi karakterinizle açıklamak, bazen ilişkinin gerçek dinamiğini görmenizi engeller.</p>
+
+            <p>Kendinize “Ben neden bu kadar kaygılıyım?” diye sormak yerine, şu soruları da sorabilirsiniz:</p>
+
+            <p>Bu ilişkide kendimi güvende hissediyor muyum?</p>
+
+            <p>Kaygım, geçmişte öğrendiğim bir tepkinin devamı mı, yoksa şu anda yaşadığım bir belirsizliğe mi karşılık geliyor?</p>
+
+            <p>Karşımdaki insanın davranışlarıyla kendi korkularımı birbirinden ayırabiliyor muyum?</p>
+
+            <p>Ve en önemlisi, bu ilişki içinde nasıl davranmayı seçiyorum?</p>
+
+            <p>Bu sorular sizi bir etikete hapsetmez. Aksine, kendinizi ve ilişkinizi daha ayrıntılı gözlemlemenize olanak tanır.</p>
+
+            <p>Aynı yaklaşımı karşınızdaki insana da gösterebilirsiniz.</p>
+
+            <p>Birinin davranışlarından rahatsız olmanız, onu hemen narsist ya da manipülatör olarak tanımlamanızı gerektirmez. Üstelik bir insanın davranışlarını anlamakla o davranışlara katlanmak zorunda olmak da aynı şey değildir.</p>
+
+            <p>Birine tanı koymadan da onun davranışlarının sizi nasıl etkilediğini fark edebilirsiniz. Niyetinden emin olmadan da sınırlarınızı koruyabilirsiniz. Onun neden böyle davrandığını bütünüyle çözmeden de bu ilişkinin size iyi gelip gelmediğine karar verebilirsiniz.</p>
+
+            <p>Çünkü bazen karşımızdaki insanı anlamaya çalışırken kendimizle ilgili daha önemli bir soruyu erteleriz:</p>
+
+            <p><strong>“Onun kim olduğunu çözmeye neden bu kadar ihtiyacım var ve ben bu ilişkide kendime ne yapıyorum?”</strong></p>
+
+            <p>Belki de asıl mesele, insanlara hiç etiket koymamak değildir. Mesele, kullandığımız hiçbir kavramın bir insanın bütününü açıklayabileceğini düşünmemektir.</p>
+
+            <p>Kendinizi anlamak için kavramlardan yararlanın ama kendinizi onlara teslim etmeyin.</p>
+
+            <p>Bir davranışınızı gözlemleyin, nedenlerini araştırın, tekrar eden örüntülerinizi fark edin. Ancak bütün bunların sonunda kendiniz hakkında kesin bir hüküm vermek zorunda değilsiniz.</p>
+
+            <p>“Ben böyle davranıyorum” diyebilirsiniz.</p>
+
+            <p>Ama buradan “Ben yalnızca böyle davranabilirim” sonucuna varmak zorunda değilsiniz.</p>
+
+            <p>Çünkü bir davranış, sizin şu anda ne yaptığınızı anlatabilir. Fakat bundan sonra ne yapabileceğinizin bütün sınırlarını belirlemez.</p>
+
+            <p>Kendinizi değişmez bir karakter tanımına hapsettiğinizde, her farklı davranışınız size kendinize aykırıymış gibi görünebilir. Oysa belki de kendinize ihanet etmiyorsunuzdur. Belki yalnızca kendiniz hakkında bildiğinizi sandığınız şeyleri yeniden keşfediyorsunuzdur.</p>
+
+            <p><strong>Kendinize sadık kalmak, geçmişte kim olduğunuzu sonsuza kadar tekrar etmek değildir.</strong></p>
+
+            <p>Bazen kendinize sadık kalmanın en dürüst yolu, artık size uymayan bir tanımı bırakabilmektir.</p>
+
+            <p>Bu yüzden kendinize “Ben kimim?” diye sormaktan vazgeçmeniz gerekmiyor. Ancak verdiğiniz cevabı bir ömür boyu taşımak zorunda olmadığınızı da hatırlamanız gerekiyor.</p>
+
+            <p>Siz, kendiniz hakkında oluşturduğunuz cümlelerden daha genişsiniz.</p>
+
+            <p>Ve belki de özgürleşmenin ilk adımı, kendinizi yeniden tanımlamak değil; kendinizi tanımlamadan önce biraz daha gözlemlemeye izin vermektir.</p>
+
+            <p>Çünkü bazen en büyük hapishane, başkalarının sizin hakkınızda ne düşündüğü değildir.</p>
+
+            <p class="final-thought"><strong>Kendiniz hakkında bir kez karar verip bir daha değişmenize izin vermemenizdir.</strong></p>
+          </div>
+        </div>
+
+        <section class="cta-card">
+          <p class="cta-eyebrow">KENDİNE YENİ BİR ALAN AÇ</p>
+          <h2>Kendine farklı bir pencereden bakmaya hazır mısın?</h2>
+          <p>Düşünce ve davranış kalıplarını keşfetmek, kendinle kurduğun ilişkiyi anlamak ve yeni bakış açıları geliştirmek için bireysel danışmanlık profilimi ziyaret edebilirsin.</p>
+          <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">SEANS OLUŞTUR ↗</a>
+        </section>
+      </article>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Adalin Sohtorik</span>
+      <a href="index.html">Ana sayfaya dön ↑</a>
+    </footer>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeLabel = document.getElementById("themeLabel");
+    const progressBar = document.getElementById("progressBar");
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+
+      const isDark = theme === "noirberry";
+      themeIcon.textContent = isDark ? "☼" : "☾";
+      themeLabel.textContent = isDark ? "Aydınlık" : "Koyu";
+
+      try {
+        localStorage.setItem("theme2", theme);
+      } catch (error) {
+        // Tema geçişi depolama kapalı olsa da çalışır.
+      }
     }
-}
 
-window.addEventListener("scroll", showContent);
-showContent();
+    try {
+      const savedTheme = localStorage.getItem("theme2");
+      if (savedTheme === "noirberry" || savedTheme === "light") {
+        root.setAttribute("data-theme", savedTheme);
+      }
+    } catch (error) {
+      root.setAttribute("data-theme", "noirberry");
+    }
 
+    applyTheme(root.getAttribute("data-theme") || "noirberry");
 
-/* PROGRESS BAR */
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = root.getAttribute("data-theme");
+      applyTheme(currentTheme === "noirberry" ? "light" : "noirberry");
+    });
 
-window.addEventListener("scroll", () => {
+    function updateProgress() {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = total > 0 ? (window.scrollY / total) * 100 : 0;
+      progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    }
 
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
 
-  document.getElementById("progressBar").style.width = progress + "%";
-
-});
-
-</script>
-
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
