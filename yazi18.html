@@ -1,278 +1,1046 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Öz İhanet | Adalin Sohtorik</title>
- 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Öz İhanet — Adalin Sohtorik</title>
+<meta name="description" content="Öz ihanet, sınırlar ve başkalarının duygusal yüklerini üstlenmek üzerine bir yazı. Adalin Sohtorik.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --bg: #f8ecdf;
+  --ink: #3e1a1e;
+  --ink-soft: #7d4b45;
+  --plum: #7a2f3a;
+  --accent: #c4472f;
+  --glass: rgba(255,246,236,.55);
+  --glass-edge: rgba(255,255,255,.72);
+  --shadow: 0 24px 60px -24px rgba(160,64,40,.38);
 
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
+  --b1: #ff9a6b;
+  --b2: #ff8fab;
+  --b3: #ffc978;
+  --b4: #f4a68c;
+  --b5: #e9a3a9;
+
+  --grain-op: .3;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Manrope', system-ui, sans-serif;
 }
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
+[data-theme="noirberry"] {
+  --bg: #1c0716;
+  --ink: #f3dfe4;
+  --ink-soft: #cfa6b6;
+  --plum: #f0c6d3;
+  --accent: #ff8fb0;
+  --glass: rgba(58,14,42,.55);
+  --glass-edge: rgba(255,160,190,.22);
+  --shadow: 0 24px 60px -24px rgba(0,0,0,.75);
+
+  --b1: #8a1f4b;
+  --b2: #5a1a3d;
+  --b3: #b23a5c;
+  --b4: #3a1230;
+  --b5: #a8416a;
+
+  --grain-op: .4;
 }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
-
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background .6s, color .6s;
 }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
+a {
+  color: inherit;
 }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
+button {
+  font: inherit;
 }
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
+/* Holographic background */
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-h2{
-    font-family:'Playfair Display', serif;
-    margin-top:40px;
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .85;
+  will-change: transform;
 }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
+.blob.b1 {
+  width: 52vw;
+  height: 52vw;
+  left: -12vw;
+  top: -10vw;
+  background: var(--b1);
+  animation: drift1 24s ease-in-out infinite alternate;
 }
 
-ul{
-    margin-left:25px;
-    font-size:20px;
-    line-height:1.9;
+.blob.b2 {
+  width: 46vw;
+  height: 46vw;
+  right: -10vw;
+  top: 6vh;
+  background: var(--b2);
+  animation: drift2 29s ease-in-out infinite alternate;
 }
 
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
+.blob.b3 {
+  width: 42vw;
+  height: 42vw;
+  left: 18vw;
+  bottom: -16vw;
+  background: var(--b3);
+  animation: drift3 33s ease-in-out infinite alternate;
 }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
+.blob.b4 {
+  width: 34vw;
+  height: 34vw;
+  right: 6vw;
+  bottom: -6vw;
+  background: var(--b4);
+  animation: drift1 27s ease-in-out infinite alternate-reverse;
 }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
+.blob.b5 {
+  width: 30vw;
+  height: 30vw;
+  left: 42vw;
+  top: 30vh;
+  background: var(--b5);
+  opacity: .6;
+  animation: drift2 36s ease-in-out infinite alternate-reverse;
 }
 
-.seans-button::before{
-    content:'';
-    position:absolute;
-    inset:-3px;
-    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
-    border-radius:30px;
-    z-index:-1;
-    opacity:0;
-    filter:blur(12px);
-    transition:0.4s;
+.holo-sheen {
+  position: absolute;
+  inset: -30%;
+  background: conic-gradient(
+    from 0deg,
+    #ff9a6b,
+    #ff8fab,
+    #ffc978,
+    #f4a68c,
+    #e9a3a9,
+    #ff9a6b
+  );
+  opacity: .28;
+  filter: blur(90px);
+  mix-blend-mode: soft-light;
+  animation: spin 60s linear infinite;
 }
 
-.seans-button:hover::before{
-    opacity:1;
-    filter:blur(18px);
+[data-theme="noirberry"] .holo-sheen {
+  opacity: .35;
+  mix-blend-mode: screen;
+  background: conic-gradient(
+    from 0deg,
+    #8a1f4b,
+    #5a1a3d,
+    #b23a5c,
+    #3a1230,
+    #8a1f4b
+  );
 }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
+@keyframes drift1 {
+  to { transform: translate(9vw,8vh) scale(1.12); }
 }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
+@keyframes drift2 {
+  to { transform: translate(-8vw,10vh) scale(.92); }
 }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
+@keyframes drift3 {
+  to { transform: translate(7vw,-9vh) scale(1.1); }
 }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
+/* Vintage grain */
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: var(--grain-op);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .26 0 0 0 0 .2 0 0 0 .75 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+[data-theme="noirberry"] body::after {
+  mix-blend-mode: screen;
+}
+
+[data-theme="noirberry"] .aurora {
+  background: radial-gradient(
+    120% 90% at 20% 0%,
+    #4a1236 0%,
+    #240a1d 55%,
+    #150510 100%
+  );
+}
+
+[data-theme="noirberry"] .blob {
+  opacity: .55;
+  filter: blur(90px);
+}
+
+[data-theme="noirberry"] .blob.b5 {
+  opacity: .4;
+}
+
+/* Shared layout */
+
+.wrap {
+  width: min(920px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
+  border-radius: 26px;
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  box-shadow: var(--shadow);
+}
+
+/* Navigation */
+
+.nav {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 80;
+
+  width: min(960px, calc(100% - 24px));
+  padding: 9px 12px 9px 22px;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.brand {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: -2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-links a {
+  display: block;
+  padding: 8px 13px;
+  border-radius: 999px;
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: background .25s, color .25s;
+}
+
+.nav-links a:hover {
+  background: rgba(255,255,255,.4);
+  color: var(--ink);
+}
+
+[data-theme="noirberry"] .nav-links a:hover {
+  background: rgba(255,255,255,.1);
+}
+
+.nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-btn {
+  border: 1px solid var(--glass-edge);
+  background: transparent;
+  color: var(--ink);
+  min-height: 36px;
+  min-width: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font: 600 12px var(--sans);
+  letter-spacing: .04em;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: .25s;
+}
+
+.pill-btn:hover {
+  background: rgba(255,255,255,.4);
+}
+
+[data-theme="noirberry"] .pill-btn:hover {
+  background: rgba(255,255,255,.1);
+}
+
+.nav-book {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: transparent;
+  font-size: 12px;
+}
+
+.nav-book:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Reading progress */
+
+.progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #ff9a6b,
+    #ff8fab,
+    #ffc978,
+    #c4472f
+  );
+  transition: width .1s linear;
+}
+
+/* Article header */
+
+.article-head {
+  padding: 160px 0 34px;
+  text-align: center;
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  letter-spacing: .08em;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s;
+}
+
+.breadcrumb a:hover {
+  border-color: var(--accent);
+}
+
+.breadcrumb .separator {
+  opacity: .55;
+}
+
+.kicker {
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1.12;
+}
+
+.article-head h1 {
+  max-width: 820px;
+  margin: 0 auto;
+  font-size: clamp(46px, 8vw, 86px);
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+
+.holo {
+  background: linear-gradient(
+    100deg,
+    #d9462f,
+    #e0558a,
+    #d98a1f,
+    #b83a2a,
+    #d9462f
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+  animation: shift 9s linear infinite;
+}
+
+@keyframes shift {
+  to { background-position: 300% 0; }
+}
+
+[data-theme="noirberry"] .holo {
+  background-image: linear-gradient(
+    100deg,
+    #ff9ebf,
+    #f7d3dc,
+    #e9bb8f,
+    #ff7fa6,
+    #ff9ebf
+  );
+  background-size: 300% 100%;
+}
+
+[data-theme="noirberry"] h1,
+[data-theme="noirberry"] h2 {
+  font-weight: 400;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  letter-spacing: .05em;
+}
+
+.meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Article card */
+
+.article-wrap {
+  padding-bottom: 70px;
+}
+
+.article-card {
+  position: relative;
+  padding: clamp(28px, 6vw, 66px);
+  overflow: hidden;
+  animation: articleIn .9s ease both;
+}
+
+.article-card::before {
+  content: '“';
+  position: absolute;
+  top: -38px;
+  right: 24px;
+  font-family: var(--serif);
+  font-size: 220px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: .055;
+  pointer-events: none;
+}
+
+@keyframes articleIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.article-content {
+  position: relative;
+  z-index: 1;
+  max-width: 690px;
+  margin: 0 auto;
+}
+
+.article-content p {
+  color: var(--ink);
+  font-size: clamp(16px, 1.7vw, 18px);
+  line-height: 1.95;
+  margin-bottom: 25px;
+  overflow-wrap: break-word;
+}
+
+.article-content p:last-child {
+  margin-bottom: 0;
+}
+
+.article-content p strong {
+  font-weight: 700;
+}
+
+.article-content .closing {
+  margin-top: 34px;
+  padding-left: 22px;
+  border-left: 2px solid var(--accent);
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 29px);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* Article footer */
+
+.article-end {
+  margin-top: 28px;
+  padding: 30px;
+  text-align: center;
+}
+
+.end-symbol {
+  display: block;
+  color: var(--accent);
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.article-end p {
+  max-width: 480px;
+  margin: 0 auto 22px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  background: var(--ink);
+  color: var(--bg);
+  transition: transform .3s, box-shadow .3s, background .3s;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255,255,255,.4) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform .7s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -10px rgba(196,71,47,.4);
+}
+
+.btn:hover::after {
+  transform: translateX(120%);
+}
+
+.btn-ghost {
+  background: var(--glass);
+  color: var(--ink);
+  border: 1px solid var(--glass-edge);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.end-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+footer {
+  padding: 10px 20px 42px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+/* Cursor glow */
+
+.cursor-glow {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,.45),
+    transparent 65%
+  );
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 30%;
+  mix-blend-mode: soft-light;
+  transition: left .4s ease-out, top .4s ease-out;
+}
+
+[data-theme="noirberry"] .cursor-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255,140,185,.35),
+    transparent 65%
+  );
+  mix-blend-mode: screen;
+}
+
+/* Mobile */
+
+.menu-btn {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .nav {
+    flex-wrap: wrap;
+    border-radius: 24px;
+    padding: 9px 12px 9px 18px;
+  }
+
+  .nav-links {
+    display: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 5px 0;
+  }
+
+  .nav.open .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 11px 13px;
+    font-size: 14px;
+  }
+
+  .menu-btn {
+    display: inline-flex;
+  }
+
+  .nav-book {
+    display: none;
+  }
+
+  .article-head {
+    padding-top: 145px;
+  }
+
+  .article-head h1 {
+    font-size: clamp(44px, 13vw, 68px);
+  }
+
+  .article-card {
+    border-radius: 22px;
+  }
+
+  .article-content p {
+    line-height: 1.85;
+    margin-bottom: 22px;
+  }
+
+  .article-card::before {
+    right: 8px;
+    font-size: 150px;
+  }
+}
+
+@media (max-width: 420px) {
+  .wrap {
+    width: calc(100% - 26px);
+  }
+
+  .brand {
+    font-size: 17px;
+  }
+
+  .brand small {
+    display: none;
+  }
+
+  .article-head {
+    padding-top: 130px;
+  }
+
+  .breadcrumb {
+    margin-bottom: 23px;
+    font-size: 11px;
+  }
+
+  .article-card {
+    padding: 26px 21px;
+  }
+
+  .article-meta {
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .article-end {
+    padding: 25px 17px;
+  }
+
+  .end-links .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
-
-<a href="blog.html" class="back-button">←</a>
-
-<img src="korku.jpg" alt="Öz İhanet" class="header-image">
-
-<div class="content">
-
-<h1>Öz İhanet</h1>
-
-<div class="meta">⏱ Okuma süresi: 2 dakika</div>
-
-<p>İnsanlarla konuştuğunu sanırsın. Oysa çoğu zaman karşındaki insanla değil, onun geçmişiyle konuşursun.</p>
-
-<p>Bazen sana öfkelenen kişi aslında sana değil; yıllar önce onu inciten babasına, eski partnerine, öğretmenine ya da çocukluğuna öfkelidir. Sen sadece o yaraya denk gelmişsindir.</p>
-
-<p>İşte bu yüzden bazı tartışmalar hiç bitmez. Çünkü karşındaki kişi seni değil, kendi geçmişini savunuyordur.</p>
-
-<p>Fakat asıl tehlike burada başlamaz.</p>
-
-<p>Asıl tehlike, başkalarının yaralarını kendi sorumluluğun sanmaya başladığında başlar.</p>
-
-<p>Onların öfkesi için susarsın. Onların korkusu için kendinden vazgeçersin. Onlar rahat etsin diye kendi sınırlarını çiğnersin.</p>
-
-<p>İnsan kendine bir anda ihanet etmez. Önce bir kez susar. Sonra bir kez daha.</p>
-
-<p>Derken kendini korumak yerine, sürekli başkalarını rahat ettirmeye çalışan birine dönüşür.</p>
-
-<p>Ve beyin bunu öğrenir.</p>
-
-<p>Her sustuğunda, her “boş ver” dediğinde, beynin tek bir mesaj alır: “Demek ki bana böyle davranılabilir.”</p>
-
-<p>Sonra dünya da bunu öğrenir.</p>
-
-<p>Manipülatörler, sınır koyamayan insanları kilometrelerce uzaktan tanır.</p>
-
-<p>Çünkü onlar güçlü insanları değil, kendinden vazgeçmeye alışmış insanları ararlar.</p>
-
-<p>Bir insanı anlayabilirsin.</p>
-
-<p>Empati kurabilirsin.</p>
-
-<p>Hatta yardım da edebilirsin.</p>
-
-<p>Ama onun acısını taşımak zorunda değilsin.</p>
-
-<p>Çünkü başkasının hayatının yükünü sırtına aldığında, sonunda kendi hayatını yürüyemez hale gelirsin.</p>
-
-<p>Unutma:</p>
-
-<p>Merhamet, kendini feda etmek değildir.</p>
-
-<p>Kendini sürekli tüketerek kimseyi iyileştiremezsin.</p>
-
-<p>Kendi bahçeni sulamadan, başkasına gölge olamazsın.</p>
-
-<p>Çünkü kendi ruhunu kaybeden biri, artık kimseye gerçek anlamda ışık olamaz.</p>
-
+<div class="progress-track" aria-hidden="true">
+  <div class="progress-bar" id="progress"></div>
 </div>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank"
-rel="noopener">
-Seans Oluştur
-</a>
+<!-- Holographic background -->
+<div class="aurora" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+  <div class="blob b5"></div>
+  <div class="holo-sheen"></div>
 </div>
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener">
-    Seans Oluştur
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav glass" aria-label="Ana gezinme">
+  <a href="index.html" class="brand">
+    Adalin Sohtorik
+    <small>Kişisel Gelişim</small>
   </a>
-</div>
+
+  <div class="nav-links">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="blog.html">Blog</a>
+  </div>
+
+  <div class="nav-tools">
+    <button
+      class="pill-btn"
+      id="theme"
+      type="button"
+      aria-label="Temayı değiştir"
+      title="Temayı değiştir"
+    >☾</button>
+
+    <a
+      class="pill-btn nav-book"
+      href="https://www.advicemy.com/danisman/adalin-sohtorik"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Seans Al ↗</a>
+
+    <button
+      class="pill-btn menu-btn"
+      id="menu"
+      type="button"
+      aria-label="Menüyü aç"
+      aria-expanded="false"
+    >☰</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-head">
+    <div class="wrap">
+
+      <div class="breadcrumb">
+        <a href="index.html">Ana Sayfa</a>
+        <span class="separator">/</span>
+        <a href="blog.html">Blog</a>
+        <span class="separator">/</span>
+        <span>Öz İhanet</span>
+      </div>
+
+      <p class="kicker">Kendilik · Sınırlar · İlişkiler</p>
+
+      <h1>Öz <span class="holo">İhanet</span></h1>
+
+      <div class="article-meta">
+        <span>Adalin Sohtorik</span>
+        <span class="meta-dot"></span>
+        <span>Okuma süresi: 2 dakika</span>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ARTICLE -->
+  <section class="article-wrap">
+    <div class="wrap">
+
+      <article class="glass article-card">
+        <div class="article-content">
+
+          <p>İnsanlarla konuştuğunu sanırsın. Oysa çoğu zaman karşındaki insanla değil, onun geçmişiyle konuşursun.</p>
+
+          <p>Bazen sana öfkelenen kişi aslında sana değil; yıllar önce onu inciten babasına, eski partnerine, öğretmenine ya da çocukluğuna öfkelidir. Sen sadece o yaraya denk gelmişsindir.</p>
+
+          <p>İşte bu yüzden bazı tartışmalar hiç bitmez. Çünkü karşındaki kişi seni değil, kendi geçmişini savunuyordur.</p>
+
+          <p>Fakat asıl tehlike burada başlamaz.</p>
+
+          <p>Asıl tehlike, başkalarının yaralarını kendi sorumluluğun sanmaya başladığında başlar.</p>
+
+          <p>Onların öfkesi için susarsın. Onların korkusu için kendinden vazgeçersin. Onlar rahat etsin diye kendi sınırlarını çiğnersin.</p>
+
+          <p>İnsan kendine bir anda ihanet etmez. Önce bir kez susar. Sonra bir kez daha.</p>
+
+          <p>Derken kendini korumak yerine, sürekli başkalarını rahat ettirmeye çalışan birine dönüşür.</p>
+
+          <p>Ve beyin bunu öğrenir.</p>
+
+          <p>Her sustuğunda, her “boş ver” dediğinde, beynin tek bir mesaj alır: “Demek ki bana böyle davranılabilir.”</p>
+
+          <p>Sonra dünya da bunu öğrenir.</p>
+
+          <p>Manipülatörler, sınır koyamayan insanları kilometrelerce uzaktan tanır.</p>
+
+          <p>Çünkü onlar güçlü insanları değil, kendinden vazgeçmeye alışmış insanları ararlar.</p>
+
+          <p>Bir insanı anlayabilirsin.</p>
+
+          <p>Empati kurabilirsin.</p>
+
+          <p>Hatta yardım da edebilirsin.</p>
+
+          <p>Ama onun acısını taşımak zorunda değilsin.</p>
+
+          <p>Çünkü başkasının hayatının yükünü sırtına aldığında, sonunda kendi hayatını yürüyemez hale gelirsin.</p>
+
+          <p>Unutma:</p>
+
+          <p>Merhamet, kendini feda etmek değildir.</p>
+
+          <p>Kendini sürekli tüketerek kimseyi iyileştiremezsin.</p>
+
+          <p>Kendi bahçeni sulamadan, başkasına gölge olamazsın.</p>
+
+          <p class="closing">Çünkü kendi ruhunu kaybeden biri, artık kimseye gerçek anlamda ışık olamaz.</p>
+
+        </div>
+      </article>
+
+      <!-- ARTICLE END -->
+      <div class="glass article-end">
+        <span class="end-symbol">✦</span>
+
+        <p>
+          Kendinize farklı bir pencereden bakmaya devam edin.
+        </p>
+
+        <a
+          class="btn"
+          href="https://www.advicemy.com/danisman/adalin-sohtorik"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Seans oluştur ↗</a>
+
+        <div class="end-links">
+          <a class="btn btn-ghost" href="blog.html">← Tüm yazılar</a>
+          <a class="btn btn-ghost" href="index.html">Ana sayfa</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Adalin Sohtorik — Tüm hakları saklıdır.
+</footer>
 
 <script>
+/* Tema: ana sayfayla aynı localStorage anahtarı */
+const root = document.documentElement;
+const themeButton = document.getElementById('theme');
 
-const content = document.querySelector(".content");
-
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
-    }
+function applyTheme(theme) {
+  if (theme === 'noirberry') {
+    root.setAttribute('data-theme', 'noirberry');
+    themeButton.textContent = '☀';
+  } else {
+    root.removeAttribute('data-theme');
+    themeButton.textContent = '☾';
+  }
 }
 
-window.addEventListener("scroll", showContent);
-showContent();
+let theme = 'noirberry';
 
-window.addEventListener("scroll", () => {
+try {
+  theme = localStorage.getItem('theme2') || 'noirberry';
+} catch (error) {
+  theme = 'noirberry';
+}
 
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = height > 0 ? (scrollTop / height) * 100 : 0;
+applyTheme(theme);
 
-  document.getElementById("progressBar").style.width = progress + "%";
+themeButton.addEventListener('click', () => {
+  theme = theme === 'noirberry' ? 'holo' : 'noirberry';
 
+  try {
+    localStorage.setItem('theme2', theme);
+  } catch (error) {}
+
+  applyTheme(theme);
 });
 
+/* Okuma ilerleme çubuğu */
+const progress = document.getElementById('progress');
+
+function updateProgress() {
+  const scrollable =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  const percentage = scrollable > 0
+    ? (window.scrollY / scrollable) * 100
+    : 0;
+
+  progress.style.width = Math.min(100, Math.max(0, percentage)) + '%';
+}
+
+window.addEventListener('scroll', updateProgress, { passive: true });
+window.addEventListener('resize', updateProgress);
+updateProgress();
+
+/* Fare ışığı */
+const glow = document.querySelector('.cursor-glow');
+
+if (glow && window.matchMedia('(pointer: fine)').matches) {
+  window.addEventListener('mousemove', event => {
+    glow.style.left = event.clientX + 'px';
+    glow.style.top = event.clientY + 'px';
+  });
+}
+
+/* Mobil menü */
+const nav = document.querySelector('.nav');
+const menuButton = document.getElementById('menu');
+
+if (nav && menuButton) {
+  menuButton.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    menuButton.textContent = isOpen ? '✕' : '☰';
+  });
+
+  nav.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.textContent = '☰';
+    });
+  });
+}
 </script>
 
 </body>
