@@ -1,217 +1,753 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hiç çalışmayan kontrol — kontrol ihtiyacı, belirsizlik ve hayatın akışına güvenmek üzerine Adalin Sohtorik.">
+  <meta name="theme-color" content="#f8ecdf">
 
-<title>Uykusuzluğun Psikosomatiği</title>
+  <title>Hiç çalışmayan kontrol — Adalin Sohtorik</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,20,1;9..144,500,20,1;9..144,600,20,1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
+  <style>
+    :root {
+      --bg: #f8ecdf;
+      --ink: #3e1a1e;
+      --ink-soft: #7d4b45;
+      --plum: #7a2f3a;
+      --accent: #c4472f;
+      --glass: rgba(255,246,236,.55);
+      --glass-edge: rgba(255,255,255,.72);
+      --shadow: 0 24px 60px -24px rgba(160,64,40,.38);
+      --blob-1: #ff9a6b;
+      --blob-2: #ff8fab;
+      --blob-3: #ffc978;
+      --blob-4: #f4a68c;
+      --blob-5: #e9a3a9;
+    }
 
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
-}
+    [data-theme="noirberry"] {
+      --bg: #1c0716;
+      --ink: #f3dfe4;
+      --ink-soft: #cfa6b6;
+      --plum: #f0c6d3;
+      --accent: #ff8fb0;
+      --glass: rgba(58,14,42,.5);
+      --glass-edge: rgba(255,160,190,.22);
+      --shadow: 0 24px 70px -25px rgba(0,0,0,.55);
+      --blob-1: #7b174b;
+      --blob-2: #a52e62;
+      --blob-3: #51214f;
+      --blob-4: #a63e51;
+      --blob-5: #61245f;
+    }
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: "Manrope", sans-serif;
+      transition: background .4s ease, color .4s ease;
+    }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
+    button {
+      font: inherit;
+    }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
-}
+    ::selection {
+      background: var(--accent);
+      color: #fff8f1;
+    }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
-}
+    /* Holografik arka plan */
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
-}
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      overflow: hidden;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 15% 10%, var(--blob-5), transparent 42%),
+        radial-gradient(ellipse at 85% 18%, var(--blob-2), transparent 38%),
+        radial-gradient(ellipse at 70% 85%, var(--blob-3), transparent 42%),
+        var(--bg);
+    }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
-}
+    .aurora-blob {
+      position: absolute;
+      width: 50vw;
+      height: 50vw;
+      min-width: 320px;
+      min-height: 320px;
+      border-radius: 42% 58% 63% 37% / 45% 42% 58% 55%;
+      filter: blur(65px);
+      opacity: .44;
+      animation: drift 19s ease-in-out infinite alternate;
+      mix-blend-mode: multiply;
+    }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
-}
+    [data-theme="noirberry"] .aurora-blob {
+      opacity: .32;
+      mix-blend-mode: screen;
+    }
 
-.seans-button{
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-}
+    .blob-one {
+      background: var(--blob-1);
+      top: -18%;
+      left: -18%;
+    }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
-}
+    .blob-two {
+      background: var(--blob-2);
+      right: -22%;
+      top: 10%;
+      animation-delay: -6s;
+      animation-duration: 23s;
+    }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
-}
+    .blob-three {
+      background: var(--blob-3);
+      bottom: -24%;
+      left: 22%;
+      animation-delay: -11s;
+      animation-duration: 25s;
+    }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-}
+    .blob-four {
+      background: var(--blob-4);
+      width: 35vw;
+      height: 35vw;
+      right: 15%;
+      bottom: 5%;
+      animation-delay: -8s;
+    }
 
-</style>
+    @keyframes drift {
+      from {
+        transform: translate3d(-2%,-1%,0) rotate(0deg) scale(1);
+      }
+      to {
+        transform: translate3d(7%,6%,0) rotate(24deg) scale(1.12);
+      }
+    }
+
+    /* Vintage gren */
+
+    .grain {
+      position: fixed;
+      inset: -50%;
+      z-index: 10;
+      width: 200%;
+      height: 200%;
+      pointer-events: none;
+      opacity: .075;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+      animation: grainMove .22s steps(2) infinite;
+    }
+
+    @keyframes grainMove {
+      0% { transform: translate(0,0); }
+      25% { transform: translate(1%,-1%); }
+      50% { transform: translate(-1%,1%); }
+      75% { transform: translate(1%,1%); }
+      100% { transform: translate(-1%,-1%); }
+    }
+
+    /* Okuma ilerlemesi */
+
+    .reading-progress {
+      position: fixed;
+      z-index: 30;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg,var(--accent),#ff9a9e,#ffc978);
+      box-shadow: 0 0 14px rgba(196,71,47,.4);
+    }
+
+    /* Üst menü */
+
+    .topbar {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      padding: 15px 5.5%;
+      border-bottom: 1px solid var(--glass-edge);
+      background: var(--glass);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .wordmark {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .wordmark-name {
+      font-family: "Fraunces", serif;
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -.8px;
+    }
+
+    .wordmark-caption {
+      color: var(--ink-soft);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .home-link,
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 41px;
+      padding: 0 15px;
+      border: 1px solid var(--glass-edge);
+      border-radius: 100px;
+      background: var(--glass);
+      color: var(--ink);
+      font-size: 12px;
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .home-link:hover,
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      background: var(--glass-edge);
+    }
+
+    .theme-toggle {
+      width: 41px;
+      padding: 0;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    /* Makale alanı */
+
+    main {
+      width: min(100% - 36px, 860px);
+      margin: 0 auto;
+      padding: 62px 0 76px;
+    }
+
+    .article-shell {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(26px,5.5vw,62px);
+      border: 1px solid var(--glass-edge);
+      border-radius: 29px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      animation: riseIn .8s ease both;
+    }
+
+    .article-shell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 12%;
+      width: 76%;
+      height: 1px;
+      background: linear-gradient(90deg,transparent,var(--glass-edge),transparent);
+    }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .article-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .article-kicker::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(42px,6vw,66px);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      text-wrap: balance;
+    }
+
+    .title-decoration {
+      display: block;
+      width: 68px;
+      height: 3px;
+      margin: 24px 0;
+      border-radius: 10px;
+      background: linear-gradient(90deg,var(--accent),#ffb29c);
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink-soft);
+      font-size: 11px;
+    }
+
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .article-divider {
+      height: 1px;
+      margin: 27px 0 28px;
+      border: 0;
+      background: linear-gradient(90deg,var(--glass-edge),transparent);
+    }
+
+    /* Sıkı ve rahat okunan paragraf düzeni */
+
+    .article-body {
+      color: var(--ink);
+      font-size: 14.5px;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .article-body p {
+      margin: 0 0 17px;
+    }
+
+    .article-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .article-body .reflection {
+      margin: 22px 0;
+      padding: 18px 21px;
+      border-left: 2px solid var(--accent);
+      border-radius: 0 14px 14px 0;
+      background: var(--glass);
+      font-family: "Fraunces", serif;
+      font-size: clamp(19px,3vw,24px);
+      line-height: 1.65;
+    }
+
+    .article-body .closing {
+      margin-top: 23px;
+      padding-top: 21px;
+      border-top: 1px solid var(--glass-edge);
+    }
+
+    /* Danışmanlık alanı */
+
+    .consultation {
+      margin-top: 36px;
+      padding: clamp(23px,4vw,32px);
+      border: 1px solid var(--glass-edge);
+      border-radius: 21px;
+      background:
+        linear-gradient(135deg,rgba(255,154,107,.12),transparent 65%),
+        var(--glass);
+    }
+
+    .consultation-label {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .consultation h2 {
+      margin: 0 0 11px;
+      font-family: "Fraunces", serif;
+      font-size: clamp(26px,4vw,35px);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .consultation p {
+      max-width: 540px;
+      margin: 0 0 20px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .consultation-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 46px;
+      padding: 0 22px;
+      border-radius: 100px;
+      background: var(--plum);
+      color: var(--bg);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .consultation-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(100,30,50,.18);
+    }
+
+    .article-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 27px;
+      padding-top: 22px;
+      border-top: 1px solid var(--glass-edge);
+    }
+
+    .signature {
+      color: var(--ink-soft);
+      font-family: "Fraunces", serif;
+      font-size: 19px;
+      font-style: italic;
+    }
+
+    .back-link {
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 0 20px 30px;
+      color: var(--ink-soft);
+      font-size: 10px;
+      letter-spacing: .7px;
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--ink);
+    }
+
+    @media (max-width: 600px) {
+      .topbar {
+        padding: 12px 17px;
+      }
+
+      .wordmark-name {
+        font-size: 21px;
+      }
+
+      .wordmark-caption {
+        font-size: 8px;
+        letter-spacing: 1.3px;
+      }
+
+      .home-link {
+        min-height: 38px;
+        padding: 0 11px;
+        font-size: 11px;
+      }
+
+      .theme-toggle {
+        width: 38px;
+        min-height: 38px;
+      }
+
+      main {
+        width: min(100% - 22px, 860px);
+        padding: 30px 0 48px;
+      }
+
+      .article-shell {
+        padding: 27px 21px;
+        border-radius: 22px;
+      }
+
+      .article-kicker {
+        font-size: 9px;
+        letter-spacing: 1.8px;
+      }
+
+      h1 {
+        font-size: clamp(38px,10vw,49px);
+        letter-spacing: -1px;
+      }
+
+      .article-divider {
+        margin: 23px 0;
+      }
+
+      .article-body {
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      .article-body p {
+        margin-bottom: 15px;
+      }
+
+      .article-body .reflection {
+        padding: 16px 17px;
+      }
+
+      .consultation {
+        margin-top: 28px;
+        padding: 22px 19px;
+      }
+
+      .article-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob blob-one"></div>
+    <div class="aurora-blob blob-two"></div>
+    <div class="aurora-blob blob-three"></div>
+    <div class="aurora-blob blob-four"></div>
+  </div>
 
-<div class="progress-bar" id="progressBar"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="reading-progress" id="readingProgress"></div>
 
-<a href="blog.html" class="back-button">←</a>
+  <header class="topbar">
+    <nav class="nav" aria-label="Ana navigasyon">
+      <a href="index.html" class="wordmark" aria-label="Adalin Sohtorik ana sayfa">
+        <span class="wordmark-name">Adalin</span>
+        <span class="wordmark-caption">Kişisel Gelişim · Yaşam</span>
+      </a>
 
-<img src="uyku.jpg" alt="Uykusuzluğun Psikosomatiği" class="header-image">
+      <div class="nav-actions">
+        <a href="index.html" class="home-link">
+          <span aria-hidden="true">←</span>
+          Ana sayfa
+        </a>
 
-<div class="content">
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="Renk temasını değiştir"
+          title="Temayı değiştir"
+        >☾</button>
+      </div>
+    </nav>
+  </header>
 
-<h1>Uykusuzluğun Psikosomatiği</h1>
+  <main>
+    <article class="article-shell">
+      <div class="article-kicker">Farkındalık · Belirsizlik · Güven</div>
 
-<div class="meta">⏱ Okuma süresi: 3 dakika</div>
+      <h1>Hiç çalışmayan kontrol</h1>
 
-<p>
+      <span class="title-decoration" aria-hidden="true"></span>
 
-Uykusuzluk sadece uykuya dalamamak değil, aynı zamanda kişinin geceleri korku, kaygı, depresyon, zihinsel stres, aşırı sorumluluk, çıkmaz durum vb. gibi çeşitli nedenlerle uyanması sonucu oluşan sığ uykudur. Uykuya dalma süreci beyin tarafından kontrol edilir. Ancak endişelenmekle meşgulse sinir sistemi arızalanır. Psikosomatiğe göre uykusuzluğa, geçmişe (veya geleceğe) ilişkin güçlü duygular ve kaygılar neden olur. Aynı derecede önemli bir neden de iç diyalogdur. Her zamanki gibi bir çatışmanın ardından ortaya çıkar.
-Çoğu zaman uykusuzluk, bir çatışmayla ilgili farklı düşünceler arasında gezinmek nedeniyle, bir çatışmanın içinde sıkışıp kaldığınızda ve ondan çıkamadığınızda ortaya çıkar, yani çatışma sadece hayatınızı değil, uykunuzu da kontrol etmeye başlar.
-Bu tür davranışların psikosomatiği, tetikte olma, kontrolü kaybetmeme ihtiyacını gösterir veya kişinin kendisiyle veya belirli koşullarla mücadelesini sembolize edebilir. Bunun temel nedeni uyuyamamanız ancak savaşmanız gereken bir durumdur. Üstelik bu mücadele, örneğin sevdiklerinizle ve akrabalarınızla, çalışanlarla veya iş yerindeki yönetimle, belirli arzu veya ihtiyaçlarla, yani kendisiyle yüzleşmek gibi farklı şekillerde ifade edilebilir.
-Buna ek olarak, uykusuzluk, beyinde belirli kimyasal reaksiyonlar başladığında, uyku eksikliğini veya yüzeysel ve çok endişeli uykuyu tetiklediğinde veya tam tersi, bir kişi hayattaki hiçbir şeyle ilgilenmediğinde, depresyonun başlangıcının bir işareti olabilir.</p>
+      <div class="article-meta">
+        <span>23 Eylül</span>
+        <span class="meta-dot" aria-hidden="true"></span>
+        <span>2 dakika</span>
+      </div>
 
+      <hr class="article-divider">
 
-<p>
-* Güne (durumlar, anlar) ilişkin düşüncelerin sistematik analizi. Bir kişi, sürekli olarak bir şeyler düşünerek, kendini geçilmez uykusuzluk ormanına bağımsız olarak sürükleme yeteneğine sahiptir. Gereksiz düşünceler dinlenmeyi engeller ve uykuya ayrılan değerli zamanı elinden alır.
-* Aile sorunları. Aileniz ve sevdikleriniz hakkında endişelenmek psiko-duygusal strese neden olur, bu da uyumanızı ve sabahları neşeli ve enerjik hissetmenizi engeller.
-* Korkular. Beyin olumsuz düşüncelerden ve korkulardan tamamen arınıncaya kadar sakin ve ölçülü bir uyku gerçekleşmeyecektir. Korku ya da bir çözüm bulma ihtiyacı, örneğin işini kaybetme korkusu ya da sevdiklerinizle, ailenizle ya da çevrenizle çatışan ilişkilerde uykusuzluğa neden olabilir.
-* Kaygı. Bu durumun mutlaka herhangi bir olayla ilgili olması gerekmez. Bir kişinin gün içinde "sindirmesi" gereken bol bilgi akışını hesaba katmak yeterlidir. Doğal olarak kişinin geceleri uykuya dalması zordur çünkü kaotik düşünceler huzur içinde dinlenmesine izin vermez.
-* Yalnızlık hissi veya güvenlik eksikliği de uykusuzluğa neden olabilir, çünkü kişi hayatta destek hissetmez, hayatına veya seçtiği yola olan güvenini kaybetmiştir ve şüphelerin üstesinden gelir.
-</p>
+      <div class="article-body">
+        <p>Her şeyi kontrol altında tutmaya çalıştığınız en son zamanı hatırlayın - program, ilişki, önemli bir konuşmanın sonucu, henüz gerçekleşmemiş bir olayın sonucu.</p>
 
-<p>
-Beynin çeşitli düşüncelerle aşırı yüklenmesi, gerçek hayatta ütopyaya yol açar. Beyin yanılsamayı gerçeklikten ayıramaz, bu nedenle durumun filtrelenmesi ve dünyanın bir bütün olarak algılanması söz konusu değildir. Bir kişinin beyni olumsuz durumlara odaklanmaya başlar başlamaz uyku kanalları “tıkanır”. Beyin, bu tür tehlikeli koşullarda uykuya dalmayı reddeder ve mevcut durumdan bir çıkış yolu arayarak aktif olarak çalışmaya başlar.
-</p>
+        <p>Ve şimdi dürüstçe kendinize sorun: bu kontrol gerçekten kaç kez istediğiniz gibi çalıştı? Kısmen değil, "genel olarak fena değil" değil - yani, tahmin ettiğiniz gibi, son ayrıntısına kadar?</p>
 
-<p>
-Uyumak için öneriler;
-</p>
+        <p>Büyük olasılıkla, nadiren. Ve iyi planlamadığın için değil. Bu, kontrolün doğasıyla ilgilidir: geleceğin yeterince çaba, zihin, irade sarf ederseniz yönetilebilecek bir nesne olduğu varsayımına dayanmaktadır. Ancak gelecek bir nesne değildir. Bu, henüz var olmayan bir düşünce. Ve yalnızca zaten var olanı yönetebilirsiniz.</p>
 
-<p>
-* Kendinize günün bittiğini, gösterişin de gittiğini, gerekli şeylerin yapıldığını söyleyin. Ve her şey olmasa da yeni bir günün mutlaka yeni fırsatlar getireceğini anlayın.
-* Etrafınızdaki dünyaya, kendinize ve hatta geceye güveninizi gösterin. Sabaha zihniniz berraklaşacak ve belki de ciddi görünen problemin kolayca çözülebileceği ortaya çıkacak.
-* Rahatlayın ve vücudunuzun rahatlıyor oluşuna odaklanın, “iç organlarınıza çalıştıkları için teşekkür edin.”
-* 2 hafta boyunca her gün yatmadan bir saat önce kedi otu çayı içmek sinir sisteminizi yatıştırır, düşüncelerinizi düzene sokar ve uykuya dalmanızı ciddi derecede kolaylaştırır.
-    
-</p>
+        <p>Kontrol etme ihtiyacının nereden geldiğine bakın. O neredeyse hiç barıştan doğmaz. Gerginlikten doğar - bırakırsanız kötü bir şey olacağı duygusundan. Yani, kontrol güce değil, korkuya dayanır. Genellikle bu iki durumu karıştırırız, çünkü kontrol "bir şey yapıyorum" gibi bir aktiviteye benziyor - ancak içinde çoğu zaman konvülsif sıkıştırma, doğal olarak hareket halinde olanı tutma girişimi.</p>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+        <p>Ve şimdi unutmayın: Hayatınızda tüm ayrıntılarda önceden tahmin edebileceğiniz en az bir gerçekten önemli olay var mıydı? Yön değiştiren toplantı. Belirleyici olduğu ortaya çıkan bir konuşma. Her şeyin plan sayesinde değil, ona karşı olduğu an. Hayat nadiren onun için çizdiğimiz düz bir çizgide hareket eder. Dalgalar, döngüler, sürprizler halinde hareket eder - ve bu onun dezavantajı değil, gücüdür.</p>
 
-</div>
+        <p>Kontrolü bırakmak, hareket etmeyi bırakmak anlamına gelmez. Bu, eylemden garantili bir sonuç talep etmeyi bırakmak anlamına gelir. Bugün elinizden gelen her şeyi - açıkça, sakince, dikkatle - yapabilir ve aynı zamanda yarın olayların tam olarak nasıl gelişeceğini yumruğunuzda tutamazsınız. Bu pasiflik değil. Bu, eskiden harekete değil, geleceğin hayali resmini tutmak için giden enerjinin salınımıdır.</p>
 
-<div class="sticky-session">
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-Seans Oluştur
-</a>
-</div>
+        <p>İki eyalet arasındaki farka dikkat edin. Birincisi: "Her şeyi kontrol etmeliyim, aksi takdirde bir felaket olur" - vücut sıkıştırılır, nefes sığdır, zihin senaryoları tek tek geçer. İkincisi: "Şimdi elimden geleni yapıyorum ve gücümde olmayana güveniyorum" - beden rahat, nefes daha derin, zihin belirsizlik içinde bile sakin.</p>
 
-<script>
+        <p>Her iki durum da aynı durumda mümkündür. Fark koşullarda değil - koşulları gözlemleyen kişide: her şeyi elinde tutması gereken korkmuş bir karakter veya açık bir şekilde hareket edebilen ve aynı zamanda hayatın kendinizin öngöremeyeceğiniz bir şey sunacağı gerçeğine açık kalan biri.</p>
 
-const content = document.querySelector(".content");
+        <p class="closing">Bir dahaki sefere tanıdık bir gerginlik hissettiğinizde - her şeyi önceden hesaplama arzusu - sadece bir saniyeliğine durun. Kendinize sorun: Şu anda elimde tutmaya çalıştığım şey hiç mi? Değilse, ellerinizi açabilirsiniz. Umursamadığın için değil. Ve çünkü ilk yumruktan kurtulan hayat sonunda gerçekleşme fırsatını buluyor.</p>
+      </div>
 
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
+      <section class="consultation" aria-label="Bireysel danışmanlık">
+        <p class="consultation-label">Kendine yeni bir alan aç</p>
+
+        <h2>Kendine farklı bir pencereden bakmaya hazır mısın?</h2>
+
+        <p>
+          Düşünce ve davranış kalıplarını keşfetmek, kendinle kurduğun
+          ilişkiyi anlamak ve yeni bakış açıları geliştirmek için
+          bireysel danışmanlık profilimi ziyaret edebilirsin.
+        </p>
+
+        <a
+          class="consultation-button"
+          href="https://www.advicemy.com/danisman/adalin-sohtorik"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          SEANS OLUŞTUR <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
+      <div class="article-bottom">
+        <span class="signature">Adalin Sohtorik</span>
+        <a class="back-link" href="index.html">← Ana sayfaya dön</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>© <span id="currentYear"></span> <a href="index.html">Adalin Sohtorik</a> · Kendine başka bir pencereden bak.</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const root = document.documentElement;
+
+    function applyTheme(theme) {
+      if (theme === "noirberry") {
+        root.setAttribute("data-theme", "noirberry");
+        themeToggle.textContent = "☀";
+      } else {
+        root.removeAttribute("data-theme");
+        themeToggle.textContent = "☾";
+      }
     }
-}
 
-window.addEventListener("scroll", showContent);
-showContent();
+    let savedTheme = "noirberry";
 
-window.addEventListener("scroll", () => {
+    try {
+      savedTheme = localStorage.getItem("theme2") || "noirberry";
+    } catch (error) {
+      savedTheme = "noirberry";
+    }
 
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
+    applyTheme(savedTheme);
 
-  document.getElementById("progressBar").style.width = progress + "%";
+    themeToggle.addEventListener("click", () => {
+      const isDark = root.getAttribute("data-theme") === "noirberry";
+      const nextTheme = isDark ? "light" : "noirberry";
 
-});
+      applyTheme(nextTheme);
 
-</script>
+      try {
+        localStorage.setItem("theme2", nextTheme);
+      } catch (error) {
+        // Tema, depolama kapalı olsa da çalışır.
+      }
+    });
 
+    const progressBar = document.getElementById("readingProgress");
+
+    function updateReadingProgress() {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      const progress = scrollableHeight > 0
+        ? (window.scrollY / scrollableHeight) * 100
+        : 0;
+
+      progressBar.style.width =
+        `${Math.min(100, Math.max(0, progress))}%`;
+    }
+
+    window.addEventListener("scroll", updateReadingProgress, {
+      passive: true
+    });
+
+    window.addEventListener("resize", updateReadingProgress);
+    updateReadingProgress();
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
 </body>
 </html>
