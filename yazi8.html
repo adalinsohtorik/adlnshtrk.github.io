@@ -1,13 +1,14 @@
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hiç çalışmayan kontrol — kontrol ihtiyacı, belirsizlik ve hayatın akışına güvenmek üzerine Adalin Sohtorik.">
-  <meta name="theme-color" content="#f8ecdf">
 
-  <title>Hiç çalışmayan kontrol — Adalin Sohtorik</title>
+  <meta name="description" content="Hiçbir Zaman İşe Yaramayan Kontrol İhtiyacı — kontrol etme arzusu, belirsizlik ve içsel güven üzerine bir yazı.">
+  <meta name="theme-color" content="#1c0716">
+
+  <title>Hiçbir Zaman İşe Yaramayan Kontrol İhtiyacı | Adalin Sohtorik</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,14 +21,15 @@
       --ink-soft: #7d4b45;
       --plum: #7a2f3a;
       --accent: #c4472f;
-      --glass: rgba(255,246,236,.55);
-      --glass-edge: rgba(255,255,255,.72);
-      --shadow: 0 24px 60px -24px rgba(160,64,40,.38);
-      --blob-1: #ff9a6b;
-      --blob-2: #ff8fab;
-      --blob-3: #ffc978;
-      --blob-4: #f4a68c;
-      --blob-5: #e9a3a9;
+      --glass: rgba(255, 246, 236, .55);
+      --glass-edge: rgba(255, 255, 255, .72);
+      --shadow: 0 24px 60px -24px rgba(160, 64, 40, .38);
+
+      --blob-one: #ff9a6b;
+      --blob-two: #ff8fab;
+      --blob-three: #ffc978;
+      --blob-four: #f4a68c;
+      --blob-five: #e9a3a9;
     }
 
     [data-theme="noirberry"] {
@@ -36,14 +38,15 @@
       --ink-soft: #cfa6b6;
       --plum: #f0c6d3;
       --accent: #ff8fb0;
-      --glass: rgba(58,14,42,.5);
-      --glass-edge: rgba(255,160,190,.22);
-      --shadow: 0 24px 70px -25px rgba(0,0,0,.55);
-      --blob-1: #7b174b;
-      --blob-2: #a52e62;
-      --blob-3: #51214f;
-      --blob-4: #a63e51;
-      --blob-5: #61245f;
+      --glass: rgba(58, 14, 42, .5);
+      --glass-edge: rgba(255, 160, 190, .22);
+      --shadow: 0 24px 70px -25px rgba(0, 0, 0, .65);
+
+      --blob-one: #8d2458;
+      --blob-two: #54226f;
+      --blob-three: #a52f61;
+      --blob-four: #40205e;
+      --blob-five: #702448;
     }
 
     * {
@@ -52,306 +55,206 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 100px;
     }
 
     body {
       margin: 0;
       min-height: 100vh;
       overflow-x: hidden;
-      color: var(--ink);
       background: var(--bg);
+      color: var(--ink);
       font-family: "Manrope", sans-serif;
       transition: background .4s ease, color .4s ease;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .09;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
     }
 
-    button {
-      font: inherit;
+    .progress-track {
+      position: fixed;
+      inset: 0 0 auto;
+      height: 3px;
+      z-index: 100;
+      background: transparent;
     }
 
-    ::selection {
-      background: var(--accent);
-      color: #fff8f1;
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #d8a0d2, var(--plum));
+      box-shadow: 0 0 14px var(--accent);
     }
-
-    /* Holografik arka plan */
 
     .aurora {
       position: fixed;
       inset: 0;
-      z-index: -3;
       overflow: hidden;
+      z-index: 0;
       pointer-events: none;
-      background:
-        radial-gradient(ellipse at 15% 10%, var(--blob-5), transparent 42%),
-        radial-gradient(ellipse at 85% 18%, var(--blob-2), transparent 38%),
-        radial-gradient(ellipse at 70% 85%, var(--blob-3), transparent 42%),
-        var(--bg);
     }
 
-    .aurora-blob {
+    .blob {
       position: absolute;
-      width: 50vw;
-      height: 50vw;
-      min-width: 320px;
-      min-height: 320px;
-      border-radius: 42% 58% 63% 37% / 45% 42% 58% 55%;
-      filter: blur(65px);
-      opacity: .44;
-      animation: drift 19s ease-in-out infinite alternate;
-      mix-blend-mode: multiply;
+      width: min(48vw, 620px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .26;
+      animation: drift 20s ease-in-out infinite alternate;
     }
 
-    [data-theme="noirberry"] .aurora-blob {
-      opacity: .32;
-      mix-blend-mode: screen;
+    .blob:nth-child(1) {
+      top: -15%;
+      left: -12%;
+      background: var(--blob-one);
     }
 
-    .blob-one {
-      background: var(--blob-1);
-      top: -18%;
-      left: -18%;
+    .blob:nth-child(2) {
+      top: 25%;
+      right: -18%;
+      background: var(--blob-two);
+      animation-delay: -7s;
     }
 
-    .blob-two {
-      background: var(--blob-2);
-      right: -22%;
-      top: 10%;
-      animation-delay: -6s;
-      animation-duration: 23s;
-    }
-
-    .blob-three {
-      background: var(--blob-3);
-      bottom: -24%;
-      left: 22%;
-      animation-delay: -11s;
-      animation-duration: 25s;
-    }
-
-    .blob-four {
-      background: var(--blob-4);
-      width: 35vw;
-      height: 35vw;
-      right: 15%;
-      bottom: 5%;
-      animation-delay: -8s;
+    .blob:nth-child(3) {
+      bottom: -25%;
+      left: 25%;
+      background: var(--blob-three);
+      animation-delay: -12s;
     }
 
     @keyframes drift {
       from {
-        transform: translate3d(-2%,-1%,0) rotate(0deg) scale(1);
+        transform: translate3d(-2%, -2%, 0) scale(1);
       }
       to {
-        transform: translate3d(7%,6%,0) rotate(24deg) scale(1.12);
+        transform: translate3d(5%, 6%, 0) scale(1.15);
       }
     }
 
-    /* Vintage gren */
-
-    .grain {
-      position: fixed;
-      inset: -50%;
-      z-index: 10;
-      width: 200%;
-      height: 200%;
-      pointer-events: none;
-      opacity: .075;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
-      animation: grainMove .22s steps(2) infinite;
+    .site-shell {
+      position: relative;
+      z-index: 2;
+      width: min(100% - 36px, 1120px);
+      margin: 0 auto;
     }
-
-    @keyframes grainMove {
-      0% { transform: translate(0,0); }
-      25% { transform: translate(1%,-1%); }
-      50% { transform: translate(-1%,1%); }
-      75% { transform: translate(1%,1%); }
-      100% { transform: translate(-1%,-1%); }
-    }
-
-    /* Okuma ilerlemesi */
-
-    .reading-progress {
-      position: fixed;
-      z-index: 30;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 3px;
-      background: linear-gradient(90deg,var(--accent),#ff9a9e,#ffc978);
-      box-shadow: 0 0 14px rgba(196,71,47,.4);
-    }
-
-    /* Üst menü */
 
     .topbar {
-      position: sticky;
-      z-index: 20;
-      top: 0;
-      padding: 15px 5.5%;
-      border-bottom: 1px solid var(--glass-edge);
-      background: var(--glass);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-    }
-
-    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      max-width: 1180px;
-      margin: 0 auto;
+      padding: 28px 0;
     }
 
     .wordmark {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .wordmark-name {
+      color: var(--ink);
+      text-decoration: none;
       font-family: "Fraunces", serif;
-      font-size: 24px;
-      font-weight: 500;
+      font-size: 25px;
       letter-spacing: -.8px;
     }
 
-    .wordmark-caption {
-      color: var(--ink-soft);
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .wordmark span {
+      color: var(--accent);
+      font-style: italic;
     }
 
-    .nav-actions {
+    .top-actions {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
     }
 
-    .home-link,
+    .back-link,
     .theme-toggle {
+      min-height: 42px;
       display: inline-flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       gap: 8px;
-      min-height: 41px;
-      padding: 0 15px;
+      padding: 10px 15px;
       border: 1px solid var(--glass-edge);
-      border-radius: 100px;
-      background: var(--glass);
+      border-radius: 999px;
       color: var(--ink);
-      font-size: 12px;
-      transition: transform .25s ease, background .25s ease;
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      text-decoration: none;
+      font: 500 12px "Manrope", sans-serif;
+      transition: transform .25s ease, border-color .25s ease;
+      cursor: pointer;
     }
 
-    .home-link:hover,
+    .back-link:hover,
     .theme-toggle:hover {
       transform: translateY(-2px);
-      background: var(--glass-edge);
+      border-color: var(--accent);
     }
 
-    .theme-toggle {
-      width: 41px;
-      padding: 0;
-      cursor: pointer;
-      font-size: 17px;
+    .article-wrap {
+      width: min(100%, 790px);
+      margin: 46px auto 100px;
     }
 
-    /* Makale alanı */
-
-    main {
-      width: min(100% - 36px, 860px);
-      margin: 0 auto;
-      padding: 62px 0 76px;
-    }
-
-    .article-shell {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(26px,5.5vw,62px);
+    .article-card {
+      padding: clamp(25px, 6vw, 66px);
       border: 1px solid var(--glass-edge);
-      border-radius: 29px;
+      border-radius: 30px;
       background: var(--glass);
       box-shadow: var(--shadow);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      animation: riseIn .8s ease both;
-    }
-
-    .article-shell::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 12%;
-      width: 76%;
-      height: 1px;
-      background: linear-gradient(90deg,transparent,var(--glass-edge),transparent);
-    }
-
-    @keyframes riseIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .article-kicker {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 24px;
       color: var(--accent);
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 2.5px;
+      letter-spacing: 2px;
+      line-height: 1.8;
       text-transform: uppercase;
     }
 
     .article-kicker::before {
       content: "";
-      width: 28px;
+      display: inline-block;
+      width: 25px;
       height: 1px;
-      background: currentColor;
+      background: var(--accent);
     }
 
     h1 {
-      max-width: 700px;
       margin: 0;
+      color: var(--ink);
       font-family: "Fraunces", serif;
-      font-size: clamp(42px,6vw,66px);
+      font-size: clamp(38px, 7vw, 65px);
       font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -1.5px;
+      letter-spacing: -1.8px;
+      line-height: 1.12;
       text-wrap: balance;
-    }
-
-    .title-decoration {
-      display: block;
-      width: 68px;
-      height: 3px;
-      margin: 24px 0;
-      border-radius: 10px;
-      background: linear-gradient(90deg,var(--accent),#ffb29c);
     }
 
     .article-meta {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      margin: 24px 0 35px;
       color: var(--ink-soft);
-      font-size: 11px;
+      font-size: 12px;
     }
 
     .meta-dot {
@@ -363,212 +266,192 @@
 
     .article-divider {
       height: 1px;
-      margin: 27px 0 28px;
-      border: 0;
-      background: linear-gradient(90deg,var(--glass-edge),transparent);
+      margin-bottom: 34px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: .65;
     }
-
-    /* Sıkı ve rahat okunan paragraf düzeni */
 
     .article-body {
       color: var(--ink);
-      font-size: 14.5px;
-      line-height: 1.9;
+      font-size: 15px;
+      line-height: 1.95;
       overflow-wrap: anywhere;
     }
 
     .article-body p {
-      margin: 0 0 17px;
+      margin: 0 0 18px;
     }
 
     .article-body p:last-child {
       margin-bottom: 0;
     }
 
-    .article-body .reflection {
-      margin: 22px 0;
-      padding: 18px 21px;
-      border-left: 2px solid var(--accent);
-      border-radius: 0 14px 14px 0;
-      background: var(--glass);
+    .article-body strong {
+      color: var(--plum);
+      font-weight: 700;
+    }
+
+    .article-body em {
+      color: var(--plum);
       font-family: "Fraunces", serif;
-      font-size: clamp(19px,3vw,24px);
-      line-height: 1.65;
+      font-size: 1.12em;
+      line-height: 1.8;
     }
 
     .article-body .closing {
-      margin-top: 23px;
-      padding-top: 21px;
-      border-top: 1px solid var(--glass-edge);
+      margin-top: 5px;
     }
 
-    /* Danışmanlık alanı */
+    .article-body .closing strong {
+      display: inline;
+    }
 
-    .consultation {
-      margin-top: 36px;
-      padding: clamp(23px,4vw,32px);
+    .cta-card {
+      margin-top: 26px;
+      padding: clamp(28px, 5vw, 42px);
       border: 1px solid var(--glass-edge);
-      border-radius: 21px;
-      background:
-        linear-gradient(135deg,rgba(255,154,107,.12),transparent 65%),
-        var(--glass);
+      border-radius: 26px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      text-align: center;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
     }
 
-    .consultation-label {
-      margin: 0 0 10px;
+    .cta-eyebrow {
+      margin: 0 0 12px;
       color: var(--accent);
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 2px;
-      text-transform: uppercase;
     }
 
-    .consultation h2 {
-      margin: 0 0 11px;
+    .cta-card h2 {
+      margin: 0 0 13px;
       font-family: "Fraunces", serif;
-      font-size: clamp(26px,4vw,35px);
+      font-size: clamp(29px, 5vw, 42px);
       font-weight: 400;
       line-height: 1.2;
     }
 
-    .consultation p {
-      max-width: 540px;
-      margin: 0 0 20px;
+    .cta-card p {
+      max-width: 470px;
+      margin: 0 auto 23px;
       color: var(--ink-soft);
       font-size: 13px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
-    .consultation-button {
+    .cta-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      min-height: 46px;
-      padding: 0 22px;
-      border-radius: 100px;
-      background: var(--plum);
-      color: var(--bg);
+      min-height: 48px;
+      padding: 14px 25px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #1c0716;
       font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-decoration: none;
       transition: transform .25s ease, box-shadow .25s ease;
     }
 
-    .consultation-button:hover {
+    .cta-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 25px rgba(100,30,50,.18);
-    }
-
-    .article-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 27px;
-      padding-top: 22px;
-      border-top: 1px solid var(--glass-edge);
-    }
-
-    .signature {
-      color: var(--ink-soft);
-      font-family: "Fraunces", serif;
-      font-size: 19px;
-      font-style: italic;
-    }
-
-    .back-link {
-      color: var(--ink-soft);
-      font-size: 12px;
-    }
-
-    .back-link:hover {
-      color: var(--accent);
+      box-shadow: 0 10px 30px rgba(255, 143, 176, .2);
     }
 
     footer {
-      padding: 0 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 0 0 32px;
       color: var(--ink-soft);
-      font-size: 10px;
-      letter-spacing: .7px;
-      text-align: center;
+      font-size: 11px;
     }
 
     footer a {
-      color: var(--ink);
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
     }
 
     @media (max-width: 600px) {
+      .site-shell {
+        width: min(100% - 24px, 1120px);
+      }
+
       .topbar {
-        padding: 12px 17px;
+        padding: 20px 0;
       }
 
-      .wordmark-name {
-        font-size: 21px;
+      .wordmark {
+        font-size: 22px;
       }
 
-      .wordmark-caption {
-        font-size: 8px;
-        letter-spacing: 1.3px;
+      .top-actions {
+        gap: 7px;
       }
 
-      .home-link {
-        min-height: 38px;
-        padding: 0 11px;
+      .back-link,
+      .theme-toggle {
+        min-height: 39px;
+        padding: 9px 11px;
         font-size: 11px;
       }
 
-      .theme-toggle {
-        width: 38px;
-        min-height: 38px;
+      .article-wrap {
+        margin: 24px auto 65px;
       }
 
-      main {
-        width: min(100% - 22px, 860px);
-        padding: 30px 0 48px;
-      }
-
-      .article-shell {
-        padding: 27px 21px;
-        border-radius: 22px;
+      .article-card {
+        padding: 25px 21px;
+        border-radius: 23px;
       }
 
       .article-kicker {
+        margin-bottom: 18px;
         font-size: 9px;
-        letter-spacing: 1.8px;
+        letter-spacing: 1.5px;
       }
 
       h1 {
-        font-size: clamp(38px,10vw,49px);
-        letter-spacing: -1px;
+        font-size: clamp(36px, 10vw, 49px);
+        letter-spacing: -1.2px;
+      }
+
+      .article-meta {
+        margin: 19px 0 27px;
       }
 
       .article-divider {
-        margin: 23px 0;
+        margin-bottom: 26px;
       }
 
       .article-body {
         font-size: 14px;
-        line-height: 1.85;
+        line-height: 1.9;
       }
 
       .article-body p {
-        margin-bottom: 15px;
+        margin-bottom: 16px;
       }
 
-      .article-body .reflection {
-        padding: 16px 17px;
+      .cta-card {
+        border-radius: 22px;
       }
 
-      .consultation {
-        margin-top: 28px;
-        padding: 22px 19px;
-      }
-
-      .article-bottom {
-        align-items: flex-start;
+      footer {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
       }
     }
 
@@ -586,148 +469,208 @@
 </head>
 
 <body>
-  <div class="aurora" aria-hidden="true">
-    <div class="aurora-blob blob-one"></div>
-    <div class="aurora-blob blob-two"></div>
-    <div class="aurora-blob blob-three"></div>
-    <div class="aurora-blob blob-four"></div>
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
   </div>
 
-  <div class="grain" aria-hidden="true"></div>
-  <div class="reading-progress" id="readingProgress"></div>
+  <div class="aurora" aria-hidden="true">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
 
-  <header class="topbar">
-    <nav class="nav" aria-label="Ana navigasyon">
-      <a href="index.html" class="wordmark" aria-label="Adalin Sohtorik ana sayfa">
-        <span class="wordmark-name">Adalin</span>
-        <span class="wordmark-caption">Kişisel Gelişim · Yaşam</span>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="wordmark" href="index.html" aria-label="Adalin Sohtorik ana sayfa">
+        Adalin <span>Sohtorik</span>
       </a>
 
-      <div class="nav-actions">
-        <a href="index.html" class="home-link">
-          <span aria-hidden="true">←</span>
-          Ana sayfa
-        </a>
-
-        <button
-          class="theme-toggle"
-          id="themeToggle"
-          type="button"
-          aria-label="Renk temasını değiştir"
-          title="Temayı değiştir"
-        >☾</button>
+      <div class="top-actions">
+        <a class="back-link" href="index.html">← Ana sayfa</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Temayı değiştir">
+          <span id="themeIcon">☼</span>
+          <span id="themeLabel">Aydınlık</span>
+        </button>
       </div>
-    </nav>
-  </header>
+    </header>
 
-  <main>
-    <article class="article-shell">
-      <div class="article-kicker">Farkındalık · Belirsizlik · Güven</div>
+    <main>
+      <article class="article-wrap">
+        <div class="article-card">
+          <div class="article-kicker">Farkındalık · Belirsizlik · İçsel güven</div>
 
-      <h1>Hiç çalışmayan kontrol</h1>
+          <h1>Hiçbir Zaman İşe Yaramayan Kontrol İhtiyacı</h1>
 
-      <span class="title-decoration" aria-hidden="true"></span>
+          <div class="article-meta">
+            <span>23 Eylül</span>
+            <span class="meta-dot"></span>
+            <span>5 dakika okuma</span>
+          </div>
 
-      <div class="article-meta">
-        <span>23 Eylül</span>
-        <span class="meta-dot" aria-hidden="true"></span>
-        <span>2 dakika</span>
-      </div>
+          <div class="article-divider"></div>
 
-      <hr class="article-divider">
+          <div class="article-body">
+            <p>Her şeyi kontrol altında tutmaya çalıştığınız son anı hatırlayın.</p>
 
-      <div class="article-body">
-        <p>Her şeyi kontrol altında tutmaya çalıştığınız en son zamanı hatırlayın - program, ilişki, önemli bir konuşmanın sonucu, henüz gerçekleşmemiş bir olayın sonucu.</p>
+            <p>Bir programı, bir ilişkiyi, önemli bir konuşmanın nasıl sonuçlanacağını ya da henüz gerçekleşmemiş bir olayın seyrini…</p>
 
-        <p>Ve şimdi dürüstçe kendinize sorun: bu kontrol gerçekten kaç kez istediğiniz gibi çalıştı? Kısmen değil, "genel olarak fena değil" değil - yani, tahmin ettiğiniz gibi, son ayrıntısına kadar?</p>
+            <p>Belki her ayrıntıyı önceden düşündünüz. Olası senaryoları hesapladınız, aksilikleri önlemeye çalıştınız, her şeyin istediğiniz gibi ilerlemesi için elinizden geleni yaptınız.</p>
 
-        <p>Büyük olasılıkla, nadiren. Ve iyi planlamadığın için değil. Bu, kontrolün doğasıyla ilgilidir: geleceğin yeterince çaba, zihin, irade sarf ederseniz yönetilebilecek bir nesne olduğu varsayımına dayanmaktadır. Ancak gelecek bir nesne değildir. Bu, henüz var olmayan bir düşünce. Ve yalnızca zaten var olanı yönetebilirsiniz.</p>
+            <p>Şimdi kendinize dürüstçe bir soru sorun: <strong>Bütün bunlar, olayların tam olarak öngördüğünüz gibi gelişmesini kaç kez sağladı?</strong></p>
 
-        <p>Kontrol etme ihtiyacının nereden geldiğine bakın. O neredeyse hiç barıştan doğmaz. Gerginlikten doğar - bırakırsanız kötü bir şey olacağı duygusundan. Yani, kontrol güce değil, korkuya dayanır. Genellikle bu iki durumu karıştırırız, çünkü kontrol "bir şey yapıyorum" gibi bir aktiviteye benziyor - ancak içinde çoğu zaman konvülsif sıkıştırma, doğal olarak hareket halinde olanı tutma girişimi.</p>
+            <p>Kısmen değil. Tesadüfen değil. Sonuç genel olarak iyi olduğu için de değil. Tam olarak sizin planladığınız gibi…</p>
 
-        <p>Ve şimdi unutmayın: Hayatınızda tüm ayrıntılarda önceden tahmin edebileceğiniz en az bir gerçekten önemli olay var mıydı? Yön değiştiren toplantı. Belirleyici olduğu ortaya çıkan bir konuşma. Her şeyin plan sayesinde değil, ona karşı olduğu an. Hayat nadiren onun için çizdiğimiz düz bir çizgide hareket eder. Dalgalar, döngüler, sürprizler halinde hareket eder - ve bu onun dezavantajı değil, gücüdür.</p>
+            <p>Muhtemelen çok sık değil.</p>
 
-        <p>Kontrolü bırakmak, hareket etmeyi bırakmak anlamına gelmez. Bu, eylemden garantili bir sonuç talep etmeyi bırakmak anlamına gelir. Bugün elinizden gelen her şeyi - açıkça, sakince, dikkatle - yapabilir ve aynı zamanda yarın olayların tam olarak nasıl gelişeceğini yumruğunuzda tutamazsınız. Bu pasiflik değil. Bu, eskiden harekete değil, geleceğin hayali resmini tutmak için giden enerjinin salınımıdır.</p>
+            <p>Üstelik bu, yeterince iyi plan yapamadığınız ya da yeterince çaba göstermediğiniz için böyle değil. Asıl mesele, kontrolün ne olduğuna dair yanılgımızda yatıyor.</p>
 
-        <p>İki eyalet arasındaki farka dikkat edin. Birincisi: "Her şeyi kontrol etmeliyim, aksi takdirde bir felaket olur" - vücut sıkıştırılır, nefes sığdır, zihin senaryoları tek tek geçer. İkincisi: "Şimdi elimden geleni yapıyorum ve gücümde olmayana güveniyorum" - beden rahat, nefes daha derin, zihin belirsizlik içinde bile sakin.</p>
+            <p>Kontrol etme arzusu, geleceğin yeterince düşünerek, çabalayarak ve irade göstererek yönetilebileceği varsayımına dayanır. Sanki bütün değişkenleri hesaba katabilirsek, hayatı önceden belirlediğimiz bir sonuca ulaştırabilirmişiz gibi.</p>
 
-        <p>Her iki durum da aynı durumda mümkündür. Fark koşullarda değil - koşulları gözlemleyen kişide: her şeyi elinde tutması gereken korkmuş bir karakter veya açık bir şekilde hareket edebilen ve aynı zamanda hayatın kendinizin öngöremeyeceğiniz bir şey sunacağı gerçeğine açık kalan biri.</p>
+            <p>Oysa gelecek, henüz gerçekleşmemiş ihtimallerden ibarettir. Onu bütünüyle yönetemeyiz. Yalnızca bugün aldığımız kararları, yaptığımız seçimleri ve attığımız adımları etkileyebiliriz.</p>
 
-        <p class="closing">Bir dahaki sefere tanıdık bir gerginlik hissettiğinizde - her şeyi önceden hesaplama arzusu - sadece bir saniyeliğine durun. Kendinize sorun: Şu anda elimde tutmaya çalıştığım şey hiç mi? Değilse, ellerinizi açabilirsiniz. Umursamadığın için değil. Ve çünkü ilk yumruktan kurtulan hayat sonunda gerçekleşme fırsatını buluyor.</p>
-      </div>
+            <p><strong>Kontrol edebildiğimiz şey, hayatın tamamı değil; hayatın içinde nasıl hareket ettiğimizdir.</strong></p>
 
-      <section class="consultation" aria-label="Bireysel danışmanlık">
-        <p class="consultation-label">Kendine yeni bir alan aç</p>
+            <p>Peki, her şeyi kontrol etme ihtiyacı nereden doğuyor?</p>
 
-        <h2>Kendine farklı bir pencereden bakmaya hazır mısın?</h2>
+            <p>Biraz daha derine inin.</p>
 
-        <p>
-          Düşünce ve davranış kalıplarını keşfetmek, kendinle kurduğun
-          ilişkiyi anlamak ve yeni bakış açıları geliştirmek için
-          bireysel danışmanlık profilimi ziyaret edebilirsin.
-        </p>
+            <p>Bu ihtiyaç çoğu zaman huzurdan değil, huzursuzluktan beslenir. Bir şeyi kendi hâline bırakırsak kötü bir şey olacağına, dikkatimiz dağılırsa her şeyin kontrolden çıkacağına ya da önlem almazsak sonuçlarına katlanmak zorunda kalacağımıza inanırız.</p>
 
-        <a
-          class="consultation-button"
-          href="https://www.advicemy.com/danisman/adalin-sohtorik"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          SEANS OLUŞTUR <span aria-hidden="true">↗</span>
-        </a>
-      </section>
+            <p>Yani kontrol etme çabamızın arkasında çoğu zaman güç değil, korku vardır.</p>
 
-      <div class="article-bottom">
-        <span class="signature">Adalin Sohtorik</span>
-        <a class="back-link" href="index.html">← Ana sayfaya dön</a>
-      </div>
-    </article>
-  </main>
+            <p>Ancak bu ikisini birbirine karıştırırız. Çünkü kontrol etmek, dışarıdan bakıldığında aktif olmakla, sorumluluk almakla ve bir şeyleri değiştirmek için çabalamakla aynı şey gibi görünür.</p>
 
-  <footer>
-    <p>© <span id="currentYear"></span> <a href="index.html">Adalin Sohtorik</a> · Kendine başka bir pencereden bak.</p>
-  </footer>
+            <p>Oysa aralarında önemli bir fark vardır: Bir şey için harekete geçmek başka, o şeyin sonucunu zorla belirlemeye çalışmak başkadır.</p>
+
+            <p>İlkinde enerjimizi yapabileceklerimize yöneltiriz. İkincisinde ise enerjimizin önemli bir bölümünü, hiçbir zaman bütünüyle yönetemeyeceğimiz ihtimalleri denetlemeye harcarız.</p>
+
+            <p>Bir düşünün…</p>
+
+            <p>Hayatınızda sonradan çok önemli olduğunu anladığınız kaç olayın nasıl gelişeceğini önceden biliyordunuz?</p>
+
+            <p>Belki hiç beklemediğiniz bir karşılaşma, hayatınızın yönünü değiştirdi. Belki sıradan olduğunu düşündüğünüz bir konuşma, kendinizle ya da başka biriyle ilgili önemli bir gerçeği görmenizi sağladı. Belki de bütün planlarınızın bozulduğu bir dönem, sizi daha önce düşünmediğiniz bir yola çıkardı.</p>
+
+            <p>O anlarda her şeyin nasıl sonuçlanacağını biliyor muydunuz?</p>
+
+            <p>Çoğu zaman hayır.</p>
+
+            <p>Hayat her zaman çizdiğimiz rotayı izlemez. Bazen bekletir, bazen yön değiştirir, bazen de bizi hiç hesaba katmadığımız ihtimallerle karşılaştırır.</p>
+
+            <p>Bu, hayatın bize karşı olduğu anlamına gelmez. Yalnızca hayatın, zihnimizde kurduğumuz senaryolardan daha geniş olduğunu gösterir.</p>
+
+            <p><strong>Belirsizlik, her zaman yanlış bir yolda olduğumuzun işareti değildir. Bazen henüz göremediğimiz ihtimallerin varlığıdır.</strong></p>
+
+            <p>Peki, bütün bunlar kontrolü tamamen bırakmamız gerektiği anlamına mı geliyor?</p>
+
+            <p>Hayır.</p>
+
+            <p>Kontrolü bırakmak, sorumluluk almaktan vazgeçmek, plan yapmamak ya da her şeyi akışına bırakıp beklemek değildir. Bu, çabalamayı bırakmak değil; çabanızın sonucunu her koşulda garanti altına alma ihtiyacından özgürleşmektir.</p>
+
+            <p>Bugün yapmanız gerekeni yapabilirsiniz. Bir ilişki için emek verebilir, bir hedefe ulaşmak için çalışabilir, önemli bir konuşmaya hazırlanabilir ve olası riskleri değerlendirebilirsiniz.</p>
+
+            <p>Bütün bunları yaparken, yarının tam olarak nasıl şekilleneceğini bilmek zorunda değilsiniz.</p>
+
+            <p>Çünkü sorumluluğunuz, sonucu kusursuz biçimde belirlemek değil; kendi payınıza düşeni mümkün olduğunca bilinçli bir şekilde yerine getirmektir.</p>
+
+            <p>Geri kalan her şeyi de zorla yönetmeye çalışmak zorunda değilsiniz.</p>
+
+            <p>Bunu fark ettiğinizde, daha önce sürekli tetikte kalmak için harcadığınız enerjiyi yeniden kendinize yöneltebilirsiniz. Zihninizde defalarca canlandırdığınız olası konuşmaların, yaşanmamış sorunların ve gerçekleşmemiş felaketlerin içinde kaybolmak yerine, gerçekten içinde bulunduğunuz ana dönebilirsiniz.</p>
+
+            <p>Şimdi iki farklı durumu düşünün.</p>
+
+            <p>İlkinde zihniniz size şöyle der:</p>
+
+            <p><em>“Her şeyi kontrol etmeliyim. Bir ayrıntıyı gözden kaçırırsam işler kötüye gidebilir. Hazırlıklı olmazsam başıma geleceklerle baş edemem.”</em></p>
+
+            <p>Bedeniniz gerilir. Nefesiniz sığlaşır. Zihniniz aynı ihtimalleri tekrar tekrar değerlendirir. Henüz yaşanmamış olaylara karşı şimdiden savunmaya geçersiniz.</p>
+
+            <p>İkinci durumda ise kendinize şunu söylersiniz:</p>
+
+            <p><em>“Elimden geleni yapacağım. Dikkatli olacağım, sorumluluğumu alacağım. Ama her şeyin nasıl sonuçlanacağını önceden bilmek zorunda değilim.”</em></p>
+
+            <p>Koşullar henüz değişmemiştir. Önünüzdeki belirsizlik de ortadan kalkmamıştır. Ancak artık belirsizliği ortadan kaldırmak için kendinizle savaşmıyorsunuzdur.</p>
+
+            <p>İşte asıl değişim burada başlar.</p>
+
+            <p>Çünkü huzur, her şeyin kontrolünüz altında olmasından doğmaz. Her şeyi kontrol edemediğinizde de kendinize güvenebilmeyi öğrenmenizle gelişir.</p>
+
+            <p>Bir sonraki adımın ne olacağını bilmeseniz bile o adımı atabileceğinizi… Bir şey planladığınız gibi gitmediğinde yeni bir yol bulabileceğinizi… Beklenmedik bir durumla karşılaştığınızda kendinizi yeniden toparlayabileceğinizi bilmek…</p>
+
+            <p>Bunlar, her şeyi kontrol etme ihtiyacından çok daha sağlam bir güven duygusunun temelidir.</p>
+
+            <p>Bir dahaki sefere içinizde tanıdık bir gerginlik hissettiğinizde, her ihtimali hesaplama ya da bir sonucu şimdiden garanti altına alma arzusu ortaya çıktığında, bir anlığına durun.</p>
+
+            <p>Kendinize sorun:</p>
+
+            <p><strong>“Şu anda gerçekten bir şey yapıyor muyum, yoksa henüz gerçekleşmemiş bir ihtimali zihnimde kontrol etmeye mi çalışıyorum?”</strong></p>
+
+            <p>Aradaki farkı fark edin.</p>
+
+            <p>Eğer yapabileceğiniz somut bir şey varsa, yapın. Bir karar alın, bir adım atın, gereken sorumluluğu üstlenin.</p>
+
+            <p>Ama yapabileceğiniz hiçbir şey kalmadıysa, zihninizde aynı senaryoyu tekrar tekrar oynatmanın size ne kazandırdığını da sorgulayın.</p>
+
+            <p>Belki de artık bırakmanız gereken şey, olayların kendisi değil; onların mutlaka sizin istediğiniz biçimde gerçekleşmesi gerektiğine dair inancınızdır.</p>
+
+            <p>Çünkü bazen özgürleşmek, hayatın bütün kapılarını önceden açabilmek değildir.</p>
+
+            <p class="closing"><strong>Bazen özgürleşmek, önünüzdeki kapının nasıl açılacağını bilmeden de onun önünde durabilmektir.</strong></p>
+          </div>
+        </div>
+
+        <section class="cta-card">
+          <p class="cta-eyebrow">KENDİNE YENİ BİR ALAN AÇ</p>
+          <h2>Kendine farklı bir pencereden bakmaya hazır mısın?</h2>
+          <p>Düşünce ve davranış kalıplarını keşfetmek, kendinle kurduğun ilişkiyi anlamak ve yeni bakış açıları geliştirmek için bireysel danışmanlık profilimi ziyaret edebilirsin.</p>
+          <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">SEANS OLUŞTUR ↗</a>
+        </section>
+      </article>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Adalin Sohtorik</span>
+      <a href="index.html">Ana sayfaya dön ↑</a>
+    </footer>
+  </div>
 
   <script>
-    const themeToggle = document.getElementById("themeToggle");
     const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeLabel = document.getElementById("themeLabel");
+    const progressBar = document.getElementById("progressBar");
 
     function applyTheme(theme) {
-      if (theme === "noirberry") {
-        root.setAttribute("data-theme", "noirberry");
-        themeToggle.textContent = "☀";
-      } else {
-        root.removeAttribute("data-theme");
-        themeToggle.textContent = "☾";
-      }
-    }
+      root.setAttribute("data-theme", theme);
 
-    let savedTheme = "noirberry";
-
-    try {
-      savedTheme = localStorage.getItem("theme2") || "noirberry";
-    } catch (error) {
-      savedTheme = "noirberry";
-    }
-
-    applyTheme(savedTheme);
-
-    themeToggle.addEventListener("click", () => {
-      const isDark = root.getAttribute("data-theme") === "noirberry";
-      const nextTheme = isDark ? "light" : "noirberry";
-
-      applyTheme(nextTheme);
+      const isDark = theme === "noirberry";
+      themeIcon.textContent = isDark ? "☼" : "☾";
+      themeLabel.textContent = isDark ? "Aydınlık" : "Koyu";
 
       try {
-        localStorage.setItem("theme2", nextTheme);
+        localStorage.setItem("theme2", theme);
       } catch (error) {
-        // Tema, depolama kapalı olsa da çalışır.
+        // Tema, depolama kapalı olsa da bu oturumda değiştirilebilir.
       }
+    }
+
+    try {
+      const savedTheme = localStorage.getItem("theme2");
+      if (savedTheme === "noirberry" || savedTheme === "light") {
+        root.setAttribute("data-theme", savedTheme);
+      }
+    } catch (error) {
+      root.setAttribute("data-theme", "noirberry");
+    }
+
+    applyTheme(root.getAttribute("data-theme") || "noirberry");
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = root.getAttribute("data-theme");
+      applyTheme(currentTheme === "noirberry" ? "light" : "noirberry");
     });
 
-    const progressBar = document.getElementById("readingProgress");
-
-    function updateReadingProgress() {
+    function updateProgress() {
       const scrollableHeight =
         document.documentElement.scrollHeight - window.innerHeight;
 
@@ -735,19 +678,14 @@
         ? (window.scrollY / scrollableHeight) * 100
         : 0;
 
-      progressBar.style.width =
-        `${Math.min(100, Math.max(0, progress))}%`;
+      progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
     }
 
-    window.addEventListener("scroll", updateReadingProgress, {
-      passive: true
-    });
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
 
-    window.addEventListener("resize", updateReadingProgress);
-    updateReadingProgress();
-
-    document.getElementById("currentYear").textContent =
-      new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
