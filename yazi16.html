@@ -1,276 +1,597 @@
+
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c0716">
+<meta name="description" content="Dünyayı nasıl algıladığınızın düşüncelerinizi, seçimlerinizi ve hayatınızın yönünü nasıl etkilediğini keşfedin.">
+<title>Dünyayı Nasıl Görüyorsanız, Hayatınızı da O Yönde Kurarsınız — Adalin Sohtorik</title>
 
-<title>İnsanlara Bize Nasıl Davranacaklarını Kendimiz Öğretiyoruz</title>
- 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,20,1;9..144,500,20,1;9..144,600,20,1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
+:root {
+  --bg: #f8ecdf;
+  --ink: #3e1a1e;
+  --ink-soft: #7d4b45;
+  --plum: #7a2f3a;
+  --accent: #c4472f;
+  --glass: rgba(255,246,236,.72);
+  --glass-edge: rgba(255,255,255,.72);
+  --shadow: 0 24px 60px -24px rgba(160,64,40,.28);
 }
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
+[data-theme="noirberry"] {
+  --bg: #1c0716;
+  --ink: #f3dfe4;
+  --ink-soft: #cfa6b6;
+  --plum: #f0c6d3;
+  --accent: #ff8fb0;
+  --glass: rgba(58,14,42,.62);
+  --glass-edge: rgba(255,160,190,.2);
+  --shadow: 0 24px 70px -24px rgba(0,0,0,.5);
 }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.85;
+  transition: background .3s ease, color .3s ease;
 }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
+.progress {
+  position: fixed;
+  z-index: 1000;
+  inset: 0 auto auto 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent);
 }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
+.aurora {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
+.blob {
+  position: absolute;
+  width: 38vw;
+  height: 38vw;
+  min-width: 280px;
+  min-height: 280px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .16;
+  background: var(--accent);
+  animation: drift 18s ease-in-out infinite alternate;
 }
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
+.blob.one { top: -12%; left: -10%; }
+.blob.two {
+  right: -12%;
+  top: 38%;
+  background: var(--plum);
+  animation-delay: -8s;
 }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
+@keyframes drift {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to { transform: translate3d(35px,45px,0) scale(1.12); }
 }
 
-h2{
-    font-family:'Playfair Display', serif;
-    margin-top:40px;
+.grain {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--glass-edge);
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
+.nav {
+  width: min(1100px, 92%);
+  min-height: 76px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
+.brand {
+  color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-size: 1.45rem;
+  letter-spacing: .12em;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.seans-button::before{
-    content:'';
-    position:absolute;
-    inset:-3px;
-    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
-    border-radius:30px;
-    z-index:-1;
-    opacity:0;
-    filter:blur(12px);
-    transition:0.4s;
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
 }
 
-.seans-button:hover::before{
-    opacity:1;
-    filter:blur(18px);
+.nav-link {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: .82rem;
+  transition: color .2s ease;
 }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
+.nav-link:hover { color: var(--accent); }
+
+.theme-toggle {
+  border: 1px solid var(--glass-edge);
+  background: transparent;
+  color: var(--ink);
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.05rem;
 }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
+main {
+  width: min(850px, 92%);
+  margin: 66px auto 90px;
 }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
+.article-card {
+  padding: clamp(25px, 6vw, 68px);
+  border: 1px solid var(--glass-edge);
+  border-radius: 25px;
+  background: var(--glass);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
+.back-link {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: var(--ink-soft);
+  font-size: .84rem;
+  text-decoration: none;
 }
 
+.back-link:hover { color: var(--accent); }
+
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: clamp(2.2rem, 6vw, 3.7rem);
+  letter-spacing: -.035em;
+}
+
+.reading-time {
+  margin-bottom: 38px;
+  color: var(--ink-soft);
+  font-size: .83rem;
+}
+
+.article-body p {
+  margin: 0 0 22px;
+  font-size: 1rem;
+}
+
+.article-body h2 {
+  margin: 48px 0 22px;
+  color: var(--plum);
+  font-size: clamp(1.65rem, 4vw, 2.15rem);
+  letter-spacing: -.02em;
+}
+
+.article-body h3 {
+  margin: 34px 0 18px;
+  color: var(--plum);
+  font-size: 1.4rem;
+}
+
+.article-body strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.cta {
+  margin-top: 48px;
+  padding: 30px;
+  border: 1px solid var(--glass-edge);
+  border-radius: 20px;
+  text-align: center;
+  background: var(--glass);
+}
+
+.cta h2 {
+  margin: 0 0 10px;
+  font-family: 'Fraunces', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.cta p {
+  margin: 0 0 22px;
+  color: var(--ink-soft);
+  font-size: .92rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 13px 25px;
+  border-radius: 30px;
+  background: var(--accent);
+  color: #fff8f5;
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+footer {
+  padding: 25px 15px 35px;
+  color: var(--ink-soft);
+  text-align: center;
+  font-size: .8rem;
+}
+
+@media (max-width: 600px) {
+  .nav { min-height: 68px; }
+  .brand { font-size: 1.12rem; }
+  .nav-right { gap: 12px; }
+  .nav-link { font-size: .75rem; }
+  main { margin-top: 32px; }
+  .article-card { border-radius: 18px; }
+  .article-body p { font-size: .96rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
 </style>
 </head>
 
 <body>
+<div class="progress" id="progress"></div>
 
-<div class="progress-bar" id="progressBar"></div>
-
-<a href="blog.html" class="back-button">←</a>
-
-<img src="insanlara.jpg" alt="İnsanlara Nasıl Davranacaklarını Öğretmek" class="header-image">
-
-<div class="content">
-
-<h1>İnsanlara Bize Nasıl Davranacaklarını Kendimiz Öğretiyoruz</h1>
-<div class="meta">⏱ Okuma süresi: 3 dakika</div>
-
-<p>
-İnsanlara bize nasıl davranacaklarını kendimiz öğretiyoruz. Biz kendimize nasıl davranırsak, onlar da bize öyle davranırlar.
-Kendimizi sevmiyorsak, değer vermiyorsak, saygı duymuyorsak bu, alnımıza üzerinde "Sevmek, değer vermek veya saygı duymak zorunda değilsiniz"  yazan bir kağıt parçası 
-yapıştırmak gibidir.
-</p>
-
-<div class="quote">
-Kendinizi değersiz görüyorsanız, başkalarının da sizi değersiz görmesine sessizce izin verirsiniz.
+<div class="aurora" aria-hidden="true">
+  <div class="blob one"></div>
+  <div class="blob two"></div>
 </div>
+<div class="grain" aria-hidden="true"></div>
 
-<p>
-Bizim hakkımızda kötü düşüncelere sahip olanlar başkaları değil. Kendimiz hakkında öyle bir fikre sahip olan biziz ki,
- başkalarının da bizim hakkımızda aynı fikirde olmasına izin veririz. Bazen kendimiz hakkında düşüncelerimiz dışarıda bir yerde dolaşır ve biz bu düşünceleri 
- yabancılardan ödünç alırız.
-</p>
+<header>
+  <nav class="nav" aria-label="Ana menü">
+    <a class="brand" href="index.html">Adalin</a>
+    <div class="nav-right">
+      <a class="nav-link" href="index.html">Blog</a>
+      <a class="nav-link" href="index.html#hakkimda">Hakkımda</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Temayı değiştir">☼</button>
+    </div>
+  </nav>
+</header>
 
-<p>
-İnsanlar hakkınızda çoğu zaman sizin inandığınız şeyi yansıtır. En sert yargı çoğu zaman dışarıdan değil, içinizden gelir. Elbette insanlar bazen bizim hakkımızda yanılıyor olabilir.
-Ama mesele şu ki, bunu kabul etmek ve bu beklentileri karşılamak zorunda değiliz. 
- Bizim için dezavantajlı koşullar altında iletişimi, ilişkileri veya başka herhangi bir etkileşimi sürdürmek zorunda değiliz.
- Ve eğer bunu kabul edersek, bu, böyle bir tavra layık olduğumuza içten içe güvendiğimiz anlamına gelir. Aslında insanlar bizim hakkımızda hiçbir şey bilmiyor.
- Onlar kendimiz hakkında yazdıklarımızı bu kağıt parçasından okuyorlar. Eğer bir insan sizi değersiz hissettirmesine rağmen onunla konuşuyorsanız,
- buna izin veriyorsunuz demektir. Bu yüzden çevremizde olup bitenlerin sorumluluğunu alabiliriz ve almalıyız. 
+<main>
+  <article class="article-card">
+    <a class="back-link" href="index.html">← Tüm yazılara dön</a>
 
-</p>
+    <div class="eyebrow">Düşünce · Farkındalık · Kişisel Gelişim</div>
 
-<p>
-Sizi küçülten, sınırlarınızı ihlal eden ilişkileri sürdürmek zorunda değilsiniz. Eğer sürdürüyorsanız, bilinçaltınızda buna layık olduğunuzu düşünüyor olabilirsiniz.
-</p>
+    <h1>Dünyayı Nasıl Görüyorsanız, Hayatınızı da O Yönde Kurarsınız</h1>
 
-<h2>Sorumluluk Nerede Başlar?</h2>
+    <div class="reading-time">Okuma süresi: 5 dakika</div>
 
-<div class="quote">
-Sınırlarınız öz değerinizi ilan eder.
-</div>
+    <div class="article-body">
 
-<p>
-Kendinize şu soruları sorun:
-</p>
+      <p>Dünyayı nasıl görüyorsunuz?</p>
 
-<p>
-Ben gerçekten kimim?<br>
-Kendim hakkında neden böyle düşünüyorum?<br>
-Bana böyle davranılmasını gerçekten hak ediyor muyum?<br>
-Bu sevdiğim birine yapılsaydı ne hissederdim, ne derdim, ne yapardım? <br>
-Başkalarının bana davrandıkları gibi davranmama izin verir miydim? <br>
-</p>
+      <p>İnsanları güvenilir mi buluyorsunuz, yoksa her yakınlığın ardında bir hayal kırıklığı ihtimali mi arıyorsunuz? Parayı ulaşılması zor bir kaynak olarak mı görüyorsunuz, yoksa öğrenilebilen, yönetilebilen ve yeni imkanlar yaratmak için kullanılabilen bir araç olarak mı? İlişkileri bir mücadele alanı olarak mı algılıyorsunuz, yoksa kendinizi olduğunuz gibi ifade edebileceğiniz bir paylaşım alanı olarak mı?</p>
 
-<p>
-İnsanlara nasıl davranılacağını öğretmek için bağırmanız veya tepinmeniz gerekmez. Kendinize olan tavrınızı değiştirmeniz yeterlidir.
-</p>
+      <p>Peki, bütün bunların sizin hayatınızla ne ilgisi var?</p>
 
-</div>
+      <p>Aslında düşündüğünüzden çok daha fazla.</p>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+      <p>Çünkü dünya görüşümüz, yalnızca dünya hakkındaki fikirlerimizden ibaret değildir. İnsanları nasıl değerlendirdiğimizi, olaylara hangi anlamları yüklediğimizi, kendimizden ne beklediğimizi ve hangi ihtimalleri mümkün gördüğümüzü de etkiler.</p>
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-    Seans Oluştur
-  </a>
-</div>
+      <p>Bir bakıma, dünyayı yalnızca olduğu gibi deneyimlemeyiz; onu kendi algımızın, inançlarımızın ve geçmiş deneyimlerimizin içinden yorumlarız.</p>
+
+      <p>Aynı olay, iki farklı insan için tamamen farklı anlamlar taşıyabilir.</p>
+
+      <p>Birisi için başarısızlık, yetersizliğinin kanıtıdır. Diğeri için neyin işe yaramadığını gösteren bir deneyimdir.</p>
+
+      <p>Birisi için bir başkasının başarısı, kendisinin geride kaldığının işaretidir. Diğeri için başarının mümkün olduğuna dair bir örnektir.</p>
+
+      <p>Birisi için belirsizlik, tehlikedir. Diğeri için henüz keşfedilmemiş ihtimallerin bulunduğu bir alandır.</p>
+
+      <p>Olaylar her zaman bizim kontrolümüzde değildir. Ancak onlara verdiğimiz anlam, çoğu zaman nasıl tepki vereceğimizi ve bundan sonra hangi adımı atacağımızı etkiler.</p>
+
+      <p><strong>Dünyaya bakışınız, yalnızca ne gördüğünüzü değil, gördükleriniz karşısında ne yapacağınızı da şekillendirir.</strong></p>
+
+      <h2>İç dünyanız ile yaşadığınız hayat arasındaki ilişki</h2>
+
+      <p>Bir düşünün.</p>
+
+      <p>Kendinizi değerli hissettiğinizde insanlarla nasıl iletişim kuruyorsunuz? Kendi ihtiyaçlarınızı dile getirebiliyor, istemediğiniz şeylere hayır diyebiliyor ve bir başkasının onayını kazanmadan da kendi kararlarınızın arkasında durabiliyor musunuz?</p>
+
+      <p>Şimdi de kendinizi yetersiz hissettiğiniz zamanları düşünün.</p>
+
+      <p>Belki daha fazla açıklama yapıyor, kendinizi kanıtlamaya çalışıyor, reddedilmemek için düşüncelerinizi saklıyor ya da başkalarının beklentilerine göre şekilleniyorsunuz.</p>
+
+      <p>Dışarıdaki dünya bir anda değişmiş olmayabilir. Fakat sizin o dünyadaki duruşunuz değişmiştir.</p>
+
+      <p>Kendinizi değersiz hissettiğinizde, başkalarının davranışlarını bu duygunun içinden yorumlayabilirsiniz. Birinin ilgisizliğini kendi yetersizliğinizin kanıtı olarak görebilir, size uygun olmayan bir ilişkide kabul görmek için daha fazla çabalayabilirsiniz.</p>
+
+      <p>Kendinize duyduğunuz güven arttığında ise aynı davranışa farklı bir anlam verebilirsiniz. Karşı tarafın ilgisizliğini kendi değerinizle eşitlemek yerine, o ilişkinin ihtiyaçlarınızı karşılayıp karşılamadığını değerlendirebilirsiniz.</p>
+
+      <p>İşte burada önemli bir şey gerçekleşir.</p>
+
+      <p><strong>Kendinize dair düşünceniz değiştiğinde, kabul ettiğiniz şeyler, verdiğiniz tepkiler ve yaptığınız seçimler de değişebilir.</strong></p>
+
+      <p>Bu, iç dünyanızın dış dünyayı sihirli bir biçimde değiştirdiği anlamına gelmez. Başkalarının davranışlarını, ekonomik koşulları veya hayatın karşınıza çıkaracağı bütün olayları kontrol edemezsiniz.</p>
+
+      <p>Ancak kendinizi ve dünyayı algılama biçiminiz, bu koşullar içinde nasıl hareket ettiğinizi etkileyebilir.</p>
+
+      <p>Ve bazen hayatınızın yönünü değiştiren şey, tam olarak bu farklılıktır.</p>
+
+      <h2>İstediğiniz hayatı mı istiyorsunuz, yoksa ona uygun yaşamayı da seçiyor musunuz?</h2>
+
+      <p>Çoğumuz ne istediğimizi bildiğimizi düşünürüz.</p>
+
+      <p>Özgür olmak isteriz. Bolluk içinde yaşamak isteriz. Sağlıklı ilişkiler kurmak, kendimize güvenmek, potansiyelimizi gerçekleştirmek isteriz.</p>
+
+      <p>Fakat arzularımızla günlük yaşamımızı yan yana koyduğumuzda, aralarında her zaman bir uyum olmadığını fark edebiliriz.</p>
+
+      <p>Özgür olmak istediğinizi söylersiniz ama kararlarınızı sürekli başkalarının ne düşüneceğine göre verirsiniz.</p>
+
+      <p>Maddi açıdan daha rahat bir hayat istersiniz ama para hakkında konuşmaktan kaçınır, finansal kararlarınızı erteleyebilir veya yeni bir beceri öğrenmek için adım atmaktan korkabilirsiniz.</p>
+
+      <p>Sağlıklı bir ilişki istersiniz ama yalnız kalmamak uğruna sınırlarınızı ihlal eden davranışları kabul etmeye devam edebilirsiniz.</p>
+
+      <p>Kendinizi göstermek, sesinizi duyurmak istersiniz ama eleştirilme ihtimalinden korktuğunuz için fikirlerinizi kendinize saklayabilirsiniz.</p>
+
+      <p>Burada sorun, bir şeyi yeterince istememeniz değildir.</p>
+
+      <p>Sorun, istediğiniz şeyle onu elde etmek için sürdürmeniz gereken davranışlar arasında bir mesafe bulunmasıdır.</p>
+
+      <p>Çünkü bir şeyi istemek ile o şeyin gerektirdiği belirsizlikle yüzleşmeye hazır olmak aynı değildir.</p>
+
+      <p>Özgürlük istersiniz ama özgürlüğün beraberinde getirdiği sorumluluktan kaçınabilirsiniz.</p>
+
+      <p>Başarı istersiniz ama başarısız görünme ihtimalini göze alamayabilirsiniz.</p>
+
+      <p>Yakınlık istersiniz ama incinmekten korktuğunuz için kendinizi gerçekten açamayabilirsiniz.</p>
+
+      <p>Değişim istersiniz ama değişimin sizden talep edeceği yeni davranışları erteleyebilirsiniz.</p>
+
+      <p>Böylece zihninizde kurduğunuz hayat ile her gün seçimlerinizle desteklediğiniz hayat birbirinden uzaklaşır.</p>
+
+      <p><strong>Hayatınızda neyin olmasını istediğiniz kadar, o şeyin mümkün olmasına alan açan bir yaşamı nasıl kurduğunuz da önemlidir.</strong></p>
+
+      <h2>Zihninizdeki dünya ile davranışlarınızdaki dünya</h2>
+
+      <p>İnsan bazen kendisiyle ilgili bir düşünceyi o kadar sık tekrar eder ki, zamanla onu değişmez bir gerçek gibi görmeye başlar.</p>
+
+      <p>"Ben insanlara güvenemem."</p>
+
+      <p>"Para kazanmak çok zor."</p>
+
+      <p>"İlişkiler eninde sonunda acıyla biter."</p>
+
+      <p>"Başarılı olmak için sürekli mücadele etmeliyim."</p>
+
+      <p>Bu düşünceler, yalnızca zihninizde duran cümleler olarak kalmayabilir. Onlara inandığınız ölçüde kararlarınızı ve davranışlarınızı etkileyebilirler.</p>
+
+      <p>İnsanlara güvenemeyeceğinize inanıyorsanız, yakınlık kurarken sürekli bir tehlike arayabilirsiniz. Karşınızdaki kişinin davranışlarını anlamaya çalışmak yerine, onun sizi hayal kırıklığına uğratacağına dair işaretlere odaklanabilirsiniz.</p>
+
+      <p>Para kazanmanın çok zor olduğuna inanıyorsanız, yeni fırsatları değerlendirirken başarısızlık ihtimalini büyütebilir, öğrenebileceğiniz becerileri gözden kaçırabilirsiniz.</p>
+
+      <p>İlişkilerin acıyla sonuçlanacağını düşünüyorsanız, bir sorun ortaya çıktığında onu çözmek yerine ilişkinin kaçınılmaz sonuna dair bir kanıt olarak yorumlayabilirsiniz.</p>
+
+      <p>Bu durum zamanla bir döngü oluşturabilir:</p>
+
+      <p>Bir şeye inanırsınız. Bu inanç, bazı durumları nasıl yorumladığınızı etkiler. Yorumunuz, verdiğiniz tepkiyi şekillendirir. Tepkiniz belirli bir sonuca katkıda bulunur. Sonra ortaya çıkan sonucu başlangıçtaki inancınızın kanıtı olarak görürsünüz.</p>
+
+      <p>Böylece inancınız güçlenir.</p>
+
+      <p>Oysa yaşadığınız her deneyim, inandığınız şeyin mutlak olarak doğru olduğunu göstermez. Bazen yalnızca belirli bir inancın etkisi altında nasıl hareket ettiğinizi gösterir.</p>
+
+      <p><strong>Kendiniz hakkındaki bir düşüncenin sürekli doğrulanıyor gibi görünmesi, onun değişmez bir gerçek olduğu anlamına gelmez. Bazen o düşüncenin hayatınızda nasıl bir rol oynadığını incelemeniz gerekir.</strong></p>
+
+      <p>Bu nedenle kendinize şu soruyu sorun:</p>
+
+      <p>"Benim hakkımda doğru olduğuna inandığım hangi düşünceler, bugün nasıl yaşadığımı belirliyor?"</p>
+
+      <p>Belki de değiştirmeniz gereken ilk şey, koşullarınız değil; o koşullar içinde kendinize tanıdığınız imkanların sınırıdır.</p>
+
+      <h2>Dünyadan uzaklaşmak, onunla kurduğunuz ilişkiyi değiştirmek değildir</h2>
+
+      <p>Bazen insan, kendisini rahatsız eden şeylerden uzaklaşarak özgürleşeceğini düşünür.</p>
+
+      <p>İlişkilerden uzaklaşır, çünkü incinmek istemez. Parayı önemsemediğini söyler, çünkü onunla ilgili korkularıyla yüzleşmek istemez. İnsanların düşüncelerini önemsemediğini iddia eder, fakat aslında eleştirilme ihtimalinden kaçınır.</p>
+
+      <p>Elbette uzaklaşmak bazen sağlıklı bir tercihtir. Zararlı bir ilişkiden ayrılmak, kendinize zaman ayırmak veya değerlerinize uygun olmayan bir ortamdan çıkmak önemli olabilir.</p>
+
+      <p>Ancak bir şeyden uzaklaşmakla, o şeyle kurduğunuz ilişkiyi anlamak aynı değildir.</p>
+
+      <p>Bir ilişkiden uzaklaşabilirsiniz ama neden sürekli benzer ilişkilere yöneldiğinizi henüz anlamamış olabilirsiniz.</p>
+
+      <p>Parayı hayatınızın merkezine koymamayı seçebilirsiniz ama finansal kararlarınızı yöneten korkularınızla yüzleşmemiş olabilirsiniz.</p>
+
+      <p>Başkalarının düşüncelerini önemsemediğinizi söyleyebilirsiniz ama eleştirilme ihtimali karşısında hâlâ kendi sesinizi bastırıyor olabilirsiniz.</p>
+
+      <p>Dışarıdaki koşullar değişse bile, onları yorumlama ve onlara tepki verme biçiminiz aynı kaldığında, benzer zorluklarla başka biçimlerde karşılaşabilirsiniz.</p>
+
+      <p>Bu yüzden asıl mesele yalnızca bir şeyden uzaklaşmak değil, onunla ilişkinizde neyi tekrar ettiğinizi anlamaktır.</p>
+
+      <p>Bazen ihtiyacınız olan şey kaçmak değil, farklı bir şekilde ilişki kurmayı öğrenmektir.</p>
+
+      <h2>İstediğiniz hayatla aranızdaki mesafeyi nasıl kapatabilirsiniz?</h2>
+
+      <p>İlk olarak, kendiniz hakkında taşıdığınız düşünceleri fark edin.</p>
+
+      <p>Dünyayı hangi varsayımlarla yorumluyorsunuz? İnsanlardan ne bekliyorsunuz? Para, başarı, sevgi ve kendi değeriniz hakkında hangi inançları taşıyorsunuz?</p>
+
+      <p>Ardından bu inançların davranışlarınıza nasıl yansıdığını inceleyin.</p>
+
+      <p>Kendinize güvenmediğinizde ne yapıyorsunuz? Reddedilmekten korktuğunuzda nasıl davranıyorsunuz? Bir fırsatla karşılaştığınızda sizi harekete geçiren şey merak mı, yoksa başarısızlık korkusu mu?</p>
+
+      <p>İkinci olarak, istediğiniz hayatın sizin için ne anlama geldiğini somutlaştırın.</p>
+
+      <p>Özgürlük istiyorsanız, günlük hayatınızda hangi kararları daha bağımsız almanız gerekiyor?</p>
+
+      <p>Maddi bolluk istiyorsanız, finansal bilginizi, becerilerinizi, gelir kaynaklarınızı ve paranızı yönetme biçiminizi nasıl geliştirebilirsiniz?</p>
+
+      <p>Sağlıklı bir ilişki istiyorsanız, hangi sınırları korumanız ve hangi davranışları artık normalleştirmemeniz gerekiyor?</p>
+
+      <p>Soyut arzular, somut seçimlere dönüşmedikçe yalnızca arzu olarak kalabilir.</p>
+
+      <p>Üçüncü olarak, kendiniz hakkında bildiğinizi sandığınız şeyleri sorgulayın.</p>
+
+      <p>"Ben yapamam" yerine "Bunu yapabilmek için ne öğrenmem gerekiyor?" diye sorun.</p>
+
+      <p>"İnsanlar güvenilmez" yerine "Güvenilir insanları hangi davranışlarından tanıyabilirim?" diye düşünün.</p>
+
+      <p>"Ben hep aynı hataları yapıyorum" yerine "Bu davranış hangi koşullarda ortaya çıkıyor ve bir sonraki sefer neyi farklı yapabilirim?" diye araştırın.</p>
+
+      <p>Amaç, bütün olumsuz düşüncelerinizi olumlu cümlelerle değiştirmek değildir. Amaç, düşüncelerinizi sorgulanamaz gerçekler olarak görmek yerine onları değerlendirebilmek ve gerektiğinde yeni kanıtlarla güncelleyebilmektir.</p>
+
+      <p>Son olarak, yeni düşüncelerinizi davranışlarınızla destekleyin.</p>
+
+      <p>Çünkü kendinize güvenmek, yalnızca kendinize güvenen biri olduğunuzu söylemekle gelişmez. Bazen korkmanıza rağmen bir adım atmanızla, verdiğiniz bir sözü tutmanızla, bir sınırı korumanızla veya bir hatadan sonra yeniden denemenizle gelişir.</p>
+
+      <p>Kendinize dair yeni bir anlayış, günlük hayatınızda karşılık buldukça güçlenebilir.</p>
+
+      <h2>Sonuç: Dünyanızı değiştirmek için önce onunla kurduğunuz ilişkiye bakın</h2>
+
+      <p>Hayatınızın bütün koşullarını seçemezsiniz. Her insanın başlangıç noktası, imkanları ve karşılaştığı engeller aynı değildir. Bu nedenle yaşadığımız her şeyi dünya görüşümüze bağlamak da doğru olmaz.</p>
+
+      <p>Ancak dünyayı nasıl yorumladığımızın, kendimize hangi imkanları tanıdığımızın ve hangi davranışları tekrarladığımızın hayatımız üzerinde gerçek bir etkisi olabilir.</p>
+
+      <p>Kendinizi değersiz gördüğünüzde kabul ettiğiniz şeylerle, kendi değerinizi tanımaya başladığınızda kabul ettiğiniz şeyler farklılaşabilir.</p>
+
+      <p>Başarısızlığı son olarak gördüğünüzde verdiğiniz tepkilerle, onu öğrenme sürecinin bir parçası olarak değerlendirdiğinizde verdiğiniz tepkiler farklılaşabilir.</p>
+
+      <p>Belirsizliği yalnızca bir tehdit olarak algıladığınızda aldığınız kararlarla, onu dikkatli değerlendirilmesi gereken bir durum olarak gördüğünüzde aldığınız kararlar farklılaşabilir.</p>
+
+      <p>Ve bu farklılıklar, zaman içinde hayatınızın yönünü etkileyebilir.</p>
+
+      <p>Belki de kendinize sormanız gereken asıl soru şudur:</p>
+
+      <p><strong>"Hayatımda neyin değişmesini istiyorum ve bugünkü düşüncelerimle, seçimlerimle ve davranışlarımla o değişime ne kadar alan açıyorum?"</strong></p>
+
+      <p>Çünkü istediğiniz hayatı yalnızca hayal etmek yetmez. Onu mümkün kılabilecek seçimleri öğrenmeniz, yeni davranışlar geliştirmeniz ve bazen kendiniz hakkında yıllardır doğru kabul ettiğiniz düşünceleri yeniden değerlendirmeniz gerekir.</p>
+
+      <p>Dünyanın size her zaman istediğinizi sunacağını garanti edemezsiniz. Ancak dünyayla kurduğunuz ilişkiyi daha bilinçli hâle getirebilirsiniz.</p>
+
+      <p><strong>Bazen değişmesi gereken, dünyanın size sundukları değildir; onlarla ne yaptığınız, kendinize hangi imkanları tanıdığınız ve hangi ihtimallere açık olduğunuzdur.</strong></p>
+
+      <p>Çünkü hayatınızı yalnızca ne istediğiniz değil, o isteğe doğru her gün nasıl hareket ettiğiniz de şekillendirir.</p>
+
+    </div>
+
+    <section class="cta">
+      <h2>Kendinizi daha yakından keşfedin.</h2>
+      <p>Düşünce kalıplarınızı, seçimlerinizi ve hayatınızda değiştirmek istediğiniz alanları birlikte değerlendirebiliriz.</p>
+      <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">SEANS OLUŞTUR</a>
+    </section>
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Adalin Sohtorik · Tüm hakları saklıdır.</p>
+  <p><a class="nav-link" href="index.html">Blog ana sayfasına dön</a></p>
+</footer>
 
 <script>
+const root = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
 
-const content = document.querySelector(".content");
-
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
-    }
+function applyTheme(theme) {
+  root.setAttribute('data-theme', theme);
+  themeToggle.textContent = theme === 'noirberry' ? '☼' : '☾';
+  themeToggle.setAttribute(
+    'aria-label',
+    theme === 'noirberry' ? 'Açık temaya geç' : 'Koyu temaya geç'
+  );
+  try {
+    localStorage.setItem('theme2', theme);
+  } catch (error) {}
 }
 
-window.addEventListener("scroll", showContent);
-showContent();
+let savedTheme = 'noirberry';
+try {
+  savedTheme = localStorage.getItem('theme2') || 'noirberry';
+} catch (error) {}
 
-window.addEventListener("scroll", () => {
+applyTheme(savedTheme);
 
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
-
-  document.getElementById("progressBar").style.width = progress + "%";
-
+themeToggle.addEventListener('click', () => {
+  const current = root.getAttribute('data-theme');
+  applyTheme(current === 'noirberry' ? 'light' : 'noirberry');
 });
 
-</script>
+function updateProgress() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  document.getElementById('progress').style.width = progress + '%';
+}
 
+window.addEventListener('scroll', updateProgress, { passive: true });
+window.addEventListener('resize', updateProgress);
+updateProgress();
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
