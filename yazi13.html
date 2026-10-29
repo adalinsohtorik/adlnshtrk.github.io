@@ -1,364 +1,609 @@
+
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1c0716">
+  <meta name="description" content="Gölge Yönümüz & Mizah">
+  <title>Gölge Yönümüz & Mizah | Blog — Adalin Sohtorik</title>
 
-<title>Gölge Yönümüz & Mizah</title>
- 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8ecdf;
+      --ink: #3e1a1e;
+      --ink-soft: #7d4b45;
+      --plum: #7a2f3a;
+      --accent: #c4472f;
+      --glass: rgba(255,246,236,.55);
+      --glass-edge: rgba(255,255,255,.72);
+      --shadow: 0 24px 60px -24px rgba(160,64,40,.38);
+    }
 
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
-}
+    [data-theme="noirberry"] {
+      color-scheme: dark;
+      --bg: #1c0716;
+      --ink: #f3dfe4;
+      --ink-soft: #cfa6b6;
+      --plum: #f0c6d3;
+      --accent: #ff8fb0;
+      --glass: rgba(58,14,42,.5);
+      --glass-edge: rgba(255,160,190,.22);
+      --shadow: 0 24px 70px -24px rgba(0,0,0,.6);
+    }
 
-/* PROGRESS BAR */
+    * {
+      box-sizing: border-box;
+    }
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* BACK BUTTON */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      transition: background .35s, color .35s;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(180,65,105,.22), transparent 36%),
+        radial-gradient(ellipse at 88% 26%, rgba(116,52,112,.25), transparent 35%),
+        radial-gradient(ellipse at 52% 92%, rgba(196,71,47,.13), transparent 38%);
+    }
 
-/* HEADER IMAGE */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      opacity: .07;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+    }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background: var(--accent);
+      z-index: 20;
+    }
 
-/* CONTENT CARD */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--glass-edge);
+    }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    .nav {
+      max-width: 1120px;
+      margin: auto;
+      padding: 17px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
+    .brand {
+      color: var(--ink);
+      text-decoration: none;
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      letter-spacing: .03em;
+    }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
-}
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
 
-/* TITLE */
+    .back {
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: .85rem;
+      transition: color .2s;
+    }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
-}
+    .back:hover {
+      color: var(--accent);
+    }
 
-/* META */
+    .theme-toggle {
+      border: 1px solid var(--glass-edge);
+      background: var(--glass);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font: inherit;
+      cursor: pointer;
+      font-size: .8rem;
+    }
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
-}
+    main {
+      width: min(790px, calc(100% - 40px));
+      margin: clamp(48px, 8vw, 100px) auto 80px;
+    }
 
-/* PARAGRAPH */
+    .article-head {
+      text-align: center;
+      margin-bottom: 38px;
+    }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
-}
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .7rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
 
-/* LIST */
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: clamp(2.35rem, 6vw, 4.35rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      margin: 0 auto;
+      max-width: 900px;
+    }
 
-ul{
-    margin-left:25px;
-    font-size:20px;
-    line-height:1.9;
-}
+    .title-line {
+      width: 58px;
+      height: 1px;
+      background: var(--accent);
+      margin: 28px auto 0;
+      opacity: .8;
+    }
 
-/* QUOTE */
+    .header-image {
+      display: block;
+      width: min(100%, 520px);
+      max-height: 390px;
+      object-fit: cover;
+      margin: 0 auto 38px;
+      border-radius: 24px;
+      border: 1px solid var(--glass-edge);
+      box-shadow: var(--shadow);
+    }
 
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
-}
+    .article-body {
+      padding: clamp(24px, 5vw, 54px);
+      border: 1px solid var(--glass-edge);
+      border-radius: 26px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
 
-/* MAIN BUTTON */
+    .article-body.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
-}
+    .article-body p {
+      font-size: 1rem;
+      line-height: 1.95;
+      color: var(--ink-soft);
+      margin: 0 0 1.35em;
+    }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
-}
+    .article-body p:last-child {
+      margin-bottom: 0;
+    }
 
-.seans-button::before{
-    content:'';
-    position:absolute;
-    inset:-3px;
-    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
-    border-radius:30px;
-    z-index:-1;
-    opacity:0;
-    filter:blur(12px);
-    transition:0.4s;
-}
+    .article-body h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.55rem, 3.6vw, 2.05rem);
+      line-height: 1.2;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 2.25em 0 .8em;
+    }
 
-.seans-button:hover::before{
-    opacity:1;
-    filter:blur(18px);
-}
+    .article-body h2:first-child {
+      margin-top: 0;
+    }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
-}
+    .article-body strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
 
-/* STICKY BUTTON */
+    .article-body em {
+      color: var(--plum);
+    }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
-}
+    .article-body ul {
+      margin: .2em 0 1.6em;
+      padding-left: 1.4em;
+      color: var(--ink-soft);
+    }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
-}
+    .article-body li {
+      padding-left: .3em;
+      margin: .6em 0;
+      line-height: 1.8;
+    }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
-}
+    .article-body li::marker {
+      color: var(--accent);
+    }
 
-</style>
+    .quote {
+      border-left: 2px solid var(--accent);
+      padding: 15px 22px;
+      margin: 28px 0;
+      background: var(--glass);
+      border-radius: 0 12px 12px 0;
+      color: var(--plum);
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .meta {
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: .8rem;
+      margin-top: 20px;
+      opacity: .8;
+    }
+
+    .closing-cta {
+      text-align: center;
+      margin: 54px 0 0;
+      padding: 32px 18px;
+    }
+
+    .closing-cta h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 400;
+      margin: 0 0 12px;
+    }
+
+    .closing-cta p {
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0 auto 24px;
+      max-width: 520px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff7f2;
+      text-decoration: none;
+      letter-spacing: .1em;
+      font-size: .78rem;
+      font-weight: 700;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      opacity: .9;
+    }
+
+    .sticky-session {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 15;
+    }
+
+    .sticky-session a {
+      display: inline-block;
+      padding: 12px 19px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff7f2;
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      box-shadow: var(--shadow);
+      transition: transform .2s, opacity .2s;
+    }
+
+    .sticky-session a:hover {
+      transform: translateY(-3px);
+      opacity: .9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px 38px;
+      color: var(--ink-soft);
+      font-size: .78rem;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        padding: 14px 18px;
+      }
+
+      .brand {
+        font-size: 1.1rem;
+      }
+
+      .nav-right {
+        gap: 10px;
+      }
+
+      .back {
+        font-size: .78rem;
+      }
+
+      .theme-toggle {
+        padding: 8px 10px;
+      }
+
+      main {
+        width: min(100% - 24px, 790px);
+        margin-top: 48px;
+      }
+
+      .header-image {
+        margin-bottom: 25px;
+        border-radius: 18px;
+      }
+
+      .article-body {
+        padding: 23px 20px;
+        border-radius: 20px;
+      }
+
+      .article-body p {
+        font-size: .94rem;
+        line-height: 1.9;
+      }
+
+      .sticky-session {
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .sticky-session a {
+        padding: 11px 15px;
+        font-size: .72rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="progress" id="progress"></div>
 
-<div class="progress-bar" id="progressBar"></div>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="index.html">Adalin</a>
 
-<a href="blog.html" class="back-button">←</a>
+      <div class="nav-right">
+        <a class="back" href="index.html">← Blog’a dön</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Tema değiştir">☼ / ☾</button>
+      </div>
+    </nav>
+  </header>
 
-<img src="pup.jpg" alt="Gölge Yönümüz" class="header-image">
+  <main>
+    <div class="article-head">
+      <div class="eyebrow">Gölge · Mizah · Farkındalık</div>
+      <h1>Gölge Yönümüz &amp; Mizah</h1>
+      <div class="title-line"></div>
+      <div class="meta">⏱ Okuma süresi: 5 dakika</div>
+    </div>
 
-<div class="content">
+    <img src="pup.jpg" alt="Gölge Yönümüz" class="header-image">
 
-<h1>Gölge Yönümüz & Mizah</h1>
+    <article class="article-body">
+      <p>
+        Bugün “kendini sevmek” kavramının romantize edilen yüzünü değil, gerçek ve rahatsız edici kısmını anlatacağım: gölge tarafımız.
+      </p>
 
-<div class="meta">⏱ Okuma süresi: 5 dakika</div>
+      <p>
+        Öncelikle gölgeyle yüzleşmenin en zor kısmı, onun ciddiyetidir. İnsan kendi karanlık tarafını gördüğünde genelde iki uçtan birine gider; ya inkâr eder ya da kendini yargılayarak ağırlaştırır.
+      </p>
 
-<p>
-Bugün “kendini sevmek” kavramının romantize edilen yüzünü değil, gerçek ve rahatsız edici kısmını anlatacağım: gölge tarafımız.
-</p>
+      <p>
+        İkisi de aynı kapıya çıkıyor aslında bakarsanız: kaçış. Ve burada assolistimiz olan mizahımızı artık devreye sokmamız gerekir.
+      </p>
 
-<p>
-Öncelikle gölgeyle yüzleşmenin en zor kısmı, onun ciddiyetidir. İnsan kendi karanlık tarafını gördüğünde genelde iki uçtan birine gider; ya inkâr eder ya da kendini yargılayarak ağırlaştırır.
-</p>
+      <div class="quote">
+        Mizah, egonun ciddiyetini kırar. Güldüğünüzde beyniniz tehdit algısını azaltır.
+      </div>
 
-<p>
-İkisi de aynı kapıya çıkıyor aslında bakarsanız: kaçış. Ve burada assolistimiz olan mizahımızı artık devreye sokmamız gerekir.
-</p>
+      <p>
+        Güldüğünüzde beyninizde dopamin ve endorfin salgılanır. Bu, tehdidi azaltır. Yani aslında kendi karanlık tarafınızı, beyniniz için tehlike olmaktan çıkarırsınız. Bu yüzden kendine gülebilen insanlar daha hızlı dönüşür. Çünkü kendileriyle savaşmazlar.
+      </p>
 
-<div class="quote">
-Mizah, egonun ciddiyetini kırar. Güldüğünüzde beyniniz tehdit algısını azaltır.
-</div>
+      <p>
+        Bir söz vardır; “Ciddiyet bir hastalıktır.” İnsan kendini ciddi olmaya zorladıkça stres artar, tolerans azalır ve çözüm kapasitesi düşer.
+      </p>
 
-<p>
-Güldüğünüzde beyninizde dopamin ve endorfin salgılanır. Bu, tehdidi azaltır. Yani aslında kendi karanlık tarafınızı, beyniniz için tehlike olmaktan çıkarırsınız. Bu yüzden kendine gülebilen insanlar daha hızlı dönüşür. Çünkü kendileriyle savaşmazlar.
-</p>
+      <h2>Kendine gülebilmek neden zor?</h2>
 
-<p>
-Bir söz vardır; “Ciddiyet bir hastalıktır.” İnsan kendini ciddi olmaya zorladıkça stres artar, tolerans azalır ve çözüm kapasitesi düşer.
-</p>
+      <p>
+        Çünkü ego şunu ister: “Mükemmel görün.”  
+        Lakin gerçek şudur ki; kendine gülemeyen insan, kendini fazla ciddiye alan insandır. Kendini fazla ciddiye alan insan ise değişemez. Zira değişim, önce “yanlış olabilirim” diyebilmektir.
+      </p>
 
-<h2>Kendine gülebilmek neden zor?</h2>
+      <p>
+        Karanlık tarafınızla savaşarak kazanamazsınız. Ama onunla dalga geçebildiğiniz an, üzerinizdeki gücünü kırabilirsiniz.
+      </p>
 
-<p>
-Çünkü ego şunu ister: “Mükemmel görün.”  
-Lakin gerçek şudur ki; kendine gülemeyen insan, kendini fazla ciddiye alan insandır. Kendini fazla ciddiye alan insan ise değişemez. Zira değişim, önce “yanlış olabilirim” diyebilmektir.
-</p>
+      <h2>Gölge Taraf: Sadece Psikoloji Değil, Biyolojidir</h2>
 
-<p>
-Karanlık tarafınızla savaşarak kazanamazsınız. Ama onunla dalga geçebildiğiniz an, üzerinizdeki gücünü kırabilirsiniz.
-</p>
+      <p>
+        İnsan beyni, özellikle amigdala, tehdit algısını yönetir. Çocuklukta “ayıp”, “yasak”, “kötü” olarak etiketlenen deneyimler tehlike olarak kodlanır. Prefrontal korteks ise bastırmayı seçer.
+      </p>
 
-<h2>Gölge Taraf: Sadece Psikoloji Değil, Biyolojidir</h2>
+      <p>
+        Bastırılan her duygu bilinçten silinmez. Bilinçaltına itilir ve orada birikir. Bu süreçte stres hormonları, özellikle kortizol devreye girer. Yani gölge sadece psikolojik değil, bedensel bir gerilimdir.
+      </p>
 
-<p>
-İnsan beyni, özellikle amigdala, tehdit algısını yönetir. Çocuklukta “ayıp”, “yasak”, “kötü” olarak etiketlenen deneyimler tehlike olarak kodlanır. Prefrontal korteks ise bastırmayı seçer.
-</p>
+      <div class="quote">
+        Sorun çoğu zaman bilinçli değildir, ama etkisi gerçektir.
+      </div>
 
-<p>
-Bastırılan her duygu bilinçten silinmez. Bilinçaltına itilir ve orada birikir. Bu süreçte stres hormonları, özellikle kortizol devreye girer. Yani gölge sadece psikolojik değil, bedensel bir gerilimdir.
-</p>
+      <p>
+        Bu noktada projeksiyon mekanizması devreye girer. Kendi içinde kabul edemediğin şeyi başkasında görür ve ona tepki verirsin. Beyin enerji tasarrufu yapar:
+      </p>
 
-<div class="quote">
-Sorun çoğu zaman bilinçli değildir, ama etkisi gerçektir.
-</div>
+      <p>“Sorun bende değil, onda.”</p>
 
-<p>
-Bu noktada projeksiyon mekanizması devreye girer. Kendi içinde kabul edemediğin şeyi başkasında görür ve ona tepki verirsin. Beyin enerji tasarrufu yapar:
-</p>
+      <p>
+        İşte bu yüzden insanlar değişmez. Çünkü değişim enerji ister.
+      </p>
 
-<p>
-“Sorun bende değil, onda.”
-</p>
+      <h2>Gölgeyi entegre etmek neden zor?</h2>
 
-<p>
-İşte bu yüzden insanlar değişmez. Çünkü değişim enerji ister.
-</p>
+      <ul>
+        <li>Ego kırılır</li>
+        <li>Kimlik sarsılır</li>
+        <li>Sinir sistemi alarm verir</li>
+      </ul>
 
-<h2>Gölgeyi entegre etmek neden zor?</h2>
+      <p>
+        Bu sadece duygusal bir rahatsızlık değil, fizyolojik bir dirençtir. Bu yüzden çoğu insan “kendini sevme” adı altında kaçınmayı seçer.
+      </p>
 
-<ul>
-<li>Ego kırılır</li>
-<li>Kimlik sarsılır</li>
-<li>Sinir sistemi alarm verir</li>
-</ul>
+      <h2>Minik Bir Gölgeyi Dönüştürme Pratiği</h2>
 
-<p>
-Bu sadece duygusal bir rahatsızlık değil, fizyolojik bir dirençtir. Bu yüzden çoğu insan “kendini sevme” adı altında kaçınmayı seçer.
-</p>
+      <p><strong>Tetikleyici Haritalama</strong></p>
 
-<h2>Minik Bir Gölgeyi Dönüştürme Pratiği</h2>
+      <p>
+        Sizi en çok sinirlendiren 3 insanı yazın. Her biri için şu soruyu sorun:  
+        “Bu kişide beni rahatsız eden özellik ne?”
+      </p>
 
-<p><strong>Tetikleyici Haritalama</strong></p>
+      <p>
+        Sonra kendinize şunu sorun:  
+        “Bu özellik bende hiç yok mu, yoksa bastırılmış mı?”
+      </p>
 
-<p>
-Sizi en çok sinirlendiren 3 insanı yazın. Her biri için şu soruyu sorun:  
-“Bu kişide beni rahatsız eden özellik ne?”
-</p>
+      <p><strong>Mikro İfade Deneyi</strong></p>
 
-<p>
-Sonra kendinize şunu sorun:  
-“Bu özellik bende hiç yok mu, yoksa bastırılmış mı?”
-</p>
+      <p>
+        Bastırdığınız özelliğinizi küçük dozlarda hayatınıza sokun. Mesela fazla iyi biriyseniz bir gün “hayır” diyebilirsiniz. Böylece beyninize şu mesajı öğretirsiniz:
+      </p>
 
-<p><strong>Mikro İfade Deneyi</strong></p>
+      <div class="quote">
+        “Bu davranış ölümcül değil.”
+      </div>
 
-<p>
-Bastırdığınız özelliğinizi küçük dozlarda hayatınıza sokun. Mesela fazla iyi biriyseniz bir gün “hayır” diyebilirsiniz. Böylece beyninize şu mesajı öğretirsiniz:
-</p>
+      <p>
+        Gölge sizin düşmanınız değildir. Ama kontrolsüz bırakılırsa sizi sabote eder. Onu yok etmeye çalışırsanız büyür. Onu görür ve mizahınızı kullanırsanız dönüşür.
+      </p>
 
-<div class="quote">
-“Bu davranış ölümcül değil.”
-</div>
+      <div class="quote">
+        “Gölge, insanın karanlık tarafı değil, kullanılmamış gücüdür.”
+      </div>
 
-<p>
-Gölge sizin düşmanınız değildir. Ama kontrolsüz bırakılırsa sizi sabote eder. Onu yok etmeye çalışırsanız büyür. Onu görür ve mizahınızı kullanırsanız dönüşür.
-</p>
+      <p>
+        Ama insanlar burada yanılgıya düşüyorlar: sadece okumakla yetiniyorlar. Farkındalık, uygulama olmadan hiçbir şeydir.
+      </p>
+    </article>
 
-<div class="quote">
-“Gölge, insanın karanlık tarafı değil, kullanılmamış gücüdür.”
-</div>
+    <section class="closing-cta">
+      <h2>Bu yolculuğa birlikte başlayalım.</h2>
+      <p>Kendinizi daha yakından keşfetmek ve yeni bir bakış açısı geliştirmek için ön görüşmeye davetlisiniz.</p>
+      <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">SEANS OLUŞTUR</a>
+    </section>
+  </main>
 
-<p>
-Ama insanlar burada yanılgıya düşüyorlar: sadece okumakla yetiniyorlar. Farkındalık, uygulama olmadan hiçbir şeydir.
-</p>
+  <div class="sticky-session">
+    <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">SEANS OLUŞTUR</a>
+  </div>
 
-</div>
+  <footer>
+    <a href="index.html">Adalin Sohtorik</a> · Kendinize başka bir yerden bakın.
+  </footer>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme2');
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-    Seans Oluştur
-  </a>
-</div>
-
-
-<script>
-
-/* SCROLL ANIMATION */
-
-const content = document.querySelector(".content");
-
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
+    if (savedTheme === 'light' || savedTheme === 'noirberry') {
+      root.setAttribute('data-theme', savedTheme);
     }
-}
 
-window.addEventListener("scroll", showContent);
-showContent();
+    toggle.addEventListener('click', () => {
+      const nextTheme =
+        root.getAttribute('data-theme') === 'noirberry'
+          ? 'light'
+          : 'noirberry';
 
+      root.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme2', nextTheme);
+    });
 
-/* PROGRESS BAR */
+    const content = document.querySelector('.article-body');
+    const progress = document.getElementById('progress');
 
-window.addEventListener("scroll", () => {
+    function showContent() {
+      const rect = content.getBoundingClientRect();
 
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
+      if (rect.top < window.innerHeight - 100) {
+        content.classList.add('show');
+      }
+    }
 
-  document.getElementById("progressBar").style.width = progress + "%";
+    function updateProgress() {
+      const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
 
-});
+      const amount = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
 
-</script>
+      progress.style.width = amount + '%';
+    }
 
+    window.addEventListener('scroll', showContent, { passive: true });
+    window.addEventListener('scroll', updateProgress, { passive: true });
+
+    showContent();
+    updateProgress();
+  </script>
 </body>
 </html>
