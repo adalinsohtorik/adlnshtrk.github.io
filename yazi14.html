@@ -1,290 +1,437 @@
+
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c0716">
+<meta name="description" content="Sözde kişisel gelişim, ego ve gerçek farkındalık arasındaki ilişki üzerine Adalin Sohtorik'in yazısı.">
+<title>Sözde Kişisel Gelişim: Egonun Entelektüel Kılığı — Adalin Sohtorik</title>
 
-<title>Sözde Kişisel Gelişim..</title>
- 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,20,1;9..144,500,20,1;9..144,600,20,1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
+:root {
+  --bg: #f8ecdf;
+  --ink: #3e1a1e;
+  --ink-soft: #7d4b45;
+  --plum: #7a2f3a;
+  --accent: #c4472f;
+  --glass: rgba(255,246,236,.72);
+  --glass-edge: rgba(255,255,255,.72);
+  --shadow: 0 24px 60px -24px rgba(160,64,40,.28);
 }
 
-/* PROGRESS BAR */
-
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
+[data-theme="noirberry"] {
+  --bg: #1c0716;
+  --ink: #f3dfe4;
+  --ink-soft: #cfa6b6;
+  --plum: #f0c6d3;
+  --accent: #ff8fb0;
+  --glass: rgba(58,14,42,.62);
+  --glass-edge: rgba(255,160,190,.2);
+  --shadow: 0 24px 70px -24px rgba(0,0,0,.5);
 }
 
-/* BACK BUTTON */
+* { box-sizing: border-box; }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
-/* HEADER IMAGE */
-
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.85;
+  transition: background .3s ease, color .3s ease;
 }
 
-/* CONTENT CARD */
-
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
-
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
+.progress {
+  position: fixed;
+  z-index: 1000;
+  inset: 0 auto auto 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent);
 }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
+.aurora {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-/* TITLE */
-
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
+.blob {
+  position: absolute;
+  width: 38vw;
+  height: 38vw;
+  min-width: 280px;
+  min-height: 280px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .16;
+  background: var(--accent);
+  animation: drift 18s ease-in-out infinite alternate;
 }
 
-/* META */
+.blob.one { top: -12%; left: -10%; }
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
+.blob.two {
+  right: -12%;
+  top: 38%;
+  background: var(--plum);
+  animation-delay: -8s;
 }
 
-/* PARAGRAPH */
-
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
+@keyframes drift {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to { transform: translate3d(35px,45px,0) scale(1.12); }
 }
 
-/* QUOTE */
-
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
+.grain {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 
-/* MAIN BUTTON */
-
-.seans-container{
-    text-align:center;
-    margin:60px 0;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--glass-edge);
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
+.nav {
+  width: min(1100px, 92%);
+  min-height: 76px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.seans-button::before{
-    content:'';
-    position:absolute;
-    inset:-3px;
-    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
-    border-radius:30px;
-    z-index:-1;
-    opacity:0;
-    filter:blur(12px);
-    transition:0.4s;
+.brand {
+  color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-size: 1.45rem;
+  letter-spacing: .12em;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.seans-button:hover::before{
-    opacity:1;
-    filter:blur(18px);
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
 }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
+.nav-link {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: .82rem;
+  transition: color .2s ease;
 }
 
-/* STICKY BUTTON */
+.nav-link:hover { color: var(--accent); }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
+.theme-toggle {
+  border: 1px solid var(--glass-edge);
+  background: transparent;
+  color: var(--ink);
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.05rem;
 }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
+main {
+  width: min(850px, 92%);
+  margin: 66px auto 90px;
 }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
+.article-card {
+  padding: clamp(25px, 6vw, 68px);
+  border: 1px solid var(--glass-edge);
+  border-radius: 25px;
+  background: var(--glass);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
+.back-link {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: var(--ink-soft);
+  font-size: .84rem;
+  text-decoration: none;
+}
+
+.back-link:hover { color: var(--accent); }
+
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+h1, h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0 0 36px;
+  font-size: clamp(2.2rem, 6vw, 3.7rem);
+  letter-spacing: -.035em;
+}
+
+.article-body p {
+  margin: 0 0 22px;
+  font-size: 1rem;
+}
+
+.article-body strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.cta {
+  margin-top: 48px;
+  padding: 30px;
+  border: 1px solid var(--glass-edge);
+  border-radius: 20px;
+  text-align: center;
+  background: var(--glass);
+}
+
+.cta h2 {
+  margin: 0 0 10px;
+  font-size: 1.8rem;
+}
+
+.cta p {
+  margin: 0 0 22px;
+  color: var(--ink-soft);
+  font-size: .92rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 13px 25px;
+  border-radius: 30px;
+  background: var(--accent);
+  color: #fff8f5;
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+footer {
+  padding: 25px 15px 35px;
+  color: var(--ink-soft);
+  text-align: center;
+  font-size: .8rem;
+}
+
+@media (max-width: 600px) {
+  .nav { min-height: 68px; }
+  .brand { font-size: 1.12rem; }
+  .nav-right { gap: 12px; }
+  .nav-link { font-size: .75rem; }
+  main { margin-top: 32px; }
+  .article-card { border-radius: 18px; }
+  .article-body p { font-size: .96rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
 </style>
 </head>
 
 <body>
+<div class="progress" id="progress"></div>
 
-<div class="progress-bar" id="progressBar"></div>
-
-<a href="blog.html" class="back-button">←</a>
-
-<img src="kisi.jpg" alt="Sözde Kişisel Gelişim" class="header-image">
-
-<div class="content">
-
-<h1>Sözde Kişisel Gelişim...</h1>
-
-<div class="meta">⏱ Okuma süresi: 3 dakika</div>
-
-<p>
-Son zamanlarda çevrede “ruhsal gelişim”, “aydınlanma”, “farkındalık” gibi terimler giderek daha sık duyuluyor, fark etmişsinizdir. Lakin şahsen ben bunları duydukça gerçek anlamlarının kaybolduğunu hissediyorum. Bu kavramların özellikle özüne dalmamış kişiler tarafından sıklıkla kullanılması, bu kelimelerin değerinin ve gerçek anlamının aşınmasına yol açıyor. Orijinal anlamlarını kaybediyor ve neredeyse anlamsız hale geliyorlar.
-</p>
-
-<p>
-Sözde “aydınlanmış” insanların etrafındaki insanlara karşı kibirli ve küçümseyici tavırlarını gördüğünüz zamanlar vardır. Bu sözde "aydınlanmış insanların" ruhsal açıdan gerçekte ne kadar gelişmiş olduklarını merak etmeye sevk eder.
-</p>
-
-<p>
-Bana göre gerçek manevi gelişim ve farkındalık, dürüstlük, samimiyet, anlayış, ahlak, nezaket, saygı, tevazu ve sabır gibi basit ama önemli insani niteliklerinde kendini gösterir.
-</p>
-
-<div class="quote">
-Pek çok insan manevi uygulamalarda ne kadar "ilerlediklerini" göstermeyi sever: karmaşık asanalar yapmak, çivilerin üstünde durmak, buzlu suda oturmak veya dolunayda meditasyon yapmak. Ancak, eğer başkalarıyla olan ilişkileri de gelişmiyorsa ve aldatmaya, manipüle etmeye, saldırganlık göstermeye, kendini sevmemeye, başkalarının beklentilerini karşılamaya, dünyaya güvenmemeye, kendilerine/etrafına yalan söylemeye, yargılamaya devam ediyorsa, 
- bu gerçek ruhsal gelişimin eksikliğini gösterir sadece. Sonuçta ruhsal gelişimin gerçek göstergesi sadece sözler değil, aynı zamanda günlük yaşamda kendini gösteren eylemlerdir.
+<div class="aurora" aria-hidden="true">
+  <div class="blob one"></div>
+  <div class="blob two"></div>
 </div>
+<div class="grain" aria-hidden="true"></div>
 
-<p>
-Maalesef bizim toplumumuzda bizlere "öğrenmemenin" değil "bilmemenin" ayıp olduğu öğretildi, bu sebepten ötürü ister istemez herkes her şeyi biliyormuş gibi görünmeye çalışıyor. Bilmemek normaldir..
-</p>
+<header>
+  <nav class="nav" aria-label="Ana menü">
+    <a class="brand" href="index.html">Adalin</a>
+    <div class="nav-right">
+      <a class="nav-link" href="index.html">Blog</a>
+      <a class="nav-link" href="index.html#hakkimda">Hakkımda</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Temayı değiştir">☼</button>
+    </div>
+  </nav>
+</header>
 
-<p>
-Manevi yol kolay bir yürüyüş değildir.
-</p>
+<main>
+  <article class="article-card">
+    <a class="back-link" href="index.html">← Tüm yazılara dön</a>
 
-<p>
-Dürüstlük, anlayış veya cömertlik gibi basit niteliklerin hayatta gösterilmesi kolay değildir. Gerçeği saklamak, söylemekten, parayı saklamak bağışlamaktan, yargılamak, anlamaya çalışmaktan daha kolaydır. Farkındalık sadece eğitimi değil, aynı zamanda kendinizi ve başkalarını daha iyi anlamanızı sağlayan sürekli öz kontrolü de gerektirir. Bir kişinin eylemleri onun manevi seviyesi hakkında sözlerden çok daha fazla şey anlatır.
-</p>
+    <div class="eyebrow">Farkındalık · Ego · Kişisel Gelişim</div>
 
-<div class="quote">
-    Buddha'nın bir sözü vardır;
-“Sırf ben söyledim diye sözlerime inanmayın. Bir kuyumcunun altını test ettiği gibi test edin.”
-</div>
+    <h1>Sözde Kişisel Gelişim: Egonun Entelektüel Kılığı</h1>
 
-<p>
-Bu tavsiye bize her türlü ruhsal bilginin kişisel deneyim ve eleştirel düşünme prizmasından geçirilmesi gerektiğini hatırlatır. 
- Gerçek farkındalığın temelinde samimiyet ve kendine karşı dürüstlük yatar. Budizm üzerine okunan kitap sayısı veya meditasyonda geçirilen saat sayısıyla ölçülmez. 
- Bu, kendi tepkilerinizi ve eylemlerinizi, aynadaki yansımanızı, kendinizle ilgili gerçeği süslemeden gördüğünüzü anlamanızdır.
+    <div class="article-body">
+      <p>Son yıllarda ruhsal gelişim, aydınlanma, farkındalık ve bilinç gibi kavramları çok daha sık duyar olduk. Fakat bir kavramın daha fazla kullanılması, onun daha iyi anlaşıldığı anlamına gelmez.</p>
 
-</p>
+      <p>Hatta bazen tam tersi olur: Kelimeler çoğaldıkça anlamları aşınır.</p>
 
-<p>
-Manevi gelişim basit şeylerde kendini gösterir: zorluklara tepki olarak, başkalarına karşı tutumda. Farkındalık, ideal için çabalamadan, 
- eksikliklerinizi kabul etmek ve sürekli kendiniz üzerinde çalışmakla başlar.</p>
+      <p>Kişisel gelişimle ilgilenen bazı insanların bir süre sonra çevrelerine yukarıdan bakmaya başladıklarını fark etmişsinizdir. İnsanları bilinçli ve bilinçsiz, gelişmiş ve gelişmemiş, uyanmış ve uyuyanlar diye sınıflandırırlar. Başkalarının davranışlarını kolaylıkla analiz eder, hatalarını görür ve onlara neyi anlamaları gerektiğini anlatırlar.</p>
 
-</div>
+      <p>Peki, kendisini geliştirdiğini düşünen bir insan neden başkalarından üstün hissetmeye başlar?</p>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+      <p>Belki de egosunu geride bırakmak yerine, ona daha sofistike bir kimlik kazandırmıştır.</p>
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-    Seans Oluştur
-  </a>
-</div>
+      <p><strong>Çünkü ego, her zaman kendini büyük görerek ortaya çıkmaz. Bazen herkesten daha farkında, daha bilinçli ve daha gelişmiş olduğunu düşünerek de kendini gösterir.</strong></p>
+
+      <p>İnsan bir zamanlar sahip olduğu statüyle övünürken, başka bir zaman ne kadar mütevazı olduğunu göstermekle övünebilir. Eskiden maddi başarılarıyla üstünlük kurarken, bugün ruhsal bilgisiyle aynı şeyi yapabilir.</p>
+
+      <p>Görünüş değişir. Üstün olma ihtiyacı aynı kalır.</p>
+
+      <p>Gerçek gelişim ise yalnızca daha fazla şey öğrenmek değildir. Öğrendiklerinizin sizi kendinize karşı ne kadar dürüst kıldığıdır.</p>
+
+      <p>Bir insanın psikoloji kitapları okuması, onun ilişkilerinde sağlıklı davrandığını kanıtlamaz. Meditasyon yapması, öfkesini yönetebildiği anlamına gelmez. Bilinçaltından, travmalardan ve bağlanma stillerinden söz edebilmesi, kendi davranışlarının sorumluluğunu aldığı anlamına gelmez.</p>
+
+      <p><strong>Kendinizi geliştirmek için öğrendiğiniz bilgileri başkalarını yargılamak için kullanıyorsanız, bilginiz artmış olabilir ama farkındalığınız aynı ölçüde artmamış olabilir.</strong></p>
+
+      <p>Üstelik insanın kendisini kandırmasının en kolay yollarından biri, kendi kusurlarını gelişim yolculuğunun arkasına saklamaktır.</p>
+
+      <p>Kibirli davranır ama buna yüksek farkındalık der. İnsanları küçümser ama bunu onların gerçeklerini görebilmekle açıklar. Duygularından kaçar ama bunu ruhsal olgunluk zanneder. Kendi hatalarını kabul etmek yerine, karşısındaki insanın henüz yeterince gelişmediğini düşünür.</p>
+
+      <p>Böylece kişisel gelişim, insanın kendisini sorguladığı bir alan olmaktan çıkar ve kendisini haklı çıkardığı yeni bir sahneye dönüşür.</p>
+
+      <p>Oysa gerçek gelişim, her zaman daha iyi hissetmek ya da kendiniz hakkında daha olumlu düşünmek değildir. Bazen kendinizle ilgili hoşunuza gitmeyen bir gerçekle yüzleşmektir.</p>
+
+      <p>Başkalarını yargılarken kendinizde de benzer davranışlar bulunduğunu fark etmek…</p>
+
+      <p>Haklı çıkmak yerine hatanızı kabul edebilmek…</p>
+
+      <p>Bilmediğiniz bir konuda bilmediğinizi söyleyebilmek…</p>
+
+      <p>Size hiçbir fayda sağlamayacak olsa bile dürüst davranmak…</p>
+
+      <p>Ve en önemlisi, kendinizi geliştirdiğinizi düşünürken bile hâlâ yanılıyor olabileceğinizi kabul etmek.</p>
+
+      <p>Bunlar gösterişli değildir. Fotoğrafı çekilecek, sosyal medyada sergilenecek ya da başkalarının hayranlığını kazanacak büyük ruhsal başarılar gibi görünmeyebilir.</p>
+
+      <p>Fakat insanın karakteri çoğu zaman tam da bu küçük anlarda ortaya çıkar.</p>
+
+      <p>Çivilerin üzerinde durmak, buzlu suda beklemek ya da saatlerce meditasyon yapmak kişisel bir disiplinin parçası olabilir. Ancak bunların hiçbiri tek başına ahlaki olgunluğun, nezaketin veya kendini tanımanın kanıtı değildir.</p>
+
+      <p><strong>Bir insanın gelişimini, kendisi hakkında anlattıkları kadar; güçsüz hissettiğinde, eleştirildiğinde, çıkarı söz konusu olduğunda ve başkalarıyla anlaşamadığında nasıl davrandığına bakarak da değerlendirmek gerekir.</strong></p>
+
+      <p>Çünkü insanın karakteri, yalnızca huzurlu olduğu anlarda değil, egosunun incindiği anlarda da görünür hâle gelir.</p>
+
+      <p>Ne yazık ki çoğumuza bilmemekten utanmamız, her şeyi biliyormuş gibi görünmemiz öğretildi. Oysa bilmediğini kabul edebilmek, öğrenmenin ön koşuludur. Her sorunun cevabına sahip olmak zorunda değilsiniz. Her insanın hatasını görmek zorunda da değilsiniz.</p>
+
+      <p>Bazen gelişim, daha çok şey söylemek değil, konuşmadan önce kendinizi sorgulamaktır.</p>
+
+      <p>Bazen farkındalık, başkasının neden yanlış davrandığını anlamak değil, onun davranışına verdiğiniz tepkinin arkasında ne olduğunu görebilmektir.</p>
+
+      <p>Bazen de en büyük ilerleme, kendinizi kimseden üstün görmeden kendi yolunuzda yürüyebilmektir.</p>
+
+      <p>Bir insana dair ne kadar çok şey bildiğiniz, onu küçümseme hakkı vermez. Bir konuda daha fazla bilgi sahibi olmanız, insan olarak daha değerli olduğunuz anlamına gelmez.</p>
+
+      <p><strong>Kişisel gelişiminiz sizi başkalarına tepeden bakmaya götürüyorsa, belki de gelişen şey farkındalığınız değil, egonuzun kendisini ifade etme biçimidir.</strong></p>
+
+      <p>Gerçek gelişim, herkesten daha bilinçli olduğunuzu kanıtlamak değildir. Kendi kör noktalarınızı görmeye, hatalarınızı kabul etmeye ve gerektiğinde kendinizi yeniden değerlendirmeye açık olmaktır.</p>
+
+      <p>Çünkü insanın ne kadar geliştiğini, kendisini ne kadar yücelttiğine bakarak değil; kendisiyle ve başkalarıyla kurduğu ilişkide neyi değiştirebildiğine bakarak anlayabiliriz.</p>
+
+      <p><strong>Belki de gerçek aydınlanma, başkalarının ne kadar karanlıkta olduğunu görmek değil, kendi gölgelerinizi başkalarına yansıtmaktan vazgeçmektir.   Bazen ihtiyacınız olan şey, hayatınıza yeni cevaplar eklemek değil, bugüne kadar doğru kabul ettiğiniz soruları yeniden düşünmektir. Bu yolculuğa birlikte başlamak için ön görüşmeye davetlisiniz</strong></p>
+    </div>
+
+    <section class="cta">
+      <h2>Bu yolculuğa birlikte başlayalım.</h2>
+      <p>Kendinizi daha yakından keşfetmek ve yeni sorulara alan açmak için ön görüşmeye davetlisiniz.</p>
+      <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">SEANS OLUŞTUR</a>
+    </section>
+  </article>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Adalin Sohtorik · Tüm hakları saklıdır.</p>
+  <p><a class="nav-link" href="index.html">Blog ana sayfasına dön</a></p>
+</footer>
 
 <script>
+const root = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
 
-/* SCROLL ANIMATION */
-
-const content = document.querySelector(".content");
-
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
-    }
+function applyTheme(theme) {
+  root.setAttribute('data-theme', theme);
+  themeToggle.textContent = theme === 'noirberry' ? '☼' : '☾';
+  themeToggle.setAttribute(
+    'aria-label',
+    theme === 'noirberry' ? 'Açık temaya geç' : 'Koyu temaya geç'
+  );
+  try {
+    localStorage.setItem('theme2', theme);
+  } catch (error) {}
 }
 
-window.addEventListener("scroll", showContent);
-showContent();
+let savedTheme = 'noirberry';
+try {
+  savedTheme = localStorage.getItem('theme2') || 'noirberry';
+} catch (error) {}
 
-/* PROGRESS BAR */
+applyTheme(savedTheme);
 
-window.addEventListener("scroll", () => {
-
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
-
-  document.getElementById("progressBar").style.width = progress + "%";
-
+themeToggle.addEventListener('click', () => {
+  const current = root.getAttribute('data-theme');
+  applyTheme(current === 'noirberry' ? 'light' : 'noirberry');
 });
 
-</script>
+function updateProgress() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  document.getElementById('progress').style.width = progress + '%';
+}
 
+window.addEventListener('scroll', updateProgress, { passive: true });
+window.addEventListener('resize', updateProgress);
+updateProgress();
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
