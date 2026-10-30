@@ -1,288 +1,832 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Acıyı anlamlı kılmak zorunda değiliz. Ancak yaşadığımız deneyimin bizi nasıl etkilediğini anlamaya çalışabiliriz. Dünya Sizi Seviyor — Adalin Sohtorik.">
+  <meta name="theme-color" content="#1c0716">
 
-<title>Dünya Sizi Seviyor</title>
+  <title>Dünya Sizi Seviyor | Adalin Sohtorik</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
+  <style>
+    :root {
+      color-scheme: light;
 
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
-}
+      --bg: #f8ecdf;
+      --ink: #3e1a1e;
+      --ink-soft: #7d4b45;
+      --plum: #7a2f3a;
+      --accent: #c4472f;
+      --glass: rgba(255, 249, 243, 0.62);
+      --glass-strong: rgba(255, 249, 243, 0.82);
+      --line: rgba(105, 49, 54, 0.14);
+      --shadow: 0 24px 80px rgba(79, 29, 39, 0.10);
+      --aurora-one: rgba(207, 118, 119, 0.22);
+      --aurora-two: rgba(177, 102, 135, 0.17);
+      --aurora-three: rgba(236, 171, 133, 0.22);
+      --button-bg: #7a2f3a;
+      --button-ink: #fff4ef;
+      --topbar-bg: rgba(248, 236, 223, 0.72);
+    }
 
-/* PROGRESS BAR */
+    html[data-theme="noirberry"] {
+      color-scheme: dark;
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
-}
+      --bg: #1c0716;
+      --ink: #f3dfe4;
+      --ink-soft: #cfa6b6;
+      --plum: #f0c6d3;
+      --accent: #ff8fb0;
+      --glass: rgba(54, 18, 39, 0.58);
+      --glass-strong: rgba(61, 20, 44, 0.82);
+      --line: rgba(245, 190, 211, 0.13);
+      --shadow: 0 24px 90px rgba(0, 0, 0, 0.28);
+      --aurora-one: rgba(160, 44, 100, 0.25);
+      --aurora-two: rgba(104, 42, 112, 0.22);
+      --aurora-three: rgba(207, 67, 104, 0.14);
+      --button-bg: #f0c6d3;
+      --button-ink: #351020;
+      --topbar-bg: rgba(28, 7, 22, 0.72);
+    }
 
-/* BACK BUTTON */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
 
-/* HEADER IMAGE */
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      transition: background 0.4s ease, color 0.4s ease;
+      line-height: 1.8;
+    }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 10%, var(--aurora-one), transparent 35%),
+        radial-gradient(circle at 85% 25%, var(--aurora-two), transparent 38%),
+        radial-gradient(circle at 50% 90%, var(--aurora-three), transparent 42%);
+      transition: background 0.5s ease;
+    }
 
-/* CONTENT CARD */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+    }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
+    button {
+      font: inherit;
+    }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
-}
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+    }
 
-/* TITLE */
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent);
+    }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:30px;
-}
+    .site-shell {
+      width: min(100% - 44px, 1120px);
+      margin: 0 auto;
+    }
 
-/* PARAGRAPH */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--line);
+      background: var(--topbar-bg);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
-}
+    .topbar-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-/* QUOTE BOX */
+    .brand {
+      font-family: "Fraunces", serif;
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: -0.8px;
+      white-space: nowrap;
+    }
 
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
-}
+    .brand span {
+      color: var(--accent);
+      font-style: italic;
+    }
 
-/* MAIN BUTTON */
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
-}
+    .back-link {
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: color 0.25s ease;
+    }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
-}
+    .back-link:hover {
+      color: var(--accent);
+    }
 
-/* GLOW EFFECT */
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--glass);
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
 
-.seans-button::before{
-    content:'';
-    position:absolute;
-    inset:-3px;
-    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
-    border-radius:30px;
-    z-index:-1;
-    opacity:0;
-    filter:blur(12px);
-    transition:0.4s;
-}
+    .theme-toggle:hover {
+      transform: rotate(12deg);
+      background: var(--glass-strong);
+    }
 
-.seans-button:hover::before{
-    opacity:1;
-    filter:blur(18px);
-}
+    .theme-toggle svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
-}
+    main {
+      padding: 82px 0 100px;
+    }
 
-/* STICKY BUTTON */
+    .article-heading {
+      max-width: 850px;
+      margin: 0 auto 42px;
+      text-align: center;
+      animation: fadeUp 0.8s ease both;
+    }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
-}
+    .article-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
-}
+    .article-kicker::before,
+    .article-kicker::after {
+      content: "";
+      width: 25px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.65;
+    }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
-}
+    h1 {
+      max-width: 850px;
+      margin: 0 auto;
+      color: var(--ink);
+      font-family: "Fraunces", serif;
+      font-size: clamp(42px, 7vw, 76px);
+      font-weight: 500;
+      letter-spacing: -2.8px;
+      line-height: 1.08;
+    }
 
-</style>
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 27px;
+      color: var(--ink-soft);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .article-card {
+      position: relative;
+      max-width: 850px;
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 66px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      animation: fadeUp 0.9s 0.12s ease both;
+    }
+
+    .article-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.55;
+    }
+
+    .article-body {
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 2;
+      overflow-wrap: break-word;
+    }
+
+    .article-body p {
+      margin: 0 0 23px;
+    }
+
+    .article-body h2 {
+      margin: 55px 0 23px;
+      color: var(--plum);
+      font-family: "Fraunces", serif;
+      font-size: clamp(25px, 4vw, 34px);
+      font-weight: 500;
+      letter-spacing: -0.7px;
+      line-height: 1.25;
+    }
+
+    .article-body h2:first-child {
+      margin-top: 0;
+    }
+
+    .article-body strong {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .article-body ul {
+      margin: 0 0 28px;
+      padding-left: 25px;
+    }
+
+    .article-body li {
+      margin-bottom: 12px;
+      padding-left: 5px;
+    }
+
+    .article-body li::marker {
+      color: var(--accent);
+    }
+
+    .article-body blockquote {
+      margin: 32px 0;
+      padding: 22px 26px;
+      border-left: 2px solid var(--accent);
+      border-radius: 0 14px 14px 0;
+      background: var(--glass-strong);
+      color: var(--plum);
+      font-family: "Fraunces", serif;
+      font-size: 21px;
+      line-height: 1.6;
+    }
+
+    .article-cta {
+      position: relative;
+      max-width: 850px;
+      margin: 34px auto 0;
+      padding: clamp(28px, 5vw, 48px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--glass-strong);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .cta-eyebrow {
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+    }
+
+    .article-cta h2 {
+      margin-bottom: 13px;
+      color: var(--ink);
+      font-family: "Fraunces", serif;
+      font-size: clamp(27px, 4vw, 39px);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .article-cta p {
+      max-width: 570px;
+      margin: 0 auto 25px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 0 25px;
+      border: 1px solid transparent;
+      border-radius: 50px;
+      background: var(--button-bg);
+      color: var(--button-ink);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(196, 71, 47, 0.2);
+    }
+
+    .footer {
+      padding: 35px 0 45px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--ink-soft);
+      font-size: 11px;
+    }
+
+    .footer a {
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: var(--accent);
+    }
+
+    .sticky-session {
+      position: fixed;
+      right: 25px;
+      bottom: 24px;
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      background: var(--button-bg);
+      color: var(--button-ink);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.22);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      transition: transform 0.25s ease;
+    }
+
+    .sticky-session:hover {
+      transform: translateY(-4px);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .site-shell {
+        width: min(100% - 30px, 1120px);
+      }
+
+      .topbar-inner {
+        min-height: 68px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .back-link {
+        font-size: 10px;
+      }
+
+      .topbar-actions {
+        gap: 9px;
+      }
+
+      .theme-toggle {
+        width: 38px;
+        height: 38px;
+      }
+
+      main {
+        padding: 58px 0 70px;
+      }
+
+      .article-heading {
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: clamp(39px, 11vw, 58px);
+        letter-spacing: -1.8px;
+      }
+
+      .article-card {
+        padding: 27px 22px;
+        border-radius: 22px;
+      }
+
+      .article-body {
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .article-body h2 {
+        margin-top: 43px;
+      }
+
+      .article-body blockquote {
+        padding: 18px 20px;
+        font-size: 19px;
+      }
+
+      .article-cta {
+        padding: 30px 22px;
+        border-radius: 22px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .sticky-session {
+        right: 15px;
+        bottom: 15px;
+        padding: 12px 17px;
+        font-size: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
+  <div class="progress-track">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
 
-<a href="blog.html" class="back-button">←</a>
+  <header class="topbar">
+    <div class="site-shell topbar-inner">
+      <a href="index.html" class="brand">Adalin <span>Sohtorik</span></a>
 
-<img src="dunya.jpg" alt="Dünya" class="header-image">
+      <div class="topbar-actions">
+        <a href="index.html" class="back-link">← Ana sayfa</a>
 
-<div class="content">
+        <button class="theme-toggle" id="themeToggle" aria-label="Temayı değiştir" title="Temayı değiştir">
+          <svg id="themeIcon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-<h1>Dünya Sizi Seviyor</h1>
+  <main class="site-shell">
 
-<p>
-Acı sadece bize gelmiyor. Bu, eylemlerimizin, kararlarımızın veya eylemsizliğimizin bir sonucudur.
-Acı, doğru yoldan saptığımızda yanan bir nevi kırmızı ışıktır. Acı, bize her zaman neyin dikkat edilmesi ve düzeltilmesi gerektiğini
-    gösteren sadık yoldaşımızdır.
-</p>
+    <section class="article-heading">
+      <div class="article-kicker">Psikoloji · Farkındalık · Yaşam</div>
 
-<p>
-Ne yazık ki çoğu durumda acının sesine kulak vermek istemiyoruz. 
-Onu hayatımızı mahvetmeye gelen bir düşman olarak algılıyoruz. Oluşmasının nedenlerini aramak yerine, onu basitçe bastırıyoruz veya 
-    kaçıyoruz, hoş izlenimlerle boğmaya çalışıyoruz.
-    
-</p>
+      <h1>Dünya Sizi Seviyor</h1>
 
-<p>
-Ancak acı düşman değildir.
-Bu, hayatta kalmamıza ve ruhsal olarak büyümemize yardım etmeye gelen bilge bir öğretmendir.
-</p>
+      <div class="article-meta">
+        <span>Adalin Sohtorik</span>
+        <span class="meta-dot"></span>
+        <span>Farkındalık yazıları</span>
+      </div>
+    </section>
 
-<p>
-Acı bize kendimize ve ihtiyaçlarımıza dikkat etmeyi öğretir.
-Davranışlarımızı analiz etmeye ve kararlarımızı yeniden gözden geçirmeye zorlar. 
-</p>
+    <article class="article-card">
+      <div class="article-body">
 
-<p>
-Acı sayesinde kendimize ve başkalarına karşı daha sorumlu olmayı ve şefkatli olmayı öğrenebiliriz. Acı bize
-    şefkati öğretir. Acı yaşadığımızda başkalarını daha iyi anlar ve daha empatik oluruz. Acı, insanlık duygumuzu ve
-    ihtiyacı olanlara yardım etme arzumuzu geliştirmemize yardımcı olur.
-</p>
+        <p>Hiç düşündünüz mü, neden bazı deneyimler hayatımızda iz bırakırken bazıları yalnızca gelip geçiyor?</p>
 
-<div class="quote">
-“Hayat çok tuhaf. Kuyudan çıkmak için içine düşmeniz gerekir.”
-</div>
+        <p>Bazen bir kayıp, bazen hayal kırıklığı, bazen de hiç beklemediğimiz bir değişim... Hayatın akışı içinde karşılaştığımız bazı olaylar bizi durdurur. Bildiğimiz düzeni bozar, alışkanlıklarımızı sorgulatır ve kendimizle yüzleşmek zorunda bırakır.</p>
 
-<p>
-Acı bize hayatın değerini bilmeyi öğretir.
-Acının olmadığı anların kıymetini anlamaya başlarız. Acı bizim için gerçekten neyin önemli olduğunu düşünmeye
-    ve önemsiz şeylere zaman kaybetmemeye zorlar.
-</p>
+        <p>İşte tam da böyle zamanlarda acıya karşı bir mücadele başlatırız.</p>
 
-<p>
-Acıdan korkulmaması gerekir.
-O, daha iyi olmamıza yardım etmeye gelen bir öğretmendir. Kimse mükemmel değildir
-ve hepimiz öyle veya böyle hata yaparız. Önemli olan her hatanızı kendi lehinize çevirmenizdir.
-</p>
+        <p>Bir an önce geçmesini isteriz. Hissetmemeye, düşünmemeye, unutmaya çalışırız. Kendimizi başka şeylerle meşgul eder, güzel anların içine saklanırız. Çünkü acı, insanın uzak durmak istediği bir deneyimdir.</p>
 
-<div class="quote">
-“Dünya seni seviyor. Ve bir gün seni sarsmak için sana sert bir şekilde vuracak.
-Çünkü aklını başına toplamanın tek yolu bu.”
-</div>
+        <p>Oysa belki de bazen kendimize sormamız gereken soru şudur:</p>
 
-    
-</div>
+        <blockquote><strong>Yaşadığım bu acıdan nasıl kurtulurum değil, bu deneyim bana kendim ve hayatım hakkında ne gösteriyor?</strong></blockquote>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+        <p>Elbette her acının bir anlamı olduğunu söyleyemeyiz. Her kayıp bir ders vermek için yaşanmaz. Her hayal kırıklığının arkasında bizim fark etmemiz gereken bir hata bulunmaz. Bazen insanlar haksızlığa uğrar, bazen kontrolümüz dışındaki olaylar hayatımızı değiştirir ve bazen de hiçbir açıklaması olmayan şeyler yaşarız.</p>
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-    Seans Oluştur
+        <p>Acıyı anlamlı kılmak zorunda değiliz. Ancak yaşadığımız deneyimin bizi nasıl etkilediğini anlamaya çalışabiliriz.</p>
+
+        <h2>Acı Her Zaman Yanlış Yolda Olduğunuzu Göstermez</h2>
+
+        <p>Acıyı çoğu zaman bir uyarı işareti olarak düşünürüz. Sanki hayat bize bir şeylerin yanlış gittiğini anlatmaya çalışıyordur.</p>
+
+        <p>Bazen gerçekten öyledir.</p>
+
+        <p>Kendimizi sürekli ihmal ediyorsak, ihtiyaçlarımızı görmezden geliyorsak, istemediğimiz hâlde sınırlarımızı aşıyorsak ya da aynı hatalı davranışları tekrarlıyorsak yaşadığımız sıkıntılar durup düşünmemiz gerektiğini gösterebilir.</p>
+
+        <p>Ancak acı her zaman yanlış bir kararın sonucu değildir.</p>
+
+        <p>Bazen doğru olanı yaptığınız hâlde acı çekersiniz. Size zarar veren bir ilişkiden ayrılırsınız ama özlersiniz. Kendinizi korumak için birine hayır dersiniz ama suçluluk hissedersiniz. Hayatınızda yeni bir sayfa açarsınız ama alıştığınız düzeni geride bırakmanın zorluğunu yaşarsınız.</p>
+
+        <p>Peki, bu durumda acı size yanlış yaptığınızı mı söylüyordur?</p>
+
+        <p>Hayır.</p>
+
+        <p>Bazen acı, yanlış yolda olduğunuzun değil, alıştığınız bir şeyden uzaklaşmanın doğal bir parçasıdır.</p>
+
+        <p>Bu nedenle her zor duyguyu ortadan kaldırılması gereken bir sorun gibi görmemek gerekir. Bazen korku, üzüntü ve özlem de önemli bir değişimin eşlikçisidir.</p>
+
+        <p><strong>Kendinizi kötü hissetmeniz, mutlaka yanlış bir şey yaptığınız anlamına gelmez.</strong></p>
+
+        <h2>Acı, Kendinize Bakmadığınız Yerleri Gösterebilir</h2>
+
+        <p>İnsan bazen kendisini en çok zorlayan şeyin ne olduğunu ancak artık o şekilde yaşamaya devam edemediğinde fark eder.</p>
+
+        <p>Yıllarca herkesi memnun etmeye çalışırsınız. Kendi ihtiyaçlarınızı erteler, başkalarının beklentilerine göre hareket edersiniz. Bir gün yorgunluğunuz dayanılmaz hâle gelir ve kendinize şu soruyu sorarsınız:</p>
+
+        <p>"Ben bütün bunları yaparken kendimi nereye koydum?"</p>
+
+        <p>Ya da bir ilişkide sürekli anlayış gösterirsiniz. Karşınızdaki insanın davranışlarını açıklamaya, haklı nedenler bulmaya çalışırsınız. Ancak bir noktada kendi sınırlarınızı ne kadar ihmal ettiğinizi fark edersiniz.</p>
+
+        <p>Bazen yaşadığımız sıkıntılar, uzun zamandır görmezden geldiğimiz ihtiyaçlarımızı daha görünür hâle getirebilir.</p>
+
+        <p>Bu noktada acının kendisini yüceltmek yerine, onun ortaya çıkardığı farkındalığa bakmak daha anlamlıdır.</p>
+
+        <p>Belki de kendinize daha fazla zaman ayırmanız, sınırlarınızı yeniden belirlemeniz, bir karar almanız ya da uzun zamandır ertelediğiniz bir değişime başlamanız gerekiyordur.</p>
+
+        <p>Ancak unutmayın: Kendinizi anlamak için illa ki tükenmeniz, kaybetmeniz ya da büyük bir acı yaşamanız gerekmez.</p>
+
+        <p>İnsan, kendisine iyi gelmeyen şeyleri fark etmek için hayatın onu sarsmasını beklemek zorunda değildir.</p>
+
+        <h2>Acı Bize Başkalarını Anlamayı Öğretebilir</h2>
+
+        <p>Hiç yaşamadığınız bir duyguyu anlamak bazen zordur.</p>
+
+        <p>Bir kaybın ardından duyulan boşluğu, hayal kırıklığının insanın içinde bıraktığı ağırlığı ya da uzun süre anlaşılmamanın nasıl hissettirdiğini yaşamadan tam olarak kavramak kolay değildir.</p>
+
+        <p>Ancak kendi zor deneyimlerimiz, başkalarının yaşadıklarına daha dikkatli ve anlayışlı yaklaşmamıza yardımcı olabilir.</p>
+
+        <p>Bir zamanlar sizin de desteğe ihtiyaç duyduğunuz bir dönem olduysa, bugün zorlanan bir insanın sessizliğini daha farklı yorumlayabilirsiniz.</p>
+
+        <p>Bir zamanlar kendinizi anlatamadıysanız, başkasının sözünü kesmeden dinlemenin değerini daha iyi anlayabilirsiniz.</p>
+
+        <p>Bir zamanlar yargılandığınız için incindiyseniz, başkalarının hayatları hakkında hemen hüküm vermemeyi öğrenebilirsiniz.</p>
+
+        <p>Acı, empati geliştirmek için bir fırsata dönüşebilir. Fakat bu da kendiliğinden gerçekleşmez. Yaşadığı acı nedeniyle daha anlayışlı biri hâline gelen insanlar olduğu gibi, incindikleri için başkalarına karşı daha sertleşen insanlar da vardır.</p>
+
+        <p>Belirleyici olan yalnızca ne yaşadığımız değil, yaşadıklarımızla nasıl ilişki kurduğumuzdur.</p>
+
+        <p><strong>Acı çekmek insanı otomatik olarak şefkatli yapmaz. Fakat kendi kırılganlığını tanıyan insan, başkasının kırılganlığına da daha fazla alan açabilir.</strong></p>
+
+        <h2>Acı, Hayatta Neye Değer Verdiğinizi Yeniden Düşündürebilir</h2>
+
+        <p>Bazen hayatın değerini, her şey yolundayken değil, alıştığımız şeylerin değiştiği zamanlarda daha derinden hissederiz.</p>
+
+        <p>Bir kayıp, sevdiklerimizin varlığını daha fazla takdir etmemize neden olabilir. Zorlu bir dönem, sağlığımızın ve günlük yaşamımızdaki küçük huzurların kıymetini hatırlatabilir. Büyük bir hayal kırıklığı, yıllardır peşinden koştuğumuz bir şeyin gerçekten isteyip istemediğimiz bir şey olup olmadığını sorgulatabilir.</p>
+
+        <p>Belki de yıllardır ulaşmaya çalıştığınız hedefin sizi mutlu edeceğini düşünüyordunuz. Ancak ona yaklaştıkça kendinizi daha yorgun ve uzak hissediyorsunuz.</p>
+
+        <p>Belki de başkalarının gözünde başarılı görünmeye çalışırken kendi hayatınızdan ne kadar uzaklaştığınızı fark ediyorsunuz.</p>
+
+        <p>Bazen zor deneyimler önceliklerimizi yeniden değerlendirmemize yardımcı olur.</p>
+
+        <p>Neye zaman ayırdığımızı, kimlerle bir arada olmak istediğimizi, neleri artık taşımak istemediğimizi ve nasıl bir hayat kurmak istediğimizi yeniden düşünürüz.</p>
+
+        <p>Hayatın değerini bilmek için acı çekmek gerekmez. Ancak acı bazen, zaten sahip olduğumuz şeylere ne kadar az dikkat ettiğimizi fark etmemizi sağlayabilir.</p>
+
+        <h2>Acınızla Savaşmak Yerine Onu Anlamaya Çalışın</h2>
+
+        <p>Acı yaşadığınızda kendinize karşı daha da acımasız davranıyor olabilirsiniz.</p>
+
+        <p>"Neden hâlâ üzülüyorum?"</p>
+
+        <p>"Artık bunu geride bırakmış olmam gerekmez mi?"</p>
+
+        <p>"Başkaları böyle şeyleri çoktan aşmışken ben neden aşamıyorum?"</p>
+
+        <p>Bu soruların hiçbirinin size iyileşmek için ihtiyaç duyduğunuz alanı açmadığını fark edin.</p>
+
+        <p>İnsan her deneyimi aynı hızda geride bırakmaz. Bazı duyguların yatışması zaman alır. Bazı kayıpların ardından hayatı yeniden düzenlemek gerekir. Bazı yaraların iyileşmesi için yalnızca zaman değil, destek ve güvenli bir ortam da gerekir.</p>
+
+        <p>Kendinize şunları sorabilirsiniz:</p>
+
+        <ul>
+          <li>Bu deneyimde beni en çok inciten şey ne?</li>
+          <li>Hangi ihtiyacım karşılanmadı?</li>
+          <li>Kendime karşı nerede dürüst davranmıyorum?</li>
+          <li>Değiştirebileceğim bir şey var mı?</li>
+          <li>Şu anda kendime nasıl destek olabilirim?</li>
+        </ul>
+
+        <p>Bu soruların amacı her acıya bir açıklama bulmak değildir. Kendinizi suçlamadan, yaşadığınız deneyime daha yakından bakabilmenizi sağlamaktır.</p>
+
+        <p>Çünkü bazen ihtiyacınız olan şey daha güçlü olmak değil, kendinize karşı daha anlayışlı olmayı öğrenmektir.</p>
+
+        <p>Ve bazen de yalnız başınıza çözmeye çalışmayı bırakıp birinden destek almaktır.</p>
+
+        <h2>Her Acı Bir Ders Değildir, Ama Her Deneyimden Bir Şey Anlayabilirsiniz</h2>
+
+        <p>Hayat her zaman adil değildir. İyi niyetli olmak her zaman iyi şeyler yaşayacağınız anlamına gelmez. Doğru kararlar vermek sizi bütün hayal kırıklıklarından korumaz. Kendinizi geliştirmek de bir daha incinmeyeceğiniz anlamına gelmez.</p>
+
+        <p>Bunları kabul etmek karamsarlık değildir. Hayata gerçekçi bakabilmenin bir parçasıdır.</p>
+
+        <p>Ancak yaşadığınız her şeyin sizi tanımlamasına da izin vermek zorunda değilsiniz.</p>
+
+        <p>Bir ilişkinin bitmesi, sevilmeye layık olmadığınız anlamına gelmez. Bir başarısızlık, yetersiz olduğunuzu kanıtlamaz. Bir kayıp, bundan sonra mutlu olamayacağınızı göstermez.</p>
+
+        <p>Yaşadıklarınız hayat hikâyenizin bir parçasıdır ama tamamı değildir.</p>
+
+        <p>Belki de asıl dönüşüm, acıyı hayatınızdan tamamen çıkarmaya çalışmayı bıraktığınızda değil, acı yaşarken kendinizi terk etmemeyi öğrendiğinizde başlar.</p>
+
+        <p><strong>Çünkü olgunlaşmak, hiç incinmemek değil; incindiğinizde kendinize nasıl davranacağınızı öğrenmektir.</strong></p>
+
+        <h2>Dünya Sizi Seviyor mu?</h2>
+
+        <p>Belki dünya bizi seviyor ya da sevmiyor diye bir soru sormak yerine, hayatın bize sunduğu deneyimlerle nasıl bir ilişki kurduğumuzu düşünmeliyiz.</p>
+
+        <p>Dünya bize her zaman istediğimizi vermez. Bazen planlarımız bozulur, bazen insanlar gider, bazen emek verdiğimiz şeyler beklediğimiz sonucu getirmez.</p>
+
+        <p>Bunların hepsini birer işaret, ceza ya da özel bir mesaj olarak yorumlamak zorunda değiliz.</p>
+
+        <p>Fakat yaşadıklarımız karşısında kendimizi tamamen çaresiz bırakmak da zorunda değiliz.</p>
+
+        <p>Bazen bir deneyimden sınır koymayı öğreniriz. Bazen vazgeçmeyi, bazen yeniden başlamayı, bazen de hiçbir şeyi hemen düzeltmeye çalışmadan kendimize zaman tanımayı...</p>
+
+        <p>Belki de hayatın bize öğrettiği en önemli şeylerden biri şudur: Her şeyi kontrol edemeyiz ama kendimizle kurduğumuz ilişkiyi geliştirebiliriz.</p>
+
+        <p>Acıyı kutsallaştırmayın. Ondan utanmayın. Kendinizi de yaşadıklarınız yüzünden suçlamayın.</p>
+
+        <p>Bir gün geriye dönüp baktığınızda, bugün sizi zorlayan deneyimin hayatınızda nasıl bir yer edindiğini daha farklı görebilirsiniz. Belki size bir şey öğretmiştir, belki yalnızca zor bir dönem olarak kalmıştır.</p>
+
+        <p>Her iki durumda da hayatınıza devam etmeye hakkınız var.</p>
+
+        <p><strong>Acı çekmiş olmak sizi daha değerli yapmaz. Acı çekmemiş olmak da sizi eksik bırakmaz. Kendinize göstereceğiniz özen, yaşadığınız zorlukların ödülü değil, her koşulda hak ettiğiniz bir yaklaşımdır.</strong></p>
+
+      </div>
+    </article>
+
+    <section class="article-cta">
+      <div class="cta-eyebrow">KENDİNE YENİ BİR ALAN AÇ</div>
+      <h2>Kendine farklı bir pencereden bakmaya hazır mısın?</h2>
+      <p>Düşünce ve davranış kalıplarını keşfetmek, kendinle kurduğun ilişkiyi anlamak ve yeni bakış açıları geliştirmek için bireysel danışmanlık profilimi ziyaret edebilirsin.</p>
+      <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">
+        SEANS OLUŞTUR ↗
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="site-shell footer-inner">
+      <span>© <span id="year"></span> Adalin Sohtorik</span>
+      <a href="index.html">Ana sayfaya dön ↑</a>
+    </div>
+  </footer>
+
+  <a class="sticky-session" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">
+    SEANS OLUŞTUR ↗
   </a>
-</div>
 
-<script>
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const progressBar = document.getElementById("progressBar");
 
-/* SCROLL ANIMATION */
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      localStorage.setItem("theme2", theme);
 
-const content = document.querySelector(".content");
-
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
+      if (theme === "noirberry") {
+        themeIcon.innerHTML = `
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+        `;
+      } else {
+        themeIcon.innerHTML = `
+          <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z"></path>
+        `;
+      }
     }
-}
 
-window.addEventListener("scroll", showContent);
-showContent();
+    const savedTheme = localStorage.getItem("theme2") || "noirberry";
+    applyTheme(savedTheme);
 
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = root.getAttribute("data-theme");
+      applyTheme(currentTheme === "noirberry" ? "light" : "noirberry");
+    });
 
-/* PROGRESS BAR */
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = documentHeight > 0 ? (scrollTop / documentHeight) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+    }
 
-window.addEventListener("scroll", () => {
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
 
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
-
-  document.getElementById("progressBar").style.width = progress + "%";
-
-});
-
-</script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
