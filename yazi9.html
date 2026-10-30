@@ -1,227 +1,592 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1c0716">
+  <meta name="description" content="Kendinizden uzaklaştığınızı mı hissediyorsunuz? Kendiniz olmadığınızı düşünmenizin ardındaki 10 nedeni keşfedin.">
+  <title>Kendiniz Olmadığınızı Düşünmenizin 10 Nedeni | Adalin Sohtorik</title>
 
-<title>Bir İnsanın Kendisi Olamamasının 10 Nedeni — Adalin Sohtorik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8ecdf;
+      --ink: #3e1a1e;
+      --ink-soft: #7d4b45;
+      --plum: #7a2f3a;
+      --accent: #c4472f;
+      --glass: rgba(255, 248, 239, .72);
+      --glass-border: rgba(122, 47, 58, .13);
+      --shadow: rgba(65, 24, 35, .10);
+      --line: rgba(122, 47, 58, .16);
+      --card: rgba(255, 250, 244, .58);
+    }
 
-<style>
+    [data-theme="noirberry"] {
+      --bg: #1c0716;
+      --ink: #f3dfe4;
+      --ink-soft: #cfa6b6;
+      --plum: #f0c6d3;
+      --accent: #ff8fb0;
+      --glass: rgba(48, 14, 35, .66);
+      --glass-border: rgba(240, 198, 211, .15);
+      --shadow: rgba(0, 0, 0, .25);
+      --line: rgba(240, 198, 211, .15);
+      --card: rgba(53, 17, 39, .55);
+    }
 
-body {
-    margin: 0;
-    background-color: #f5efe6;
-    font-family: 'Cormorant Garamond', serif;
-    color: #2b2b2b;
-    line-height: 1.8;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* Progress Bar */
+    html {
+      scroll-behavior: smooth;
+    }
 
-.progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: #5a0f1c;
-    width: 0%;
-    z-index: 999;
-}
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(119, 36, 75, .20), transparent 38%),
+        radial-gradient(ellipse at 85% 55%, rgba(105, 31, 72, .16), transparent 42%),
+        radial-gradient(ellipse at 50% 100%, rgba(65, 15, 49, .22), transparent 45%),
+        var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      transition: background .35s ease, color .35s ease;
+      overflow-x: hidden;
+    }
 
-/* Back Button */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .13;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+    }
 
-.back-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 28px;
-    text-decoration: none;
-    color: #5a0f1c;
-    font-weight: bold;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* Header */
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      z-index: 100;
+      background: transparent;
+    }
 
-.header {
-    text-align: center;
-    padding: 80px 20px 20px;
-}
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width .1s linear;
+    }
 
-.header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 40px;
-    color: #5a0f1c;
-    margin-bottom: 10px;
-}
+    .topbar {
+      position: relative;
+      z-index: 5;
+      width: min(1100px, calc(100% - 40px));
+      margin: 24px auto 0;
+      padding: 15px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 10px 35px var(--shadow);
+    }
 
-.header-line {
-    width: 80px;
-    height: 2px;
-    background: #5a0f1c;
-    margin: 20px auto;
-}
+    .brand {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      letter-spacing: .02em;
+      color: var(--ink);
+    }
 
-/* HERO IMAGE — KÜÇÜLTÜLDÜ */
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
 
-.hero {
-    width: 100%;
-    max-width: 320px;
-    height: 320px;
-    object-fit: cover;
-    display: block;
-    margin: 30px auto;
-    border-radius: 18px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-}
+    .back-link {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color .2s ease;
+    }
 
-/* Content Card */
+    .back-link:hover {
+      color: var(--accent);
+    }
 
-.content {
-    background: white;
-    max-width: 800px;
-    margin: auto;
-    padding: 40px;
-    border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    font-size: 20px;
-    text-align: justify;
-}
+    .theme-toggle {
+      border: 1px solid var(--glass-border);
+      background: transparent;
+      color: var(--ink);
+      border-radius: 30px;
+      padding: 9px 13px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
 
-/* Section */
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
-.section-title {
-    font-weight: 600;
-    color: #5a0f1c;
-    margin-top: 28px;
-    font-size: 22px;
-}
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(820px, calc(100% - 40px));
+      margin: 90px auto 100px;
+    }
 
-/* Quote */
+    .article-heading {
+      text-align: center;
+      margin-bottom: 44px;
+    }
 
-.quote {
-    border-left: 3px solid #5a0f1c;
-    padding-left: 18px;
-    margin: 30px 0;
-    font-style: italic;
-    color: #5a0f1c;
-}
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
 
-/* Button */
+    h1 {
+      max-width: 780px;
+      margin: 0 auto 22px;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(38px, 6vw, 62px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -.035em;
+      color: var(--ink);
+    }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-}
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink-soft);
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
 
-.session-btn {
-    background-color: #5a0f1c;
-    color: white;
-    padding: 14px 28px;
-    font-size: 16px;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: 0.3s;
-}
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-.session-btn:hover {
-    background-color: #7a1a2c;
-    transform: scale(1.05);
-}
+    .article-card {
+      padding: clamp(28px, 6vw, 64px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 24px 70px var(--shadow);
+    }
 
-/* Footer */
+    .article-content {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--ink-soft);
+    }
 
-footer {
-    text-align: center;
-    padding: 40px;
-    font-size: 14px;
-    color: #5a0f1c;
-}
+    .article-content p {
+      margin-bottom: 24px;
+    }
 
-</style>
+    .article-content strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .article-content em {
+      color: var(--plum);
+    }
+
+    .article-content h2 {
+      margin: 42px 0 20px;
+      font-family: 'Fraunces', serif;
+      font-size: 27px;
+      line-height: 1.3;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .article-content .numbered-point {
+      margin-top: 30px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+
+    .article-content .numbered-point strong {
+      font-weight: 700;
+    }
+
+    .article-content blockquote {
+      margin: 30px 0;
+      padding: 20px 24px;
+      border-left: 2px solid var(--accent);
+      background: rgba(196, 71, 47, .06);
+      border-radius: 0 12px 12px 0;
+      color: var(--plum);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .article-divider {
+      width: 55px;
+      height: 1px;
+      margin: 38px 0;
+      background: var(--accent);
+      opacity: .65;
+    }
+
+    .article-content .closing {
+      margin-top: 34px;
+      color: var(--ink);
+    }
+
+    .cta-section {
+      margin-top: 55px;
+      padding: 38px 30px;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      background: var(--glass);
+      text-align: center;
+      box-shadow: 0 15px 45px var(--shadow);
+    }
+
+    .cta-eyebrow {
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 14px;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(25px, 4vw, 34px);
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .cta-section p {
+      max-width: 520px;
+      margin: 0 auto 24px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 40px;
+      background: var(--accent);
+      color: #fff8f4;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(196, 71, 47, .22);
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 25px 20px 35px;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 11px;
+      letter-spacing: .04em;
+    }
+
+    footer a {
+      margin-left: 12px;
+      color: var(--plum);
+    }
+
+    .floating-cta {
+      position: fixed;
+      z-index: 10;
+      right: 24px;
+      bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 19px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 40px;
+      background: var(--accent);
+      color: #fff8f4;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: transform .2s ease;
+    }
+
+    .floating-cta:hover {
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+      .topbar {
+        width: calc(100% - 28px);
+        margin-top: 14px;
+        padding: 13px 15px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .topbar-right {
+        gap: 12px;
+      }
+
+      .back-link {
+        font-size: 10px;
+      }
+
+      .theme-toggle {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .page {
+        width: calc(100% - 28px);
+        margin: 65px auto 70px;
+      }
+
+      .article-heading {
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: 39px;
+      }
+
+      .article-card {
+        padding: 26px 22px;
+        border-radius: 18px;
+      }
+
+      .article-content {
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .article-content .numbered-point {
+        font-size: 15px;
+      }
+
+      .cta-section {
+        padding: 30px 22px;
+      }
+
+      .floating-cta {
+        right: 14px;
+        bottom: 14px;
+        padding: 12px 15px;
+        font-size: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
+  <div class="progress-track">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
 
-<a href="blog.html" class="back-btn">←</a>
+  <header class="topbar">
+    <a href="index.html" class="brand">Adalin Sohtorik</a>
 
-<div class="header">
-    <h1>Bir İnsanın Kendisi Olamamasının 10 Nedeni</h1>
-    <div class="header-line"></div>
-</div>
+    <div class="topbar-right">
+      <a href="blog.html" class="back-link">← Blog</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Tema değiştir">
+        ◐ Tema
+      </button>
+    </div>
+  </header>
 
-<img src="kendin.jpg" alt="Kendin Olmak" class="hero"> 
+  <main class="page">
 
-<div class="content">
+    <header class="article-heading">
+      <span class="eyebrow">KENDİNİ KEŞFETMEK</span>
+      <h1>Kendiniz Olmadığınızı Düşünmenizin 10 Nedeni</h1>
 
-<p>
-Birçok insan hayatı boyunca “kendisi gibi” yaşadığını düşünür.  
-Oysa çoğu zaman davranışlarımızın önemli bir kısmı korkular, alışkanlıklar ve geçmiş programlamalar tarafından yönetilir.
-</p>
+      <div class="article-meta">
+        <span>Adalin Sohtorik</span>
+        <span class="meta-dot"></span>
+        <span>5 dakika okuma</span>
+      </div>
+    </header>
 
-<div class="quote">
-“İnsan bazen kendisi olamaz çünkü yıllarca başka biri olması gerektiğine inanmıştır.”
-</div>
+    <article class="article-card">
+      <div class="article-content">
 
-<p class="section-title">1. Düşük Benlik Saygısı</p>
-<p>Kişi kendinde ilginç ya da değerli hiçbir şey olmadığına inanır ve bu yüzden kendini göstermeye cesaret edemez.</p>
+        <p>Hiç kendinizden uzaklaştığınızı, sanki kendi hayatınızı değil de başkasının hayatını yaşadığınızı hissettiniz mi?</p>
 
-<p class="section-title">2. Erteleme</p>
-<p>Sevdiği şeyleri yapmak ister fakat harekete geçmek yerine sürekli uygun zamanı bekler.</p>
+        <p>Aslında insanın kendisi olmaması mümkün müdür? Kendinizden çıkıp başka birine dönüşemezsiniz. Belki de kaybettiğinizi düşündüğünüz şey, kendiniz değil; yıllar içinde kendiniz hakkında oluşturduğunuz bazı düşüncelerdir.</p>
 
-<p class="section-title">3. Toplumsal Baskı</p>
-<p>Kişi farklı olmaktan korkar çünkü çevresinin yargılayacağını düşünür.</p>
+        <p>Peki, bu nasıl gerçekleşir?</p>
 
-<p class="section-title">4. Yanlış Anlaşılma Korkusu</p>
-<p>Gerçekte büyük bir risk yoktur fakat zihin olumsuz senaryolar üretir.</p>
+        <p class="numbered-point"><strong>1. Rollerinizle özdeşleşirsiniz.</strong></p>
 
-<p class="section-title">5. Bilinmeyenden Korkmak</p>
-<p>Mevcut durum mutsuz bile olsa tanıdıktır; değişim ise belirsiz görünür.</p>
+        <p>Anne, baba, yönetici, güçlü, anlayışlı, uyumlu… Üstlendiğiniz roller zamanla kimliğinizin tamamı hâline gelebilir. Bir rolün dışına çıktığınızda kendinizi eksik hissetmeye başlayabilirsiniz.</p>
 
-<p class="section-title">6. İç Kaynak Eksikliği</p>
-<p>Yorgunluk, stres veya tükenmişlik değişim enerjisini azaltır.</p>
+        <p class="numbered-point"><strong>2. Başkalarının sesini kendi sesiniz sanırsınız.</strong></p>
 
-<p class="section-title">7. Çocukluk Programları</p>
-<p>“Herkes gibi olmalısın” mesajları kişinin özgünlüğünü bastırır.</p>
+        <p>Ailenizin, öğretmenlerinizin veya toplumun yıllar içinde size söyledikleri, zamanla iç sesinize dönüşebilir. Artık ne istediğinizi değil, ne yapmanız gerektiğini düşünerek yaşarsınız.</p>
 
-<p class="section-title">8. Kendi İsteklerini Bilmeme</p>
-<p>Başkalarını memnun etmeye alışan kişi zamanla kendi arzularını kaybeder.</p>
+        <p class="numbered-point"><strong>3. Kendinizi sürekli ararsınız.</strong></p>
 
-<p class="section-title">9. Bilinçdışı İkincil Kazançlar</p>
-<p>Bazı problemler gizli faydalar sağlar. İlgi görmek veya sorumluluktan kaçmak gibi.</p>
+        <p>“Kendimi bulmalıyım” düşüncesi, sanki şu an kendinize sahip değilmişsiniz gibi bir his yaratabilir. Oysa bazen ihtiyaç duyduğunuz şey yeni bir kimlik bulmak değil, üzerinize aldığınız tanımları sorgulamaktır.</p>
 
-<p class="section-title">10. Konfor Alanı Bağımlılığı</p>
-<p>Tanıdık mutsuzluk bile, bilinmeyen mutluluktan daha güvenli hissedebilir.</p>
+        <p class="numbered-point"><strong>4. Kendinizi ideal hâlinizle karşılaştırırsınız.</strong></p>
 
-<p>
-Gerçek değişim, kişinin kendine dürüst olmasıyla başlar.  
-Çünkü insan ancak gerçeği gördüğünde dönüşebilir.
-</p>
+        <p>Daha başarılı, daha özgüvenli, daha güzel, daha cesur bir siz vardır zihninizde. Ancak bu ideal sürekli ilerlediği için bugünkü hâliniz hiçbir zaman yeterli görünmez.</p>
 
-<div class="button-container">
-<a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" class="session-btn">
-Seans Oluştur
-</a>
-</div>
+        <p class="numbered-point"><strong>5. Kendinizi sürekli düzeltmeye çalışırsınız.</strong></p>
 
-</div>
+        <p>Her “Daha iyi olmalıyım” düşüncesinin altında bazen “Şu an olduğum hâlimle yeterli değilim” inancı yatabilir. Gelişmek istemek doğaldır; fakat kendinizi sürekli kusurlu görerek değişmeye çalışmak, kendinizle aranıza mesafe koyabilir.</p>
 
-<footer>
-© 2025 Adalin Sohtorik. Tüm hakları saklıdır.
-</footer>
+        <p class="numbered-point"><strong>6. Başkalarının gözünden yaşamaya başlarsınız.</strong></p>
 
-<script>
-window.onscroll = function() {
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrolled = (winScroll / height) * 100;
-    document.getElementById("progressBar").style.width = scrolled + "%";
-};
-</script>
+        <p>Yanlış anlaşılmaktan, eleştirilmekten veya dışlanmaktan korktuğunuzda davranışlarınızı başkalarının tepkilerine göre şekillendirebilirsiniz. Bir süre sonra nasıl görünmek istediğinizi bilirsiniz ama gerçekte ne istediğinizi unutabilirsiniz.</p>
+
+        <p class="numbered-point"><strong>7. Değişimden ve bilinmeyenden kaçınırsınız.</strong></p>
+
+        <p>Alıştığınız hayat sizi mutlu etmese bile tanıdıktır. Yeni bir karar, yeni bir çevre veya farklı bir yaşam biçimi ise belirsizlik taşır. Bu yüzden bazen mutsuz olduğunuz yerde kalmak, kendinize yeni bir alan açmaktan daha kolay gelir.</p>
+
+        <p class="numbered-point"><strong>8. Geçmişinizi kimliğiniz hâline getirirsiniz.</strong></p>
+
+        <p>“Ben böyleyim çünkü çocukluğumda…” veya “Yaşadıklarımdan sonra artık değişemem.” Geçmişiniz sizi etkilemiş olabilir ama sizi bütünüyle tanımlamak zorunda değildir. Yaşadıklarınız hikayenizin bir parçasıdır, tamamı değil.</p>
+
+        <p class="numbered-point"><strong>9. Kendinizi sürekli ertelersiniz.</strong></p>
+
+        <p>“Biraz daha özgüven kazanayım, sonra başlayacağım.” “Şartlar düzelsin, o zaman istediğim gibi yaşayacağım.” Kendiniz olmayı gelecekteki bir zamana bıraktığınızda, bugünkü hayatınızı bekleme odasına dönüştürebilirsiniz.</p>
+
+        <p class="numbered-point"><strong>10. Kendi isteklerinizi duymayı unutursunuz.</strong></p>
+
+        <p>Başkalarını memnun etmeye, sorumlulukları yerine getirmeye ve beklentileri karşılamaya o kadar alışabilirsiniz ki neyi gerçekten istediğinizi ayırt etmek zorlaşır. Bazen sizi durduran şey isteksizlik değil; kendi isteklerinize uzun zamandır yer açmamış olmanızdır.</p>
+
+        <div class="article-divider"></div>
+
+        <p>Bu on nedenin ortak bir noktası var: Kendiniz hakkında oluşturduğunuz düşünceleri, zamanla değişmez gerçekler gibi kabul etmek.</p>
+
+        <p>Belki de kendinizi bulmak için yeni bir kişiliğe, yeni bir role veya kusursuz bir versiyona ihtiyacınız yoktur. Öncelikle kendiniz hakkında doğru kabul ettiğiniz düşüncelere biraz daha yakından bakmanız yeterlidir.</p>
+
+        <p>Bir dahaki sefere “Ben artık kendim gibi değilim” diye düşündüğünüzde kendinize şu soruyu sorun:</p>
+
+        <blockquote>
+          <em>“Şu an kendimden uzaklaştığımı söyleyen kim ve bu düşünceyi hangi kabule dayandırıyor?”</em>
+        </blockquote>
+
+        <p class="closing">Belki de aradığınız şey, henüz dönüşmediğiniz biri değil; başkalarının beklentileri arasında sesini daha az duyduğunuz kendinizdir.</p>
+
+      </div>
+    </article>
+
+    <section class="cta-section">
+      <div class="cta-eyebrow">KENDİNE YENİ BİR ALAN AÇ</div>
+      <h2>Kendine farklı bir pencereden bakmaya hazır mısın?</h2>
+      <p>Düşünce ve davranış kalıplarını keşfetmek, kendinle kurduğun ilişkiyi anlamak ve yeni bakış açıları geliştirmek için bireysel danışmanlık profilimi ziyaret edebilirsin.</p>
+      <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">
+        SEANS OLUŞTUR ↗
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Adalin Sohtorik
+    <a href="index.html">Ana sayfaya dön ↑</a>
+  </footer>
+
+  <a class="floating-cta" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">
+    SEANS OLUŞTUR ↗
+  </a>
+
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme2");
+
+    if (savedTheme === "holo") {
+      document.documentElement.setAttribute("data-theme", "holo");
+    } else {
+      document.documentElement.setAttribute("data-theme", "noirberry");
+    }
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "noirberry" ? "holo" : "noirberry";
+
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme2", newTheme);
+    });
+
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+      document.getElementById("progressBar").style.width = progress + "%";
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
