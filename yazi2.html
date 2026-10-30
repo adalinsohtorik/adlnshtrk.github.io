@@ -1,256 +1,893 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sabırla kabullenme arasındaki farkı, zihinsel direnci ve yoğunlaşmış sıkıntılarla kurduğumuz ilişkiyi keşfedin. Adalin Sohtorik.">
+  <meta name="theme-color" content="#1c0716">
 
-<title>Yoğunlaşmış Sıkıntılar</title>
+  <title>Yoğunlaşmış Sıkıntılar | Adalin Sohtorik</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8ecdf;
+      --ink: #3e1a1e;
+      --ink-soft: #7d4b45;
+      --plum: #7a2f3a;
+      --accent: #c4472f;
+      --glass: rgba(255, 249, 243, 0.62);
+      --glass-strong: rgba(255, 249, 243, 0.82);
+      --line: rgba(105, 49, 54, 0.14);
+      --shadow: 0 24px 80px rgba(79, 29, 39, 0.10);
+      --aurora-one: rgba(207, 118, 119, 0.22);
+      --aurora-two: rgba(177, 102, 135, 0.17);
+      --aurora-three: rgba(236, 171, 133, 0.22);
+      --button-bg: #7a2f3a;
+      --button-ink: #fff4ef;
+      --topbar-bg: rgba(248, 236, 223, 0.72);
+    }
 
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
-}
+    html[data-theme="noirberry"] {
+      color-scheme: dark;
+      --bg: #1c0716;
+      --ink: #f3dfe4;
+      --ink-soft: #cfa6b6;
+      --plum: #f0c6d3;
+      --accent: #ff8fb0;
+      --glass: rgba(54, 18, 39, 0.58);
+      --glass-strong: rgba(61, 20, 44, 0.82);
+      --line: rgba(245, 190, 211, 0.13);
+      --shadow: 0 24px 90px rgba(0, 0, 0, 0.28);
+      --aurora-one: rgba(160, 44, 100, 0.25);
+      --aurora-two: rgba(104, 42, 112, 0.22);
+      --aurora-three: rgba(207, 67, 104, 0.14);
+      --button-bg: #f0c6d3;
+      --button-ink: #351020;
+      --topbar-bg: rgba(28, 7, 22, 0.72);
+    }
 
-/* PROGRESS BAR */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
 
-/* BACK BUTTON */
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      transition: background 0.4s ease, color 0.4s ease;
+      line-height: 1.8;
+    }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 10%, var(--aurora-one), transparent 35%),
+        radial-gradient(circle at 85% 25%, var(--aurora-two), transparent 38%),
+        radial-gradient(circle at 50% 90%, var(--aurora-three), transparent 42%);
+      transition: background 0.5s ease;
+    }
 
-/* HEADER IMAGE */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+    }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* CONTENT CARD */
+    button {
+      font: inherit;
+    }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+    }
 
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent);
+    }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
-}
+    .site-shell {
+      width: min(100% - 44px, 1120px);
+      margin: 0 auto;
+    }
 
-/* TITLE */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--line);
+      background: var(--topbar-bg);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
-}
+    .topbar-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-/* META */
+    .brand {
+      font-family: "Fraunces", serif;
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: -0.8px;
+      white-space: nowrap;
+    }
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
-}
+    .brand span {
+      color: var(--accent);
+      font-style: italic;
+    }
 
-/* PARAGRAPH */
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
-}
+    .back-link {
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: color 0.25s ease;
+    }
 
-/* MAIN BUTTON */
+    .back-link:hover {
+      color: var(--accent);
+    }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
-}
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--glass);
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
-}
+    .theme-toggle:hover {
+      transform: rotate(12deg);
+      background: var(--glass-strong);
+    }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
-}
+    .theme-toggle svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-/* STICKY BUTTON */
+    main {
+      padding: 82px 0 100px;
+    }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
-}
+    .article-heading {
+      max-width: 850px;
+      margin: 0 auto 42px;
+      text-align: center;
+      animation: fadeUp 0.8s ease both;
+    }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
-}
+    .article-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
-}
+    .article-kicker::before,
+    .article-kicker::after {
+      content: "";
+      width: 25px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.65;
+    }
 
-</style>
+    h1 {
+      max-width: 850px;
+      margin: 0 auto;
+      color: var(--ink);
+      font-family: "Fraunces", serif;
+      font-size: clamp(42px, 7vw, 76px);
+      font-weight: 500;
+      letter-spacing: -2.8px;
+      line-height: 1.08;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 27px;
+      color: var(--ink-soft);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .article-card {
+      position: relative;
+      max-width: 850px;
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 66px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      animation: fadeUp 0.9s 0.12s ease both;
+    }
+
+    .article-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.55;
+    }
+
+    .article-body {
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 2;
+      overflow-wrap: break-word;
+    }
+
+    .article-body p {
+      margin: 0 0 23px;
+    }
+
+    .article-body h2 {
+      margin: 55px 0 23px;
+      color: var(--plum);
+      font-family: "Fraunces", serif;
+      font-size: clamp(25px, 4vw, 34px);
+      font-weight: 500;
+      letter-spacing: -0.7px;
+      line-height: 1.25;
+    }
+
+    .article-body h2:first-child {
+      margin-top: 0;
+    }
+
+    .article-body strong {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      margin: 0 0 28px;
+      padding-left: 25px;
+    }
+
+    .article-body li {
+      margin-bottom: 12px;
+      padding-left: 5px;
+    }
+
+    .article-body li::marker {
+      color: var(--accent);
+    }
+
+    .article-body blockquote {
+      margin: 32px 0;
+      padding: 22px 26px;
+      border-left: 2px solid var(--accent);
+      border-radius: 0 14px 14px 0;
+      background: var(--glass-strong);
+      color: var(--plum);
+      font-family: "Fraunces", serif;
+      font-size: 21px;
+      line-height: 1.6;
+    }
+
+    .article-cta {
+      position: relative;
+      max-width: 850px;
+      margin: 34px auto 0;
+      padding: clamp(28px, 5vw, 48px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--glass-strong);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .cta-eyebrow {
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+    }
+
+    .article-cta h2 {
+      margin-bottom: 13px;
+      color: var(--ink);
+      font-family: "Fraunces", serif;
+      font-size: clamp(27px, 4vw, 39px);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .article-cta p {
+      max-width: 570px;
+      margin: 0 auto 25px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 0 25px;
+      border: 1px solid transparent;
+      border-radius: 50px;
+      background: var(--button-bg);
+      color: var(--button-ink);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(196, 71, 47, 0.2);
+    }
+
+    .footer {
+      padding: 35px 0 45px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--ink-soft);
+      font-size: 11px;
+    }
+
+    .footer a {
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: var(--accent);
+    }
+
+    .sticky-session {
+      position: fixed;
+      right: 25px;
+      bottom: 24px;
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      background: var(--button-bg);
+      color: var(--button-ink);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.22);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      transition: transform 0.25s ease;
+    }
+
+    .sticky-session:hover {
+      transform: translateY(-4px);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .site-shell {
+        width: min(100% - 30px, 1120px);
+      }
+
+      .topbar-inner {
+        min-height: 68px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .back-link {
+        font-size: 10px;
+      }
+
+      .topbar-actions {
+        gap: 9px;
+      }
+
+      .theme-toggle {
+        width: 38px;
+        height: 38px;
+      }
+
+      main {
+        padding: 58px 0 70px;
+      }
+
+      .article-heading {
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: clamp(39px, 11vw, 58px);
+        letter-spacing: -1.8px;
+      }
+
+      .article-card {
+        padding: 27px 22px;
+        border-radius: 22px;
+      }
+
+      .article-body {
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .article-body h2 {
+        margin-top: 43px;
+      }
+
+      .article-body blockquote {
+        padding: 18px 20px;
+        font-size: 19px;
+      }
+
+      .article-cta {
+        padding: 30px 22px;
+        border-radius: 22px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .sticky-session {
+        right: 15px;
+        bottom: 15px;
+        padding: 12px 17px;
+        font-size: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
+  <div class="progress-track">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
 
-<a href="blog.html" class="back-button">←</a>
+  <header class="topbar">
+    <div class="site-shell topbar-inner">
+      <a href="index.html" class="brand">Adalin <span>Sohtorik</span></a>
 
-<img src="yohun.jpg" alt="Yoğunlaşmış Sıkıntılar" class="header-image">
+      <div class="topbar-actions">
+        <a href="index.html" class="back-link">← Ana sayfa</a>
 
-<div class="content">
+        <button class="theme-toggle" id="themeToggle" aria-label="Temayı değiştir" title="Temayı değiştir">
+          <svg id="themeIcon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-<h1>Yoğunlaşmış Sıkıntılar</h1>
+  <main class="site-shell">
 
-<div class="meta">⏱ Okuma süresi: 4 dakika</div>
+    <section class="article-heading">
+      <div class="article-kicker">Psikoloji · Farkındalık · Kabullenme</div>
 
-<p>
-Hayatımızın temeli kabullenmektir. İyilik kabul üzerine kuruludur, sevgi ise iyiliğin üzerine kuruludur. 
-    Geleceğinizin kolaylıkla gelmesini istiyorsanız, mümkün olduğunca iyilik hallerini deneyimleyin.
-</p>
+      <h1>Yoğunlaşmış Sıkıntılar</h1>
 
-<p>
-Şefkat ve merhameti, acıma ve merhametle karıştırmamak gerektiği gibi,
-    kabullenmeyi de sabırla karıştırmamak gerekir. 
-    Mesela birisi çok konuştuğunda, 
-    konuşuyor, biz de katlanıyoruz ve sonra patlıyoruz işte sabır budur. 
-    Kabullenme ise birisinin konuşmasının müzikal bir şekilde hoş olması ve devam etmesine izin vermemizdir, 
-    çünkü biz bunu gerçekten severiz.
-</p>
+      <div class="article-meta">
+        <span>Adalin Sohtorik</span>
+        <span class="meta-dot"></span>
+        <span>Farkındalık yazıları</span>
+      </div>
+    </section>
 
-<p>
-Aradaki fark çok büyüktür.
-    Eğer bir yerde birine tahammül ederseniz, düşük frekanslı titreşimler yaratırsınız ve
-    geleceğin gelmesine izin vermezsiniz. Geldiğinde tam da bu düşük frekansları yok edecektir ve bu sizde öfke,
-    kırgınlık, nefret ve depresyon gibi duyguları ortaya çıkaracaktır. Ve bu duygular gelecekten gelen 
-    yüksek frekanslarla güçlendirilirler.
-</p>
+    <article class="article-card">
+      <div class="article-body">
 
+        <p>Hiç istemediğiniz bir ortamda bulunup oradan bir an önce ayrılmayı beklediğiniz oldu mu?</p>
 
-<p>
-Enerji dağılımı şu olmalıdır: %70 geçmiş ve bugünün kabulü,
-    %30 geleceğin kabulü. Eğer gelecekte çok fazla birikim oluşuyorsa
-    ama mevcut ve geçmiş kabulü yetersizse, hayat kabul etmeyi artırmak için sıkıntılar sunar. Yani, kabul etmeniz gereken
-    sıkıntılar size sunulur. 
-</p>
+        <p>Birinin konuşması sizi rahatsız eder. Bir olay planladığınız gibi gelişmez. Bir insanın davranışını değiştirmesini beklersiniz ama değişmez. İçinizden sürekli aynı cümle geçer:</p>
 
-<p>
-Geçmiş ve geleceğin uyumu %70 / %30 seviyesinde olmalıdır.
-</p>
+        <p>"Keşke böyle olmasaydı."</p>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+        <p>Dışarıdan bakıldığında sessizsinizdir. Belki gülümsüyor, başınızı sallıyor, hatta karşınızdaki kişiye anlayış gösteriyorsunuzdur. Fakat içinizde bambaşka bir konuşma devam eder.</p>
 
-</div>
+        <p>"Artık sussa keşke."</p>
 
+        <p>"Niye böyle davranıyor?"</p>
 
-<!-- STICKY BUTTON -->
+        <p>"Ben neden bunlara katlanmak zorundayım?"</p>
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-    Seans Oluştur
+        <p>Bir süre sonra tahammülünüz tükenir. Küçük bir söz, beklenmedik bir hareket ya da önemsiz görünen bir ayrıntı bütün birikmiş öfkeyi ortaya çıkarır.</p>
+
+        <p>Peki gerçekten o son olay yüzünden mi öfkelendiniz? Yoksa uzun zamandır içinizde sürdürdüğünüz mücadele artık taşınamaz hale mi geldi?</p>
+
+        <p>İşte burada sabırla kabullenme arasındaki farkı anlamak gerekiyor.</p>
+
+        <p>Çünkü bazen bir şeye katlanırız ama onu kabul etmiş olmayız. Bazen de değiştiremeyeceğimiz bir gerçeklikle mücadele etmeyi bıraktığımızda, içimizde taşıdığımız sıkıntının önemli bir kısmı kendiliğinden çözülmeye başlar.</p>
+
+        <h2>1. Sabır ve Kabullenme Aynı Şey Değildir</h2>
+
+        <p>Çok konuşan biriyle aynı odada oturduğunuzu düşünün.</p>
+
+        <p>Birinci senaryoda karşınızdaki kişi konuşmaya devam ediyor. Siz dinliyorsunuz, başınızı sallıyorsunuz, arada gülümsüyorsunuz. Fakat içinizde bir an önce susmasını istiyorsunuz. Her yeni cümlesi sabrınızı biraz daha zorluyor.</p>
+
+        <p>Kendinize "Biraz daha dayanmalıyım" diyorsunuz.</p>
+
+        <p>Bir süre sonra konuşmanın bitmesini beklemek bile sizi yoruyor. Belki sonunda sert bir tepki veriyorsunuz, belki de hiçbir şey söylemeden oradan ayrılıyorsunuz.</p>
+
+        <p>İkinci senaryoda ise aynı kişi, aynı ortam ve aynı konuşma var. Fakat bu kez onun konuşması sizi rahatsız etmiyor. Sözlerinin akışını dinliyorsunuz. Belki anlattıkları hoşunuza gidiyor, belki de o an sadece dinlemek istiyorsunuz.</p>
+
+        <p>Aradaki fark nedir?</p>
+
+        <p>İlk durumda zihniniz sürekli yaşanan şeye itiraz ediyor. İkinci durumda ise böyle bir mücadeleye ihtiyaç duymuyorsunuz.</p>
+
+        <p>Elbette her konuşmayı sevmek, her davranıştan hoşlanmak ya da herkese tahammül etmek zorunda değilsiniz. Buradaki örneğin amacı, bir davranışı beğenmekle o davranışa karşı içsel bir savaş vermek arasındaki farkı göstermek.</p>
+
+        <p>Sabır, bazen hoşlanmadığımız bir duruma bilinçli olarak dayanabilmektir. Ancak sabrı sürekli kendi ihtiyaçlarımızı bastırmak, rahatsızlığımızı gizlemek ve sınırlarımızı ihlal ettirmek şeklinde yaşarsak, bu zamanla içsel bir yük oluşturabilir.</p>
+
+        <p>Kabullenme ise öncelikle gerçeği olduğu gibi görebilmektir.</p>
+
+        <p>Birinin çok konuştuğunu fark edersiniz. Bundan hoşlanmadığınızı da bilirsiniz. Fakat onun konuşmasını zihninizde sürekli durdurmaya çalışmazsınız. Gerekirse sınırınızı ifade eder, gerekirse ortamdan ayrılırsınız.</p>
+
+        <p><strong>Kabul, her şeye katlanmak değil; olanı inkar etmeden, ona nasıl karşılık vereceğinizi seçebilmektir.</strong></p>
+
+        <h2>2. Yoğunlaşmış Sıkıntılar Nasıl Oluşur?</h2>
+
+        <p>Bazen bizi yoran yalnızca yaşadığımız olay değildir. Olayın üzerine eklediğimiz itirazlar, beklentiler ve zihinsel mücadele de yaşadığımız sıkıntıyı yoğunlaştırabilir.</p>
+
+        <p>Bir düşünün: Birisi size kaba davrandı. İlk anda incindiniz. Bu son derece anlaşılır bir tepki. Ancak olay bittikten sonra zihninizde şöyle konuşmalar devam ediyor: "Bana bunu nasıl söyleyebilir?", "Ben ona ne yaptım?", "Böyle davranmaya hakkı yok.", "Keşke ben de ona gereken cevabı verseydim." vb. saatler sonra hala aynı konuşmayı düşünüyorsunuz. O kişi belki günlük hayatına devam ediyor ama siz zihninizde onunla tartışmayı sürdürüyorsunuz.</p>
+
+        <p>Artık yalnızca yaşanan davranıştan değil, o davranışa ilişkin tekrar eden düşüncelerinizden de etkileniyorsunuz. İşte burada sıkıntı yoğunlaşmaya başlıyor. Çünkü gerçek bir olay yaşandıktan sonra ona zihinsel olarak tekrar tekrar dönmek, olayın etkisini yeniden canlandırabilir. Üstelik her tekrarda yeni bir öfke, yeni bir savunma ve yeni bir karşılık üretebilirsiniz.</p>
+
+        <p>Bazen de henüz gerçekleşmemiş bir duruma karşı direnirsiniz. "Ya yine aynı şeyi yaparsa?", "Ya beni anlamazsa?", "Ya işler istediğim gibi gitmezse?". Böylece yalnızca geçmişte yaşadığınız bir olayla değil, gelecekte yaşanabilecek ihtimallerle de mücadele etmeye başlarsınız.</p>
+
+        <p>Geçmişi değiştiremezsiniz. Geleceği de henüz kontrol edemezsiniz. Fakat zihniniz her ikisiyle de uzun süre mücadele edebilir.</p>
+
+        <p><strong>Bazen yaşadığımız sıkıntıyı büyüten şey, olayın kendisinden çok, zihnimizin o olayla mücadeleyi sürdürmesidir.</strong></p>
+
+        <p>Bu, dışarıda yaşanan haksızlığı veya olumsuzluğu önemsiz kılmaz. Başkasının davranışından sorumlu değilsiniz. Ancak o davranışın zihninizde ne kadar yer kapladığını fark etmek, kendi iç dünyanızla ilişkinizi değiştirebilir.</p>
+
+        <h2>3. Direnç, Gerçekliğin Üzerine Eklediğimiz İtirazdır</h2>
+
+        <p>Şimdi biraz daha yakından bakalım.</p>
+
+        <p>Bir olay gerçekleştiğinde zihnimiz çoğu zaman yalnızca olanı kaydetmez. Aynı zamanda onun nasıl olması gerektiğine dair bir değerlendirme de üretir.</p>
+
+        <p>"Bu olmamalıydı."</p>
+
+        <p>"O böyle davranmamalıydı."</p>
+
+        <p>"Ben burada olmamalıydım."</p>
+
+        <p>"Her şey farklı olmalıydı."</p>
+
+        <p>Bu cümlelerin ortak noktası, mevcut gerçeklikle zihnimizdeki beklenti arasındaki çatışmadır.</p>
+
+        <p>Elbette bazı şeyler gerçekten farklı olmalıydı. İnsanların birbirine saygılı davranması, hakların korunması ve adaletsizliğin düzeltilmesi önemlidir. Bir durumu kabul etmek, onun doğru olduğunu onaylamak anlamına gelmez.</p>
+
+        <p>Ancak bir olay zaten gerçekleşmişse, onun gerçekleşmiş olduğu gerçeğine zihinsel olarak itiraz etmek geçmişi değiştirmez.</p>
+
+        <p>Örneğin bir toplantıda kendinizi ifade edemediniz. Sonrasında saatlerce "Böyle olmamalıydı, daha iyi konuşmalıydım" diye düşünüyorsunuz.</p>
+
+        <p>Bu düşünce size bir sonraki toplantıda hazırlanmanız gerektiğini gösterebilir. Fakat aynı cümleyi tekrar tekrar zihninizden geçirmek, geçmişteki konuşmayı değiştirmez.</p>
+
+        <p>Burada iki farklı yön vardır: Birincisi, yaşananı kabul edip çıkarabileceğiniz sonucu görmek. İkincisi, yaşananın hiç olmamış olmasını isteyerek zihninizde onunla mücadele etmeye devam etmek. İlk yaklaşım sizi bugüne ve yapabileceklerinize getirir. İkincisi ise sizi değiştiremeyeceğiniz bir ana bağlayabilir. Bazen insanın kendisini en çok yoran şey, artık değiştirilemeyecek bir gerçekliği hâlâ değiştirmeye çalışmasıdır.</p>
+
+        <h2>4. Geçmişi ve Geleceği Kabul Etmek Ne Anlama Gelir?</h2>
+
+        <p>Geçmişi kabul etmek, geçmişte yaşananları unutmak değildir.</p>
+
+        <p>Birinin size yaptığı haksızlığı haklı bulmak, yaşadığınız kaybı önemsiz görmek ya da incinmediğinizi söylemek de değildir.</p>
+
+        <p>Geçmişi kabul etmek, yaşananın artık değiştirilemeyeceğini fark etmektir.</p>
+
+        <p>"Keşke başka türlü olsaydı" diyebilirsiniz. Üzülebilirsiniz, öfkelenebilirsiniz, özleyebilirsiniz. Ancak bir noktada şu gerçeği de görebilmeniz gerekir: O an yaşandı ve artık geçmişte.</p>
+
+        <p>Geçmişten öğrenebilirsiniz ama geçmişte yaşamak zorunda değilsiniz.</p>
+
+        <p>Geleceği kabul etmek ise henüz gerçekleşmemiş olanı kesin bir sonuca bağlamaya çalışmamaktır.</p>
+
+        <p>Bazen zihnimiz geleceği kontrol edebilmek için bütün ihtimalleri hesaplamak ister. Her ayrıntıyı düşünür, olası sorunları önceden çözmeye çalışırız.</p>
+
+        <p>Ancak geleceğin belirsiz olması, mutlaka kötü bir şey yaşanacağı anlamına gelmez.</p>
+
+        <p>Bir iş görüşmesine gireceksiniz. Hazırlanabilirsiniz, kendinizi geliştirebilirsiniz, sorulara çalışabilirsiniz. Bunlar sizin kontrolünüzde olan adımlardır.</p>
+
+        <p>Fakat görüşmenin sonucunu tamamen kontrol edemezsiniz. Karşınızdaki insanların ne düşüneceğini, başka adayların nasıl performans göstereceğini ya da hangi koşulların ortaya çıkacağını bilemezsiniz.</p>
+
+        <p>Hazırlık yapmakla sonucu kontrol etmeye çalışmak aynı şey değildir.</p>
+
+        <p><strong>Geleceği kabul etmek, geleceği düşünmeyi bırakmak değil; kontrol edemediğiniz ihtimallerle bugününüzü tüketmemektir.</strong></p>
+
+        <p>Geçmişten ders alabilir, geleceğe hazırlanabilir ve yine de dikkatinizi şu anda yapabileceğiniz şeylere verebilirsiniz.</p>
+
+        <h2>5. Kendinize "Kabul Etmeliyim" Demek de Yeni Bir Direnç Olabilir</h2>
+
+        <p>İşin ilginç tarafı şu ki: Bazen kabullenmeye çalışırken bile kendimizle mücadele ederiz. "Artık bunu kabul etmeliyim.", "Öfkelenmemeliyim.", "Bu kadar takılmamam gerekiyor.", "Olgun bir insan gibi davranmalıyım.". Farkında olmadan kendimize yeni bir görev veririz. Önce yaşadığımız olaydan rahatsız oluruz, sonra rahatsız olduğumuz için kendimizi eleştiririz. Böylece ilk sıkıntının üzerine ikinci bir sıkıntı eklenir.</p>
+
+        <p>Örneğin bir arkadaşınızın davranışına kırıldınız. Önce kırgınlık yaşarsınız. Ardından kendinize "Bunu artık aşmış olmam gerekirdi" dersiniz. Bu kez yalnızca arkadaşınızın davranışıyla değil, kendi duygunuzla da mücadele etmeye başlarsınız.</p>
+
+        <p>Oysa bir duygunun ortaya çıkması sizin seçiminiz olmayabilir. Fakat onu nasıl değerlendireceğinizi ve sonrasında nasıl davranacağınızı zamanla öğrenebilirsiniz.</p>
+
+        <p>Bu nedenle kabul, kendinize zorla yaptıracağınız bir görev değildir.</p>
+
+        <p>İlk adım, içinizdeki direnci fark etmektir. "Şu anda bu durumun farklı olmasını istiyorum.", "Bu insanın böyle davranmasını istemiyorum.", "Yaşadığım şeyi değiştiremeyeceğim için öfkeleniyorum." Bunları fark etmek, hemen sakinleşmeniz gerektiği anlamına gelmez. Kendinize hissettiğiniz şeyi hissetmek için alan açarsınız.</p>
+
+        <p>Bazen kabul, tam da bu noktada başlar: Kendinizle savaşmayı bırakıp ne yaşadığınızı dürüstçe görebildiğinizde.</p>
+
+        <h2>6. Direnci Nasıl Fark Edebilirsiniz?</h2>
+
+        <p>Direnç yalnızca düşüncelerinizde ortaya çıkmaz. Bazen bedeninizde de kendisini belli eder.</p>
+
+        <p>Bir konuşma sırasında çenenizi sıkabilirsiniz. Omuzlarınız farkında olmadan yükselebilir. Nefesiniz kısalabilir. Bir mesajı okurken bedeniniz gerilebilir.</p>
+
+        <p>Bunlar tek başına belirli bir duygunun veya düşüncenin kesin kanıtı değildir. Ancak o anda neler yaşadığınızı fark etmeniz için birer ipucu olabilir.</p>
+
+        <p>Bir dahaki sefere kendinizi rahatsız edici bir durumun içinde bulduğunuzda hemen tepki vermek ya da kendinizi sakinleştirmeye zorlamak yerine kısa bir süre durun.</p>
+
+        <p>Kendinize şu soruları sorun:</p>
+
+        <ul>
+          <li>Şu anda gerçekte ne oldu?</li>
+          <li>Ben bu olayın nasıl olmasını istiyordum?</li>
+          <li>Olanla olmasını istediğim şey arasındaki fark beni nasıl etkiliyor?</li>
+          <li>Şu anda değiştirebileceğim bir şey var mı?</li>
+          <li>Bir şeyi değiştiremiyorsam, onunla mücadele etmeyi sürdürmek bana ne kazandırıyor?</li>
+        </ul>
+
+        <p>Örneğin birinin davranışından rahatsızsanız, kabul etmek adına susmak zorunda değilsiniz. Sınırınızı ifade edebilirsiniz.</p>
+
+        <p>Ancak sınırınızı ifade ettikten sonra da karşınızdaki insanın mutlaka değişmesini bekleyerek kendi huzurunuzu onun kararına bağlamak zorunda değilsiniz.</p>
+
+        <p>Bazen yapabileceğiniz şey konuşmaktır. Bazen uzaklaşmaktır. Bazen de hiçbir şey yapmadan, yaşanan duygunun zamanla yatışmasına izin vermektir.</p>
+
+        <p>Önemli olan, neyi kontrol edebildiğinizi ve neyin sizin kontrolünüz dışında kaldığını ayırt edebilmektir.</p>
+
+        <h2>Küçük Bir Egzersiz: İtirazınızı Fark Edin</h2>
+
+        <p>Bugün sizi rahatsız eden küçük bir anı seçin.</p>
+
+        <p>Belki birinin söylediği bir söz, beklediğiniz gibi gelmeyen bir cevap ya da planınızın bozulması...</p>
+
+        <p>Olayı zihninizde yeniden canlandırın ve şu üç noktaya dikkat edin:</p>
+
+        <p><strong>1. Gerçekleşen neydi?</strong></p>
+
+        <p>Yorumunuzu değil, yalnızca olayı tanımlayın.</p>
+
+        <p>Örneğin: "Arkadaşım mesajıma kısa bir cevap verdi."</p>
+
+        <p><strong>2. Ben bu olayın nasıl olmasını istiyordum?</strong></p>
+
+        <p>"Benimle daha ilgili konuşmasını bekliyordum."</p>
+
+        <p><strong>3. Şu anda neye direniyorum?</strong></p>
+
+        <p>"Onun benim istediğim şekilde davranmamasına itiraz ediyorum. Bu davranışın beni değersiz hissettirmesinden korkuyorum."</p>
+
+        <p>Şimdi bir süre hiçbir şeyi düzeltmeye çalışmadan bu düşünceleri gözlemleyin.</p>
+
+        <p>Kendinize "Bunu kabul etmeliyim" demeyin. Öfkenizi bastırmayın. Karşınızdaki insanın davranışını da haklı çıkarmayın.</p>
+
+        <p>Yalnızca yaşanan olayla, o olayın zihninizde oluşturduğu hikâyeyi birbirinden ayırmaya çalışın.</p>
+
+        <p>Ardından kendinize sorun:</p>
+
+        <p>"Bu durumda benim yapabileceğim bir şey var mı?"</p>
+
+        <p>Varsa yapın. Yoksa kontrolünüz dışında kalan kısmı sürekli zihninizde yeniden düzenlemeye çalışmak zorunda olmadığınızı hatırlayın.</p>
+
+        <p>Bu egzersizin amacı her durumda huzurlu hissetmek değildir. Amacı, otomatik itirazınızı fark ederek kendinize başka bir seçenek sunabilmektir.</p>
+
+        <h2>Son Bir Şey: Kabul, Mücadelenin Bittiği Yerde Başlar</h2>
+
+        <p>Hayatta her şey istediğiniz gibi olmayacak.</p>
+
+        <p>Bazı insanlar sizi anlamayacak. Bazı kararlarınız beklediğiniz sonucu vermeyecek. Bazı ilişkiler bitecek, bazı kapılar kapanacak ve bazı soruların cevabını hiçbir zaman öğrenemeyeceksiniz.</p>
+
+        <p>Bunların hiçbirini sevmek zorunda değilsiniz.</p>
+
+        <p>Fakat her gerçekleşen olayı zihninizde yeniden yargılamak, değiştirmek ya da başka türlü olmasını dilemek zorunda da değilsiniz.</p>
+
+        <p>Kabul etmek, vazgeçmek değildir. Bazen tam tersine, gerçek durumu görebildiğiniz için artık ne yapmanız gerektiğini daha açık fark edersiniz.</p>
+
+        <p>Bir ilişkide kabul, kötü davranışlara katlanmak değil, karşınızdaki insanın davranışını olduğu gibi görüp kendi kararınızı verebilmektir.</p>
+
+        <p>Bir kayıpta kabul, üzülmemek değil, kaybın gerçekliğine zamanla yer açabilmektir.</p>
+
+        <p>Bir başarısızlıkta kabul, kendinizi yetersiz ilan etmek değil, sonucu görüp bir sonraki adımınızı belirleyebilmektir.</p>
+
+        <p><strong>Kabul, hayatın size sunduğu her şeyi beğenmek değildir. Hayatın şu anda nasıl olduğunu görüp kendi gücünüzü onunla savaşmaya değil, yaşayabileceğiniz bir yol oluşturmaya yöneltmektir.</strong></p>
+
+        <p>Belki de kendinize bugün sormanız gereken en önemli soru şudur:</p>
+
+        <blockquote><strong>Gerçekten neyi değiştirmeye çalışıyorum ve neyi değiştiremeyeceğim hâlde zihnimde hâlâ onunla mücadele ediyorum?</strong></blockquote>
+
+        <p>Çünkü bazen sıkıntıyı büyüten, yaşanan olayın kendisi kadar, onun başka türlü olması gerektiğine dair bitmeyen itirazımızdır.</p>
+
+        <p>Ve bazen rahatlamak için hayatın değişmesini beklemek yerine, hayatla kurduğumuz mücadeleyi fark etmemiz gerekir.</p>
+
+      </div>
+    </article>
+
+    <section class="article-cta">
+      <div class="cta-eyebrow">KENDİNE YENİ BİR ALAN AÇ</div>
+      <h2>Kendine farklı bir pencereden bakmaya hazır mısın?</h2>
+      <p>Düşünce ve davranış kalıplarını keşfetmek, kendinle kurduğun ilişkiyi anlamak ve yeni bakış açıları geliştirmek için bireysel danışmanlık profilimi ziyaret edebilirsin.</p>
+      <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">
+        SEANS OLUŞTUR ↗
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="site-shell footer-inner">
+      <span>© <span id="year"></span> Adalin Sohtorik</span>
+      <a href="index.html">Ana sayfaya dön ↑</a>
+    </div>
+  </footer>
+
+  <a class="sticky-session" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">
+    SEANS OLUŞTUR ↗
   </a>
-</div>
 
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const progressBar = document.getElementById("progressBar");
 
-<script>
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      localStorage.setItem("theme2", theme);
 
-/* SCROLL ANIMATION */
-
-const content = document.querySelector(".content");
-
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
+      if (theme === "noirberry") {
+        themeIcon.innerHTML = `
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+        `;
+      } else {
+        themeIcon.innerHTML = `
+          <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z"></path>
+        `;
+      }
     }
-}
 
-window.addEventListener("scroll", showContent);
-showContent();
+    const savedTheme = localStorage.getItem("theme2") || "noirberry";
+    applyTheme(savedTheme);
 
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = root.getAttribute("data-theme");
+      applyTheme(currentTheme === "noirberry" ? "light" : "noirberry");
+    });
 
-/* PROGRESS BAR */
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = documentHeight > 0 ? (scrollTop / documentHeight) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+    }
 
-window.addEventListener("scroll", () => {
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
 
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
-
-  document.getElementById("progressBar").style.width = progress + "%";
-
-});
-
-</script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
