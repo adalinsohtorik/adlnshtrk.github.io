@@ -1,261 +1,611 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1c0716">
+  <meta name="description" content="Kıtlık zihniyeti ile bolluk zihniyeti arasındaki farkı keşfedin. Dikkatinizi, bakış açınızı ve imkânlarınızı yeniden değerlendirin.">
+  <title>Kıtlık Düşüncesinden Bolluk Zihniyetine Yolculuk | Adalin Sohtorik</title>
 
-<title>Kıtlık Düşüncesinden Bolluk Zihniyetine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8ecdf;
+      --ink: #3e1a1e;
+      --ink-soft: #7d4b45;
+      --plum: #7a2f3a;
+      --accent: #c4472f;
+      --glass: rgba(255, 248, 239, .72);
+      --glass-border: rgba(122, 47, 58, .13);
+      --shadow: rgba(65, 24, 35, .10);
+      --line: rgba(122, 47, 58, .16);
+      --card: rgba(255, 250, 244, .58);
+    }
 
-<style>
+    [data-theme="noirberry"] {
+      --bg: #1c0716;
+      --ink: #f3dfe4;
+      --ink-soft: #cfa6b6;
+      --plum: #f0c6d3;
+      --accent: #ff8fb0;
+      --glass: rgba(48, 14, 35, .66);
+      --glass-border: rgba(240, 198, 211, .15);
+      --shadow: rgba(0, 0, 0, .25);
+      --line: rgba(240, 198, 211, .15);
+      --card: rgba(53, 17, 39, .55);
+    }
 
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* PROGRESS BAR */
+    html {
+      scroll-behavior: smooth;
+    }
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
-}
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(119, 36, 75, .20), transparent 38%),
+        radial-gradient(ellipse at 85% 55%, rgba(105, 31, 72, .16), transparent 42%),
+        radial-gradient(ellipse at 50% 100%, rgba(65, 15, 49, .22), transparent 45%),
+        var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      transition: background .35s ease, color .35s ease;
+      overflow-x: hidden;
+    }
 
-/* BACK BUTTON */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .13;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+    }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* HEADER IMAGE */
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      z-index: 100;
+      background: transparent;
+    }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width .1s linear;
+    }
 
-/* CONTENT CARD */
+    .topbar {
+      position: relative;
+      z-index: 5;
+      width: min(1100px, calc(100% - 40px));
+      margin: 24px auto 0;
+      padding: 15px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 10px 35px var(--shadow);
+    }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    .brand {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      letter-spacing: .02em;
+      color: var(--ink);
+    }
 
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
-}
+    .back-link {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color .2s ease;
+    }
 
-/* TITLE */
+    .back-link:hover {
+      color: var(--accent);
+    }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
-}
+    .theme-toggle {
+      border: 1px solid var(--glass-border);
+      background: transparent;
+      color: var(--ink);
+      border-radius: 30px;
+      padding: 9px 13px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
 
-/* META */
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
-}
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(820px, calc(100% - 40px));
+      margin: 90px auto 100px;
+    }
 
-/* PARAGRAPH */
+    .article-heading {
+      text-align: center;
+      margin-bottom: 44px;
+    }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
-}
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
 
-/* QUOTE BOX */
+    h1 {
+      max-width: 780px;
+      margin: 0 auto 22px;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(38px, 6vw, 62px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -.035em;
+      color: var(--ink);
+    }
 
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
-}
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink-soft);
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
 
-/* BUTTON */
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
-}
+    .article-card {
+      padding: clamp(28px, 6vw, 64px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 24px 70px var(--shadow);
+    }
 
-.seans-button{
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
+    .article-content {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--ink-soft);
+    }
 
-.seans-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 0 30px rgba(90,15,28,0.6);
-}
+    .article-content p {
+      margin-bottom: 24px;
+    }
 
-</style>
+    .article-content strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .article-content em {
+      color: var(--plum);
+    }
+
+    .article-content blockquote {
+      margin: 30px 0;
+      padding: 20px 24px;
+      border-left: 2px solid var(--accent);
+      background: rgba(196, 71, 47, .06);
+      border-radius: 0 12px 12px 0;
+      color: var(--plum);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .article-content ul {
+      margin: 0 0 30px 22px;
+      padding-left: 10px;
+    }
+
+    .article-content li {
+      padding-left: 5px;
+      margin-bottom: 8px;
+    }
+
+    .article-content li::marker {
+      color: var(--accent);
+    }
+
+    .article-content .section-heading {
+      margin-top: 36px;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+
+    .article-content .numbered-point {
+      margin-top: 30px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+
+    .article-content .numbered-point strong {
+      font-weight: 700;
+    }
+
+    .article-divider {
+      width: 55px;
+      height: 1px;
+      margin: 38px 0;
+      background: var(--accent);
+      opacity: .65;
+    }
+
+    .cta-section {
+      margin-top: 55px;
+      padding: 38px 30px;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      background: var(--glass);
+      text-align: center;
+      box-shadow: 0 15px 45px var(--shadow);
+    }
+
+    .cta-eyebrow {
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 14px;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(25px, 4vw, 34px);
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .cta-section p {
+      max-width: 520px;
+      margin: 0 auto 24px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 40px;
+      background: var(--accent);
+      color: #fff8f4;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(196, 71, 47, .22);
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 25px 20px 35px;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 11px;
+      letter-spacing: .04em;
+    }
+
+    footer a {
+      margin-left: 12px;
+      color: var(--plum);
+    }
+
+    .floating-cta {
+      position: fixed;
+      z-index: 10;
+      right: 24px;
+      bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 19px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 40px;
+      background: var(--accent);
+      color: #fff8f4;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: transform .2s ease;
+    }
+
+    .floating-cta:hover {
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+      .topbar {
+        width: calc(100% - 28px);
+        margin-top: 14px;
+        padding: 13px 15px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .topbar-right {
+        gap: 12px;
+      }
+
+      .back-link {
+        font-size: 10px;
+      }
+
+      .theme-toggle {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .page {
+        width: calc(100% - 28px);
+        margin: 65px auto 70px;
+      }
+
+      .article-heading {
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: 39px;
+      }
+
+      .article-card {
+        padding: 26px 22px;
+        border-radius: 18px;
+      }
+
+      .article-content {
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .article-content .numbered-point {
+        font-size: 15px;
+      }
+
+      .cta-section {
+        padding: 30px 22px;
+      }
+
+      .floating-cta {
+        right: 14px;
+        bottom: 14px;
+        padding: 12px 15px;
+        font-size: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
+  <div class="progress-track">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
 
-<a href="blog.html" class="back-button">←</a>
+  <header class="topbar">
+    <a href="index.html" class="brand">Adalin Sohtorik</a>
 
-<img src="kitlik.jpg" alt="Kıtlık Zihniyeti" class="header-image">
+    <div class="topbar-right">
+      <a href="blog.html" class="back-link">← Blog</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Tema değiştir">
+        ◐ Tema
+      </button>
+    </div>
+  </header>
 
-<div class="content">
+  <main class="page">
 
-<h1>Kıtlık Düşüncesinden Bolluk Zihniyetine Yolculuk</h1>
+    <header class="article-heading">
+      <span class="eyebrow">ZİHNİYET VE BAKIŞ AÇISI</span>
+      <h1>Kıtlık Düşüncesinden Bolluk Zihniyetine Yolculuk</h1>
 
-<div class="meta">⏱ Okuma süresi: 4 dakika</div>
+      <div class="article-meta">
+        <span>Adalin Sohtorik</span>
+        <span class="meta-dot"></span>
+        <span>4 dakika okuma</span>
+      </div>
+    </header>
 
-<p>
-Bolluk zihniyeti ile kıtlık zihniyeti arasındaki fark nedir? Ve bir duruma karşı tutumumuz hayatımızı nasıl değiştirebilir?
-Ailenize veya çevrenize hayatı nasıl gördüklerini sorduğunuzda tamamen farklı gerçeklikler duyarsınız.
-</p>
+    <article class="article-card">
+      <div class="article-content">
 
-<p>
-Bazıları için dünya adaletsiz, sert ve eksiklerle dolu bir yerken, bazıları için fırsatlarla dolu bir alan olabilir.
-Fark yaratan şey koşullar değil, algıdır. Algınızı değiştirirseniz koşulları değiştirirsiniz.
-</p>
+        <p>Bolluk zihniyeti ile kıtlık zihniyeti arasındaki fark nedir? Hayata bakışımız, fırsatları fark etme biçimimizi ve verdiğimiz kararları nasıl etkiler?</p>
 
-<div class="quote">
-“Kıtlık zihniyetine sahip insanlar dünyada tek bir pasta olduğuna inanır.”
-</div>
+        <p>Aynı koşullarda yaşayan iki insanı düşünün. Biri sürekli sahip olmadıklarına odaklanırken diğeri elindekileri ve geliştirebileceği imkânları görür. Biri başkasının başarısını kendi kaybı gibi algılarken diğeri bundan ilham alabilir.</p>
 
-<p>
-Pandemi döneminde market raflarının boşalması bunun güzel bir örneğidir.
-Aslında ürünler bitmemişti; insanlar “ya kalmazsa” korkusuyla stok yaptı.
-Korku, gerçeklikten daha güçlü hale geldi.
-</p>
+        <p>Dış koşullar her zaman aynı olmayabilir; ancak onlara verdiğimiz anlam ve dikkatimizi yönelttiğimiz noktalar farklılaşabilir.</p>
 
-<p>
-Benzer şekilde başkalarının başarısı kıskançlık yaratır.
-Çünkü bilinçaltında şu düşünce vardır:
-Onun kazandığı şey benim hakkımdan eksildi. 
-</p>
+        <blockquote>
+          <em>“Kıtlık zihniyetinde başkasının kazancı, kişinin kendi kaybı gibi algılanır.”</em>
+        </blockquote>
 
-<p><strong>Kıtlık zihniyetinin bazı belirtileri:</strong></p>
+        <p>Kıtlık düşüncesi, dünyada sınırlı sayıda fırsat ve kaynak bulunduğu, başkaları kazandıkça kişinin kendisine daha az pay kalacağı inancıyla beslenir.</p>
 
-<p>
-• Dünya şanslılar ve şanssızlar diye ikiye ayrılmıştır  
-• Herkes rakiptir  
-• Fırsatları kaçırma korkusu vardır  
-• Para harcamaktan korku oluşur  
-• Gelecek kötü olacak beklentisi hakimdir  
-</p>
+        <p>Pandemi döneminde market raflarının boşalması bunun dikkat çekici örneklerinden biriydi. Ürünlerin tükenebileceği korkusuyla insanlar ihtiyaçlarından fazlasını satın aldı. Bir kişinin stok yapması diğerinde de aynı kaygıyı tetikledi ve bireysel güvence arayışı toplu bir eksiklik hissini büyüttü.</p>
 
-<p>
-İlginç olan şu ki kıtlık zihniyeti insanı korumaz.
-Tam tersine fırsatları kaçırmasına sebep olur.
-Risk almaktan korkan kişi çoğu zaman büyüyemez.
-</p>
+        <p>Benzer bir durum başarı karşısında da yaşanabilir. Bir başkasının kazancını, mutluluğunu veya yükselişini gördüğünüzde içinizden “Peki ya benim payım?” diye geçirebilirsiniz. Oysa birinin başarılı olması, sizin başarılı olma ihtimalinizi ortadan kaldırmaz.</p>
 
-<p><strong>Kıtlık düşüncesinden nasıl çıkılır?</strong></p>
+        <p class="section-heading"><strong>Kıtlık zihniyetinin bazı belirtileri:</strong></p>
 
-<p>
-Öncelikle düşünce kalıplarını fark etmek gerekir.
-Zihninizdeki yetersizlik cümlelerini yazın ve yeniden çerçeveleyin.
-</p>
+        <ul>
+          <li>Sürekli sahip olmadıklarınıza odaklanmak.</li>
+          <li>Başkalarının başarısını tehdit veya rekabet olarak görmek.</li>
+          <li>Fırsatları kaçırma korkusuyla hareket etmek.</li>
+          <li>Para harcarken sürekli kaybetme endişesi yaşamak.</li>
+          <li>Geleceği çoğunlukla olumsuz ihtimaller üzerinden değerlendirmek.</li>
+          <li>Elinizdeki güzellikleri sıradanlaştırıp eksiklere daha fazla dikkat etmek.</li>
+        </ul>
 
-<p>
-Paylaşmak bolluk zihniyetinin en güçlü araçlarından biridir.
-Zamanınızı, bilginizi, sevginizi paylaşmak bilinçaltına şu mesajı verir:
-Bende yeterince var.
-</p>
+        <p class="section-heading"><strong>Peki, kıtlık düşüncesinden bolluk zihniyetine nasıl geçilir?</strong></p>
 
-<p>
-Şükran pratiği yapmak da algıyı değiştirir.
-Hayatta zaten var olan güzellikleri fark etmek zihni bolluğa eğitir.
-</p>
+        <p class="numbered-point"><strong>1. Dikkatinizi neye yönelttiğinizi fark edin.</strong></p>
 
-<p>
-Unutmayın:
-İnsan dış dünyada değil, önce zihninde fakirleşir veya zenginleşir.
-</p>
+        <p>Zihin, dikkat ettiğiniz şeyleri çevrenizde daha görünür hâle getirir. Sürekli başarısızlık ihtimallerini düşünüyorsanız riskleri daha kolay fark edebilirsiniz. Fırsatlara odaklandığınızda ise daha önce gözünüzden kaçan seçenekleri görmeye başlayabilirsiniz.</p>
 
-</div>
+        <p>Bu, olumsuzlukları görmezden gelmek değil; gerçekliğin yalnızca olumsuz taraflarından ibaret olmadığını fark etmektir.</p>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+        <p class="numbered-point"><strong>2. Minnettarlık pratiği geliştirin.</strong></p>
 
+        <p>Minnettarlık, yalnızca güzel şeyler olduğunda mutlu olmak değildir. Hayatınızda zaten var olan, ancak alıştığınız için fark etmediğiniz şeyleri yeniden görebilmektir.</p>
 
-<script>
+        <p>Sağlığınız, öğrendiğiniz bir bilgi, sizi dinleyen bir insan, sahip olduğunuz bir beceri, kendi başınıza verebildiğiniz bir karar…</p>
 
-/* SCROLL ANIMATION */
+        <p>Her gün kendinize şu soruyu sorun:</p>
 
-const content = document.querySelector(".content");
+        <blockquote>
+          <em>“Bugün hayatımda var olduğu için minnettar olduğum üç şey ne?”</em>
+        </blockquote>
 
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
+        <p>Bunu yaparken büyük olaylar aramayın. Bazen sıradan görünen bir ayrıntıyı fark etmek bile bakış açınızı değiştirebilir.</p>
+
+        <p class="numbered-point"><strong>3. Başkalarının başarısını kendi potansiyelinizin kanıtı olarak görün.</strong></p>
+
+        <p>Birinin başarılı olması, sizin geride kaldığınız anlamına gelmez. Onun başarısında size ilham verebilecek bir deneyim, fikir veya yol olabilir.</p>
+
+        <p>Karşılaştırmak yerine öğrenmeye yöneldiğinizde rekabet duygusunun yerini gelişim isteği alabilir.</p>
+
+        <p class="numbered-point"><strong>4. Sahip olduklarınızı paylaşın.</strong></p>
+
+        <p>Bilginizi, zamanınızı, deneyiminizi veya sevginizi paylaşmak, kaynaklarınızı yalnızca korumak zorunda olmadığınızı hatırlatabilir. Paylaşmak her zaman maddi bir şey vermek değildir; birine yol göstermek veya içtenlikle destek olmak da bunun bir parçasıdır.</p>
+
+        <p>Elbette paylaşmak, kendi ihtiyaçlarınızı ihmal etmek anlamına gelmez. Bolluk, sınırsızca vermek değil; sahip olduklarınızla sağlıklı bir ilişki kurabilmektir.</p>
+
+        <p class="numbered-point"><strong>5. Eksiklerinizi inkâr etmeden imkânlarınızı görün.</strong></p>
+
+        <p>Bolluk zihniyeti, her şeyin yeterli olduğunu iddia etmek veya maddi zorlukları olumlu düşünerek aşabileceğinize inanmak değildir. Gerçek ihtiyaçlarınızı görmek, koşullarınızı değerlendirmek ve çözüm üretmek de bu yaklaşımın parçasıdır.</p>
+
+        <p>Unutmayın, minnettarlık daha fazlasını istemenize engel değildir. Hem sahip olduklarınız için minnettar olabilir hem de daha iyisini inşa etmek için çalışabilirsiniz.</p>
+
+        <p>Çünkü insan bazen sahip olmadığı şeyleri düşünmekten, sahip olduklarının değerini fark edemez hâle gelir.</p>
+
+        <p><strong>Neye odaklandığınız, neyi daha kolay fark edeceğinizi etkiler.</strong> Sürekli eksiklerinizi sayarsanız hayat size eksiklerden ibaretmiş gibi görünebilir. Minnettarlıkla bakmayı öğrendiğinizde ise aynı hayatın içinde daha önce fark etmediğiniz imkânları görmeye başlayabilirsiniz.</p>
+
+        <p>Belki de bolluk, yalnızca daha fazlasına sahip olmak değil; sahip olduklarınızın farkına varırken yenilerine de yer açabilmektir.</p>
+
+      </div>
+    </article>
+
+    <section class="cta-section">
+      <div class="cta-eyebrow">KENDİNE YENİ BİR ALAN AÇ</div>
+      <h2>Kendine farklı bir pencereden bakmaya hazır mısın?</h2>
+      <p>Düşünce ve davranış kalıplarını keşfetmek, kendinle kurduğun ilişkiyi anlamak ve yeni bakış açıları geliştirmek için bireysel danışmanlık profilimi ziyaret edebilirsin.</p>
+      <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">
+        SEANS OLUŞTUR ↗
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Adalin Sohtorik
+    <a href="index.html">Ana sayfaya dön ↑</a>
+  </footer>
+
+  <a class="floating-cta" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">
+    SEANS OLUŞTUR ↗
+  </a>
+
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme2");
+
+    if (savedTheme === "holo") {
+      document.documentElement.setAttribute("data-theme", "holo");
+    } else {
+      document.documentElement.setAttribute("data-theme", "noirberry");
     }
-}
 
-window.addEventListener("scroll", showContent);
-showContent();
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "noirberry" ? "holo" : "noirberry";
 
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme2", newTheme);
+    });
 
-/* PROGRESS BAR */
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
 
-window.addEventListener("scroll", () => {
+      document.getElementById("progressBar").style.width = progress + "%";
+    });
 
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
-
-  document.getElementById("progressBar").style.width = progress + "%";
-
-});
-
-</script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
