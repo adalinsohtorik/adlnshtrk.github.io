@@ -1,315 +1,590 @@
+
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1c0716">
+  <meta name="description" content="Ruminasyon, yani zihinsel geviş getirme: Zihniniz aynı düşünceleri tekrar tekrar çiğnediğinde bu döngüden nasıl çıkabilirsiniz?">
+  <title>Düşünce Sakızı: Zihniniz Çiğnemeyi Bırakmadığında | Blog — Adalin Sohtorik</title>
 
-<title>Düşünce Sakızı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f8ecdf; --ink:#3e1a1e; --ink-soft:#7d4b45; --plum:#7a2f3a;
+      --accent:#c4472f; --glass:rgba(255,246,236,.55); --glass-edge:rgba(255,255,255,.72);
+      --shadow:0 24px 60px -24px rgba(160,64,40,.38);
+    }
 
-<style>
+    [data-theme="noirberry"] {
+      color-scheme: dark;
+      --bg:#1c0716; --ink:#f3dfe4; --ink-soft:#cfa6b6; --plum:#f0c6d3;
+      --accent:#ff8fb0; --glass:rgba(58,14,42,.5); --glass-edge:rgba(255,160,190,.22);
+      --shadow:0 24px 70px -24px rgba(0,0,0,.6);
+    }
 
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
-}
+    * { box-sizing:border-box; }
 
-/* PROGRESS BAR */
+    html { scroll-behavior:smooth; }
 
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
-}
+    body {
+      margin:0;
+      min-height:100vh;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:'Manrope',sans-serif;
+      transition:background .35s,color .35s;
+      position:relative;
+      overflow-x:hidden;
+    }
 
-/* BACK BUTTON */
+    body::before {
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-2;
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(180,65,105,.22), transparent 36%),
+        radial-gradient(ellipse at 88% 26%, rgba(116,52,112,.25), transparent 35%),
+        radial-gradient(ellipse at 52% 92%, rgba(196,71,47,.13), transparent 38%);
+    }
 
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
-}
+    body::after {
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:5;
+      opacity:.07;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+    }
 
-/* HEADER IMAGE */
+    .progress {
+      position:fixed;
+      top:0;
+      left:0;
+      height:3px;
+      width:0;
+      background:var(--accent);
+      z-index:20;
+    }
 
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+    header {
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter:blur(18px);
+      background:var(--glass);
+      border-bottom:1px solid var(--glass-edge);
+    }
 
-/* CONTENT CARD */
+    .nav {
+      max-width:1120px;
+      margin:auto;
+      padding:17px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
 
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    .brand {
+      color:var(--ink);
+      text-decoration:none;
+      font-family:'Fraunces',serif;
+      font-size:1.3rem;
+      letter-spacing:.03em;
+    }
 
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
+    .nav-right {
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
-}
+    .back {
+      color:var(--ink-soft);
+      text-decoration:none;
+      font-size:.85rem;
+    }
 
-/* TITLE */
+    .back:hover { color:var(--accent); }
 
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
-}
+    .theme-toggle {
+      border:1px solid var(--glass-edge);
+      background:var(--glass);
+      color:var(--ink);
+      border-radius:999px;
+      padding:9px 13px;
+      font:inherit;
+      cursor:pointer;
+      font-size:.8rem;
+    }
 
-/* META */
+    main {
+      width:min(790px, calc(100% - 40px));
+      margin:clamp(48px,8vw,100px) auto 80px;
+    }
 
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
-}
+    .article-head {
+      text-align:center;
+      margin-bottom:44px;
+    }
 
-/* PARAGRAPH */
+    .eyebrow {
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      font-size:.7rem;
+      color:var(--accent);
+      font-weight:700;
+      margin-bottom:20px;
+    }
 
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
-}
+    h1 {
+      font-family:'Fraunces',serif;
+      font-weight:400;
+      font-size:clamp(2.35rem,6vw,4.35rem);
+      line-height:1.08;
+      letter-spacing:-.035em;
+      margin:0 auto;
+      max-width:900px;
+    }
 
-/* LIST */
+    .title-line {
+      width:58px;
+      height:1px;
+      background:var(--accent);
+      margin:28px auto 0;
+      opacity:.8;
+    }
 
-ul{
-    margin-left:25px;
-    font-size:20px;
-    line-height:1.9;
-}
+    .article-body {
+      padding:clamp(24px,5vw,54px);
+      border:1px solid var(--glass-edge);
+      border-radius:26px;
+      background:var(--glass);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+    }
 
-/* QUOTE */
+    .article-body p {
+      font-size:1rem;
+      line-height:1.95;
+      color:var(--ink-soft);
+      margin:0 0 1.35em;
+    }
 
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
-}
+    .article-body p:last-child { margin-bottom:0; }
 
-/* MAIN BUTTON */
+    .article-body h2 {
+      font-family:'Fraunces',serif;
+      font-size:clamp(1.55rem,3.6vw,2.05rem);
+      line-height:1.2;
+      font-weight:500;
+      color:var(--ink);
+      margin:2.25em 0 .8em;
+    }
 
-.seans-container{
-    text-align:center;
-    margin:60px 0;
-}
+    .article-body h2:first-child { margin-top:0; }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
-}
+    .article-body strong {
+      color:var(--ink);
+      font-weight:700;
+    }
 
-.seans-button::before{
-    content:'';
-    position:absolute;
-    inset:-3px;
-    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
-    border-radius:30px;
-    z-index:-1;
-    opacity:0;
-    filter:blur(12px);
-    transition:0.4s;
-}
+    .article-body em { color:var(--plum); }
 
-.seans-button:hover::before{
-    opacity:1;
-    filter:blur(18px);
-}
+    .article-body ul {
+      margin:.2em 0 1.6em;
+      padding-left:1.4em;
+      color:var(--ink-soft);
+    }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
-}
+    .article-body li {
+      padding-left:.3em;
+      margin:.6em 0;
+      line-height:1.8;
+    }
 
-/* STICKY BUTTON */
+    .article-body li::marker { color:var(--accent); }
 
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
-}
+    .closing-cta {
+      text-align:center;
+      margin:54px 0 0;
+      padding:32px 18px;
+    }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
-}
+    .closing-cta h2 {
+      font-family:'Fraunces',serif;
+      font-size:clamp(1.8rem,4vw,2.5rem);
+      font-weight:400;
+      margin:0 0 12px;
+    }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
-}
+    .closing-cta p {
+      color:var(--ink-soft);
+      line-height:1.8;
+      margin:0 auto 24px;
+      max-width:520px;
+    }
 
-</style>
+    .cta-button {
+      display:inline-block;
+      padding:14px 24px;
+      border-radius:999px;
+      background:var(--accent);
+      color:#fff7f2;
+      text-decoration:none;
+      letter-spacing:.1em;
+      font-size:.78rem;
+      font-weight:700;
+      transition:transform .2s,opacity .2s;
+    }
+
+    .cta-button:hover {
+      transform:translateY(-2px);
+      opacity:.9;
+    }
+
+    footer {
+      text-align:center;
+      padding:28px 20px 38px;
+      color:var(--ink-soft);
+      font-size:.78rem;
+    }
+
+    footer a {
+      color:inherit;
+      text-decoration:none;
+    }
+
+    @media (max-width:600px) {
+      .nav { padding:14px 18px; }
+      .brand { font-size:1.1rem; }
+      .nav-right { gap:10px; }
+      .back { font-size:.78rem; }
+      .theme-toggle { padding:8px 10px; }
+
+      main {
+        width:min(100% - 24px,790px);
+        margin-top:48px;
+      }
+
+      .article-body {
+        padding:23px 20px;
+        border-radius:20px;
+      }
+
+      .article-body p {
+        font-size:.94rem;
+        line-height:1.9;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="progress" id="progress"></div>
 
-<div class="progress-bar" id="progressBar"></div>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="index.html">Adalin</a>
 
-<a href="blog.html" class="back-button">←</a>
+      <div class="nav-right">
+        <a class="back" href="index.html">← Blog’a dön</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Tema değiştir">☼ / ☾</button>
+      </div>
+    </nav>
+  </header>
 
-<img src="think.jpg" alt="Düşünce Sakızı" class="header-image">
+  <main>
+    <div class="article-head">
+      <div class="eyebrow">Psikoloji · Zihin · Farkındalık</div>
+      <h1>Düşünce Sakızı: Zihniniz Çiğnemeyi Bırakmadığında</h1>
+      <div class="title-line"></div>
+    </div>
 
-<div class="content">
+    <article class="article-body">
 
-<h1>Düşünce Sakızı</h1>
+      <p>Gece yatağa uzandınız. Gün bitmiş, yapılacak işler tamamlanmış, artık dinlenme zamanı gelmiş. Fakat zihninizin sizinle başka bir planı var.</p>
 
-<div class="meta">⏱ Okuma süresi: 4 dakika</div>
+      <p>Gündüz yaşadığınız bir konuşma yeniden başlıyor.</p>
 
-<p>
-Davetsiz anılar ya da gelecekle ilgili kaygılı düşünceler nedeniyle uyuyamamanız durumuna aşina mısınız?
-“Yapmalıydım…” veya “Doğru olanı mı yaptım?” veya "Şunu söylemeliydim.."
-Psikolojide bu olguya ruminasyon yani zihinsel sakız denir. Size bunu durdurmanın neden önemli olduğundan bahsetmek istiyorum.
-</p>
+      <p>Keşke ona öyle söylemeseydim.</p>
 
-<p>
-Ruminasyon bir hastalık,bozukluk veya sendrom değildir. Daha ziyade, kişinin olumsuz düşünceleri tekrar tekrar "çiğnediği" 
-    bir düşünme ve takıntı özelliğidir. Bu isim, geviş getirmenin, yiyeceğin istemsiz olarak kusarak tekrar çiğnenmesi ve yutulması
-    anlamına geldiği tıptan alınmıştır. Evet nahoş bir tablo ortaya çıkıyor lakin takıntılı düşünceler de bir o kadar nahoştur. 
-</p>
+      <p>Acaba yanlış mı anladı?</p>
 
-<div class="quote">
-Zihin çözüm üretmediğinde aynı düşünceyi tekrar tekrar üretir.
-</div>
+      <p>Ya aslında bana kızdıysa?</p>
 
-<p>
-Takıntılı düşünceler depresyonun en yaygın tetikleyicilerinden biridir.
-Süreç genellikle şu şekilde ilerler:
-</p>
+      <p>Peki, ben doğru olanı mı yaptım?</p>
 
-<ul>
-<li>Bir şeyi takıntılı bir şekilde düşündüğümüzde, yalnızca olumsuza odaklanırız, tüm kötü duyguları, hisleri ve deneyimleri derinlemesine araştırırız.</li>
-<li>Cevabı olmayan sorular sorup sadece onlara odaklanırız. Kontrolümüz dışında olan şeylerden şikayet ederiz ve bu bizi daha da üzüyor. Böylece kafamızın içerisinde sıkışıp kalırız.</li>
-<li>Aynı düşünceler arasında dolaşarak yeteneklerimize olan güvenimiz yerine "Çaresizliğimize" odaklanırız. Olayların gidişatını değiştirecek bir şeyler yapabileceğimiz hissinden kendimizi mahrum bırakırız.</li>
-<li>Ve ardından umutsuzluk dediğimiz çıkmazın içerisinde buluruz kendimizi. Bazen bilincimiz sonsuzluğa dönen en önemsiz düşünceye kadar daralır. Ve bu çoğu intiharın tetikleyicilerinden biri oluyor aslında bakarsanız.</li>
-</ul>
+      <p>Bir süre sonra yalnızca geçmişi düşünmüyorsunuz. Henüz yaşanmamış ihtimalleri de zihninizde canlandırmaya başlıyorsunuz. Yarın ne olacak, ya işler ters giderse, ya yanlış bir karar verdiysem?</p>
 
-<p>
-Ruminasyon her yerde ortaya çıkabilir:
-işte, evde, tatilde veya gecenin bir ortasında.
-Ve dikkatinizi tamamen ele geçirir. Başka bir şeye konsantre olmanıza izin vermez.
-</p>
+      <p>Aynı düşünceler dönüp dolaşıp yeniden karşınıza çıkıyor. Her seferinde biraz daha inceliyor, biraz daha derinleşiyor ama bir türlü sonuca ulaşmıyor.</p>
 
-<h2>Takıntılı düşüncelerden nasıl çıkılır?</h2>
+      <p>İşte buna <strong>ruminasyon</strong>, yani zihinsel geviş getirme denir.</p>
 
-<p>
-En büyük hatalardan birisi şudur ki, tüm düşüncelerinizi haklı çıkarmaya ve onlara anlam vermeye çalışırsınız.
-</p>
+      <p>Ben buna düşünce sakızı demeyi seviyorum. Çünkü tıpkı sakız gibi aynı şeyi tekrar tekrar çiğnersiniz. Çeneniz yorulur, zaman geçer ama ortada doyurucu bir sonuç yoktur.</p>
 
-<ul>
-<li>Bir şeyi düşünmemeye ne kadar çok çalışırsanız, düşünceler o kadar müdahaleci hale gelecektir. Pembe maynunu düşünmeyin dersem, pembe maymunu düşünmeye başlarsınız.
-Bu nedenle onlardan kurtulmaya değil, zikinsel sakız çiğnemeyi nasıl durduracağına odaklanmak daha iyidir.</li>
-<li>Hedefinize ulaşmak veya herhangi bir sorunu çözmek için gerekli tüm bilgilere sahip olmak mümkün değildir. Birinin düşüncelerini ve niyetini haftalarca düşünerek bilemeyiz. Bu düşünceler bizi geçmişe bağlı tutarak, geleceğe kapıyı kapatır.</li>
-<li>Belirsizliğin olduğu bir dünyada yaşıyoruz. Bazen bu belirsizlik bizi korkutuyor veya tedirgin ediyor. Ama aslında belirsizlik nötrdür. Nötr güzeldir. </li>
-<li>Pek çok şey hiçbir anlam ifade etmiyor. Onlara kendimiz anlam yüklüyoruz. Bu nedenle dikkatin odağı "ŞİMDİ"ye buradaki ve şimdiki durumuna öncelikleriniz hakkında net bir fikre, yeteneklerinize güven veren bir yaşam tarzına odaklanmaktır. Şimdi'de olmak özgürlüktür.</li>
-<li>Onu fark etmeyi öğrenin. Ne sıklıkta ortaya çıktığını, görünümüne neyin katkıda bulunduğunu, ne tür düşünceler olduklarını gözlemleyin. Yani, bir düşünce akışına daldığınızı 
-fark ettikten sonra geri adım atın ve onu yandan gözlemleyin, tıpkı bir izleyici gibi. Bu anlarda gözlerinizi kapatabilirsiniz, nefesinizi izleyebilirsiniz. Nefes verirken sadece bir sinema salonunda kendinizi izlediğinizi düşünün, içine dalmayın sadece gözlemleyin yavaş yavaş rahatlayacaksınız.</li>
-<li>Bunların yalnızca şu anda çok zamanınızı alan ancak hiçbir şeyi çözmeyen düşünceler olduğunu sık sık keninize hatırlatmanız gerekiyor.</li>
-</ul>
+      <p>Peki neden zihnimiz bunu yapar? Neden çözüm bulamadığımız hâlde aynı düşüncelere geri döneriz? Ve daha önemlisi, bu döngüden nasıl çıkarız?</p>
 
+      <h2>1. Düşünmekle Aynı Şeyi Tekrar Etmek Arasındaki Fark</h2>
 
-<div class="quote">
-"Bu sadece bir düşünce" 
-</div>
+      <p>Öncelikle önemli bir ayrımı yapalım: Her şeyi düşünmek ya da bir olayı tekrar değerlendirmek ruminasyon değildir.</p>
 
-<p>
-Düşünceler gerçek değildir. Bunların sadece zaman alan ama çözüm üretmeyen zihinsel süreçler olduğunu kendinize hatırlatın.
-</p>
+      <p>Bir sorun yaşadığınızda onu anlamaya çalışmanız, nedenlerini araştırmanız ve çözüm üretmeniz son derece doğaldır. Hatta bazen sağlıklı bir karar verebilmek için geçmişte yaşananları yeniden gözden geçirmeniz gerekir.</p>
 
-</div>
+      <p>Ancak düşünme süreci sizi yeni bir bilgiye, farklı bir bakış açısına ya da somut bir adıma götürmüyorsa başka bir şey yaşanıyor olabilir.</p>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+      <p>Örneğin bir arkadaşınızla tartıştınız.</p>
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-    Seans Oluştur
-  </a>
-</div>
+      <p>Sağlıklı bir değerlendirme şöyle ilerleyebilir:</p>
 
+      <p>"Ben bu konuşmada neden öfkelendim? Hangi noktada kendimi ifade edemedim? Bir dahaki sefere neyi farklı yapabilirim?"</p>
 
-<script>
+      <p>Bu düşünceler bir anlayışa ve olası bir eyleme doğru ilerler.</p>
 
-/* SCROLL ANIMATION */
+      <p>Ruminasyon ise şöyle devam eder:</p>
 
-const content = document.querySelector(".content");
+      <p>"Neden bana bunu söyledi? Aslında ne demek istedi? Ben neden öyle cevap verdim? Acaba beni küçümsüyor mu? Keşke o cümleyi söylemeseydim. Şimdi benim hakkımda ne düşünüyor?"</p>
 
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
+      <p>Bir noktadan sonra aynı konuşmayı zihninizde defalarca yaşarsınız. Karşınızdaki insanla artık gerçek bir iletişim kurmuyorsunuzdur; zihninizde onun yerine cevaplar veriyor, tartışmalar yapıyor ve kendinizi savunuyorsunuzdur.</p>
+
+      <p>Üstelik her tekrarın sonunda daha iyi hissetmeniz de gerekmez. Bazen tam tersine daha fazla öfkelenir, üzülür veya kaygılanırsınız.</p>
+
+      <p><strong>Zihin çözüm üretmediğinde aynı düşünceyi tekrar tekrar üretebilir. Ancak tekrar, ilerleme değildir.</strong></p>
+
+      <h2>2. Zihinsel Sakızın Hammaddesi: Belirsizlik, Korku ve Ertelenen Adımlar</h2>
+
+      <p>Peki zihnimiz neden aynı düşünceleri bırakmakta zorlanır?</p>
+
+      <p>Bunun tek bir nedeni yoktur. Ancak bazı durumlarda ruminasyonun arkasında belirsizliğe tahammül etmekte zorlanmak, kontrol ihtiyacı ve yüzleşmekten kaçındığımız meseleler bulunabilir.</p>
+
+      <p>Bir düşünceyi tekrar etmek bazen bize bir şeyleri kontrol ediyormuş hissi verir.</p>
+
+      <p>Diyelim ki hayatınızla ilgili önemli bir karar vermeniz gerekiyor. İş değiştirmek, kendi ayaklarınız üzerinde durmak, bir ilişkiyi bitirmek ya da uzun zamandır ertelediğiniz bir işe başlamak...</p>
+
+      <p>Bu kararın sonuçlarını bilmiyorsunuz. Hata yapabilirsiniz. Başarısız olabilirsiniz. Başkalarının tepkileriyle karşılaşabilirsiniz.</p>
+
+      <p>Yani gerçek bir adım atmanız gerekiyor ve bu adım belirsizlik taşıyor.</p>
+
+      <p>Tam bu noktada zihniniz geçmişe dönebilir.</p>
+
+      <p>"Acaba daha önce yanlış mı yaptım?"</p>
+
+      <p>"Ya yine başarısız olursam?"</p>
+
+      <p>"Keşke geçmişte başka türlü davransaydım."</p>
+
+      <p>Dikkatiniz, şu anda vermeniz gereken karardan uzaklaşıp geçmişte değiştiremeyeceğiniz olaylara veya gelecekte henüz yaşanmamış ihtimallere kayar.</p>
+
+      <p>Bazen düşünmek, harekete geçmenin yerine geçen bir uğraşa dönüşür.</p>
+
+      <p>Çünkü düşünürken kendinizi meşgul hissedersiniz. Bir şeyleri analiz ettiğinizi, hazırlık yaptığınızı ve çözüm aradığınızı düşünürsünüz. Oysa gerçek hayatta henüz hiçbir adım atmamış olabilirsiniz.</p>
+
+      <p>Burada kendinize şu soruyu sormanız gerekir:</p>
+
+      <p><strong>Bu düşünce beni bir çözüme mi yaklaştırıyor, yoksa yapmam gereken şeyden uzaklaştırıyor mu?</strong></p>
+
+      <p>Bu sorunun cevabı her zaman kaçış olmayabilir. Bazen gerçekten çözülmesi gereken bir mesele vardır. Ancak düşünmekle çözmek arasındaki farkı görebilmek önemlidir.</p>
+
+      <p>Bir işi kurmak için haftalarca nasıl başlamanız gerektiğini düşünmek, o işi kurmak değildir. Birine söylemeniz gerekenleri zihninizde yüz kere tekrarlamak, o konuşmayı yapmak değildir. Hayatınızla ilgili bir kararın bütün ihtimallerini hesaplamak da belirsizliği ortadan kaldırmaz.</p>
+
+      <p><strong>Bir şey hakkında düşünmek, o şey için harekete geçmekle aynı değildir.</strong></p>
+
+      <h2>3. Zihniniz Neden Geçmişi Sürekli Yeniden Oynatıyor?</h2>
+
+      <p>Bazen zihninizde açık kalmış dosyalar vardır.</p>
+
+      <p>Verilmemiş kararlar, söylenememiş sözler, konulamamış sınırlar, cevapsız kalmış sorular...</p>
+
+      <p>Bir ilişkiniz bitmiştir ama içinizde hâlâ tamamlanmamış bir konuşma vardır. Birisi size haksızlık etmiştir ama kendinizi yeterince savunamadığınızı düşünürsünüz. Bir karar vermişsinizdir fakat doğru olup olmadığını hâlâ sorgularsınız.</p>
+
+      <p>Zihniniz olayı tekrar tekrar önünüze getirir. Sanki yeterince düşünürseniz sonunda eksik parçayı bulacak, geçmişi anlayacak ve her şeyi yerine oturtacaksınızdır.</p>
+
+      <p>Ancak bazı soruların aradığınız türden bir cevabı yoktur.</p>
+
+      <p>Bir insanın neden öyle davrandığını hiçbir zaman tam olarak öğrenemeyebilirsiniz. Bir konuşmada ne söylemeniz gerektiğini sonradan fark edebilirsiniz ama geçmişteki konuşmayı değiştiremezsiniz. Bir kararın bütün sonuçlarını önceden bilemezsiniz.</p>
+
+      <p>Bazen de zihniniz, bir daha aynı acıyı yaşamamak için geçmişi tekrar tekrar incelemeye çalışır.</p>
+
+      <p>"Bir daha kandırılmamak için nerede hata yaptığımı bulmalıyım."</p>
+
+      <p>"Bir daha terk edilmemek için neyi yanlış yaptığımı anlamalıyım."</p>
+
+      <p>"Bir daha başarısız olmamak için bütün ihtimalleri düşünmeliyim."</p>
+
+      <p>Burada düşünmek bir tür korunma yöntemine dönüşebilir. Sanki sürekli tehlikeyi incelerseniz bir sonraki sefer hazırlıksız yakalanmayacaksınızdır.</p>
+
+      <p>Fakat sürekli kaygılanmak sizi her zaman daha hazırlıklı yapmaz. Bazen yalnızca daha yorgun hâle getirir.</p>
+
+      <p>Susuzluğunuzu gidermek için tuzlu su içmek gibidir. İçtikçe susuzluğunuzun azaldığını düşünürsünüz ama sonunda daha fazla susarsınız.</p>
+
+      <p>Zihin de bazen aynı şeyi yapar: Güvende hissetmek için düşünür, düşündükçe daha fazla belirsizlik bulur ve yeniden düşünmeye başlar.</p>
+
+      <h2>4. Düşünce Sakızını Çiğnemeyi Nasıl Bırakırsınız?</h2>
+
+      <p>İlk olarak şunu kabul edelim: Bir düşünceyi zorla zihninizden uzaklaştırmaya çalışmak çoğu zaman işe yaramaz.</p>
+
+      <p>Size "Pembe bir maymun düşünmeyin" desem, muhtemelen aklınıza ilk gelen şey pembe bir maymun olacaktır.</p>
+
+      <p>Çünkü düşünmemeye çalışmak da zihninizi o düşünceyle meşgul eder.</p>
+
+      <p>Bu nedenle amaç, zihninizi tamamen susturmak ya da hiçbir olumsuz düşünce yaşamamak değildir. Amaç, bir düşüncenin ortaya çıkmasıyla onun peşinden sürüklenmek arasındaki farkı öğrenmektir.</p>
+
+      <p>Bunun için birkaç adım deneyebilirsiniz.</p>
+
+      <p><strong>1. Önce düşünce döngüsüne girdiğinizi fark edin.</strong></p>
+
+      <p>Kendinizi aynı konuşmayı yeniden yaşarken, aynı ihtimalleri tekrar tekrar hesaplarken ya da geçmişteki bir olayı zihninizde değiştirmeye çalışırken yakaladığınızda durun.</p>
+
+      <p>"Yine aynı düşünceye döndüm" demeniz yeterli.</p>
+
+      <p>Kendinizi eleştirmeyin. "Yine başladım, neden böyleyim?" diyerek yeni bir düşünce döngüsü oluşturmayın.</p>
+
+      <p>Yalnızca fark edin.</p>
+
+      <p><strong>2. Kendinize şu soruyu sorun: Bu düşüncenin bana kazandırdığı somut şey ne?</strong></p>
+
+      <p>Diyelim ki üç saattir eski bir konuşmayı düşünüyorsunuz.</p>
+
+      <p>Kendinize sorun:</p>
+
+      <p>"Bu konuşmayı tekrar tekrar düşünmek bana yeni bir bilgi kazandırıyor mu?"</p>
+
+      <p>"Şu anda değiştirebileceğim bir şey var mı?"</p>
+
+      <p>"Eğer varsa, atabileceğim somut adım ne?"</p>
+
+      <p>Eğer bir özür dilemeniz, bir sınır koymanız, bir karar vermeniz ya da bir işi tamamlamanız gerekiyorsa bunu belirleyin.</p>
+
+      <p>Ancak geçmişte değiştiremeyeceğiniz bir sahneyi yeniden oynatıyorsanız, bunun size artık yeni bir şey kazandırmadığını kabul edin.</p>
+
+      <p><strong>3. Zihninizdeki hikâyeden çıkıp gerçek hayata dönün.</strong></p>
+
+      <p>Düşünce döngüsünü fark ettiğinizde dikkatinizi fiziksel dünyaya yöneltin.</p>
+
+      <p>Bulunduğunuz odadaki nesnelere bakın. Ayaklarınızın yere temasını hissedin. Nefesinizi gözlemleyin. Kısa bir yürüyüş yapın, masanızı düzenleyin ya da dikkatinizi gerektiren küçük bir işi tamamlayın.</p>
+
+      <p>Bunlar düşünceleri sihirli biçimde ortadan kaldırmaz. Ancak dikkatinizi zihninizdeki tekrar eden senaryolardan şu anda yaşadığınız ana geri getirmenize yardımcı olabilir.</p>
+
+      <p><strong>4. Belirsizliğe biraz alan açın.</strong></p>
+
+      <p>Her sorunun cevabını bugün bulmak zorunda değilsiniz.</p>
+
+      <p>Bir insanın sizin hakkınızda ne düşündüğünü kesin olarak bilemeyebilirsiniz. Bir kararın bütün sonuçlarını önceden göremezsiniz. Gelecekte ne olacağını kontrol edemezsiniz.</p>
+
+      <p>Bazen yapılabilecek en sağlıklı şey, henüz cevabı olmayan bir soruyla yaşamayı öğrenmektir.</p>
+
+      <p>Belirsizlik her zaman kötü bir şeyin habercisi değildir. Bazen yalnızca henüz bilmediğiniz bir şeydir.</p>
+
+      <p><strong>5. Düşünceyi değil, davranışınızı değiştirin.</strong></p>
+
+      <p>Belki de en önemli adım budur.</p>
+
+      <p>Zihninizde sürekli aynı işi düşünüyorsanız, o işle ilgili küçük bir adım atın. Bir konuşmayı zihninizde tekrar ediyorsanız, gerçekten konuşmanız gerekip gerekmediğine karar verin. Hayatınızla ilgili bir kararın etrafında dönüp duruyorsanız, karar verebilmek için ihtiyaç duyduğunuz bilgileri belirleyin.</p>
+
+      <p>Hedefiniz bütün kaygılarınızın geçmesini beklemek olmasın.</p>
+
+      <p>Çünkü bazen insan, kendini hazır hissettiği için harekete geçmez; harekete geçtikçe ne yapabileceğini öğrenir.</p>
+
+      <p>Sisli bir yolda yürürken bütün yolun görünmesini beklemek zorunda değilsiniz. Bazen önünüzdeki birkaç adımı görebilmeniz yeterlidir.</p>
+
+      <h2>5. Düşünce Sakızını Kesmek İçin Küçük Bir Egzersiz</h2>
+
+      <p>Bir dahaki sefere kendinizi aynı düşüncelerin içinde bulduğunuzda bir kâğıt alın ve şu üç soruyu cevaplayın:</p>
+
+      <p><strong>1. Şu anda zihnimde hangi düşünceyi tekrar ediyorum?</strong></p>
+
+      <p>Örneğin: "Keşke ona o cevabı vermeseydim. Şimdi benim hakkımda ne düşünüyor?"</p>
+
+      <p><strong>2. Bu durumun hangi kısmı benim kontrolümde?</strong></p>
+
+      <p>Karşımdaki insanın ne düşündüğünü kontrol edemem. Geçmişte söylediğim cümleyi değiştiremem. Ancak gerekliyse kendimi yeniden ifade edebilir, özür dileyebilir ya da bundan sonraki iletişimimde farklı davranabilirim.</p>
+
+      <p><strong>3. Şu anda atabileceğim en küçük somut adım ne?</strong></p>
+
+      <p>Eğer yapılması gereken bir şey varsa belirleyin. Eğer şu anda yapılabilecek hiçbir şey yoksa, bunu da kabul edin. Cevabı olmayan soruyu zorla çözmeye çalışmak yerine dikkatinizi mevcut yaşamınıza yönlendirin.</p>
+
+      <p>Bu egzersizin amacı her düşünceyi bir eyleme dönüştürmek değildir. Bazı düşüncelerin yalnızca fark edilmesi ve gelip geçmesine izin verilmesi gerekir. Bazıları ise gerçek bir soruna işaret eder ve çözüm bekler.</p>
+
+      <p>Önemli olan ikisini birbirinden ayırabilmektir.</p>
+
+      <h2>Son Bir Şey: Düşüncelerinizin Her Birine İnanmak Zorunda Değilsiniz</h2>
+
+      <p>Zihninizden geçen her düşünce bir gerçek değildir.</p>
+
+      <p>"Başarısız olacağım" bir öngörüdür.</p>
+
+      <p>"Beni artık sevmiyor" bir yorumdur.</p>
+
+      <p>"Yanlış karar verdim" bir değerlendirmedir.</p>
+
+      <p>"Bir şeyler kötü gidecek" ise henüz gerçekleşmemiş bir ihtimaldir.</p>
+
+      <p>Bunları fark etmek, düşüncelerinizi önemsiz görmek anlamına gelmez. Yalnızca zihninizin ürettiği her cümleyi kesin bir gerçek gibi kabul etmek zorunda olmadığınızı hatırlatır.</p>
+
+      <p>Üstelik ruminasyon uzun süre devam ediyor, uykunuzu, günlük işlerinizi veya ilişkilerinizi belirgin biçimde etkiliyorsa bunu yalnızca irade eksikliği olarak değerlendirmeyin. Bir ruh sağlığı uzmanından destek almak, bu döngünün altında yatan etkenleri anlamanıza yardımcı olabilir.</p>
+
+      <p>Bugün kendinize küçük bir soru sorun:</p>
+
+      <p><strong>Şu anda hayatımı yaşamak yerine, hayatım hakkında düşünerek mi zaman geçiriyorum?</strong></p>
+
+      <p>Çünkü bazen zihninizde çözmeye çalıştığınız şey, gerçek hayatta atmanız gereken adımın önüne geçiyor olabilir.</p>
+
+      <p>Bir konuşmayı yüz kere zihninizde yapmak, o konuşmayı gerçekleştirmez. Bir hedefin bütün ayrıntılarını düşünmek, sizi ona yaklaştırmaz. Geçmişi tekrar tekrar incelemek de geçmişi değiştirmez.</p>
+
+      <p>Düşünmek değerlidir. Sorgulamak değerlidir. Kendinizi anlamaya çalışmak değerlidir.</p>
+
+      <p>Ama düşünceleriniz hayatınızın yerini almaya başladığında durup yeniden yönünüzü belirlemeniz gerekir.</p>
+
+      <p><strong>Her düşüncenin peşinden gitmek zorunda değilsiniz. Bazılarını fark edip bırakabilir, bazılarını çözebilir, bazılarını ise artık taşımanız gerekmediğini kabul edebilirsiniz.</strong></p>
+
+      <p>Unutmayın: Zihninizde aynı sakızı saatlerce çiğnemek, hayatınızda bir adım ilerlediğiniz anlamına gelmez.</p>
+
+    </article>
+
+    <section class="closing-cta">
+      <h2>Bu yolculuğa birlikte başlayalım.</h2>
+      <p>Kendinizi daha yakından keşfetmek ve zihinsel döngülerinizi anlamak için ön görüşmeye davetlisiniz.</p>
+      <a class="cta-button" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener noreferrer">SEANS OLUŞTUR</a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="index.html">Adalin Sohtorik</a> · Kendinize başka bir yerden bakın.
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme2');
+
+    if (savedTheme === 'light' || savedTheme === 'noirberry') {
+      root.setAttribute('data-theme', savedTheme);
     }
-}
 
-window.addEventListener("scroll", showContent);
-showContent();
+    toggle.addEventListener('click', () => {
+      const nextTheme = root.getAttribute('data-theme') === 'noirberry' ? 'light' : 'noirberry';
+      root.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme2', nextTheme);
+    });
 
+    const progress = document.getElementById('progress');
 
-/* PROGRESS BAR */
+    function updateProgress() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const amount = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progress.style.width = amount + '%';
+    }
 
-window.addEventListener("scroll", () => {
-
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
-
-  document.getElementById("progressBar").style.width = progress + "%";
-
-});
-
-</script>
-
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  </script>
 </body>
 </html>
