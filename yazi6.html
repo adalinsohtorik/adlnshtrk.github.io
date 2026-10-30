@@ -1,286 +1,605 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="noirberry">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c0716">
+<meta name="description" content="Güzel Olmak İçin Kendinizi Düzeltmeyi Bırakın — Adalin Sohtorik">
+<title>Güzel Olmak İçin Kendinizi Düzeltmeyi Bırakın — Adalin Sohtorik</title>
 
-<title>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-body{
-    margin:0;
-    background:#f5efe6;
-    color:#3b0d19;
-    font-family:'Cormorant Garamond', serif;
+:root {
+  color-scheme: light;
+  --bg: #f8ecdf;
+  --ink: #3e1a1e;
+  --ink-soft: #7d4b45;
+  --plum: #7a2f3a;
+  --accent: #c4472f;
+  --glass: rgba(255,246,236,.55);
+  --glass-edge: rgba(255,255,255,.72);
+  --shadow: 0 24px 60px -24px rgba(160,64,40,.38);
 }
 
-/* PROGRESS BAR */
-
-.progress-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    background:#5a0f1c;
-    width:0%;
-    z-index:999;
+:root[data-theme="noirberry"] {
+  color-scheme: dark;
+  --bg: #1c0716;
+  --ink: #f3dfe4;
+  --ink-soft: #cfa6b6;
+  --plum: #f0c6d3;
+  --accent: #ff8fb0;
+  --glass: rgba(58,14,42,.5);
+  --glass-edge: rgba(255,160,190,.22);
+  --shadow: 0 24px 70px -24px rgba(0,0,0,.6);
 }
 
-/* BACK BUTTON */
-
-.back-button{
-    font-size:32px;
-    text-decoration:none;
-    color:#5a0f1c;
-    display:block;
-    margin:20px;
+* {
+  box-sizing: border-box;
 }
 
-/* HEADER IMAGE */
-
-.header-image{
-    width:100%;
-    max-width:420px;
-    height:420px;
-    object-fit:cover;
-    display:block;
-    margin:30px auto;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
-/* CONTENT CARD */
-
-.content{
-    max-width:850px;
-    margin:40px auto;
-    background:white;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
-
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.85;
+  transition: background .35s, color .35s;
+  overflow-wrap: break-word;
+  background-image:
+    radial-gradient(ellipse at 12% 0%, rgba(196,71,47,.16), transparent 38%),
+    radial-gradient(ellipse at 90% 28%, rgba(122,47,58,.19), transparent 34%),
+    radial-gradient(ellipse at 40% 100%, rgba(255,143,176,.08), transparent 42%);
 }
 
-.content.show{
-    opacity:1;
-    transform:translateY(0);
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: .12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
 }
 
-/* TITLE */
-
-h1{
-    font-family:'Playfair Display', serif;
-    text-align:center;
-    font-size:42px;
-    margin-bottom:10px;
+a {
+  color: inherit;
 }
 
-/* META */
-
-.meta{
-    text-align:center;
-    font-size:16px;
-    opacity:0.7;
-    margin-bottom:30px;
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 20;
 }
 
-/* PARAGRAPH */
-
-p{
-    font-size:20px;
-    line-height:1.9;
-    margin-bottom:22px;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 17px clamp(18px, 5vw, 70px);
+  border-bottom: 1px solid var(--glass-edge);
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
-/* QUOTE */
-
-.quote{
-    border-left:4px solid #5a0f1c;
-    padding:20px 25px;
-    margin:30px 0;
-    background:#faf7f3;
-    font-style:italic;
-    font-size:20px;
+.brand {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  text-decoration: none;
+  letter-spacing: .02em;
 }
 
-/* MAIN BUTTON */
-
-.seans-container{
-    text-align:center;
-    margin:60px 0;
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
-.seans-button{
-    position: relative;
-    display:inline-block;
-    padding:14px 32px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:18px;
-    transition:0.35s;
-    overflow:hidden;
+.nav a {
+  font-size: .78rem;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color .2s;
 }
 
-.seans-button::before{
-    content:'';
-    position:absolute;
-    inset:-3px;
-    background:linear-gradient(45deg,#5a0f1c,#8b1e2d,#5a0f1c);
-    border-radius:30px;
-    z-index:-1;
-    opacity:0;
-    filter:blur(12px);
-    transition:0.4s;
+.nav a:hover {
+  color: var(--accent);
 }
 
-.seans-button:hover::before{
-    opacity:1;
-    filter:blur(18px);
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-.seans-button:hover{
-    transform:translateY(-3px) scale(1.04);
+.icon-btn {
+  border: 1px solid var(--glass-edge);
+  color: var(--ink);
+  background: var(--glass);
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font: inherit;
+  font-size: .78rem;
 }
 
-/* STICKY BUTTON */
-
-.sticky-session{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:999;
+main {
+  width: min(850px, calc(100% - 36px));
+  margin: clamp(35px, 7vw, 80px) auto 80px;
 }
 
-.sticky-session a{
-    display:inline-block;
-    padding:14px 26px;
-    background:#5a0f1c;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-size:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.35s;
+.article-card {
+  padding: clamp(25px, 6vw, 68px);
+  border: 1px solid var(--glass-edge);
+  border-radius: 28px;
+  background: var(--glass);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-.sticky-session a:hover{
-    transform:translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 25px rgba(90,15,28,0.6),
-        0 0 45px rgba(90,15,28,0.4);
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .19em;
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--accent);
 }
 
+h1,
+h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+
+h1 {
+  font-size: clamp(2.35rem, 6vw, 4.5rem);
+  margin: 15px 0 22px;
+}
+
+h2 {
+  font-size: clamp(1.55rem, 3.8vw, 2.2rem);
+  margin: 2.1em 0 .65em;
+}
+
+.meta {
+  color: var(--ink-soft);
+  font-size: .82rem;
+  margin-bottom: 32px;
+}
+
+.article-body p {
+  margin: 0 0 1.25em;
+  font-size: clamp(.98rem, 1.5vw, 1.06rem);
+}
+
+.article-body h2 + p {
+  margin-top: 0;
+}
+
+.article-body strong {
+  color: var(--plum);
+  font-weight: 800;
+}
+
+.article-body em {
+  color: var(--ink-soft);
+}
+
+.cta {
+  margin-top: 45px;
+  padding: 28px;
+  border-radius: 20px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass);
+  text-align: center;
+}
+
+.cta h2 {
+  margin: 0 0 10px;
+  font-size: 1.8rem;
+}
+
+.cta p {
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+
+.cta-link {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff8f5;
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  transition: transform .2s, opacity .2s;
+}
+
+.cta-link:hover {
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+footer {
+  width: min(850px, calc(100% - 36px));
+  margin: 0 auto 35px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--ink-soft);
+  font-size: .78rem;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--accent);
+}
+
+.sticky-cta {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 650px) {
+  header {
+    flex-wrap: wrap;
+    padding: 14px 18px;
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .nav a {
+    font-size: .74rem;
+  }
+
+  .article-card {
+    border-radius: 20px;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sticky-cta {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
+<div class="progress" id="progress"></div>
 
-<a href="blog.html" class="back-button">←</a>
+<header>
+  <a class="brand" href="index.html">Adalin</a>
 
-<img src="beauty.jpg" alt="Güzellik" class="header-image">
+  <nav class="nav" aria-label="Ana menü">
+    <a href="index.html">Blog</a>
+    <a href="index.html#hakkimda">Hakkımda</a>
+  </nav>
 
-<div class="content">
+  <div class="actions">
+    <button
+      class="icon-btn"
+      id="themeToggle"
+      type="button"
+      aria-label="Renk temasını değiştir"
+    >☼ / ☾</button>
+  </div>
+</header>
 
-<h1>Güzel Olmak İçin Kişiliğiniz Üzerinde Çalışmanız Gerekir</h1>
+<main>
+  <article class="article-card">
 
-<div class="meta">⏱ Okuma süresi: 5 dakika</div>
+    <div class="eyebrow">Adalin Sohtorik · Blog</div>
 
-<p>
-Güzellik hiçbir zaman yalnızca dış görünüşle ilgili olmadı. Kusursuz cilt, ideal beden ya da pahalı bakım ürünleri gerçek çekiciliğin kaynağı değildir. Gerçek güzellik, karakterden doğar.
-</p>
+    <h1>Güzel Olmak İçin Kendinizi Düzeltmeyi Bırakın</h1>
 
-<p>
-Nezaket bir ışıktır. İnsanın gözlerinde görünür, duruşunda hissedilir, ses tonuna bile yansır. Bu yüzden aslında çirkin insanlar yoktur; sadece kaba insanlar vardır. Kabalık yüzü sertleştirir, nezaket ise yumuşatır.
-</p>
+    <div class="meta">Bir düşünme alanı</div>
 
-<div class="quote">
-Gerçek çekicilik karakterin dışarı yansımasıdır.
-</div>
+    <div class="article-body">
 
-<p>
-Dedikodu, kıskançlık ve yargılama zihni kirletir. Kadın bu yüklerden uzaklaştıkça enerjisi berraklaşır ve görünüşü doğal olarak değişir.
-</p>
+      <p>Aynaya en son ne zaman baktınız ve kendinizde düzeltilmesi gereken bir şey aramadınız?</p>
 
-<p>
-Bir röportajda güzelliğin ne olduğu sorulduğunda verilen cevap aslında çok basitti: insan kendini dönüştürebilir. Çocuklukta yaşanan zor deneyimler bile kişiliği işleyerek güce dönüşebilir.
-</p>
+      <p>Yalnızca baktınız. Yüzünüzü, gözlerinizi, ifadenizi gördünüz. Bir kusur bulmaya, bir şeyi düzeltmeye ya da kendinizi başka biriyle karşılaştırmaya çalışmadan.</p>
 
-<div class="quote">
-Güzel olmak için kişiliğiniz üzerinde çalışmalısınız.
-</div>
+      <p>Hatırlamakta zorlanıyorsanız, belki de mesele aynaya ne sıklıkla baktığınız değildir.</p>
 
-<p>
-Dış görünüşte yapılan düzeltmeler geçicidir. İç dünyada yapılan dönüşüm ise kalıcıdır. Kendini sevmek, öz bakım yapmak, davranışları iyileştirmek ve değerleri geliştirmek gerçek çekiciliği oluşturur.
-</p>
+      <p>Çünkü çoğumuz aynaya bakmıyoruz. Kendimizi denetliyoruz.</p>
 
-<p>
-Elbette dış görünüş önemlidir. Fakat onu merkeze koyduğunuzda denge bozulur. Kadının enerjisi, kalbi ve yaşama bakışı güzelliği yaratır.
-</p>
+      <p>Burnumuzun şeklini, cildimizi, kilomuzu, yaşımızın yüzümüzde bıraktığı izleri inceliyoruz. Sonra zihnimizde görünmez bir liste açılıyor: Şurası daha iyi olabilirdi. Biraz daha zayıf olmalıyım. Daha bakımlı görünmeliyim. Daha genç, daha çekici, daha kusursuz...</p>
 
-<div class="quote">
-Beden, iç ışığın yansımasıdır.
-</div>
+      <p>Ve bütün bunları yaparken çoğu zaman kendimize şu soruyu sormuyoruz: <strong>Kendimi neden sürekli düzeltilmesi gereken biri olarak görüyorum?</strong></p>
 
-<p>
-Gerçek güzellik bakıldığında tarif edilemeyen ama hissedilen bir etkidir: duruş, karakter, değerler ve içsel ışık. Ve güzellik tam olarak buradan doğar.
-</p>
+      <p>Belki de asıl mesele, görünüşünüzde değiştirmek istediğiniz şeyler değildir. Belki de asıl mesele, kendinize baktığınızda ilk gördüğünüz şeyin neden eksiklik olduğudur.</p>
 
-</div>
+      <p>Çünkü insan, kendisini sürekli bir kusur arayışı içinde gözlemlemeye başladığında aynayı yalnızca bir yüzey olarak kullanmaz. Onu kendi değerini ölçtüğü bir araca dönüştürür. Her bakış bir değerlendirmeye, her değerlendirme yeni bir hedefe, her hedef de kendinizle ilgili yeni bir şartlandırmaya dönüşür.</p>
 
-<div class="seans-container">
-<a class="seans-button"
-href="https://www.advicemy.com/danisman/adalin-sohtorik"
-target="_blank">
-Seans Oluştur
-</a>
-</div>
+      <p>Bir süre sonra mesele güzel görünmek olmaktan çıkar. Güzel görünmediğinizde kendinizi nasıl hissedeceğiniz meselesine dönüşür.</p>
 
-<div class="sticky-session">
-  <a href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank">
-    Seans Oluştur
-  </a>
-</div>
+      <p>Ve bu, yalnızca dış görünüşle ilgili değildir.</p>
 
+      <h2>Kusurlarınız Değişir, Kendinizi Yargılama İhtiyacınız Kalır</h2>
+
+      <p>Bize sık sık şu söylenir: Güzel olmak için yalnızca dış görünüşünüze değil, karakterinize de yatırım yapmalısınız. Daha anlayışlı, daha nazik, daha özgüvenli, daha olgun biri olmalısınız.</p>
+
+      <p>İlk bakışta bu düşüncede yanlış bir şey yoktur. Elbette insanın güzelliği yalnızca fiziksel özelliklerinden ibaret değildir. Davranışlarımız, başkalarıyla kurduğumuz ilişkiler ve dünyaya yaklaşımımız da insan olarak nasıl algılandığımızı etkiler.</p>
+
+      <p>Ancak bu düşüncenin içinde kolayca gözden kaçan bir tuzak vardır: <strong>Kendinizi olduğunuz hâliyle yetersiz buluyorsanız, kendinizi geliştirme arzunuzu bile kendinize karşı kullanabilirsiniz.</strong></p>
+
+      <p>Dış görünüşünüzü beğenmezsiniz, bedeninizi değiştirmeye çalışırsınız. Ardından karakterinizde eksik bulduğunuz bir şey belirir. Daha sabırlı olmanız gerekir. Daha az kıskanç, daha az öfkeli, daha anlayışlı, daha bilgili olmanız gerekir. Bir süre sonra yalnızca bedeniniz değil, kişiliğiniz de sürekli bakım ve onarım gerektiren bir projeye dönüşür.</p>
+
+      <p>Bu kez kendinizi aynada değil, davranışlarınızda denetlersiniz.</p>
+
+      <p>Birine kızdığınızda yalnızca öfkenizi anlamaya çalışmaz, kötü biri olup olmadığınızı da sorgularsınız. Kıskançlık hissettiğinizde bu duygunun nereden geldiğine bakmak yerine kendinizi yargılarsınız. Bir hata yaptığınızda davranışınızı değerlendirmekle kalmaz, kendi değerinizi de tartışmaya açarsınız.</p>
+
+      <p>Farklı alanlarda aynı hareketi tekrarlarsınız: Bir kusur bulur, onu düzeltmeye çalışır ve düzelttiğinizde nihayet yeterli olacağınıza inanırsınız.</p>
+
+      <p>Fakat yeterlilik duygusu bir türlü kalıcı olmaz. Çünkü sorun, her zaman yeni bir kusur bulunması değildir. Sorun, kendinize bakabilmek için önce kusursuz olmanız gerektiğine inanmanızdır.</p>
+
+      <p><strong>Kendinizi yargılamaya alıştıysanız, değişim sizi özgürleştirmek yerine yargılamanız için yeni gerekçeler üretebilir.</strong></p>
+
+      <p>Bugün dış görünüşünüzden memnun olursunuz, yarın karakterinizde bir eksiklik bulursunuz. Bir konuda kendinizi geliştirirsiniz, ardından başka bir alanda geride kaldığınızı düşünürsünüz. Bir hedefe ulaşırsınız, fakat kendinizle aranızdaki mesafe kapanmaz. Çünkü hedefin kendisi değil, hedefe ulaşınca kendinizi nihayet kabul edeceğiniz düşüncesi sizi hareket ettiriyordur.</p>
+
+      <p>Böylece hayatınız, kendinizle barışacağınız günü beklediğiniz uzun bir hazırlığa dönüşür.</p>
+
+      <p>Peki o gün ne zaman gelecek?</p>
+
+      <p>Biraz daha güzelleştiğinizde mi? Daha başarılı olduğunuzda mı? Öfkenizi tamamen kontrol edebildiğinizde, kimseyi kıskanmadığınızda, her durumda doğru tepkiyi verdiğinizde mi?</p>
+
+      <p>Kendinize kabul edilme hakkı tanımak için gerçekten bütün bunların gerçekleşmesi gerekiyor mu?</p>
+
+      <h2>İçinizdeki Yetersizlik Hikâyesi</h2>
+
+      <p>Şimdi kendinizi değiştirme isteğinizin altına biraz daha yakından bakalım.</p>
+
+      <p>Daha güzel görünmek istemenizde ne yanlış olabilir? Daha sağlıklı yaşamak, bedeninize özen göstermek, karakterinizi geliştirmek ya da yeni şeyler öğrenmek neden sorun olsun?</p>
+
+      <p>Bunların hiçbiri kendi başına sorun değildir.</p>
+
+      <p>Asıl soru, bunları hangi içsel yerden yaptığınızdır.</p>
+
+      <p>Kendinize bakım verirken bedeninize iyi gelmesini istediğiniz için mi hareket ediyorsunuz, yoksa mevcut bedeninizde bulunmaya tahammül edemediğiniz için mi? Yeni bir şey öğrenirken merak mı duyuyorsunuz, yoksa bilmediğiniz bir şeyin ortaya çıkması sizi değersiz hissettirdiği için mi öğreniyorsunuz? Daha nazik olmaya çalışırken başkalarını daha iyi anlamak mı istiyorsunuz, yoksa öfkelendiğinizde kötü bir insan olduğunuza inanıyor musunuz?</p>
+
+      <p>Dışarıdan bakıldığında aynı davranışlar gibi görünebilirler. Fakat içeride onları besleyen nedenler birbirinden çok farklı olabilir.</p>
+
+      <p>Birinde kendinize ve hayatınıza özen gösterirsiniz. Diğerinde kendinizden kaçmaya çalışırsınız.</p>
+
+      <p>Bazen kendimizi değiştirmek istediğimizi söyleriz, ama aslında değiştirmek istediğimiz şey kendimizle ilgili hissettiklerimizdir. Daha güzel olursak reddedilmeyeceğimizi, daha başarılı olursak saygı göreceğimizi, daha kusursuz davranırsak terk edilmeyeceğimizi umarız.</p>
+
+      <p>Sanki bir gün yeterince iyi olursak artık incinmeyeceğizdir.</p>
+
+      <p>Fakat hayat böyle çalışmaz. Güzel insanlar da reddedilir. Başarılı insanlar da başarısız olur. Nazik insanlar da yanlış anlaşılır. Elinden geleni yapan insanlar da kayıplar yaşar.</p>
+
+      <p>Hiçbir fiziksel özellik, karakter niteliği ya da başarı düzeyi size başkalarının davranışları üzerinde mutlak kontrol sağlamaz. Kendinizi ne kadar geliştirirseniz geliştirin, hayatın belirsizliğini ortadan kaldıramazsınız.</p>
+
+      <p>Kendinizi geliştirmeniz değerlidir. Fakat bunu bütün acılardan korunmanın, herkes tarafından sevilmenin ya da hiçbir zaman yetersiz hissetmemenin bedeli olarak görürseniz, kendinize ulaşılması imkânsız bir görev vermiş olursunuz.</p>
+
+      <p>Ve o görev tamamlanamadıkça, suçlu yine siz olursunuz.</p>
+
+      <p>Belki de kendinize sormanız gereken soru şudur:</p>
+
+      <p><strong>Ben gerçekten değişmek mi istiyorum, yoksa olduğum kişi olmaktan kurtulmaya mı çalışıyorum?</strong></p>
+
+      <p>Bu soruya hemen cevap vermeniz gerekmiyor. Hatta cevabınızın sizi rahatsız etmesi de şaşırtıcı olmaz. Çünkü bazen en çok savunduğumuz gelişim hedeflerinin içinde, kendimizle ilgili kabul etmek istemediğimiz bir duygudan kaçma çabası bulunabilir.</p>
+
+      <p>Bunu fark etmek, bütün hedeflerinizi bırakmanız gerektiği anlamına gelmez. Yalnızca kendinizi hangi gerekçeyle değiştirdiğinizi yeniden değerlendirebilirsiniz.</p>
+
+      <h2>Kendinize Bakarken Bedeninizde Ne Oluyor?</h2>
+
+      <p>Kendinizi eleştirdiğiniz anları yalnızca düşünceleriniz üzerinden incelemeyin. Bedeninize de dikkat edin.</p>
+
+      <p>Aynaya bakarken çenenizi sıkıyor musunuz? Fotoğrafınızı incelerken nefesiniz değişiyor mu? Başka birinin görünüşünü gördüğünüzde içinizde bir karşılaştırma başlıyor mu? Bir kusur bulduğunuzda bedeninizde gerilim, utanç ya da huzursuzluk hissediyor musunuz?</p>
+
+      <p>Bunları birer hastalık belirtisi ya da yanlış yaptığınızın kanıtı olarak değerlendirmeyin. Bedeninizdeki her gerilimin tek bir psikolojik anlamı yoktur. Ancak bu anları gözlemlemek, kendinize nasıl yaklaştığınızı fark etmenize yardımcı olabilir.</p>
+
+      <p>Belki aynaya bakarken yalnızca yüzünüzü görmüyorsunuzdur. Zihninizde, başkalarının sizi nasıl değerlendirebileceğine dair bir hikâye de çalışıyordur.</p>
+
+      <p>Belki bir fotoğrafa baktığınızda yalnızca görüntünüzü değerlendirmiyorsunuzdur; beğenilmeme, dışlanma ya da başkalarıyla kıyaslanma ihtimalini de düşünüyorsunuzdur.</p>
+
+      <p>Belki de tek bir kusur gördüğünüzde zihniniz hemen bir sonuca varıyordur: <em>Böyle görünürsem yeterince güzel olamam. Yeterince güzel değilsem beğenilmem. Beğenilmezsem seçilmem.</em></p>
+
+      <p>Bu düşünceler herkeste aynı şekilde ortaya çıkmaz. Her insanın deneyimi farklıdır. Fakat kendi zihninizde böyle bir zincir fark ederseniz, onu otomatik olarak gerçek kabul etmek zorunda değilsiniz.</p>
+
+      <p>Bir düşüncenin ortaya çıkması ile onun sizi yönetmesine izin vermek aynı şey değildir.</p>
+
+      <p>Kendinize “Şu anda görünüşüm hakkında bir yargıda bulunuyorum” diyebilirsiniz. Bu cümle, “Çirkinim” ya da “Yeterince güzel değilim” demekten farklıdır. Çünkü ilkinde bir değerlendirme yaptığınızı fark edersiniz; ikincisinde ise değerlendirmeyi kendinizin tanımına dönüştürürsünüz.</p>
+
+      <p>Buradaki amaç aynada gördüğünüz her şeyi güzel bulmayı öğrenmek değildir. Kendinizi her zaman beğenmek, bütün güvensizliklerinizden kurtulmak ya da zihninize yalnızca olumlu düşünceler yerleştirmek zorunda değilsiniz.</p>
+
+      <p>Ama kendinizi beğenmediğiniz bir anda bile kendinize acımasız davranmamayı öğrenebilirsiniz.</p>
+
+      <p>Bu, küçük gibi görünen fakat önemli bir ayrımdır. Çünkü kendinize bakışınızın değişmesi için önce kendiniz hakkında verdiğiniz her hükme inanmayı bırakmanız gerekebilir.</p>
+
+      <h2>Nezaket Bir Maske Değil, Kendinizle Savaşmadığınızda Açılan Bir Alan</h2>
+
+      <p>Kendinize karşı daha anlayışlı olmayı öğrendiğinizde başkalarına karşı da daha nazik olabilirsiniz. Ancak burada dikkat edilmesi gereken bir nokta var: Nezaket, kendinizi geliştirmek için ulaşmanız gereken yeni bir ahlaki seviye değildir.</p>
+
+      <p>Aksi hâlde bu kez de kendinize karşı nazik olamadığınız anlarda kendinizi suçlamaya başlarsınız.</p>
+
+      <p>Birini kıskandığınızda kendinizi kötü biri ilan edersiniz. Öfkelendiğinizde bütün gelişiminizin boşa gittiğini düşünürsünüz. Dedikodu yaptığınızda ya da başkasını yargıladığınızda kendinizden utanırsınız. Böylece kendinizi yargılama alışkanlığınız yalnızca biçim değiştirir.</p>
+
+      <p>Önceden yeterince güzel olmadığınız için kendinizi eleştirirken şimdi yeterince bilinçli, yeterince şefkatli ya da yeterince olgun olmadığınız için eleştirmeye başlayabilirsiniz.</p>
+
+      <p>Oysa insan olmak, zaman zaman çelişkili duygular yaşamak demektir. Kıskançlık hissedebilirsiniz. Öfkelenebilirsiniz. Bazen başkalarının sahip olduklarını isteyebilir, bazen de kendi güvensizliğinizin etkisiyle birini haksız yere yargılayabilirsiniz.</p>
+
+      <p>Bu duyguların ortaya çıkması, davranışlarınızın sorumluluğunu ortadan kaldırmaz. Birine zarar verdiyseniz bunu kabul etmeniz ve gerekiyorsa telafi etmeniz gerekir. Kendinize şefkat göstermek, başkalarına karşı sorumluluklarınızı görmezden gelmek değildir.</p>
+
+      <p>Fakat sorumluluk almakla kendinizi cezalandırmak arasında fark vardır.</p>
+
+      <p>Kıskançlığınızı fark ettiğinizde kendinizi aşağılamak yerine onun size ne anlattığını araştırabilirsiniz. Belki bir güvensizlik vardır, belki karşılanmamış bir ihtiyaç, belki de yalnızca insani bir karşılaştırma alışkanlığı. Her duygunun tek bir nedeni olmak zorunda değildir.</p>
+
+      <p>Önemli olan, duyguyu hissettiğiniz için kendinizi mahkûm etmek yerine onunla ne yapacağınızı seçebilmektir.</p>
+
+      <p>Kendinizle savaşmayı bıraktığınızda bütün olumsuz duygularınız bir anda kaybolmaz. Ancak onları saklamak, inkâr etmek ya da kendinize karşı kullanmak zorunda olmadığınızı öğrenebilirsiniz.</p>
+
+      <p>Başkalarının güzelliği sizin değerinizi azaltmaz. Başarısı sizin başarısızlığınızı kanıtlamaz. Birinin beğenilmesi, sizin daha az sevilmeye layık olduğunuz anlamına gelmez.</p>
+
+      <p>Bunları yalnızca aklınızla bilmekle, karşılaştığınızda gerçekten gözlemleyebilmek arasında bir mesafe vardır. İşte o mesafeyi fark etmek, kendinizle ilişkinizi dönüştürmenin başlangıcı olabilir.</p>
+
+      <h2>Güzellik, Kendinizi İspat Etmek Zorunda Kalmadığınızda</h2>
+
+      <p>İnsanların gözlerindeki yumuşaklığı, duruşlarındaki rahatlığı, seslerindeki doğallığı çekici bulabiliriz. Bazen bir insanın yanında kendimizi rahat hissederiz; çünkü o kişi sürekli nasıl göründüğünü kontrol etmekle, kendini kanıtlamakla ya da başkalarının gözünde bir imajı korumakla meşgul değildir.</p>
+
+      <p>Bu, güzelliğin yalnızca içsel huzurdan kaynaklandığı ya da dış görünüşün önemsiz olduğu anlamına gelmez. Fiziksel çekicilik kişiden kişiye değişir; toplumsal güzellik standartları da insanların kendilerini nasıl değerlendirdiğini etkileyebilir.</p>
+
+      <p>Ancak insanı çekici kılan şeyin yalnızca yüz hatları ya da beden ölçüleri olmadığını biliyoruz. Bir insanın kendisiyle, başkalarıyla ve bulunduğu ortamla kurduğu ilişki de onun nasıl algılandığını etkileyebilir.</p>
+
+      <p>Sürekli onay beklemek, her davranışta kendini kanıtlamaya çalışmak ya da başkalarının gözünde nasıl göründüğünü kontrol etmek insanı yorabilir. Bu yorgunluk bazen davranışlara, ifadelere ve ilişkilere de yansıyabilir.</p>
+
+      <p>Kendinizi sürekli gözlemleyip değerlendirmeyi bıraktığınızda, dikkatinizin bir kısmını yeniden yaşadığınız ana yöneltebilirsiniz. Bir sohbet sırasında nasıl göründüğünüzü düşünmek yerine karşınızdaki insanı dinleyebilirsiniz. Bir ortamda beğenilip beğenilmediğinizi hesaplamak yerine orada gerçekten nasıl hissettiğinizi fark edebilirsiniz.</p>
+
+      <p>Belki de doğal görünmek dediğimiz şeyin bir parçası budur: Kendinizi sürekli dışarıdan izlemek zorunda kalmadığınız anlarda, yaşadığınız deneyimin içinde daha fazla bulunabilmek.</p>
+
+      <p>Ve burada güzellik anlayışı başka bir anlam kazanır. Güzellik, kusursuzluğa ulaşınca kazanacağınız bir ödül olmaktan çıkar. Kendinizi sürekli düzeltme ihtiyacınızın altında nelerin yattığını fark ettiğinizde, kendinize bakışınızın değişebileceği bir alan hâline gelir.</p>
+
+      <p>Dış görünüşünüze özen gösterebilirsiniz. Saçınızı değiştirebilir, makyaj yapabilir, spor yapabilir, giyiminizle oynayabilir, bedeninizle ilgili kararlar alabilirsiniz. Bunların hiçbiri kendinizi kabul etmenize engel değildir.</p>
+
+      <p>Sorun değişmek değildir. Sorun, değişmediğiniz sürece kendinize saygı duyamayacağınıza inanmaktır.</p>
+
+      <p>Aynı bakım, kendinize duyduğunuz ilginin bir ifadesi de olabilir, kendinizden duyduğunuz memnuniyetsizliğin bir cezası da. Aynı çaba, meraktan da doğabilir, utançtan da. Dışarıdan bakıldığında ikisi birbirine benzeyebilir. Fark, kendinizle kurduğunuz ilişkide ortaya çıkar.</p>
+
+      <p>Kendinize özen gösterirken kendinizden nefret etmek zorunda değilsiniz. Değişmek isterken mevcut hâlinizi aşağılamak zorunda değilsiniz. Daha iyi bir yaşam kurmaya çalışırken bugünkü varlığınızı bir hata gibi değerlendirmek zorunda değilsiniz.</p>
+
+      <p><strong>Kendinize duyduğunuz saygıyı, bir gün ulaşacağınız görüntüye ya da kişiliğe ertelemeyin.</strong></p>
+
+      <p>Çünkü o gün geldiğinde de kendinizi yargılamaya devam ederseniz, yalnızca değerlendirdiğiniz şey değişecektir. Yargıç aynı kalacaktır.</p>
+
+      <h2>Bugün Aynaya Bir Şey Kanıtlamak İçin Bakmayın</h2>
+
+      <p>Bugün küçük bir deney yapın.</p>
+
+      <p>Aynanın karşısına geçin. Kendinizi güzel bulmaya çalışmayın. Kendinizi çirkin bulmamaya da çalışmayın. Olumlu bir cümleyi tekrar ederek kendinizi ikna etmek zorunda değilsiniz.</p>
+
+      <p>Yalnızca bakın.</p>
+
+      <p>Yüzünüzde değiştirmek istediğiniz bir şey belirdiğinde bunu fark edin. Ardından zihninizin o görüntüye hangi anlamı yüklediğini gözlemleyin. Bir kusur gördüğünüzde kendiniz hakkında hangi sonuca varıyorsunuz? Görünüşünüzü beğenmediğinizde kendinize nasıl davranıyorsunuz? O an kendinizi kabul edebilmek için neyin değişmesini bekliyorsunuz?</p>
+
+      <p>Cevapları hemen düzeltmeye çalışmayın. Kendinizi daha bilinçli, daha olgun ya da daha şefkatli biri olmaya zorlamayın. Çünkü bu deneyin amacı bile kendinizi geliştirmek için yeni bir sınava dönüştürülürse, aynı döngüyü yeniden üretmiş olursunuz.</p>
+
+      <p>Belki ilk kez kendinize baktığınızda ne kadar sık eleştiride bulunduğunuzu fark edeceksiniz. Belki görünüşünüz hakkında düşündüğünüz şeylerin, kendinize dair daha eski inançlarla bağlantılı olduğunu göreceksiniz. Belki de hiçbir büyük farkındalık yaşamayacaksınız.</p>
+
+      <p>Bunların hepsi mümkün.</p>
+
+      <p>Kendinize karşı daha şefkatli olmak, her an huzurlu hissetmek ya da kendinizi bütünüyle kabul etmek zorunda olduğunuz yeni bir görev değildir. Bazen yalnızca kendinize acımasızca davrandığınızı fark etmek bile başlangıçtır.</p>
+
+      <p>Kendinizi değiştirmeniz gereken bir proje gibi görmekten vazgeçmek, gelişmeyi bırakmak değildir. Tam tersine, neyi neden değiştirmek istediğinizi daha dürüst görebilmenizi sağlayabilir.</p>
+
+      <p>Kendinizi geliştirebilirsiniz, ama bunu kendinizden utanarak yapmak zorunda değilsiniz. Daha güzel görünmek isteyebilirsiniz, ama beğenilmeyi varlığınızın bedeli hâline getirmek zorunda değilsiniz. Hatalarınızı görebilirsiniz, ama onları kendinize karşı bir iddianameye dönüştürmek zorunda değilsiniz.</p>
+
+      <p>Belki de yıllardır aradığınız rahatlık, kendinizi sonunda kusursuz bulduğunuz bir günde değil; kusurlu olduğunuzu düşündüğünüz günlerde bile kendinize düşman olmamayı öğrendiğiniz yerde başlar.</p>
+
+      <p><strong>Güzellik, kendinizi düzeltmeyi başardığınız için hak ettiğiniz bir şey değildir. Ve kendinizle barışmak için önce güzel, başarılı, olgun ya da kusursuz biri olmanız gerekmez.</strong></p>
+
+      <p>Belki bugün yapabileceğiniz en radikal şey, kendinizde değiştirmek istediğiniz hiçbir şeyi değiştirmeden önce, neden onu değiştirmek istediğinize bakmaktır.</p>
+
+      <p>Çünkü bazen insanın kendisinde gördüğü kusur, gerçekten değiştirmek istediği bir özellik değildir. Başkalarının gözünde kusurlu bulunmaktan duyduğu korkudur.</p>
+
+      <p>Ve o korkuyla yüzleşmek, kendinizi bir kez daha düzeltmeye çalışmaktan çok daha cesur bir başlangıç olabilir.</p>
+
+    </div>
+
+    <section class="cta">
+      <h2>Bu yolculuğa birlikte başlayalım.</h2>
+      <p>Kendinizle ilişkinizi farklı bir açıdan keşfetmek için bir seans oluşturabilirsiniz.</p>
+      <a
+        class="cta-link"
+        href="https://www.advicemy.com/danisman/adalin-sohtorik"
+        target="_blank"
+        rel="noopener noreferrer"
+      >SEANS OLUŞTUR</a>
+    </section>
+
+  </article>
+</main>
+
+<footer>
+  <a href="index.html">← Blog'a dön</a>
+  <span>© Adalin Sohtorik</span>
+  <a href="mailto:adlnshtrk@yahoo.com">İletişim</a>
+</footer>
+
+<a
+  class="cta-link sticky-cta"
+  href="https://www.advicemy.com/danisman/adalin-sohtorik"
+  target="_blank"
+  rel="noopener noreferrer"
+>SEANS OLUŞTUR</a>
 
 <script>
+(() => {
+  const root = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme2');
 
-/* SCROLL ANIMATION */
+  if (saved === 'light' || saved === 'noirberry') {
+    root.dataset.theme = saved;
+  } else {
+    root.dataset.theme = 'noirberry';
+  }
 
-const content = document.querySelector(".content");
+  toggle.addEventListener('click', () => {
+    const next = root.dataset.theme === 'noirberry' ? 'light' : 'noirberry';
+    root.dataset.theme = next;
+    localStorage.setItem('theme2', next);
+  });
 
-function showContent(){
-    const rect = content.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-        content.classList.add("show");
-    }
-}
+  const progress = document.getElementById('progress');
 
-window.addEventListener("scroll", showContent);
-showContent();
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+  };
 
-
-/* PROGRESS BAR */
-
-window.addEventListener("scroll", () => {
-
-  let scrollTop = document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let progress = (scrollTop / height) * 100;
-
-  document.getElementById("progressBar").style.width = progress + "%";
-
-});
-
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+})();
 </script>
 
 </body>
