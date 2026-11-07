@@ -1,0 +1,1627 @@
+
+<!DOCTYPE html>
+<html lang="tr" data-theme="noirberry">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1c0716">
+<meta name="description" content="Seni olduğun yerde tutan düşünce ve davranış döngülerini keşfet. Kendine doğru kişisel bir yolculuğa çık.">
+<title>Seni Olduğun Yerde Tutan Şey Ne? — Adalin Sohtorik</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   ADALIN SOHTORIK — SYMBOLIC SELF-DISCOVERY
+   Blog tasarım diliyle uyumlu özel test sayfası
+   ========================================================= */
+
+:root{
+  --bg:#f8ecdf;
+  --ink:#3e1a1e;
+  --ink-soft:#7d4b45;
+  --plum:#7a2f3a;
+  --accent:#c4472f;
+  --glass:rgba(255,246,236,.55);
+  --glass-edge:rgba(255,255,255,.72);
+  --shadow:0 24px 60px -24px rgba(160,64,40,.38);
+  --b1:#ff9a6b;
+  --b2:#ff8fab;
+  --b3:#ffc978;
+  --b4:#f4a68c;
+  --b5:#e9a3a9;
+  --grain-op:.3;
+  --serif:'Fraunces','Cormorant Garamond',Georgia,serif;
+  --sans:'Manrope',system-ui,sans-serif;
+}
+
+[data-theme="noirberry"]{
+  --bg:#1c0716;
+  --ink:#f3dfe4;
+  --ink-soft:#cfa6b6;
+  --plum:#f0c6d3;
+  --accent:#ff8fb0;
+  --glass:rgba(58,14,42,.5);
+  --glass-edge:rgba(255,160,190,.22);
+  --shadow:0 24px 60px -24px rgba(0,0,0,.75);
+  --b1:#8a1f4b;
+  --b2:#5a1a3d;
+  --b3:#b23a5c;
+  --b4:#3a1230;
+  --b5:#a8416a;
+  --grain-op:.4;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.65;
+  overflow-x:hidden;
+  transition:background .6s,color .6s;
+}
+
+button,textarea{font:inherit}
+button{color:inherit}
+a{color:inherit}
+
+/* ---------- Holographic background ---------- */
+
+.aurora{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  opacity:.85;
+  will-change:transform;
+}
+
+.blob.b1{
+  width:52vw;height:52vw;
+  left:-12vw;top:-10vw;
+  background:var(--b1);
+  animation:drift1 24s ease-in-out infinite alternate;
+}
+
+.blob.b2{
+  width:46vw;height:46vw;
+  right:-10vw;top:6vh;
+  background:var(--b2);
+  animation:drift2 29s ease-in-out infinite alternate;
+}
+
+.blob.b3{
+  width:42vw;height:42vw;
+  left:18vw;bottom:-16vw;
+  background:var(--b3);
+  animation:drift3 33s ease-in-out infinite alternate;
+}
+
+.blob.b4{
+  width:34vw;height:34vw;
+  right:6vw;bottom:-6vw;
+  background:var(--b4);
+  animation:drift1 27s ease-in-out infinite alternate-reverse;
+}
+
+.blob.b5{
+  width:30vw;height:30vw;
+  left:42vw;top:30vh;
+  background:var(--b5);
+  opacity:.6;
+  animation:drift2 36s ease-in-out infinite alternate-reverse;
+}
+
+.holo-sheen{
+  position:absolute;
+  inset:-30%;
+  background:conic-gradient(
+    from 0deg,
+    #ff9a6b,#ff8fab,#ffc978,#f4a68c,#e9a3a9,#ff9a6b
+  );
+  opacity:.28;
+  filter:blur(90px);
+  mix-blend-mode:soft-light;
+  animation:spin 60s linear infinite;
+}
+
+[data-theme="noirberry"] .holo-sheen{
+  opacity:.35;
+  mix-blend-mode:screen;
+  background:conic-gradient(
+    from 0deg,#8a1f4b,#5a1a3d,#b23a5c,#3a1230,#8a1f4b
+  );
+}
+
+@keyframes drift1{
+  to{transform:translate(9vw,8vh) scale(1.12)}
+}
+@keyframes drift2{
+  to{transform:translate(-8vw,10vh) scale(.92)}
+}
+@keyframes drift3{
+  to{transform:translate(7vw,-9vh) scale(1.1)}
+}
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ---------- Vintage grain ---------- */
+
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:60;
+  pointer-events:none;
+  opacity:var(--grain-op);
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .26  0 0 0 0 .2  0 0 0 .75 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+[data-theme="noirberry"] body::after{
+  mix-blend-mode:screen;
+}
+
+/* ---------- Cursor glow ---------- */
+
+.cursor-glow{
+  position:fixed;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  z-index:-2;
+  pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.55),transparent 65%);
+  transform:translate(-50%,-50%);
+  left:50%;
+  top:30%;
+  transition:left .5s ease-out,top .5s ease-out;
+  mix-blend-mode:soft-light;
+}
+
+/* ---------- Layout ---------- */
+
+.wrap{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 22px;
+}
+
+h1,h2,h3{
+  font-family:var(--serif);
+  font-weight:500;
+  letter-spacing:-.015em;
+  line-height:1.12;
+}
+
+.kicker{
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  font-weight:600;
+  margin-bottom:16px;
+}
+
+.lead{
+  color:var(--ink-soft);
+  font-size:17px;
+  max-width:650px;
+}
+
+.holo{
+  background:linear-gradient(
+    100deg,#d9462f,#e0558a,#d98a1f,#b83a2a,#d9462f
+  );
+  background-size:300% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-style:italic;
+  animation:shift 9s linear infinite;
+}
+
+@keyframes shift{
+  to{background-position:300% 0}
+}
+
+/* ---------- Glass ---------- */
+
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-edge);
+  border-radius:26px;
+  backdrop-filter:blur(18px) saturate(1.3);
+  -webkit-backdrop-filter:blur(18px) saturate(1.3);
+  box-shadow:var(--shadow);
+}
+
+/* ---------- Navigation ---------- */
+
+.nav{
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:80;
+  width:min(960px,calc(100% - 24px));
+  padding:9px 12px 9px 22px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  justify-content:space-between;
+}
+
+.brand{
+  font-family:var(--serif);
+  font-size:19px;
+  font-weight:600;
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+.brand small{
+  display:block;
+  font-family:var(--sans);
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin-top:-2px;
+}
+
+.nav-links{
+  display:flex;
+  gap:4px;
+  list-style:none;
+}
+
+.nav-links a{
+  display:block;
+  padding:7px 13px;
+  border-radius:999px;
+  font-size:14px;
+  text-decoration:none;
+  color:var(--ink-soft);
+  transition:.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  background:rgba(255,255,255,.35);
+  color:var(--ink);
+}
+
+[data-theme="noirberry"] .nav-links a:hover,
+[data-theme="noirberry"] .nav-links a.active{
+  background:rgba(255,255,255,.1);
+}
+
+.nav-tools{
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+
+.pill-btn{
+  border:1px solid var(--glass-edge);
+  background:transparent;
+  color:var(--ink);
+  height:36px;
+  min-width:36px;
+  padding:0 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font:600 12px var(--sans);
+  letter-spacing:.08em;
+  transition:.25s;
+}
+
+.pill-btn:hover{
+  background:rgba(255,255,255,.4);
+}
+
+[data-theme="noirberry"] .pill-btn:hover{
+  background:rgba(255,255,255,.1);
+}
+
+.nav-book{
+  background:var(--ink);
+  color:var(--bg);
+  border-color:transparent;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  font-size:13px;
+  letter-spacing:0;
+  font-weight:600;
+}
+
+.nav-book:hover{
+  background:var(--accent);
+  color:#fff;
+}
+
+.menu-btn{display:none}
+
+/* ---------- Main heading ---------- */
+
+.page-head{
+  padding:155px 0 35px;
+  text-align:center;
+}
+
+.page-head h1{
+  font-size:clamp(42px,6.4vw,76px);
+  margin-bottom:18px;
+}
+
+.page-head .lead{
+  margin:0 auto;
+}
+
+/* ---------- Test introduction ---------- */
+
+.test-shell{
+  max-width:790px;
+  margin:20px auto 90px;
+}
+
+.intro-card{
+  padding:clamp(28px,5vw,54px);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.intro-symbol{
+  width:76px;
+  height:76px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  margin:0 auto 25px;
+  font-family:var(--serif);
+  font-size:34px;
+  color:var(--accent);
+  border:1px solid var(--glass-edge);
+  background:linear-gradient(
+    135deg,rgba(255,255,255,.18),rgba(255,143,176,.12)
+  );
+  box-shadow:0 10px 35px rgba(180,70,100,.12);
+}
+
+.intro-card h2{
+  font-size:clamp(30px,4.5vw,48px);
+  margin-bottom:18px;
+}
+
+.intro-card p{
+  color:var(--ink-soft);
+  max-width:590px;
+  margin:0 auto 16px;
+  font-size:16px;
+}
+
+.intro-meta{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+  margin:26px 0 30px;
+  color:var(--ink-soft);
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.intro-meta span{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.intro-meta i{
+  width:5px;
+  height:5px;
+  background:var(--accent);
+  border-radius:50%;
+}
+
+.btn{
+  position:relative;
+  overflow:hidden;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:15px 28px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+  background:var(--ink);
+  color:var(--bg);
+  transition:transform .3s,box-shadow .3s;
+  border:none;
+  cursor:pointer;
+  font-family:var(--sans);
+}
+
+.btn::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%
+  );
+  transform:translateX(-120%);
+  transition:transform .7s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 36px -10px rgba(196,71,47,.5);
+}
+
+.btn:hover::after{
+  transform:translateX(120%);
+}
+
+.btn-ghost{
+  background:var(--glass);
+  color:var(--ink);
+  border:1px solid var(--glass-edge);
+  backdrop-filter:blur(10px);
+}
+
+.btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  transform:none;
+  box-shadow:none;
+}
+
+/* ---------- Question area ---------- */
+
+.question-card{
+  padding:clamp(25px,5vw,48px);
+  display:none;
+  animation:cardIn .55s ease both;
+}
+
+.question-card.visible{display:block}
+
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.progress-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:13px;
+  color:var(--ink-soft);
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.progress-track{
+  height:4px;
+  border-radius:20px;
+  background:rgba(130,80,90,.15);
+  overflow:hidden;
+  margin-bottom:42px;
+}
+
+.progress-fill{
+  width:0;
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,#c4472f,#e0558a,#ff8fab);
+  transition:width .5s ease;
+}
+
+.question-number{
+  color:var(--accent);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.question-title{
+  font-family:var(--serif);
+  font-size:clamp(29px,4.5vw,43px);
+  font-weight:500;
+  line-height:1.2;
+  margin-bottom:16px;
+}
+
+.question-hint{
+  color:var(--ink-soft);
+  font-size:15px;
+  margin-bottom:28px;
+  max-width:610px;
+}
+
+.answer-box{
+  width:100%;
+  min-height:190px;
+  resize:vertical;
+  border:1px solid var(--glass-edge);
+  border-radius:18px;
+  padding:20px;
+  color:var(--ink);
+  background:rgba(255,255,255,.18);
+  outline:none;
+  font:400 15px/1.8 var(--sans);
+  transition:border-color .25s,background .25s,box-shadow .25s;
+}
+
+[data-theme="noirberry"] .answer-box{
+  background:rgba(255,255,255,.045);
+}
+
+.answer-box::placeholder{
+  color:var(--ink-soft);
+  opacity:.7;
+}
+
+.answer-box:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(255,143,176,.09);
+  background:rgba(255,255,255,.22);
+}
+
+.answer-foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:10px;
+  color:var(--ink-soft);
+  font-size:12px;
+}
+
+.question-actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:32px;
+}
+
+.error-msg{
+  color:var(--accent);
+  font-size:13px;
+  margin-top:12px;
+  min-height:20px;
+}
+
+/* ---------- Review ---------- */
+
+.review-card{
+  display:none;
+  padding:clamp(25px,5vw,48px);
+  animation:cardIn .55s ease both;
+}
+
+.review-card.visible{display:block}
+
+.review-card h2{
+  font-size:clamp(30px,4vw,43px);
+  margin-bottom:12px;
+}
+
+.review-intro{
+  color:var(--ink-soft);
+  margin-bottom:30px;
+}
+
+.review-item{
+  padding:20px 0;
+  border-bottom:1px solid var(--glass-edge);
+}
+
+.review-item:last-of-type{border-bottom:0}
+
+.review-item h3{
+  color:var(--accent);
+  font-family:var(--sans);
+  font-size:12px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-bottom:9px;
+}
+
+.review-item p{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  color:var(--ink);
+  font-size:15px;
+  line-height:1.8;
+}
+
+.privacy-note{
+  margin-top:26px;
+  padding:17px 19px;
+  border-radius:16px;
+  background:rgba(196,71,47,.07);
+  border:1px solid rgba(196,71,47,.13);
+  color:var(--ink-soft);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.review-actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+/* ---------- AI response area ---------- */
+
+.result-card{
+  display:none;
+  padding:clamp(25px,5vw,48px);
+  margin-top:20px;
+  animation:cardIn .55s ease both;
+}
+
+.result-card.visible{display:block}
+
+.result-card h2{
+  font-size:clamp(30px,4vw,43px);
+  margin-bottom:18px;
+}
+
+.result-content{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  color:var(--ink);
+  font-size:15px;
+  line-height:1.9;
+}
+
+.connection-message{
+  padding:20px;
+  border:1px solid var(--glass-edge);
+  border-radius:18px;
+  color:var(--ink-soft);
+  font-size:14px;
+  line-height:1.8;
+  margin-top:20px;
+}
+
+.connection-message strong{color:var(--ink)}
+
+/* ---------- Closing ---------- */
+
+.disclaimer{
+  max-width:720px;
+  margin:0 auto 75px;
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:12px;
+  line-height:1.8;
+  padding:0 22px;
+}
+
+.disclaimer span{color:var(--accent)}
+
+/* ---------- Footer ---------- */
+
+footer{
+  text-align:center;
+  padding:30px 20px 50px;
+  font-size:13px;
+  color:var(--ink-soft);
+}
+
+/* ---------- Noirberry texture ---------- */
+
+[data-theme="noirberry"] .aurora{
+  background:radial-gradient(
+    120% 90% at 20% 0%,#4a1236 0%,#240a1d 55%,#150510 100%
+  );
+}
+
+[data-theme="noirberry"] .blob{
+  opacity:.55;
+  filter:blur(90px);
+}
+
+[data-theme="noirberry"] .blob.b5{opacity:.4}
+
+[data-theme="noirberry"] .aurora::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  opacity:.65;
+  mix-blend-mode:soft-light;
+  background-size:1100px 1100px,380px 380px;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1100' height='1100'><filter id='m' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.008 .012' numOctaves='5' seed='7'/><feColorMatrix values='0 0 0 0 .95  0 0 0 0 .42  0 0 0 0 .62  1.6 0 0 0 -.45'/></filter><rect width='100%25' height='100%25' filter='url(%23m)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='380'><filter id='v' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' seed='3'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .55  0 0 0 0 .72  1.4 0 0 0 -.5'/></filter><rect width='100%25' height='100%25' filter='url(%23v)'/></svg>");
+}
+
+[data-theme="noirberry"] h1,
+[data-theme="noirberry"] h2{
+  font-weight:400;
+}
+
+[data-theme="noirberry"] .holo{
+  background-image:linear-gradient(
+    100deg,#ff9ebf,#f7d3dc,#e9bb8f,#ff7fa6,#ff9ebf
+  );
+  background-size:300% 100%;
+}
+
+[data-theme="noirberry"] .cursor-glow{
+  background:radial-gradient(
+    circle,rgba(255,140,185,.38),transparent 65%
+  );
+  mix-blend-mode:screen;
+}
+
+[data-theme="noirberry"] .btn:hover{
+  box-shadow:0 16px 36px -10px rgba(255,120,170,.45);
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:860px){
+  .nav-links{display:none}
+  .menu-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    padding:0;
+  }
+  .nav{flex-wrap:wrap}
+  .nav.open{border-radius:28px}
+  .nav-links{
+    display:none;
+    order:3;
+    width:100%;
+    flex-direction:column;
+    gap:2px;
+    padding:6px 0 4px;
+  }
+  .nav.open .nav-links{display:flex}
+  .nav-links a{padding:12px 14px;font-size:16px}
+}
+
+@media(max-width:520px){
+  .nav{padding:8px 10px 8px 16px}
+  .brand{font-size:17px}
+  .brand small{display:none}
+  .nav-book{display:none}
+  .page-head{padding-top:130px}
+  .question-actions{align-items:stretch}
+  .question-actions .btn{flex:1}
+  .review-actions .btn{flex:1}
+  .answer-box{min-height:170px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="aurora" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+  <div class="blob b5"></div>
+  <div class="holo-sheen"></div>
+</div>
+
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<nav class="nav glass">
+  <a href="index.html" class="brand">
+    Adalin Sohtorik
+    <small>Zihin Mimarisi</small>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html#hakkimda" data-i18n="nav_about">Hakkımda</a></li>
+    <li><a href="index.html#seanslar" data-i18n="nav_sessions">Seanslar</a></li>
+    <li><a href="blog.html" data-i18n="nav_blog">Blog</a></li>
+    <li><a href="testler.html" class="active" data-i18n="nav_tests">Kendini Keşfet</a></li>
+    <li class="mobile-book">
+      <a href="https://www.advicemy.com/danisman/adalin-sohtorik"
+         target="_blank" rel="noopener" data-i18n="nav_book">Seans Al</a>
+    </li>
+  </ul>
+
+  <div class="nav-tools">
+    <button class="pill-btn" id="theme" type="button" aria-label="Tema">☀</button>
+    <button class="pill-btn" id="lang" type="button" aria-label="Dil">RU</button>
+    <a class="pill-btn nav-book"
+       href="https://www.advicemy.com/danisman/adalin-sohtorik"
+       target="_blank" rel="noopener" data-i18n="nav_book">Seans Al</a>
+    <button class="pill-btn menu-btn" id="menu" type="button"
+            aria-label="Menü" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<main>
+
+  <header class="page-head wrap">
+    <p class="kicker reveal" data-i18n="page_kicker">KENDİNE DOĞRU BİR YOLCULUK</p>
+    <h1 class="reveal">
+      <span data-i18n="page_title_start">Seni Olduğun Yerde</span>
+      <span class="holo" data-i18n="page_title_end">Tutan Şey Ne?</span>
+    </h1>
+    <p class="lead reveal" data-i18n="page_lead">
+      Bazen ilerleyemememizin nedeni ne istediğimizi bilmemek değil,
+      bizi olduğumuz yerde tutan görünmez döngüyü fark edememektir.
+    </p>
+  </header>
+
+  <div class="wrap">
+    <div class="test-shell">
+
+      <!-- INTRO -->
+      <section class="intro-card glass" id="intro">
+        <div class="intro-symbol">✦</div>
+
+        <p class="kicker" data-i18n="intro_kicker">SEMBOLİK KEŞİF · 5 SORU</p>
+
+        <h2 data-i18n="intro_title">
+          Kendine karşı ne kadar <span class="holo">dürüst olabilirsin?</span>
+        </h2>
+
+        <p data-i18n="intro_p1">
+          Bu çalışma, hayatında değiştirmek istediğin hâlde tekrar tekrar
+          aynı noktaya döndüğün alanı anlamana yardımcı olmak için hazırlandı.
+        </p>
+
+        <p data-i18n="intro_p2">
+          Sana hazır kişilik etiketleri sunmayacağız. Kendi cümlelerinle
+          cevap vereceğin beş soruyla düşünce ve davranış örüntülerine
+          birlikte bakacağız.
+        </p>
+
+        <div class="intro-meta">
+          <span><i></i><b data-i18n="meta_questions">5 açık uçlu soru</b></span>
+          <span><i></i><b data-i18n="meta_time">Yaklaşık 5–8 dakika</b></span>
+          <span><i></i><b data-i18n="meta_personal">Kişisel değerlendirme</b></span>
+        </div>
+
+        <button class="btn" id="startBtn" type="button">
+          <span data-i18n="start_btn">Kendimi keşfetmeye başla</span> <span>↗</span>
+        </button>
+      </section>
+
+      <!-- QUESTIONS -->
+      <section class="question-card glass" id="questionCard" aria-live="polite">
+
+        <div class="progress-top">
+          <span id="progressLabel">SORU 1 / 5</span>
+          <span id="progressPercent">20%</span>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <p class="question-number" id="questionNumber">01 / 05</p>
+        <h2 class="question-title" id="questionTitle"></h2>
+        <p class="question-hint" id="questionHint"></p>
+
+        <textarea
+          class="answer-box"
+          id="answerInput"
+          maxlength="3000"
+          autocomplete="off"
+          spellcheck="true"
+          aria-label="Cevabınız"
+        ></textarea>
+
+        <div class="answer-foot">
+          <span data-i18n="answer_hint">Aklına geldiği gibi yaz. Doğru ya da yanlış cevap yok.</span>
+          <span id="charCount">0 / 3000</span>
+        </div>
+
+        <p class="error-msg" id="errorMsg" role="alert"></p>
+
+        <div class="question-actions">
+          <button class="btn btn-ghost" id="backBtn" type="button">
+            <span>←</span> <span data-i18n="back_btn">Geri</span>
+          </button>
+
+          <button class="btn" id="nextBtn" type="button">
+            <span data-i18n="next_btn">Devam et</span> <span>→</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ANSWER REVIEW -->
+      <section class="review-card glass" id="reviewCard">
+        <p class="kicker" data-i18n="review_kicker">BİR SONRAKİ ADIM</p>
+        <h2 data-i18n="review_title">Cevaplarına birlikte bakalım.</h2>
+        <p class="review-intro" data-i18n="review_intro">
+          Devam etmeden önce verdiğin cevapları gözden geçirebilirsin.
+          İstersen geri dönüp değiştirebilirsin.
+        </p>
+
+        <div id="reviewAnswers"></div>
+
+        <div class="privacy-note" data-i18n="privacy_note">
+          Yanıtların henüz herhangi bir yere gönderilmiyor. Yapay zekâ
+          değerlendirmesi için güvenli bağlantı ayrıca kurulacak.
+        </div>
+
+        <div class="review-actions">
+          <button class="btn btn-ghost" id="editBtn" type="button">
+            <span>←</span> <span data-i18n="edit_btn">Cevaplarımı düzenle</span>
+          </button>
+          <button class="btn" id="analyzeBtn" type="button">
+            <span data-i18n="analyze_btn">Değerlendirmeye geç</span> <span>↗</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- RESULT / CONNECTION STATUS -->
+      <section class="result-card glass" id="resultCard" aria-live="polite">
+        <p class="kicker" data-i18n="result_kicker">KENDİNE BİR NOT</p>
+        <h2 data-i18n="result_title">Bir adım daha derine iniyoruz.</h2>
+        <div class="result-content" id="resultContent"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <p class="disclaimer" data-i18n="disclaimer">
+    <span>Bir hatırlatma:</span> Bu çalışma klinik bir test veya psikolojik
+    tanı aracı değildir. Cevapların üzerinden düşünmeni ve kendi örüntülerini
+    keşfetmeni destekleyen sembolik bir farkındalık çalışmasıdır.
+  </p>
+
+</main>
+
+<footer data-i18n="footer">
+  © 2026 Adalin Sohtorik — Tüm hakları saklıdır.
+</footer>
+
+<script>
+/* =========================================================
+   AYARLAR
+   Cloudflare Worker hazır olduğunda buraya adresini ekleyeceğiz.
+   Örnek: https://adalin-test-api.kullanici.workers.dev
+   ========================================================= */
+
+const API_ENDPOINT = "";
+
+
+/* =========================================================
+   DİL METİNLERİ
+   ========================================================= */
+
+const TRANSLATIONS = {
+  tr:{
+    nav_about:"Hakkımda",
+    nav_sessions:"Seanslar",
+    nav_blog:"Blog",
+    nav_tests:"Kendini Keşfet",
+    nav_book:"Seans Al",
+
+    page_kicker:"KENDİNE DOĞRU BİR YOLCULUK",
+    page_title_start:"Seni Olduğun Yerde",
+    page_title_end:"Tutan Şey Ne?",
+    page_lead:"Bazen ilerleyemememizin nedeni ne istediğimizi bilmemek değil, bizi olduğumuz yerde tutan görünmez döngüyü fark edememektir.",
+
+    intro_kicker:"SEMBOLİK KEŞİF · 5 SORU",
+    intro_title:'Kendine karşı ne kadar <span class="holo">dürüst olabilirsin?</span>',
+    intro_p1:"Bu çalışma, hayatında değiştirmek istediğin hâlde tekrar tekrar aynı noktaya döndüğün alanı anlamana yardımcı olmak için hazırlandı.",
+    intro_p2:"Sana hazır kişilik etiketleri sunmayacağız. Kendi cümlelerinle cevap vereceğin beş soruyla düşünce ve davranış örüntülerine birlikte bakacağız.",
+
+    meta_questions:"5 açık uçlu soru",
+    meta_time:"Yaklaşık 5–8 dakika",
+    meta_personal:"Kişisel değerlendirme",
+    start_btn:"Kendimi keşfetmeye başla",
+
+    answer_hint:"Aklına geldiği gibi yaz. Doğru ya da yanlış cevap yok.",
+    answer_placeholder:"Düşüncelerini burada özgürce ifade edebilirsin...",
+    back_btn:"Geri",
+    next_btn:"Devam et",
+    finish_btn:"Cevaplarımı tamamla",
+
+    review_kicker:"BİR SONRAKİ ADIM",
+    review_title:"Cevaplarına birlikte bakalım.",
+    review_intro:"Devam etmeden önce verdiğin cevapları gözden geçirebilirsin. İstersen geri dönüp değiştirebilirsin.",
+    privacy_note:"Yanıtların henüz herhangi bir yere gönderilmiyor. Yapay zekâ değerlendirmesi için güvenli bağlantı ayrıca kurulacak.",
+    edit_btn:"Cevaplarımı düzenle",
+    analyze_btn:"Değerlendirmeye geç",
+
+    result_kicker:"KENDİNE BİR NOT",
+    result_title:"Bir adım daha derine iniyoruz.",
+
+    disclaimer:"<span>Bir hatırlatma:</span> Bu çalışma klinik bir test veya psikolojik tanı aracı değildir. Cevapların üzerinden düşünmeni ve kendi örüntülerini keşfetmeni destekleyen sembolik bir farkındalık çalışmasıdır.",
+
+    footer:"© 2026 Adalin Sohtorik — Tüm hakları saklıdır.",
+
+    questions:[
+      {
+        title:"Hayatında gerçekten değiştirmek istediğin ama bir türlü değiştiremediğin şey ne?",
+        hint:"Bir hedef, ilişki, alışkanlık, karar ya da kendinle ilgili bir durum olabilir. Genel konuşmak yerine mümkün olduğunca somut bir örnek anlat."
+      },
+      {
+        title:"Sence seni bu değişim için harekete geçmekten alıkoyan asıl şey ne?",
+        hint:"Zaman, para veya koşullar gibi görünen nedenlerin ötesine bakmayı dene. İçinden geçenleri, tereddütlerini ve kendine söylediklerini anlat."
+      },
+      {
+        title:"Daha önce bu konuda adım attığın hâlde eski davranışına geri döndüğün oldu mu? O anlarda ne yaşandı?",
+        hint:"Bir örneği hatırlamaya çalış. Ne yapmaya karar vermiştin, ne oldu ve hangi noktada vazgeçtin?"
+      },
+      {
+        title:"Bu durum böyle devam ettiğinde, farkında olmadan neyi koruyor veya neyden kaçıyor olabilirsin?",
+        hint:"Değişmemek bazen bizi bir riskten, sorumluluktan, hayal kırıklığından ya da belirsizlikten koruyor olabilir. Sende ne olabilir?"
+      },
+      {
+        title:"İstediğin değişim gerçekten gerçekleşirse hayatında neyin farklılaşmasından korkuyorsun?",
+        hint:"Yeni bir hayatın getireceği sorumlulukları, ilişkilerindeki değişimleri, başkalarının tepkilerini veya kendinle ilgili beklentileri düşün."
+      }
+    ],
+
+    empty_error:"Devam etmeden önce bu soruya kendi cümlelerinle cevap vermeni istiyorum.",
+    short_error:"Biraz daha açabilir misin? En az 10 karakter yazmanı rica ediyorum.",
+    connection_title:"Yapay zekâ bağlantısı henüz kurulmadı.",
+    connection_text:"Testin soru ve cevap bölümü hazır. Sana özel analiz oluşturacak güvenli yapay zekâ bağlantısını henüz etkinleştirmedik. Şu anda cevapların herhangi bir sunucuya gönderilmedi ve bu sayfada kalıyor.",
+    connection_next:"Bir sonraki aşamada Cloudflare Worker bağlantısını kurduğumuzda bu bölüm, beş cevabını birlikte değerlendirerek kişisel analizini oluşturacak.",
+    restart_btn:"Testi yeniden başlat",
+    loading:"Cevapların değerlendiriliyor...",
+    api_error:"Analiz sırasında bir sorun oluştu. Lütfen daha sonra tekrar dene.",
+    review_labels:[
+      "01 · Hayatında değiştirmek istediğin şey",
+      "02 · Seni durduran şey",
+      "03 · Tekrarlayan döngü",
+      "04 · Gizli kazanç veya kaçınma",
+      "05 · Değişimden duyduğun korku"
+    ]
+  },
+
+  ru:{
+    nav_about:"Обо мне",
+    nav_sessions:"Сессии",
+    nav_blog:"Блог",
+    nav_tests:"Познай себя",
+    nav_book:"Записаться",
+
+    page_kicker:"ПУТЕШЕСТВИЕ К СЕБЕ",
+    page_title_start:"Что удерживает тебя",
+    page_title_end:"на одном месте?",
+    page_lead:"Иногда нам мешает двигаться вперёд не отсутствие понимания желаемого, а незамеченный внутренний цикл, который удерживает нас на месте.",
+
+    intro_kicker:"СИМВОЛИЧЕСКОЕ ИССЛЕДОВАНИЕ · 5 ВОПРОСОВ",
+    intro_title:'Насколько честно ты можешь <span class="holo">посмотреть на себя?</span>',
+    intro_p1:"Это упражнение поможет исследовать сферу жизни, которую ты хочешь изменить, но в которой снова и снова оказываешься в одной и той же точке.",
+    intro_p2:"Мы не будем присваивать тебе готовые типы личности. Вместе рассмотрим твои мысли и поведенческие модели через пять вопросов, на которые ты ответишь своими словами.",
+
+    meta_questions:"5 открытых вопросов",
+    meta_time:"Примерно 5–8 минут",
+    meta_personal:"Персональный разбор",
+    start_btn:"Начать исследование себя",
+
+    answer_hint:"Пиши так, как чувствуешь. Здесь нет правильных или неправильных ответов.",
+    answer_placeholder:"Ты можешь свободно выразить здесь свои мысли...",
+    back_btn:"Назад",
+    next_btn:"Продолжить",
+    finish_btn:"Завершить ответы",
+
+    review_kicker:"СЛЕДУЮЩИЙ ШАГ",
+    review_title:"Давай посмотрим на твои ответы.",
+    review_intro:"Перед продолжением ты можешь просмотреть свои ответы и при желании вернуться, чтобы изменить их.",
+    privacy_note:"Твои ответы пока никуда не отправляются. Безопасное подключение для анализа искусственным интеллектом будет настроено отдельно.",
+    edit_btn:"Изменить ответы",
+    analyze_btn:"Перейти к анализу",
+
+    result_kicker:"ЗАМЕТКА ДЛЯ СЕБЯ",
+    result_title:"Пойдём на шаг глубже.",
+
+    disclaimer:"<span>Важно:</span> Это упражнение не является клиническим тестом или инструментом психологической диагностики. Это символическая практика осознанности, помогающая исследовать собственные мысли и модели поведения.",
+    footer:"© 2026 Adalin Sohtorik — Все права защищены.",
+
+    questions:[
+      {
+        title:"Что в своей жизни ты действительно хочешь изменить, но никак не можешь?",
+        hint:"Это может быть цель, отношения, привычка, решение или что-то, связанное с тобой. Постарайся привести конкретный пример."
+      },
+      {
+        title:"Как ты думаешь, что на самом деле мешает тебе начать действовать ради этих перемен?",
+        hint:"Попробуй заглянуть глубже очевидных причин вроде нехватки времени, денег или подходящих условий. Расскажи о своих сомнениях и мыслях."
+      },
+      {
+        title:"Ты уже пытался что-то изменить, но возвращался к прежнему поведению? Что происходило в такие моменты?",
+        hint:"Вспомни конкретный случай. Что ты решил сделать, что произошло и в какой момент ты отступил?"
+      },
+      {
+        title:"Если всё останется как есть, что ты, возможно, неосознанно защищаешь или чего избегаешь?",
+        hint:"Иногда отсутствие перемен защищает нас от риска, ответственности, разочарования или неопределённости. Что это может быть в твоём случае?"
+      },
+      {
+        title:"Если желаемые перемены действительно произойдут, каких изменений в своей жизни ты можешь бояться?",
+        hint:"Подумай об ответственности, изменениях в отношениях, реакции окружающих или новых ожиданиях от самого себя."
+      }
+    ],
+
+    empty_error:"Прежде чем продолжить, ответь на этот вопрос своими словами.",
+    short_error:"Можешь немного подробнее? Пожалуйста, напиши не менее 10 символов.",
+    connection_title:"Подключение искусственного интеллекта ещё не настроено.",
+    connection_text:"Вопросы и ответы теста уже готовы. Безопасное подключение искусственного интеллекта для персонального анализа пока не активировано. Сейчас твои ответы не отправляются на сервер и остаются на этой странице.",
+    connection_next:"Когда мы настроим Cloudflare Worker, этот раздел сможет оценивать все пять ответов вместе и создавать персональный анализ.",
+    restart_btn:"Пройти тест заново",
+    loading:"Твои ответы анализируются...",
+    api_error:"Во время анализа произошла ошибка. Пожалуйста, попробуй позже.",
+    review_labels:[
+      "01 · Что ты хочешь изменить",
+      "02 · Что тебя останавливает",
+      "03 · Повторяющийся цикл",
+      "04 · Скрытая выгода или избегание",
+      "05 · Страх перед переменами"
+    ]
+  }
+};
+
+
+/* =========================================================
+   UYGULAMA DURUMU
+   ========================================================= */
+
+const $ = (selector) => document.querySelector(selector);
+
+const root = document.documentElement;
+
+const intro = $("#intro");
+const questionCard = $("#questionCard");
+const reviewCard = $("#reviewCard");
+const resultCard = $("#resultCard");
+
+const questionNumber = $("#questionNumber");
+const questionTitle = $("#questionTitle");
+const questionHint = $("#questionHint");
+const answerInput = $("#answerInput");
+const charCount = $("#charCount");
+const progressLabel = $("#progressLabel");
+const progressPercent = $("#progressPercent");
+const progressFill = $("#progressFill");
+const errorMsg = $("#errorMsg");
+
+let currentQuestion = 0;
+let answers = ["","","","",""];
+let lang = "tr";
+
+const storage = {
+  get(key){
+    try{return localStorage.getItem(key)}catch(e){return null}
+  },
+  set(key,value){
+    try{localStorage.setItem(key,value)}catch(e){}
+  }
+};
+
+function t(){
+  return TRANSLATIONS[lang] || TRANSLATIONS.tr;
+}
+
+
+/* =========================================================
+   TEMA — BLOG İLE AYNI theme2 DEĞERİ
+   ========================================================= */
+
+function applyTheme(theme){
+  if(theme === "noirberry"){
+    root.setAttribute("data-theme","noirberry");
+  }else{
+    root.removeAttribute("data-theme");
+  }
+
+  const button = $("#theme");
+  if(button){
+    button.textContent = theme === "noirberry" ? "☀" : "☾";
+  }
+}
+
+let theme = storage.get("theme2") || "noirberry";
+applyTheme(theme);
+
+$("#theme").addEventListener("click",()=>{
+  theme = theme === "noirberry" ? "holo" : "noirberry";
+  storage.set("theme2",theme);
+  applyTheme(theme);
+});
+
+
+/* =========================================================
+   DİL — BLOG İLE AYNI lang DEĞERİ
+   ========================================================= */
+
+function applyLanguage(){
+  const text = t();
+
+  root.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(element=>{
+    const key = element.dataset.i18n;
+    if(text[key] !== undefined){
+      element.innerHTML = text[key];
+    }
+  });
+
+  $("#lang").textContent = lang === "tr" ? "RU" : "TR";
+
+  if(questionCard.classList.contains("visible")){
+    renderQuestion();
+  }
+
+  if(reviewCard.classList.contains("visible")){
+    renderReview();
+  }
+
+  answerInput.placeholder = text.answer_placeholder;
+}
+
+lang = storage.get("lang") || "tr";
+if(!TRANSLATIONS[lang]) lang = "tr";
+
+$("#lang").addEventListener("click",()=>{
+  lang = lang === "tr" ? "ru" : "tr";
+  storage.set("lang",lang);
+  applyLanguage();
+});
+
+applyLanguage();
+
+
+/* =========================================================
+   SORU AKIŞI
+   ========================================================= */
+
+function showOnly(section){
+  [intro,questionCard,reviewCard,resultCard].forEach(item=>{
+    item.classList.remove("visible");
+  });
+
+  if(section){
+    section.classList.add("visible");
+    section.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+}
+
+function renderQuestion(){
+  const text = t();
+  const question = text.questions[currentQuestion];
+  const total = text.questions.length;
+  const number = currentQuestion + 1;
+  const percent = Math.round((number / total) * 100);
+
+  questionNumber.textContent =
+    String(number).padStart(2,"0") + " / " + String(total).padStart(2,"0");
+
+  questionTitle.textContent = question.title;
+  questionHint.textContent = question.hint;
+
+  progressLabel.textContent =
+    (lang === "tr" ? "SORU " : "ВОПРОС ") + number + " / " + total;
+
+  progressPercent.textContent = percent + "%";
+  progressFill.style.width = percent + "%";
+
+  answerInput.value = answers[currentQuestion];
+  answerInput.placeholder = text.answer_placeholder;
+
+  charCount.textContent = answerInput.value.length + " / 3000";
+
+  errorMsg.textContent = "";
+
+  $("#backBtn").style.visibility =
+    currentQuestion === 0 ? "hidden" : "visible";
+
+  $("#nextBtn").innerHTML = currentQuestion === total - 1
+    ? `<span>${text.finish_btn}</span> <span>→</span>`
+    : `<span>${text.next_btn}</span> <span>→</span>`;
+}
+
+function startTest(){
+  currentQuestion = 0;
+  showOnly(questionCard);
+  renderQuestion();
+  setTimeout(()=>answerInput.focus(),350);
+}
+
+$("#startBtn").addEventListener("click",startTest);
+
+answerInput.addEventListener("input",()=>{
+  answers[currentQuestion] = answerInput.value;
+  charCount.textContent = answerInput.value.length + " / 3000";
+});
+
+$("#nextBtn").addEventListener("click",()=>{
+  const value = answerInput.value.trim();
+  const text = t();
+
+  if(!value){
+    errorMsg.textContent = text.empty_error;
+    answerInput.focus();
+    return;
+  }
+
+  if(value.length < 10){
+    errorMsg.textContent = text.short_error;
+    answerInput.focus();
+    return;
+  }
+
+  answers[currentQuestion] = value;
+
+  if(currentQuestion < text.questions.length - 1){
+    currentQuestion++;
+    renderQuestion();
+    answerInput.focus();
+  }else{
+    renderReview();
+    showOnly(reviewCard);
+  }
+});
+
+$("#backBtn").addEventListener("click",()=>{
+  answers[currentQuestion] = answerInput.value;
+
+  if(currentQuestion > 0){
+    currentQuestion--;
+    renderQuestion();
+  }else{
+    showOnly(intro);
+  }
+});
+
+
+/* =========================================================
+   CEVAPLARI GÖZDEN GEÇİRME
+   ========================================================= */
+
+function renderReview(){
+  const text = t();
+  const container = $("#reviewAnswers");
+
+  container.innerHTML = "";
+
+  answers.forEach((answer,index)=>{
+    const item = document.createElement("div");
+    item.className = "review-item";
+
+    const heading = document.createElement("h3");
+    heading.textContent = text.review_labels[index];
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = answer;
+
+    item.appendChild(heading);
+    item.appendChild(paragraph);
+    container.appendChild(item);
+  });
+}
+
+$("#editBtn").addEventListener("click",()=>{
+  currentQuestion = 0;
+  showOnly(questionCard);
+  renderQuestion();
+});
+
+
+/* =========================================================
+   YAPAY ZEKÂ BAĞLANTISI
+   API_ENDPOINT boş bırakıldığı sürece cevaplar gönderilmez.
+   Worker kurulduktan sonra endpoint buraya eklenecek.
+   ========================================================= */
+
+function showConnectionMessage(){
+  const text = t();
+  const content = $("#resultContent");
+
+  content.innerHTML = "";
+
+  const title = document.createElement("strong");
+  title.textContent = text.connection_title;
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = text.connection_text;
+  paragraph.style.marginTop = "12px";
+
+  const next = document.createElement("p");
+  next.textContent = text.connection_next;
+  next.style.marginTop = "12px";
+
+  const restart = document.createElement("button");
+  restart.className = "btn btn-ghost";
+  restart.type = "button";
+  restart.textContent = text.restart_btn;
+  restart.style.marginTop = "25px";
+
+  restart.addEventListener("click",()=>{
+    answers = ["","","","",""];
+    currentQuestion = 0;
+    answerInput.value = "";
+    showOnly(intro);
+  });
+
+  content.appendChild(title);
+  content.appendChild(paragraph);
+  content.appendChild(next);
+  content.appendChild(restart);
+}
+
+async function sendForAnalysis(){
+  const text = t();
+  const button = $("#analyzeBtn");
+
+  if(!API_ENDPOINT){
+    showConnectionMessage();
+    showOnly(resultCard);
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = text.loading;
+
+  try{
+    const response = await fetch(API_ENDPOINT,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        language:lang,
+        test:"seni_oldugun_yerde_tutan_sey",
+        answers:answers
+      })
+    });
+
+    if(!response.ok){
+      throw new Error("API request failed");
+    }
+
+    const data = await response.json();
+
+    if(!data.analysis || typeof data.analysis !== "string"){
+      throw new Error("Invalid analysis response");
+    }
+
+    $("#resultContent").textContent = data.analysis;
+    showOnly(resultCard);
+
+  }catch(error){
+    $("#resultContent").textContent = text.api_error;
+    showOnly(resultCard);
+  }finally{
+    button.disabled = false;
+    button.innerHTML = `<span>${text.analyze_btn}</span> <span>↗</span>`;
+  }
+}
+
+$("#analyzeBtn").addEventListener("click",sendForAnalysis);
+
+
+/* =========================================================
+   CURSOR GLOW
+   ========================================================= */
+
+const glow = $(".cursor-glow");
+
+if(glow && window.matchMedia("(pointer:fine)").matches){
+  window.addEventListener("mousemove",event=>{
+    glow.style.left = event.clientX + "px";
+    glow.style.top = event.clientY + "px";
+  });
+}
+
+
+/* =========================================================
+   MOBİL MENÜ
+   ========================================================= */
+
+(function(){
+  const nav = document.querySelector(".nav");
+  const button = $("#menu");
+
+  if(!nav || !button) return;
+
+  function setMenu(open){
+    nav.classList.toggle("open",open);
+    button.setAttribute("aria-expanded",String(open));
+    button.textContent = open ? "✕" : "☰";
+  }
+
+  button.addEventListener("click",()=>{
+    setMenu(!nav.classList.contains("open"));
+  });
+
+  nav.querySelectorAll(".nav-links a").forEach(link=>{
+    link.addEventListener("click",()=>setMenu(false));
+  });
+})();
+
+
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+if("IntersectionObserver" in window){
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12});
+
+  document.querySelectorAll(".reveal").forEach(element=>{
+    observer.observe(element);
+  });
+}else{
+  document.querySelectorAll(".reveal").forEach(element=>{
+    element.classList.add("show");
+  });
+}
+
+</script>
+
+<style>
+/* Reveal sınıfları */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .9s ease,transform .9s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+.mobile-book{display:none}
+@media(max-width:860px){
+  .mobile-book{display:block}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none}
+}
+</style>
+
+</body>
+</html>
