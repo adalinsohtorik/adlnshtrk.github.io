@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#1c0716">
-<meta name="description" content="Seni olduğun yerde tutan düşünce ve davranış döngülerini keşfet. Kendine doğru kişisel bir yolculuğa çık.">
-<title>Seni Olduğun Yerde Tutan Şey Ne? — Adalin Sohtorik</title>
+<meta name="description" content="Sembolik bir yolculukla bekleyişlerini, seçimlerini ve değişimle kurduğun ilişkiyi keşfet.">
+<title>Hayatının Hangi İstasyonunda Bekliyorsun? — Adalin Sohtorik</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -836,22 +836,33 @@ footer{
     scroll-behavior:auto!important;
   }
 }
+
+.intro-card{display:none}
+.intro-card.visible{display:block}
+
+/* ---------- Symbolic station test ---------- */
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:28px}
+.choice{width:100%;min-height:105px;text-align:left;padding:19px 20px;border:1px solid var(--glass-edge);border-radius:19px;background:rgba(255,255,255,.13);color:var(--ink);cursor:pointer;transition:transform .25s,border-color .25s,background .25s;display:flex;gap:13px;align-items:flex-start}
+.choice:hover{transform:translateY(-3px);border-color:var(--accent);background:rgba(255,255,255,.22)}
+.choice.selected{border-color:var(--accent);background:rgba(255,143,176,.13);box-shadow:0 0 0 2px rgba(255,143,176,.12)}
+.choice-symbol{font-size:25px;line-height:1.2;flex:0 0 30px}
+.choice strong{display:block;font-size:15px;font-weight:700;margin-bottom:5px}
+.choice small{display:block;color:var(--ink-soft);font-size:12px;line-height:1.55}
+.result-reading{padding:21px 0;border-bottom:1px solid var(--glass-edge)}
+.result-reading:last-child{border-bottom:0}
+.result-reading h3{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.result-reading p{font-size:15px;line-height:1.85;color:var(--ink)}
+.result-summary{padding:22px;border-radius:19px;background:rgba(196,71,47,.08);border:1px solid rgba(196,71,47,.15);margin:22px 0}
+.result-summary h3{font:500 28px var(--serif);margin-bottom:10px}
+.result-summary p{font-size:15px;line-height:1.8;color:var(--ink-soft)}
+.result-question{margin-top:20px;color:var(--ink-soft);font-size:14px;line-height:1.8}
+@media(max-width:620px){.choice-grid{grid-template-columns:1fr}.choice{min-height:unset}.question-actions{align-items:stretch}.question-actions .btn{flex:1}}
+
 </style>
 </head>
-
 <body>
-
-<div class="aurora" aria-hidden="true">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-  <div class="blob b4"></div>
-  <div class="blob b5"></div>
-  <div class="holo-sheen"></div>
-</div>
-
+<div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="blob b5"></div><div class="holo-sheen"></div></div>
 <div class="cursor-glow" aria-hidden="true"></div>
-
 <nav class="nav glass">
   <a href="index.html" class="brand">
     Adalin Sohtorik
@@ -879,749 +890,155 @@ footer{
             aria-label="Menü" aria-expanded="false">☰</button>
   </div>
 </nav>
-
 <main>
-
-  <header class="page-head wrap">
-    <p class="kicker reveal" data-i18n="page_kicker">KENDİNE DOĞRU BİR YOLCULUK</p>
-    <h1 class="reveal">
-      <span data-i18n="page_title_start">Seni Olduğun Yerde</span>
-      <span class="holo" data-i18n="page_title_end">Tutan Şey Ne?</span>
-    </h1>
-    <p class="lead reveal" data-i18n="page_lead">
-      Bazen ilerleyemememizin nedeni ne istediğimizi bilmemek değil,
-      bizi olduğumuz yerde tutan görünmez döngüyü fark edememektir.
-    </p>
-  </header>
-
-  <div class="wrap">
-    <div class="test-shell">
-
-      <!-- INTRO -->
-      <section class="intro-card glass" id="intro">
-        <div class="intro-symbol">✦</div>
-
-        <p class="kicker" data-i18n="intro_kicker">SEMBOLİK KEŞİF · 5 SORU</p>
-
-        <h2 data-i18n="intro_title">
-          Kendine karşı ne kadar <span class="holo">dürüst olabilirsin?</span>
-        </h2>
-
-        <p data-i18n="intro_p1">
-          Bu çalışma, hayatında değiştirmek istediğin hâlde tekrar tekrar
-          aynı noktaya döndüğün alanı anlamana yardımcı olmak için hazırlandı.
-        </p>
-
-        <p data-i18n="intro_p2">
-          Sana hazır kişilik etiketleri sunmayacağız. Kendi cümlelerinle
-          cevap vereceğin beş soruyla düşünce ve davranış örüntülerine
-          birlikte bakacağız.
-        </p>
-
-        <div class="intro-meta">
-          <span><i></i><b data-i18n="meta_questions">5 açık uçlu soru</b></span>
-          <span><i></i><b data-i18n="meta_time">Yaklaşık 5–8 dakika</b></span>
-          <span><i></i><b data-i18n="meta_personal">Kişisel değerlendirme</b></span>
-        </div>
-
-        <button class="btn" id="startBtn" type="button">
-          <span data-i18n="start_btn">Kendimi keşfetmeye başla</span> <span>↗</span>
-        </button>
-      </section>
-
-      <!-- QUESTIONS -->
-      <section class="question-card glass" id="questionCard" aria-live="polite">
-
-        <div class="progress-top">
-          <span id="progressLabel">SORU 1 / 5</span>
-          <span id="progressPercent">20%</span>
-        </div>
-
-        <div class="progress-track">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-
-        <p class="question-number" id="questionNumber">01 / 05</p>
-        <h2 class="question-title" id="questionTitle"></h2>
-        <p class="question-hint" id="questionHint"></p>
-
-        <textarea
-          class="answer-box"
-          id="answerInput"
-          maxlength="3000"
-          autocomplete="off"
-          spellcheck="true"
-          aria-label="Cevabınız"
-        ></textarea>
-
-        <div class="answer-foot">
-          <span data-i18n="answer_hint">Aklına geldiği gibi yaz. Doğru ya da yanlış cevap yok.</span>
-          <span id="charCount">0 / 3000</span>
-        </div>
-
-        <p class="error-msg" id="errorMsg" role="alert"></p>
-
-        <div class="question-actions">
-          <button class="btn btn-ghost" id="backBtn" type="button">
-            <span>←</span> <span data-i18n="back_btn">Geri</span>
-          </button>
-
-          <button class="btn" id="nextBtn" type="button">
-            <span data-i18n="next_btn">Devam et</span> <span>→</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- ANSWER REVIEW -->
-      <section class="review-card glass" id="reviewCard">
-        <p class="kicker" data-i18n="review_kicker">BİR SONRAKİ ADIM</p>
-        <h2 data-i18n="review_title">Cevaplarına birlikte bakalım.</h2>
-        <p class="review-intro" data-i18n="review_intro">
-          Devam etmeden önce verdiğin cevapları gözden geçirebilirsin.
-          İstersen geri dönüp değiştirebilirsin.
-        </p>
-
-        <div id="reviewAnswers"></div>
-
-        <div class="privacy-note" data-i18n="privacy_note">
-          Yanıtların henüz herhangi bir yere gönderilmiyor. Yapay zekâ
-          değerlendirmesi için güvenli bağlantı ayrıca kurulacak.
-        </div>
-
-        <div class="review-actions">
-          <button class="btn btn-ghost" id="editBtn" type="button">
-            <span>←</span> <span data-i18n="edit_btn">Cevaplarımı düzenle</span>
-          </button>
-          <button class="btn" id="analyzeBtn" type="button">
-            <span data-i18n="analyze_btn">Değerlendirmeye geç</span> <span>↗</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- RESULT / CONNECTION STATUS -->
-      <section class="result-card glass" id="resultCard" aria-live="polite">
-        <p class="kicker" data-i18n="result_kicker">KENDİNE BİR NOT</p>
-        <h2 data-i18n="result_title">Bir adım daha derine iniyoruz.</h2>
-        <div class="result-content" id="resultContent"></div>
-      </section>
-
-    </div>
+<header class="page-head wrap">
+  <p class="kicker" id="pageKicker">SEMBOLİK BİR YOLCULUK</p>
+  <h1 id="pageTitle">Hayatının Hangi <span class="holo">İstasyonunda</span> Bekliyorsun?</h1>
+  <p class="lead" id="pageLead">Bazen mesele hangi yöne gideceğimizi bilmemek değil, hareket etmek için neyi beklediğimizi fark edememektir.</p>
+</header>
+<div class="wrap"><div class="test-shell">
+<section class="intro-card glass visible" id="intro">
+  <div class="intro-symbol">✦</div>
+  <p class="kicker" id="introKicker">SEMBOLİK KEŞİF · 5 SEÇİM</p>
+  <h2 id="introTitle">Bir tren istasyonundasın. <span class="holo">Hangi treni bekliyorsun?</span></h2>
+  <p id="introText1">Önünde farklı yönlere giden trenler var. Bu yolculukta doğru ya da yanlış cevap yok. İlk dikkatini çeken seçeneği işaretle; fazla düşünmeden, içinden geldiği gibi ilerle.</p>
+  <p id="introText2">Bu küçük hikâyede istasyon, tren ve bekleyiş biçimin üzerinden değişimle, belirsizlikle ve seçimlerinle kurduğun ilişkiye bakacağız.</p>
+  <div class="intro-meta"><span><i></i><b>5 kısa soru</b></span><span><i></i><b>2–3 dakika</b></span><span><i></i><b>Sembolik yorum</b></span></div>
+  <button class="btn" id="startBtn" type="button">Yolculuğa başla <span>↗</span></button>
+</section>
+<section class="question-card glass" id="questionCard" aria-live="polite">
+  <div class="progress-top"><span id="progressLabel">SORU 1 / 5</span><span id="progressPercent">20%</span></div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <p class="question-number" id="questionNumber">01 / 05</p>
+  <h2 class="question-title" id="questionTitle"></h2>
+  <p class="question-hint" id="questionHint"></p>
+  <div class="choice-grid" id="choiceGrid"></div>
+  <p class="error-msg" id="errorMsg" role="alert"></p>
+  <div class="question-actions">
+    <button class="btn btn-ghost" id="backBtn" type="button">← <span>Geri</span></button>
+    <button class="btn" id="nextBtn" type="button">Devam et <span>→</span></button>
   </div>
-
-  <p class="disclaimer" data-i18n="disclaimer">
-    <span>Bir hatırlatma:</span> Bu çalışma klinik bir test veya psikolojik
-    tanı aracı değildir. Cevapların üzerinden düşünmeni ve kendi örüntülerini
-    keşfetmeni destekleyen sembolik bir farkındalık çalışmasıdır.
-  </p>
-
+</section>
+<section class="result-card glass" id="resultCard" aria-live="polite">
+  <p class="kicker">YOLCULUĞUNUN YANSIMASI</p>
+  <h2>Perondan kendine bak.</h2>
+  <div id="resultContent"></div>
+  <div class="review-actions"><button class="btn btn-ghost" id="restartBtn" type="button">↻ Yeniden başla</button><a class="btn" href="https://www.advicemy.com/danisman/adalin-sohtorik" target="_blank" rel="noopener">Seans hakkında bilgi al ↗</a></div>
+</section>
+</div></div>
+<p class="disclaimer" id="disclaimer"><span>Bir hatırlatma:</span> Bu çalışma klinik bir test veya psikolojik tanı aracı değildir. Semboller herkes için aynı anlama gelmez; burada sunulan yorumlar, kendi seçimlerin üzerine düşünmen için hazırlanmış bir farkındalık davetidir.</p>
 </main>
-
-<footer data-i18n="footer">
-  © 2026 Adalin Sohtorik — Tüm hakları saklıdır.
-</footer>
-
+<footer id="footer">© 2026 Adalin Sohtorik — Tüm hakları saklıdır.</footer>
 <script>
-/* =========================================================
-   AYARLAR
-   Cloudflare Worker hazır olduğunda buraya adresini ekleyeceğiz.
-   Örnek: https://adalin-test-api.kullanici.workers.dev
-   ========================================================= */
-
-const API_ENDPOINT = "";
-
-
-/* =========================================================
-   DİL METİNLERİ
-   ========================================================= */
-
-const TRANSLATIONS = {
-  tr:{
-    nav_about:"Hakkımda",
-    nav_sessions:"Seanslar",
-    nav_blog:"Blog",
-    nav_tests:"Kendini Keşfet",
-    nav_book:"Seans Al",
-
-    page_kicker:"KENDİNE DOĞRU BİR YOLCULUK",
-    page_title_start:"Seni Olduğun Yerde",
-    page_title_end:"Tutan Şey Ne?",
-    page_lead:"Bazen ilerleyemememizin nedeni ne istediğimizi bilmemek değil, bizi olduğumuz yerde tutan görünmez döngüyü fark edememektir.",
-
-    intro_kicker:"SEMBOLİK KEŞİF · 5 SORU",
-    intro_title:'Kendine karşı ne kadar <span class="holo">dürüst olabilirsin?</span>',
-    intro_p1:"Bu çalışma, hayatında değiştirmek istediğin hâlde tekrar tekrar aynı noktaya döndüğün alanı anlamana yardımcı olmak için hazırlandı.",
-    intro_p2:"Sana hazır kişilik etiketleri sunmayacağız. Kendi cümlelerinle cevap vereceğin beş soruyla düşünce ve davranış örüntülerine birlikte bakacağız.",
-
-    meta_questions:"5 açık uçlu soru",
-    meta_time:"Yaklaşık 5–8 dakika",
-    meta_personal:"Kişisel değerlendirme",
-    start_btn:"Kendimi keşfetmeye başla",
-
-    answer_hint:"Aklına geldiği gibi yaz. Doğru ya da yanlış cevap yok.",
-    answer_placeholder:"Düşüncelerini burada özgürce ifade edebilirsin...",
-    back_btn:"Geri",
-    next_btn:"Devam et",
-    finish_btn:"Cevaplarımı tamamla",
-
-    review_kicker:"BİR SONRAKİ ADIM",
-    review_title:"Cevaplarına birlikte bakalım.",
-    review_intro:"Devam etmeden önce verdiğin cevapları gözden geçirebilirsin. İstersen geri dönüp değiştirebilirsin.",
-    privacy_note:"Yanıtların henüz herhangi bir yere gönderilmiyor. Yapay zekâ değerlendirmesi için güvenli bağlantı ayrıca kurulacak.",
-    edit_btn:"Cevaplarımı düzenle",
-    analyze_btn:"Değerlendirmeye geç",
-
-    result_kicker:"KENDİNE BİR NOT",
-    result_title:"Bir adım daha derine iniyoruz.",
-
-    disclaimer:"<span>Bir hatırlatma:</span> Bu çalışma klinik bir test veya psikolojik tanı aracı değildir. Cevapların üzerinden düşünmeni ve kendi örüntülerini keşfetmeni destekleyen sembolik bir farkındalık çalışmasıdır.",
-
-    footer:"© 2026 Adalin Sohtorik — Tüm hakları saklıdır.",
-
-    questions:[
-      {
-        title:"Hayatında gerçekten değiştirmek istediğin ama bir türlü değiştiremediğin şey ne?",
-        hint:"Bir hedef, ilişki, alışkanlık, karar ya da kendinle ilgili bir durum olabilir. Genel konuşmak yerine mümkün olduğunca somut bir örnek anlat."
-      },
-      {
-        title:"Sence seni bu değişim için harekete geçmekten alıkoyan asıl şey ne?",
-        hint:"Zaman, para veya koşullar gibi görünen nedenlerin ötesine bakmayı dene. İçinden geçenleri, tereddütlerini ve kendine söylediklerini anlat."
-      },
-      {
-        title:"Daha önce bu konuda adım attığın hâlde eski davranışına geri döndüğün oldu mu? O anlarda ne yaşandı?",
-        hint:"Bir örneği hatırlamaya çalış. Ne yapmaya karar vermiştin, ne oldu ve hangi noktada vazgeçtin?"
-      },
-      {
-        title:"Bu durum böyle devam ettiğinde, farkında olmadan neyi koruyor veya neyden kaçıyor olabilirsin?",
-        hint:"Değişmemek bazen bizi bir riskten, sorumluluktan, hayal kırıklığından ya da belirsizlikten koruyor olabilir. Sende ne olabilir?"
-      },
-      {
-        title:"İstediğin değişim gerçekten gerçekleşirse hayatında neyin farklılaşmasından korkuyorsun?",
-        hint:"Yeni bir hayatın getireceği sorumlulukları, ilişkilerindeki değişimleri, başkalarının tepkilerini veya kendinle ilgili beklentileri düşün."
-      }
-    ],
-
-    empty_error:"Devam etmeden önce bu soruya kendi cümlelerinle cevap vermeni istiyorum.",
-    short_error:"Biraz daha açabilir misin? En az 10 karakter yazmanı rica ediyorum.",
-    connection_title:"Yapay zekâ bağlantısı henüz kurulmadı.",
-    connection_text:"Testin soru ve cevap bölümü hazır. Sana özel analiz oluşturacak güvenli yapay zekâ bağlantısını henüz etkinleştirmedik. Şu anda cevapların herhangi bir sunucuya gönderilmedi ve bu sayfada kalıyor.",
-    connection_next:"Bir sonraki aşamada Cloudflare Worker bağlantısını kurduğumuzda bu bölüm, beş cevabını birlikte değerlendirerek kişisel analizini oluşturacak.",
-    restart_btn:"Testi yeniden başlat",
-    loading:"Cevapların değerlendiriliyor...",
-    api_error:"Analiz sırasında bir sorun oluştu. Lütfen daha sonra tekrar dene.",
-    review_labels:[
-      "01 · Hayatında değiştirmek istediğin şey",
-      "02 · Seni durduran şey",
-      "03 · Tekrarlayan döngü",
-      "04 · Gizli kazanç veya kaçınma",
-      "05 · Değişimden duyduğun korku"
-    ]
-  },
-
-  ru:{
-    nav_about:"Обо мне",
-    nav_sessions:"Сессии",
-    nav_blog:"Блог",
-    nav_tests:"Познай себя",
-    nav_book:"Записаться",
-
-    page_kicker:"ПУТЕШЕСТВИЕ К СЕБЕ",
-    page_title_start:"Что удерживает тебя",
-    page_title_end:"на одном месте?",
-    page_lead:"Иногда нам мешает двигаться вперёд не отсутствие понимания желаемого, а незамеченный внутренний цикл, который удерживает нас на месте.",
-
-    intro_kicker:"СИМВОЛИЧЕСКОЕ ИССЛЕДОВАНИЕ · 5 ВОПРОСОВ",
-    intro_title:'Насколько честно ты можешь <span class="holo">посмотреть на себя?</span>',
-    intro_p1:"Это упражнение поможет исследовать сферу жизни, которую ты хочешь изменить, но в которой снова и снова оказываешься в одной и той же точке.",
-    intro_p2:"Мы не будем присваивать тебе готовые типы личности. Вместе рассмотрим твои мысли и поведенческие модели через пять вопросов, на которые ты ответишь своими словами.",
-
-    meta_questions:"5 открытых вопросов",
-    meta_time:"Примерно 5–8 минут",
-    meta_personal:"Персональный разбор",
-    start_btn:"Начать исследование себя",
-
-    answer_hint:"Пиши так, как чувствуешь. Здесь нет правильных или неправильных ответов.",
-    answer_placeholder:"Ты можешь свободно выразить здесь свои мысли...",
-    back_btn:"Назад",
-    next_btn:"Продолжить",
-    finish_btn:"Завершить ответы",
-
-    review_kicker:"СЛЕДУЮЩИЙ ШАГ",
-    review_title:"Давай посмотрим на твои ответы.",
-    review_intro:"Перед продолжением ты можешь просмотреть свои ответы и при желании вернуться, чтобы изменить их.",
-    privacy_note:"Твои ответы пока никуда не отправляются. Безопасное подключение для анализа искусственным интеллектом будет настроено отдельно.",
-    edit_btn:"Изменить ответы",
-    analyze_btn:"Перейти к анализу",
-
-    result_kicker:"ЗАМЕТКА ДЛЯ СЕБЯ",
-    result_title:"Пойдём на шаг глубже.",
-
-    disclaimer:"<span>Важно:</span> Это упражнение не является клиническим тестом или инструментом психологической диагностики. Это символическая практика осознанности, помогающая исследовать собственные мысли и модели поведения.",
-    footer:"© 2026 Adalin Sohtorik — Все права защищены.",
-
-    questions:[
-      {
-        title:"Что в своей жизни ты действительно хочешь изменить, но никак не можешь?",
-        hint:"Это может быть цель, отношения, привычка, решение или что-то, связанное с тобой. Постарайся привести конкретный пример."
-      },
-      {
-        title:"Как ты думаешь, что на самом деле мешает тебе начать действовать ради этих перемен?",
-        hint:"Попробуй заглянуть глубже очевидных причин вроде нехватки времени, денег или подходящих условий. Расскажи о своих сомнениях и мыслях."
-      },
-      {
-        title:"Ты уже пытался что-то изменить, но возвращался к прежнему поведению? Что происходило в такие моменты?",
-        hint:"Вспомни конкретный случай. Что ты решил сделать, что произошло и в какой момент ты отступил?"
-      },
-      {
-        title:"Если всё останется как есть, что ты, возможно, неосознанно защищаешь или чего избегаешь?",
-        hint:"Иногда отсутствие перемен защищает нас от риска, ответственности, разочарования или неопределённости. Что это может быть в твоём случае?"
-      },
-      {
-        title:"Если желаемые перемены действительно произойдут, каких изменений в своей жизни ты можешь бояться?",
-        hint:"Подумай об ответственности, изменениях в отношениях, реакции окружающих или новых ожиданиях от самого себя."
-      }
-    ],
-
-    empty_error:"Прежде чем продолжить, ответь на этот вопрос своими словами.",
-    short_error:"Можешь немного подробнее? Пожалуйста, напиши не менее 10 символов.",
-    connection_title:"Подключение искусственного интеллекта ещё не настроено.",
-    connection_text:"Вопросы и ответы теста уже готовы. Безопасное подключение искусственного интеллекта для персонального анализа пока не активировано. Сейчас твои ответы не отправляются на сервер и остаются на этой странице.",
-    connection_next:"Когда мы настроим Cloudflare Worker, этот раздел сможет оценивать все пять ответов вместе и создавать персональный анализ.",
-    restart_btn:"Пройти тест заново",
-    loading:"Твои ответы анализируются...",
-    api_error:"Во время анализа произошла ошибка. Пожалуйста, попробуй позже.",
-    review_labels:[
-      "01 · Что ты хочешь изменить",
-      "02 · Что тебя останавливает",
-      "03 · Повторяющийся цикл",
-      "04 · Скрытая выгода или избегание",
-      "05 · Страх перед переменами"
-    ]
-  }
+const DATA = {
+ tr: {
+  questions:[
+   {title:"İlk olarak istasyonun nasıl bir yer olduğunu hayal et.",hint:"Etrafına bak. Gözünün önüne ilk gelen istasyonu seç.",options:[
+    {icon:"🌤️",title:"Aydınlık ve kalabalık",desc:"İnsan sesleri, hareket ve telaş var.",tag:"bag",read:"Kalabalık bir istasyon, yolculuğun yalnızca kişisel bir karar olmadığını düşündürebilir. Çevrenin ritmi, beklentiler veya başkalarının varlığı senin kararlarını nasıl etkiliyor? Bazen kendi yönümüzü bulmaya çalışırken etrafın sesini fazla açarız."},
+    {icon:"🌫️",title:"Sisli ve sessiz",desc:"Nereye baktığını tam seçemiyorsun.",tag:"belirsiz",read:"Sisli bir istasyon, henüz netleşmemiş bir dönemin sembolü olabilir. Her şeyi göremediğinde hemen karar vermek yerine beklemeyi seçiyor olabilirsin. Kendine şu soruyu sor: Gerçekten yönümü mü bilmiyorum, yoksa tüm yolu aynı anda görmek mi istiyorum?"},
+    {icon:"🌙",title:"Gece vakti, loş ışıklı",desc:"Az sayıda insan, uzaklardan gelen ışıklar.",tag:"bekleyis",read:"Gece istasyonu, kendi içine çekildiğin ve kararlarını dış dünyanın gürültüsünden uzakta verdiğin zamanları çağrıştırabilir. Bu yalnızlık sana alan mı açıyor, yoksa düşüncelerinin içinde daha uzun süre kalmana mı neden oluyor?"},
+    {icon:"🚉",title:"Eski ve terk edilmiş",desc:"Yıpranmış banklar, sessiz bir peron.",tag:"gecmis",read:"Eski bir istasyon, geçmişten taşınan alışkanlıkları veya artık işlevini yitirmiş beklentileri hatırlatabilir. Bir zamanlar sana güven veren bir düzen, bugün seni olduğun yerde tutuyor olabilir mi?"}
+   ]},
+   {title:"Bir tren yaklaşıyor. İlk dikkatini çeken tren hangisi?",hint:"Trenin nasıl göründüğünü düşün; sana en yakın geleni seç.",options:[
+    {icon:"🚄",title:"Hızlı ve modern",desc:"Nereye gittiği belli, vakit kaybetmiyor.",tag:"kontrol",read:"Hızlı ve modern tren, netlik ve ilerleme arzusunu temsil edebilir. Bir an önce yol almak, belirsizliği geride bırakmak istiyor olabilirsin. Peki hızın gerçekten sana mı ait, yoksa geç kaldığını düşündüğün için mi acele ediyorsun?"},
+    {icon:"🚂",title:"Eski bir tren",desc:"Yavaş, nostaljik ve tanıdık.",tag:"gecmis",read:"Eski tren, tanıdık olana duyulan yakınlığı çağrıştırabilir. Bildiğin yolların kusurları olsa bile güven vermesi anlaşılır. Ancak tanıdık olan her zaman sana iyi gelen midir, yoksa yalnızca nasıl ilerleyeceğini bildiğin için mi onu seçiyorsun?"},
+    {icon:"🚆",title:"Uzun ve bilinmeyen bir tren",desc:"Vagonları bitmiyor; varış noktası belirsiz.",tag:"belirsiz",read:"Uzun ve nereye gittiği belirsiz tren, henüz adını koymadığın ihtimallere duyduğun merakı yansıtabilir. Yeni bir yol seni çağırıyor olabilir; fakat bilinmeyenin heyecanıyla kaygısı bazen birbirine karışır. Bilmemek seni durduruyor mu, yoksa merakını mı canlı tutuyor?"},
+    {icon:"🚋",title:"Neredeyse boş bir tren",desc:"Sessiz, sakin ve içinde yer var.",tag:"bag",read:"Boş tren, kendi alanını ve başkalarının beklentilerinden uzak bir yolculuğu önemsemeyi çağrıştırabilir. Kendi kararlarını tek başına vermek sana iyi geliyor olabilir. Yine de bağımsızlık ile kimseye ihtiyaç duymamak zorunda hissetmek arasında bir fark var."}
+   ]},
+   {title:"Trenin gelmesini beklerken ne yapıyorsun?",hint:"O anki davranışını düşün. Hangisi sana daha yakın?",options:[
+    {icon:"⌚",title:"Sürekli saate bakıyorum",desc:"Gecikme var mı, ne kadar kaldı diye kontrol ediyorum.",tag:"kontrol",read:"Saate bakmak, zamanın ve kontrolün senin için önemli olduğuna işaret eden bir sembol olarak okunabilir. Beklemek sana boşa geçen zaman gibi gelebilir. Her şeyin planlandığı gibi ilerlemesini istemek anlaşılır; ancak bazen hayatın ritmi senin takvimine uymaz."},
+    {icon:"📱",title:"Telefonumla ilgileniyorum",desc:"Beklediğimi düşünmemek için başka şeylere dalıyorum.",tag:"kacinma",read:"Dikkatini telefona vermek, bekleyişin yarattığı duygudan uzaklaşma biçimini çağrıştırabilir. Boşlukta kalmak yerine zihnini meşgul etmeyi seçiyor olabilirsin. Sessizlikte ortaya çıkacak düşüncelerden kaçınıyor musun, yoksa yalnızca kendine küçük bir mola mı veriyorsun?"},
+    {icon:"👀",title:"Gelen giden trenleri izliyorum",desc:"Merak ediyorum ama henüz karar vermiyorum.",tag:"bekleyis",read:"Gelen trenleri izlemek, seçenekleri gözlemlemeyi ve karar vermeden önce anlamaya çalışmayı temsil edebilir. Bu dikkatli bir yaklaşım olabilir. Fakat bazen seçenekleri uzun süre incelemek, seçim yapmanın getireceği sorumluluğu ertelemenin zarif bir yoluna dönüşebilir."},
+    {icon:"🚶",title:"Peronda dolaşıyorum",desc:"Yerimde duramıyor, hareket ediyorum.",tag:"hareket",read:"Peronda dolaşmak, içinde bir hareket ihtiyacı olduğunu düşündürebilir. Bir şeylerin değişmesini istiyor, fakat henüz hangi yöne gideceğini netleştirmemiş olabilirsin. Bazen ilk adım, bütün rotayı bilmek değil; bulunduğun yerden küçük bir hareket yapmaktır."}
+   ]},
+   {title:"Trenin kapıları açılıyor. Ne yapıyorsun?",hint:"İlk içgüdünü seç; uzun uzun hesaplama.",options:[
+    {icon:"🧳",title:"Hemen biniyorum",desc:"Fırsat önümdeyken beklemek istemiyorum.",tag:"hareket",read:"Kapılar açılır açılmaz binmek, fırsatları değerlendirme ve harekete geçme isteğini çağrıştırır. Karar anında cesur davranıyor olabilirsin. Kendine sor: Bu gerçekten istediğim bir yol mu, yoksa önümde açılan ilk kapıyı kaçırmamak için mi seçiyorum?"},
+    {icon:"🔎",title:"Önce tabelaya bakıyorum",desc:"Nereye gittiğini öğrenmeden binmem.",tag:"kontrol",read:"Önce tabelayı kontrol etmek, karar vermeden önce bilgi ve güven aradığını düşündürebilir. Bu, bilinçli seçim yapmana yardımcı olur. Ancak kesinlik ihtiyacı bazen hiçbir seçeneğin yeterince güvenli görünmemesine neden olabilir."},
+    {icon:"🪟",title:"İçeri bakıp bekliyorum",desc:"Biraz daha hissetmek ve gözlemlemek istiyorum.",tag:"bekleyis",read:"İçeri bakıp beklemek, kararın yalnızca mantıksal değil duygusal tarafını da anlamaya çalıştığını gösterebilir. Kendini hazır hissetmek senin için önemli olabilir. Peki hazır olma hissini beklerken hangi fırsatları kaçırıyor olabilirsin?"},
+    {icon:"↩️",title:"Bu trene binmiyorum",desc:"İçime sinmedi; bir sonrakini bekleyeceğim.",tag:"kacinma",read:"Binmemeyi seçmek, kendi sınırlarını koruma ve sana uygun olmayan bir yola girmeme kararlılığını çağrıştırabilir. Bu güçlü bir seçim olabilir. Yalnız şu ayrımı düşün: İçine sinmediği için mi bekliyorsun, yoksa yeni bir başlangıcın belirsizliği mi seni geri çekiyor?"}
+   ]},
+   {title:"Yolculuğun sonunda nerede olmak isterdin?",hint:"Haritada gerçek bir yer arama. Sana hissettirdiği şeyi seç.",options:[
+    {icon:"🌊",title:"Deniz kenarında sakin bir yer",desc:"Nefes alabileceğim, kendime dönebileceğim bir yer.",tag:"denge",read:"Deniz kenarı, ferahlama ve içsel alan ihtiyacını temsil edebilir. Belki de aradığın değişim daha fazlasını başarmaktan çok, hayatının içinde kendine yer açmaktır. Sakinlik senin için kaçış mı, yoksa yeniden güç topladığın bir alan mı?"},
+    {icon:"🏙️",title:"Işıkları hiç sönmeyen bir şehir",desc:"Yeni insanlar, fırsatlar ve hareket.",tag:"hareket",read:"Canlı bir şehir, gelişim, temas ve yeni olasılıklara açıklığı çağrıştırabilir. Hayatında daha fazla deneyim ve görünürlük istiyor olabilirsin. Peki bu hareketin içinde kendi ihtiyaçlarını duymaya devam edebilecek misin?"},
+    {icon:"🏡",title:"Tanıdık bir ev",desc:"Beni bekleyen, bildiğim ve güvende hissettiğim bir yer.",tag:"bag",read:"Tanıdık bir ev, aidiyet ve güven ihtiyacını sembolize edebilir. İnsan bazen yeni bir yere gitmekten çok, kendini güvende hissettiği bir bağa dönmek ister. Bu güven seni besliyor mu, yoksa alıştığın için mi orada kalıyorsun?"},
+    {icon:"🗺️",title:"Henüz bilmediğim bir yer",desc:"Adını bilmiyorum; keşfetmek istiyorum.",tag:"belirsiz",read:"Bilinmeyen bir yer, keşif ve olasılıklara açıklığı çağrıştırır. Her şeyi önceden bilmeden de yola çıkabileceğini hissediyor olabilirsin. Bazen yön, yolculuğa başladıktan sonra belirginleşir."}
+   ]}
+  ],
+  start:"Yolculuğa başla",next:"Devam et",finish:"Yorumumu gör",back:"Geri",question:"SORU",selected:"Bir seçenek belirle.",restart:"Yeniden başla",summaryTitle:"Şu anki yolculuk eğilimin",patterns:{hareket:"Harekete yaklaşan",kontrol:"Önce güven arayan",bekleyis:"Bekleyişte kalan",belirsiz:"Yönünü keşfeden",bag:"Güvenli bağları önemseyen",gecmis:"Tanıdık olana dönen",kacinma:"Duygudan uzaklaşan",denge:"Denge arayan"},
+  summary:{hareket:"Seçimlerinde hareket ve deneyim arzusu öne çıkıyor. Önündeki fırsatları değerlendirmek istiyorsun; şimdi önemli olan, hızını kendi ihtiyacına göre ayarlamak.",kontrol:"Belirsizlik karşısında önce anlamak ve güven duymak istiyorsun. Bu dikkatli tarafın sana yardımcı olabilir; ancak her ayrıntının netleşmesini beklemek hareket alanını daraltmasın.",bekleyis:"Gözlemlemek ve doğru anı kollamak senin için önemli görünüyor. Beklemek bazen bilinçli bir hazırlıktır; bazen de kararın sorumluluğunu ertelemenin yolu. Aradaki farkı fark etmek sana alan açabilir.",belirsiz:"Yeni ihtimallere açıksın ama yönün henüz tamamen belirgin değil. Her şeyi önceden bilmek zorunda değilsin; küçük bir adım da yolun nasıl hissettirdiğini gösterebilir.",bag:"Güven, aidiyet ve ilişkiler kararlarında önemli bir yer tutuyor olabilir. Sana iyi gelen bağları korurken kendi yönünü seçme hakkını da unutma.",gecmis:"Tanıdık olanın sende güçlü bir karşılığı var. Geçmişten gelen deneyimlerin sana rehber olabilir; fakat bugünkü seçimlerini eski alışkanlıkların yapmasına izin vermemeye dikkat et.",kacinma:"Zorlayıcı belirsizliklerden veya duygulardan uzaklaşmak isteyebilirsin. Bu bazen kendini korumaktır; bazen de bir sonraki adımı geciktirir. Neyi koruduğunu dürüstçe sormak önemli.",denge:"Yolculuğun sonunda aradığın şey yalnızca yeni bir yer değil, kendinle daha dengeli bir ilişki olabilir. Değişim bazen dışarıdaki koşullardan önce içerideki ritmi düzenlemekle başlar."},
+  reflect:"Kendine sor: Şu sıralar hayatımda hangi treni bekliyorum ve binmek için hangi işaretin gelmesini umuyorum?",
+  disclaimer:"Bu yorumlar kesin kişilik tanımları değildir. Seçimlerin, üzerine düşünebileceğin sembolik çağrışımlar sunar."
+ },
+ ru: {
+  questions:[
+   {title:"Сначала представь вокзал. Каким ты его видишь?",hint:"Оглянись вокруг и выбери образ, который первым возник в воображении.",options:[
+    {icon:"🌤️",title:"Светлый и многолюдный",desc:"Голоса, движение и суета.",tag:"bag",read:"Многолюдный вокзал может напоминать, что твои решения связаны не только с тобой. Ожидания окружающих и общий ритм могут влиять на выбор. Не заглушаешь ли ты собственный голос шумом чужих мнений?"},
+    {icon:"🌫️",title:"Туманный и тихий",desc:"Трудно разглядеть, что впереди.",tag:"belirsiz",read:"Туман может символизировать период, в котором ещё не всё ясно. Возможно, ты предпочитаешь подождать, пока картина станет понятнее. Но нужно ли видеть весь путь, чтобы сделать первый шаг?"},
+    {icon:"🌙",title:"Ночной, с тусклым светом",desc:"Мало людей, вдали видны огни.",tag:"bekleyis",read:"Ночной вокзал напоминает пространство для размышлений наедине с собой. Такая тишина может давать свободу, а может удерживать внутри бесконечных мыслей. Что происходит с тобой, когда вокруг становится тихо?"},
+    {icon:"🚉",title:"Старый и почти заброшенный",desc:"Потёртые скамейки и пустая платформа.",tag:"gecmis",read:"Старый вокзал может напоминать о привычках и ожиданиях из прошлого. То, что когда-то давало чувство безопасности, сегодня может удерживать тебя на месте. Всё ли знакомое по-прежнему тебе подходит?"}
+   ]},
+   {title:"К вокзалу приближается поезд. Какой первым привлекает внимание?",hint:"Представь его и выбери тот, который тебе ближе.",options:[
+    {icon:"🚄",title:"Быстрый и современный",desc:"Маршрут известен, времени он не теряет.",tag:"kontrol",read:"Быстрый поезд может символизировать стремление к ясности и движению. Возможно, тебе хочется скорее оставить неопределённость позади. Но ты спешишь потому, что этого хочешь, или потому, что боишься опоздать?"},
+    {icon:"🚂",title:"Старый поезд",desc:"Медленный, знакомый и немного ностальгический.",tag:"gecmis",read:"Старый поезд может символизировать близость к знакомому. Известный маршрут кажется безопаснее, даже если у него есть недостатки. Знакомое действительно подходит тебе или ты выбираешь его потому, что знаешь, чего ожидать?"},
+    {icon:"🚆",title:"Длинный поезд в неизвестность",desc:"Вагонов много, пункт назначения неясен.",tag:"belirsiz",read:"Неизвестный поезд может отражать любопытство к ещё не названным возможностям. Новое одновременно волнует и тревожит. Неопределённость останавливает тебя или поддерживает интерес к жизни?"},
+    {icon:"🚋",title:"Почти пустой поезд",desc:"Тихо, спокойно, есть свободное место.",tag:"bag",read:"Пустой поезд может напоминать о потребности в личном пространстве и свободе от чужих ожиданий. Самостоятельность может быть важна для тебя. Но есть ли разница между независимостью и ощущением, что нельзя ни на кого опереться?"}
+   ]},
+   {title:"Что ты делаешь, пока ждёшь поезд?",hint:"Выбери действие, которое больше всего похоже на тебя.",options:[
+    {icon:"⌚",title:"Постоянно смотрю на часы",desc:"Проверяю, не опаздывает ли поезд.",tag:"kontrol",read:"Часы могут символизировать важность времени и контроля. Ожидание кажется потерянным временем. Но жизнь не всегда движется по расписанию — можешь ли ты оставлять место для её собственного ритма?"},
+    {icon:"📱",title:"Отвлекаюсь на телефон",desc:"Занимаю себя, чтобы не думать об ожидании.",tag:"kacinma",read:"Телефон может быть способом отвлечься от чувств, которые возникают в паузе. Возможно, тебе проще занять ум, чем оставаться в тишине. От каких мыслей ты уходишь, когда заполняешь каждую свободную минуту?"},
+    {icon:"👀",title:"Наблюдаю за поездами",desc:"Интересно, но пока не принимаю решения.",tag:"bekleyis",read:"Наблюдение может говорить о желании сначала изучить варианты. Это осторожность, но иногда долгое сравнение вариантов помогает отложить ответственность за выбор. В какой момент анализ превращается в ожидание?"},
+    {icon:"🚶",title:"Хожу по платформе",desc:"Мне трудно стоять на одном месте.",tag:"hareket",read:"Движение по платформе может отражать внутреннюю потребность что-то менять. Возможно, ты хочешь перемен, но ещё не определил направление. Иногда первый шаг важнее, чем знание всего маршрута."}
+   ]},
+   {title:"Двери поезда открываются. Что ты делаешь?",hint:"Выбери первую реакцию, не обдумывая слишком долго.",options:[
+    {icon:"🧳",title:"Сразу захожу",desc:"Не хочу упускать возможность.",tag:"hareket",read:"Быстрое решение может символизировать готовность действовать. Ты умеешь замечать возможности. Но спроси себя: это действительно мой путь или я выбираю первую открытую дверь из страха упустить шанс?"},
+    {icon:"🔎",title:"Сначала смотрю на табло",desc:"Не сяду, пока не узнаю, куда он едет.",tag:"kontrol",read:"Проверка маршрута может говорить о потребности в информации и безопасности. Это помогает принимать осознанные решения. Но не превращается ли желание полной ясности в ожидание, когда ни один вариант не кажется достаточно надёжным?"},
+    {icon:"🪟",title:"Заглядываю внутрь и жду",desc:"Хочу немного почувствовать атмосферу.",tag:"bekleyis",read:"Ты словно прислушиваешься не только к логике, но и к собственным ощущениям. Готовность для тебя важна. Но сколько возможностей проходит, пока ты ждёшь, когда почувствуешь себя полностью готовым?"},
+    {icon:"↩️",title:"Не сажусь в этот поезд",desc:"Он мне не подходит, подожду следующий.",tag:"kacinma",read:"Отказ может символизировать умение беречь свои границы. Но важно различать: поезд действительно не твой или неизвестность нового начала заставляет отступить?"}
+   ]},
+   {title:"Где ты хотел(а) бы оказаться в конце пути?",hint:"Не ищи реальное место. Выбери то, что откликается по ощущению.",options:[
+    {icon:"🌊",title:"В тихом месте у моря",desc:"Где можно выдохнуть и побыть с собой.",tag:"denge",read:"Море может символизировать потребность в пространстве и внутреннем покое. Возможно, перемены для тебя — это не новые достижения, а возможность освободить место для себя. Покой для тебя — бегство или источник сил?"},
+    {icon:"🏙️",title:"В городе, где не гаснут огни",desc:"Новые люди, возможности и движение.",tag:"hareket",read:"Живой город может символизировать интерес к развитию, общению и новым возможностям. Ты можешь хотеть больше впечатлений и видимости. Сможешь ли ты среди этой активности слышать собственные потребности?"},
+    {icon:"🏡",title:"В знакомом доме",desc:"Там, где меня ждут и где спокойно.",tag:"bag",read:"Знакомый дом может символизировать потребность в принадлежности и безопасности. Иногда хочется не нового места, а возвращения к тому, что даёт опору. Эти связи питают тебя или ты остаёшься в них только потому, что привык(ла)?"},
+    {icon:"🗺️",title:"В месте, которого я ещё не знаю",desc:"Я не знаю его названия, но хочу открыть его.",tag:"belirsiz",read:"Неизвестное место может символизировать любопытство и открытость возможностям. Возможно, ты готов(а) отправиться в путь, не зная всего заранее. Иногда направление становится ясным уже в дороге."}
+   ]}
+  ],
+  start:"Начать путешествие",next:"Далее",finish:"Узнать результат",back:"Назад",question:"ВОПРОС",selected:"Выбери один вариант.",restart:"Начать заново",summaryTitle:"Твоя нынешняя стратегия пути",patterns:{hareket:"Стремление к движению",kontrol:"Поиск уверенности",bekleyis:"Ожидание подходящего момента",belirsiz:"Исследование неизвестного",bag:"Ценность близости и опоры",gecmis:"Возвращение к знакомому",kacinma:"Дистанция от сложных чувств",denge:"Поиск равновесия"},
+  summary:{hareket:"В твоих выборах заметно стремление к движению и новому опыту. Важно, чтобы темп был твоим, а не продиктован страхом опоздать.",kontrol:"Перед неизвестностью тебе важно понять ситуацию и почувствовать опору. Это помогает выбирать осознанно, но ожидание полной ясности может сужать пространство действий.",bekleyis:"Для тебя важно наблюдать и дождаться подходящего момента. Иногда это подготовка, а иногда — способ отложить ответственность за выбор. Попробуй заметить разницу.",belirsiz:"Ты открыт(а) новым возможностям, хотя направление ещё не до конца ясно. Не обязательно знать весь маршрут — небольшой шаг тоже может многое прояснить.",bag:"Безопасность, принадлежность и отношения могут занимать важное место в твоих решениях. Сохраняя ценные связи, не забывай о праве выбирать собственное направление.",gecmis:"Знакомое имеет для тебя особое значение. Прошлый опыт может быть опорой, но важно не позволять старым привычкам принимать решения за тебя.",kacinma:"Возможно, иногда хочется отдалиться от сложных чувств и неопределённости. Это может защищать, но может и задерживать следующий шаг. Важно честно спросить себя, что именно ты оберегаешь.",denge:"Возможно, в конце пути ты ищешь не только новое место, но и более гармоничные отношения с собой. Перемены иногда начинаются с внутреннего ритма."},
+  reflect:"Спроси себя: какой поезд я сейчас жду в своей жизни и какого знака надеюсь дождаться, прежде чем сесть?",
+  disclaimer:"Это не точные определения личности. Выборы предлагают символические ассоциации для размышления о себе."
+ }
 };
-
-
-/* =========================================================
-   UYGULAMA DURUMU
-   ========================================================= */
-
-const $ = (selector) => document.querySelector(selector);
-
-const root = document.documentElement;
-
-const intro = $("#intro");
-const questionCard = $("#questionCard");
-const reviewCard = $("#reviewCard");
-const resultCard = $("#resultCard");
-
-const questionNumber = $("#questionNumber");
-const questionTitle = $("#questionTitle");
-const questionHint = $("#questionHint");
-const answerInput = $("#answerInput");
-const charCount = $("#charCount");
-const progressLabel = $("#progressLabel");
-const progressPercent = $("#progressPercent");
-const progressFill = $("#progressFill");
-const errorMsg = $("#errorMsg");
-
-let currentQuestion = 0;
-let answers = ["","","","",""];
-let lang = "tr";
-
-const storage = {
-  get(key){
-    try{return localStorage.getItem(key)}catch(e){return null}
-  },
-  set(key,value){
-    try{localStorage.setItem(key,value)}catch(e){}
-  }
-};
-
-function t(){
-  return TRANSLATIONS[lang] || TRANSLATIONS.tr;
+let lang=localStorage.getItem('lang')||'tr'; if(!DATA[lang])lang='tr';
+let theme=localStorage.getItem('theme2')||'noirberry';
+const $=s=>document.querySelector(s), root=document.documentElement;
+const intro=$('#intro'),questionCard=$('#questionCard'),resultCard=$('#resultCard');
+let current=0,answers=[];
+function applyTheme(){if(theme==='noirberry')root.setAttribute('data-theme','noirberry');else root.removeAttribute('data-theme');$('#theme').textContent=theme==='noirberry'?'☀':'☾'}
+applyTheme();$('#theme').addEventListener('click',()=>{theme=theme==='noirberry'?'holo':'noirberry';localStorage.setItem('theme2',theme);applyTheme()});
+function applyLang(){
+ root.lang=lang;$('#lang').textContent=lang==='tr'?'RU':'TR';
+ const tr=lang==='tr';
+ const copy=tr?{
+  kicker:'SEMBOLİK BİR YOLCULUK',title:'Hayatının Hangi <span class="holo">İstasyonunda</span> Bekliyorsun?',lead:'Bazen mesele hangi yöne gideceğimizi bilmemek değil, hareket etmek için neyi beklediğimizi fark edememektir.',introKicker:'SEMBOLİK KEŞİF · 5 SEÇİM',introTitle:'Bir tren istasyonundasın. <span class="holo">Hangi treni bekliyorsun?</span>',p1:'Önünde farklı yönlere giden trenler var. Bu yolculukta doğru ya da yanlış cevap yok. İlk dikkatini çeken seçeneği işaretle; fazla düşünmeden, içinden geldiği gibi ilerle.',p2:'Bu küçük hikâyede istasyon, tren ve bekleyiş biçimin üzerinden değişimle, belirsizlikle ve seçimlerinle kurduğun ilişkiye bakacağız.',disclaimer:'<span>Bir hatırlatma:</span> Bu çalışma klinik bir test veya psikolojik tanı aracı değildir. Semboller herkes için aynı anlama gelmez; burada sunulan yorumlar, kendi seçimlerin üzerine düşünmen için hazırlanmış bir farkındalık davetidir.',footer:'© 2026 Adalin Sohtorik — Tüm hakları saklıdır.',about:'Hakkımda',sessions:'Seanslar',blog:'Blog',tests:'Kendini Keşfet',book:'Seans Al'
+ }:{
+  kicker:'СИМВОЛИЧЕСКОЕ ПУТЕШЕСТВИЕ',title:'На какой <span class="holo">станции</span> остановилась твоя жизнь?',lead:'Иногда дело не в том, что мы не знаем направления, а в том, что не замечаем, чего именно ждём, прежде чем двинуться дальше.',introKicker:'СИМВОЛИЧЕСКОЕ ИССЛЕДОВАНИЕ · 5 ВЫБОРОВ',introTitle:'Ты на железнодорожной станции. <span class="holo">Какой поезд ты ждёшь?</span>',p1:'Перед тобой поезда, следующие в разные стороны. Здесь нет правильных или неправильных ответов. Выбери то, что первым привлекло внимание, и не раздумывай слишком долго.',p2:'Через образ станции, поезда и ожидания мы посмотрим на то, как ты относишься к переменам, неопределённости и собственному выбору.',disclaimer:'<span>Важно:</span> Это упражнение не является клиническим тестом или психологической диагностикой. Символы не имеют одинакового значения для всех; интерпретации — приглашение поразмышлять над собственным выбором.',footer:'© 2026 Adalin Sohtorik — Все права защищены.',about:'Обо мне',sessions:'Сессии',blog:'Блог',tests:'Познай себя',book:'Записаться'
+ };
+ $('#pageKicker').textContent=copy.kicker;$('#pageTitle').innerHTML=copy.title;$('#pageLead').textContent=copy.lead;$('#introKicker').textContent=copy.introKicker;$('#introTitle').innerHTML=copy.introTitle;$('#introText1').textContent=copy.p1;$('#introText2').textContent=copy.p2;$('#disclaimer').innerHTML=copy.disclaimer;$('#footer').textContent=copy.footer;
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;const map={nav_about:copy.about,nav_sessions:copy.sessions,nav_blog:copy.blog,nav_tests:copy.tests,nav_book:copy.book};if(map[k])el.textContent=map[k]});
+ $('#startBtn').innerHTML=DATA[lang].start+' <span>↗</span>';$('#backBtn').innerHTML='← <span>'+DATA[lang].back+'</span>';renderQuestion();if(resultCard.classList.contains('visible'))renderResult()
 }
-
-
-/* =========================================================
-   TEMA — BLOG İLE AYNI theme2 DEĞERİ
-   ========================================================= */
-
-function applyTheme(theme){
-  if(theme === "noirberry"){
-    root.setAttribute("data-theme","noirberry");
-  }else{
-    root.removeAttribute("data-theme");
-  }
-
-  const button = $("#theme");
-  if(button){
-    button.textContent = theme === "noirberry" ? "☀" : "☾";
-  }
-}
-
-let theme = storage.get("theme2") || "noirberry";
-applyTheme(theme);
-
-$("#theme").addEventListener("click",()=>{
-  theme = theme === "noirberry" ? "holo" : "noirberry";
-  storage.set("theme2",theme);
-  applyTheme(theme);
-});
-
-
-/* =========================================================
-   DİL — BLOG İLE AYNI lang DEĞERİ
-   ========================================================= */
-
-function applyLanguage(){
-  const text = t();
-
-  root.lang = lang;
-
-  document.querySelectorAll("[data-i18n]").forEach(element=>{
-    const key = element.dataset.i18n;
-    if(text[key] !== undefined){
-      element.innerHTML = text[key];
-    }
-  });
-
-  $("#lang").textContent = lang === "tr" ? "RU" : "TR";
-
-  if(questionCard.classList.contains("visible")){
-    renderQuestion();
-  }
-
-  if(reviewCard.classList.contains("visible")){
-    renderReview();
-  }
-
-  answerInput.placeholder = text.answer_placeholder;
-}
-
-lang = storage.get("lang") || "tr";
-if(!TRANSLATIONS[lang]) lang = "tr";
-
-$("#lang").addEventListener("click",()=>{
-  lang = lang === "tr" ? "ru" : "tr";
-  storage.set("lang",lang);
-  applyLanguage();
-});
-
-applyLanguage();
-
-
-/* =========================================================
-   SORU AKIŞI
-   ========================================================= */
-
-function showOnly(section){
-  [intro,questionCard,reviewCard,resultCard].forEach(item=>{
-    item.classList.remove("visible");
-  });
-
-  if(section){
-    section.classList.add("visible");
-    section.scrollIntoView({behavior:"smooth",block:"center"});
-  }
-}
-
-function renderQuestion(){
-  const text = t();
-  const question = text.questions[currentQuestion];
-  const total = text.questions.length;
-  const number = currentQuestion + 1;
-  const percent = Math.round((number / total) * 100);
-
-  questionNumber.textContent =
-    String(number).padStart(2,"0") + " / " + String(total).padStart(2,"0");
-
-  questionTitle.textContent = question.title;
-  questionHint.textContent = question.hint;
-
-  progressLabel.textContent =
-    (lang === "tr" ? "SORU " : "ВОПРОС ") + number + " / " + total;
-
-  progressPercent.textContent = percent + "%";
-  progressFill.style.width = percent + "%";
-
-  answerInput.value = answers[currentQuestion];
-  answerInput.placeholder = text.answer_placeholder;
-
-  charCount.textContent = answerInput.value.length + " / 3000";
-
-  errorMsg.textContent = "";
-
-  $("#backBtn").style.visibility =
-    currentQuestion === 0 ? "hidden" : "visible";
-
-  $("#nextBtn").innerHTML = currentQuestion === total - 1
-    ? `<span>${text.finish_btn}</span> <span>→</span>`
-    : `<span>${text.next_btn}</span> <span>→</span>`;
-}
-
-function startTest(){
-  currentQuestion = 0;
-  showOnly(questionCard);
-  renderQuestion();
-  setTimeout(()=>answerInput.focus(),350);
-}
-
-$("#startBtn").addEventListener("click",startTest);
-
-answerInput.addEventListener("input",()=>{
-  answers[currentQuestion] = answerInput.value;
-  charCount.textContent = answerInput.value.length + " / 3000";
-});
-
-$("#nextBtn").addEventListener("click",()=>{
-  const value = answerInput.value.trim();
-  const text = t();
-
-  if(!value){
-    errorMsg.textContent = text.empty_error;
-    answerInput.focus();
-    return;
-  }
-
-  if(value.length < 10){
-    errorMsg.textContent = text.short_error;
-    answerInput.focus();
-    return;
-  }
-
-  answers[currentQuestion] = value;
-
-  if(currentQuestion < text.questions.length - 1){
-    currentQuestion++;
-    renderQuestion();
-    answerInput.focus();
-  }else{
-    renderReview();
-    showOnly(reviewCard);
-  }
-});
-
-$("#backBtn").addEventListener("click",()=>{
-  answers[currentQuestion] = answerInput.value;
-
-  if(currentQuestion > 0){
-    currentQuestion--;
-    renderQuestion();
-  }else{
-    showOnly(intro);
-  }
-});
-
-
-/* =========================================================
-   CEVAPLARI GÖZDEN GEÇİRME
-   ========================================================= */
-
-function renderReview(){
-  const text = t();
-  const container = $("#reviewAnswers");
-
-  container.innerHTML = "";
-
-  answers.forEach((answer,index)=>{
-    const item = document.createElement("div");
-    item.className = "review-item";
-
-    const heading = document.createElement("h3");
-    heading.textContent = text.review_labels[index];
-
-    const paragraph = document.createElement("p");
-    paragraph.textContent = answer;
-
-    item.appendChild(heading);
-    item.appendChild(paragraph);
-    container.appendChild(item);
-  });
-}
-
-$("#editBtn").addEventListener("click",()=>{
-  currentQuestion = 0;
-  showOnly(questionCard);
-  renderQuestion();
-});
-
-
-/* =========================================================
-   YAPAY ZEKÂ BAĞLANTISI
-   API_ENDPOINT boş bırakıldığı sürece cevaplar gönderilmez.
-   Worker kurulduktan sonra endpoint buraya eklenecek.
-   ========================================================= */
-
-function showConnectionMessage(){
-  const text = t();
-  const content = $("#resultContent");
-
-  content.innerHTML = "";
-
-  const title = document.createElement("strong");
-  title.textContent = text.connection_title;
-
-  const paragraph = document.createElement("p");
-  paragraph.textContent = text.connection_text;
-  paragraph.style.marginTop = "12px";
-
-  const next = document.createElement("p");
-  next.textContent = text.connection_next;
-  next.style.marginTop = "12px";
-
-  const restart = document.createElement("button");
-  restart.className = "btn btn-ghost";
-  restart.type = "button";
-  restart.textContent = text.restart_btn;
-  restart.style.marginTop = "25px";
-
-  restart.addEventListener("click",()=>{
-    answers = ["","","","",""];
-    currentQuestion = 0;
-    answerInput.value = "";
-    showOnly(intro);
-  });
-
-  content.appendChild(title);
-  content.appendChild(paragraph);
-  content.appendChild(next);
-  content.appendChild(restart);
-}
-
-async function sendForAnalysis(){
-  const text = t();
-  const button = $("#analyzeBtn");
-
-  if(!API_ENDPOINT){
-    showConnectionMessage();
-    showOnly(resultCard);
-    return;
-  }
-
-  button.disabled = true;
-  button.textContent = text.loading;
-
-  try{
-    const response = await fetch(API_ENDPOINT,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        language:lang,
-        test:"seni_oldugun_yerde_tutan_sey",
-        answers:answers
-      })
-    });
-
-    if(!response.ok){
-      throw new Error("API request failed");
-    }
-
-    const data = await response.json();
-
-    if(!data.analysis || typeof data.analysis !== "string"){
-      throw new Error("Invalid analysis response");
-    }
-
-    $("#resultContent").textContent = data.analysis;
-    showOnly(resultCard);
-
-  }catch(error){
-    $("#resultContent").textContent = text.api_error;
-    showOnly(resultCard);
-  }finally{
-    button.disabled = false;
-    button.innerHTML = `<span>${text.analyze_btn}</span> <span>↗</span>`;
-  }
-}
-
-$("#analyzeBtn").addEventListener("click",sendForAnalysis);
-
-
-/* =========================================================
-   CURSOR GLOW
-   ========================================================= */
-
-const glow = $(".cursor-glow");
-
-if(glow && window.matchMedia("(pointer:fine)").matches){
-  window.addEventListener("mousemove",event=>{
-    glow.style.left = event.clientX + "px";
-    glow.style.top = event.clientY + "px";
-  });
-}
-
-
-/* =========================================================
-   MOBİL MENÜ
-   ========================================================= */
-
-(function(){
-  const nav = document.querySelector(".nav");
-  const button = $("#menu");
-
-  if(!nav || !button) return;
-
-  function setMenu(open){
-    nav.classList.toggle("open",open);
-    button.setAttribute("aria-expanded",String(open));
-    button.textContent = open ? "✕" : "☰";
-  }
-
-  button.addEventListener("click",()=>{
-    setMenu(!nav.classList.contains("open"));
-  });
-
-  nav.querySelectorAll(".nav-links a").forEach(link=>{
-    link.addEventListener("click",()=>setMenu(false));
-  });
-})();
-
-
-/* =========================================================
-   REVEAL ANIMATION
-   ========================================================= */
-
-if("IntersectionObserver" in window){
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add("show");
-        observer.unobserve(entry.target);
-      }
-    });
-  },{threshold:.12});
-
-  document.querySelectorAll(".reveal").forEach(element=>{
-    observer.observe(element);
-  });
-}else{
-  document.querySelectorAll(".reveal").forEach(element=>{
-    element.classList.add("show");
-  });
-}
-
+$('#lang').addEventListener('click',()=>{lang=lang==='tr'?'ru':'tr';localStorage.setItem('lang',lang);applyLang()});
+function show(section){[intro,questionCard,resultCard].forEach(x=>x.classList.remove('visible'));section.classList.add('visible');section.scrollIntoView({behavior:'smooth',block:'center'})}
+function start(){current=0;answers=[];show(questionCard);renderQuestion()}
+$('#startBtn').addEventListener('click',start);
+function renderQuestion(){if(!questionCard.classList.contains('visible'))return;const d=DATA[lang],q=d.questions[current],pct=Math.round((current+1)/d.questions.length*100);$('#progressLabel').textContent=d.question+' '+(current+1)+' / '+d.questions.length;$('#progressPercent').textContent=pct+'%';$('#progressFill').style.width=pct+'%';$('#questionNumber').textContent=String(current+1).padStart(2,'0')+' / '+String(d.questions.length).padStart(2,'0');$('#questionTitle').textContent=q.title;$('#questionHint').textContent=q.hint;$('#errorMsg').textContent='';$('#backBtn').style.visibility=current===0?'hidden':'visible';$('#nextBtn').innerHTML=(current===d.questions.length-1?d.finish:d.next)+' <span>→</span>';const grid=$('#choiceGrid');grid.innerHTML='';q.options.forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.className='choice'+(answers[current]===i?' selected':'');b.setAttribute('aria-pressed',answers[current]===i?'true':'false');const icon=document.createElement('span');icon.className='choice-symbol';icon.textContent=o.icon;const txt=document.createElement('span');const strong=document.createElement('strong');strong.textContent=o.title;const small=document.createElement('small');small.textContent=o.desc;txt.append(strong,small);b.append(icon,txt);b.addEventListener('click',()=>{answers[current]=i;grid.querySelectorAll('.choice').forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.add('selected');b.setAttribute('aria-pressed','true');$('#errorMsg').textContent=''});grid.appendChild(b)})}
+$('#nextBtn').addEventListener('click',()=>{const d=DATA[lang];if(answers[current]===undefined){$('#errorMsg').textContent=d.selected;return}if(current<d.questions.length-1){current++;renderQuestion()}else renderResult()});
+$('#backBtn').addEventListener('click',()=>{if(current>0){current--;renderQuestion()}else show(intro)});
+function renderResult(){const d=DATA[lang],chosen=d.questions.map((q,i)=>q.options[answers[i]]),counts={};chosen.forEach(o=>counts[o.tag]=(counts[o.tag]||0)+1);const dominant=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];const container=$('#resultContent');container.innerHTML='';const summary=document.createElement('div');summary.className='result-summary';const h=document.createElement('h3');h.textContent=d.patterns[dominant]||d.summaryTitle;const p=document.createElement('p');p.textContent=d.summary[dominant]||'';summary.append(h,p);container.appendChild(summary);chosen.forEach((o,i)=>{const section=document.createElement('section');section.className='result-reading';const title=document.createElement('h3');title.textContent=String(i+1).padStart(2,'0')+' · '+o.title;const para=document.createElement('p');para.textContent=o.read;section.append(title,para);container.appendChild(section)});const reflection=document.createElement('p');reflection.className='result-question';reflection.textContent=d.reflect;container.appendChild(reflection);const note=document.createElement('p');note.className='result-question';note.textContent=d.disclaimer;container.appendChild(note);show(resultCard)}
+$('#restartBtn').addEventListener('click',start);
+// Menü davranışı mevcut sitenin mobil navigasyonuyla aynı tutuldu.
+$('#menu').addEventListener('click',()=>{const nav=$('.nav'),open=nav.classList.toggle('open');$('#menu').setAttribute('aria-expanded',String(open))});
+applyLang();
 </script>
-
-<style>
-/* Reveal sınıfları */
-.reveal{
-  opacity:0;
-  transform:translateY(24px);
-  transition:opacity .9s ease,transform .9s ease;
-}
-.reveal.show{
-  opacity:1;
-  transform:none;
-}
-.mobile-book{display:none}
-@media(max-width:860px){
-  .mobile-book{display:block}
-}
-@media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none}
-}
-</style>
-
 </body>
 </html>
