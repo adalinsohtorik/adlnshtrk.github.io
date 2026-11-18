@@ -171,6 +171,21 @@ h2{font-size:clamp(30px,4.4vw,48px);margin-bottom:14px}
 
 /* ---------- About / bento ---------- */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:38px}
+
+/* ---------- Bir seans nasıl ilerler? ---------- */
+.session-steps{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:30px;margin-top:34px;
+}
+.session-step{min-width:0;padding:4px 22px 4px 0;position:relative}
+.session-step:not(:last-child)::after{
+  content:'';position:absolute;right:-15px;top:8px;bottom:8px;
+  width:1px;background:var(--glass-edge);
+}
+.session-step .num{font-family:var(--serif);font-size:27px;font-weight:400;margin-bottom:10px}
+.session-step h3{font-size:21px;margin-bottom:9px}
+.session-step p{color:var(--ink-soft);font-size:14px;line-height:1.7}
+
 .bento .glass{padding:30px}
 .span-3{grid-column:span 3}.span-2{grid-column:span 2}.span-4{grid-column:span 4}
 .glass h3{font-size:24px;margin-bottom:10px}
@@ -260,6 +275,12 @@ footer{text-align:center;padding:30px 20px 50px;font-size:13px;color:var(--ink-s
   .portrait-wrap{order:-1;width:min(260px,70%)}
   .hero{padding-top:110px}
   .bento,.notes,.prices{grid-template-columns:1fr}
+  .session-steps{gap:16px}
+  .session-step{padding-right:12px}
+  .session-step:not(:last-child)::after{right:-8px}
+  .session-step h3{font-size:18px}
+  .session-step p{font-size:12px;line-height:1.6}
+  .session-step .num{font-size:23px}
   .span-2,.span-3,.span-4{grid-column:auto}
   .reviews{flex-direction:column;width:100%}
   .reviews .col{width:100%;flex:none}
@@ -394,15 +415,27 @@ footer{text-align:center;padding:30px 20px 50px;font-size:13px;color:var(--ink-s
   </div>
 </section>
 
-<!-- APPROACH -->
+<!-- SESSION FLOW -->
 <section id="yaklasim">
   <div class="wrap">
     <p class="kicker reveal" data-i18n="approach_kicker">Yaklaşım</p>
-    <h2 class="reveal" data-i18n="approach_title">Nasıl çalışıyoruz</h2>
-    <div class="bento">
-      <div class="glass span-2 hover-lift reveal"><span class="num">01</span><h3 data-i18n="a1_t">Tekrarlayan döngüleri fark etmek</h3><p data-i18n="a1_p">Bazen koşullar değişse de kendimizi benzer duyguların, tepkilerin ve sonuçların içinde buluruz. Birlikte, tekrar eden düşünce ve davranış örüntülerini inceleyerek sizi aynı noktaya getiren dinamikleri anlamaya çalışırız.</p></div>
-      <div class="glass span-2 hover-lift reveal d1"><span class="num">02</span><h3 data-i18n="a2_t">Kendinize farklı bir pencereden bakmak</h3><p data-i18n="a2_p">Düşünceleriniz, duygularınız, alışkanlıklarınız ve olayları yorumlama biçiminiz birbirinden bağımsız değildir. Felsefe, psikoloji, koçluk ve zihin-beden ilişkisine yönelik eğitimlerimden beslenen yaklaşımımda, deneyiminize farklı açılardan bakmanıza alan açarız.</p></div>
-      <div class="glass span-2 hover-lift reveal d2"><span class="num">03</span><h3 data-i18n="a3_t">Kendi yolunuzu bilinçli çizmek</h3><p data-i18n="a3_p">Amacım sizin yerinize karar vermek ya da size hazır reçeteler sunmak değil. Kendi örüntülerinizi daha net görmenize, seçeneklerinizi değerlendirebilmenize ve günlük hayatınızda daha bilinçli seçimler geliştirmenize eşlik etmek. Hedef, zamanla kendi kendinize rehberlik edebilmeniz.</p></div>
+    <h2 class="reveal" data-i18n="approach_title">Bir seans nasıl ilerler?</h2>
+    <div class="session-steps reveal">
+      <div class="session-step">
+        <span class="num">01</span>
+        <h3 data-i18n="s1_t">Tanışma</h3>
+        <p data-i18n="s1_p">Öncelikle sizi, gündeminizi ve şu an yaşadığınız süreci dinliyorum.</p>
+      </div>
+      <div class="session-step">
+        <span class="num">02</span>
+        <h3 data-i18n="s2_t">Birlikte keşfetme</h3>
+        <p data-i18n="s2_p">Tekrarlayan düşünce ve davranış kalıplarınıza, olaylara bakış açınıza birlikte yaklaşıyoruz.</p>
+      </div>
+      <div class="session-step">
+        <span class="num">03</span>
+        <h3 data-i18n="s3_t">Yolunuzu belirleme</h3>
+        <p data-i18n="s3_p">İhtiyaçlarınızı netleştiriyor, size uygun çalışma sürecini birlikte şekillendiriyoruz.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -542,10 +575,10 @@ const RU = {
   about_p3:'Размышляя над этим, я всё больше убеждалась в важности понимания отношений человека с самим собой, его мышления, эмоций и поведения. Узнавать себя — значит не только описывать, кто мы, но и замечать, как мы думаем, что повторяем и через какие взгляды интерпретируем свою жизнь.',
   about_p4:'Сегодня в работе в сфере личностного развития и коучинга я стремлюсь превращать этот интерес в пространство для более глубокого самопознания. Я верю, что история и опыт каждого человека уникальны.',
   about_quote:'Вы пытаетесь исправить то, как вас видят другие... А как вы сами смотрите на себя?',
-  approach_kicker:'Подход', approach_title:'Как мы работаем',
-  a1_t:'Замечать повторяющиеся циклы', a1_p:'Даже когда обстоятельства меняются, мы порой снова оказываемся в похожих чувствах, реакциях и ситуациях. Вместе мы рассматриваем повторяющиеся мысли и модели поведения, чтобы лучше понять, что возвращает вас к одной и той же точке.',
-  a2_t:'Посмотреть на себя под другим углом', a2_p:'Мысли, чувства, привычки и то, как мы интерпретируем события, связаны между собой. Мой подход опирается на обучение в области философии, психологии, коучинга и связи тела и разума и помогает рассмотреть собственный опыт с разных сторон.',
-  a3_t:'Осознанно выбирать свой путь', a3_p:'Моя цель — не принимать решения за вас и не предлагать готовые рецепты. Я сопровождаю вас в том, чтобы яснее увидеть собственные модели поведения, оценить возможные варианты и делать более осознанный выбор в повседневной жизни. Важно, чтобы со временем вы могли стать опорой для самих себя.',
+  approach_kicker:'Подход', approach_title:'Как проходит сессия?',
+  s1_t:'Знакомство', s1_p:'Сначала я выслушаю вас, узнаю, что вас волнует и через какой период вы сейчас проходите.',
+  s2_t:'Исследуем вместе', s2_p:'Вместе рассмотрим повторяющиеся мысли и модели поведения, а также ваш взгляд на происходящее.',
+  s3_t:'Определяем направление', s3_p:'Проясним ваши потребности и вместе сформируем подходящий для вас процесс работы.',
   test_kicker:'Мини-тест', test_title:'Что за дверью?',
   test_p:'Вы в доме. В конце коридора четыре разные двери. Открыть можно только одну. Какую вы выберете?',
   test_note:'Этот тест — не диагноз, а приглашение взглянуть на себя под другим углом.',
